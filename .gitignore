@@ -158,3 +158,7 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+/spider-foundational-work/search_gov_spiders/.scrapy
+/spider-foundational-work/search_gov_spiders/search_gov_spiders/spiders/_trial_temp
+/spider-foundational-work/search_gov_spiders/search_gov_spiders/spiders/scrapy_urls

@@ -1,0 +1,112 @@
+# Orb 'circleci/python@2.1.1' resolved to 'circleci/python@2.1.1'
+version: 2
+jobs:
+  build_and_test:
+    docker:
+    - image: cimg/python:3.8
+    steps:
+    - checkout
+    - run:
+        command: |-
+          # shellcheck disable=SC2016
+          echo 'if [ "${PARAM_PKG_MNGR}" = "auto" ]; then
+            if [ -f "requirements.txt" ]; then
+                if [ -f "${PARAM_SETUP_FILE_PATH:-setup.py}" ]; then
+                    export DETECT_PKG_MNGR="pip-dist"
+                else
+                    export DETECT_PKG_MNGR="pip"
+                fi
+                elif [ -f "Pipfile" ]; then
+                export DETECT_PKG_MNGR="pipenv"
+                export PYTHON_ENV_TOOL="pipenv"
+                elif [ -f "pyproject.toml" ]; then
+                export DETECT_PKG_MNGR="poetry"
+                export PYTHON_ENV_TOOL="poetry"
+            fi
+            echo "INFO: Detected Package Manager ${DETECT_PKG_MNGR}"
+          fi' > /tmp/detect-env.sh
+          chmod +x /tmp/detect-env.sh
+          echo 'export AUTO_DETECT_ENV_SCRIPT="/tmp/detect-env.sh"' >> "$BASH_ENV"
+        name: Export automatic environment detection script
+    - run:
+        command: |-
+          if [ ! "${BASH_ENV_PYTHON_ALIASED}" ]; then
+              echo 'if [ ! $(command -v python) ]; then
+            shopt -s expand_aliases
+            alias python=python3
+            alias pip=pip3
+          fi
+
+          BASH_ENV_PYTHON_ALIASED=true' >> "$BASH_ENV"
+          fi
+        name: Alias Python
+    - run:
+        command: "# shellcheck source=detect-env.sh\nsource \"$AUTO_DETECT_ENV_SCRIPT\"\n\nCACHE_DIR=\"/tmp/cci_pycache\"\nLOCKFILE_PATH=\"${CACHE_DIR}/lockfile\"\n\nmkdir -p \"${CACHE_DIR}\"\n\nif [ ! -f \"${LOCKFILE_PATH}\" ]; then\n    case ${DETECT_PKG_MNGR:-${PARAM_PKG_MNGR}} in\n        pip | pip-dist)\n            LOCK_FILE=\"${PARAM_DEPENDENCY_FILE:-requirements.txt}\"\n        ;;\n        pipenv)\n            LOCK_FILE=\"Pipfile.lock\"\n        ;;\n        poetry)\n            LOCK_FILE=\"poetry.lock\"\n        ;;\n    esac\n    \n    if [ -z \"${LOCK_FILE}\" ]; then\n        echo \"WARNING: Could not determine lockfile path for ${DETECT_PKG_MNGR:-PARAM_PKG_MNGR}\"\n    else\n        FULL_LOCK_FILE=$(readlink -f \"${LOCK_FILE}\")\n\n        if [ -f \"${LOCK_FILE}\" ]; then\n            echo \"INFO: Copying ${FULL_LOCK_FILE} to ${LOCKFILE_PATH}\"\n            cp \"${FULL_LOCK_FILE}\" \"${LOCKFILE_PATH}\"\n        else\n            echo \"WARNING: Could not find lockfile at ${LOCK_FILE}\"\n        fi\n    fi\nfi"
+        environment:
+          PARAM_DEPENDENCY_FILE: ./spider-foundational-work/search_gov_spiders/requirements.txt
+          PARAM_PKG_MNGR: pip
+          PARAM_PYPI_CACHE: true
+          PARAM_VENV_CACHE: true
+          PARAM_VENV_PATH: ''
+        name: Link lockfile
+        working_directory: .
+    - run:
+        command: python --version | cut -d ' ' -f2 > /tmp/python-version
+        name: Save python version
+    - restore_cache:
+        keys:
+        - v1-cci_pycache-{{ .Branch }}-{{ checksum "/tmp/cci_pycache/lockfile" }}-{{ checksum "/tmp/python-version" }}-
+    - run:
+        command: "recurse() {\n    if [ ! -d \"$1\" ] || [ ! -e \"$2\" ]; then\n        mv -u \"$1\" \"$2\" || exit\n        return\n    fi\n    for entry in \"$1/\"* \"$1/.\"[!.]* \"$1/..\"?*; do\n        if [ -e \"$entry\" ]; then\n            recurse \"$entry\" \"$2/${entry##\"$1/\"}\"\n        fi\n    done\n}\n\nrestore_paths() {\n    if [ -d \"${1}\" ] && [ -n \"$(ls -A \"${1}\" 2>/dev/null)\" ]; then\n        for file in \"${1}\"/*; do\n            decoded=$(basename \"${file}\" | base64 -d)\n            parent_dir=$(dirname \"${decoded}\")\n            \n            # make sure the parent directories exist\n            if [ ! -d \"${parent_dir}\" ]; then\n                mkdir -p \"${parent_dir}\"\n            fi\n            \n            echo \"INFO: Restoring ${file} to ${decoded}\"\n\n            recurse \"${file}\" \"${decoded}\"\n        done\n    fi\n}\n\nCACHE_DIR=\"/tmp/cci_pycache\"\n\nif [ \"${PARAM_VENV_CACHE}\" = \"1\" ]; then\n    restore_paths \"${CACHE_DIR}/venv\"\nfi\n\nif [ \"${PARAM_PYPI_CACHE}\" = \"1\" ]; then\n    restore_paths \"${CACHE_DIR}/pypi\"\nfi"
+        environment:
+          PARAM_PYPI_CACHE: true
+          PARAM_VENV_CACHE: true
+        name: Move restored cache
+        working_directory: .
+    - run:
+        command: "pip install -r ./spider-foundational-work/search_gov_spiders/requirements.txt \n"
+        name: Install dependencies with pip using project ./spider-foundational-work/search_gov_spiders/requirements.txt
+        working_directory: .
+    - run:
+        command: "# shellcheck source=detect-env.sh\nsource \"$AUTO_DETECT_ENV_SCRIPT\"\n\ncase ${DETECT_PKG_MNGR:-${PARAM_PKG_MNGR}} in\n    pip | pip-dist)\n        LOCK_FILE=\"${PARAM_DEPENDENCY_FILE:-requirements.txt}\"\n        CACHE_PATHS='[ \"/home/circleci/.cache/pip\", \"/home/circleci/.pyenv/versions\", \"/home/circleci/.local/lib\" ]'\n    ;;\n    pipenv) # TODO: use PIPENV_PIPFILE\n        LOCK_FILE=\"Pipfile.lock\"\n        PIPENV_VENV_PATH=\"${WORKON_HOME:-/home/circleci/.local/share/virtualenvs}\"\n        \n        if [ -z \"${PIPENV_VENV_IN_PROJECT}\" ]; then\n            VENV_PATHS=\"[ \\\"${PIPENV_VENV_PATH}\\\" ]\"\n        else\n            VENV_PATHS=\"[ \\\"${CIRCLE_WORKING_DIRECTORY}/.venvs\\\" ]\"\n        fi\n        \n        CACHE_PATHS='[ \"/home/circleci/.cache/pip\", \"/home/circleci/.cache/pipenv\" ]'\n    ;;\n    poetry)\n        LOCK_FILE=\"poetry.lock\"\n        VENV_PATHS='[ \"/home/circleci/.cache/pypoetry/virtualenvs\" ]'\n        CACHE_PATHS='[ \"/home/circleci/.cache/pip\" ]'\n    ;;\nesac\n\nif [ -n \"${PARAM_VENV_PATH}\" ]; then\n    VENV_PATHS=\"${PARAM_VENV_PATH}\"\nfi\n\nCACHE_DIR=\"/tmp/cci_pycache\"\nmkdir -p \"${CACHE_DIR}\"\n\nlink_paths() {\n    if [ -d \"${1}\" ]; then\n        echo \"INFO: Cache directory already exists. Skipping...\"\n        return\n    fi\n    \n    mkdir \"${1}\"\n    \n    for encoded in $(echo \"${2}\" | jq -r '.[] | @base64'); do\n        decoded=$(echo \"${encoded}\" | base64 -d)\n        \n        if [ -e \"${decoded}\" ]; then\n            echo \"INFO: Copying ${decoded} to ${1}/${encoded}\"\n            cp -a \"${decoded}\" \"${1}/${encoded}\"\n        else\n            echo \"INFO: Could not find ${decoded}. Skipping...\"\n        fi\n    done\n}\n\nif [ \"${PARAM_VENV_CACHE}\" = \"1\" ] && [ -n \"${VENV_PATHS}\" ]; then\n    link_paths \"${CACHE_DIR}/venv\" \"${VENV_PATHS}\"\nfi\n\nif [ \"${PARAM_PYPI_CACHE}\" = \"1\" ]; then\n    link_paths \"${CACHE_DIR}/pypi\" \"${CACHE_PATHS}\"\nfi\n\nLOCKFILE_PATH=\"${CACHE_DIR}/lockfile\"\n\nif [ -e \"${LOCKFILE_PATH}\" ]; then\n    rm -f \"${LOCKFILE_PATH}\"\nfi\n\nif [ -e \"${LOCK_FILE}\" ]; then\n    FULL_LOCK_FILE=$(readlink -f \"${LOCK_FILE}\")\n    \n    echo \"INFO: Copying ${FULL_LOCK_FILE} to ${LOCKFILE_PATH}\"\n    cp \"${FULL_LOCK_FILE}\" \"${LOCKFILE_PATH}\"\nfi"
+        environment:
+          PARAM_DEPENDENCY_FILE: ./spider-foundational-work/search_gov_spiders/requirements.txt
+          PARAM_PKG_MNGR: pip
+          PARAM_PYPI_CACHE: true
+          PARAM_VENV_CACHE: true
+          PARAM_VENV_PATH: ''
+        name: Copy to cache directory
+        working_directory: .
+    - save_cache:
+        key: v1-cci_pycache-{{ .Branch }}-{{ checksum "/tmp/cci_pycache/lockfile" }}-{{ checksum "/tmp/python-version" }}-
+        paths:
+        - /tmp/cci_pycache
+    - run:
+        command: python -m unittest discover -s test -p "crawl_tests.py"
+        name: Test
+workflows:
+  main:
+    jobs:
+    - build_and_test
+  version: 2
+
+# Original config.yml file:
+# version: '2.1'
+# orbs:
+#   python: circleci/python@2.1.1
+# jobs:
+#   build_and_test:
+#     executor: python/default
+#     steps:
+#       - checkout
+#       - python/install-packages:
+# #          pip-dependency-file: requirements.txt
+#           pip-dependency-file: ./spider-foundational-work/search_gov_spiders/requirements.txt
+#           pkg-manager: pip
+#       - run:
+#           command: python -m unittest discover -s test -p \"crawl_tests.py\"
+#           name: Test
+# workflows:
+#   main:
+#     jobs:
+#       - build_and_test
