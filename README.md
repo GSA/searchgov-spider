@@ -1,5 +1,5 @@
-# search-gov-indexing
-Indexing ingest and processing for Search.gov
+# search-spider
+The home for the spider that supports search.gov
 
 ### Scrapy Web Crawler
 The spider can either scrape for URLs from the list of required domains or take in a domain and starting URL to scrape 
