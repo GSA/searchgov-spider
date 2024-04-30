@@ -8,14 +8,14 @@
 ## Setup and Use
 
 ### Option 1: straight from command-line
-1. Navigate to the [*spiders*](./search_gov_spiders/spiders) directory
+1. Navigate to the [*spiders*](search_gov_spiders/spiders) directory
 2. Enter one of two following commands:
 ow t
-    * This command will output the yielded URLs in the destination (relative to the [*spiders*](./search_gov_spiders/spiders) directory) and file format specified in the “FEEDS” variable of the [*settings.py*](./search_gov_spiders/settings.py) file:
+    * This command will output the yielded URLs in the destination (relative to the [*spiders*](search_gov_spiders/spiders) directory) and file format specified in the “FEEDS” variable of the [*settings.py*](search_gov_spiders/settings.py) file:
 
             $ scrapy runspider <spider_file.py> 
 
-    * This command will output the yielded URLs in the destination (relative to the [*spiders*](./search_gov_spiders/spiders) directory) and file format specified by the user:
+    * This command will output the yielded URLs in the destination (relative to the [*spiders*](search_gov_spiders/spiders) directory) and file format specified by the user:
 
 
             $ scrapy runspider <spider_file.py>  -o <filepath_to_output_folder/spider_output_filename.csv>             

@@ -1,0 +1,18 @@
+version: '2.1'
+orbs:
+  python: circleci/python@2.1.1
+jobs:
+  build_and_test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          pip-dependency-file: ./search_gov_spiders/requirements.txt
+          pkg-manager: pip
+      - run:
+          command: python -m unittest discover -s test -p "crawl_tests.py"
+          name: Test
+workflows:
+  main:
+    jobs:
+      - build_and_test
