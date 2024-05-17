@@ -1,13 +1,14 @@
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
-starting_urls = '../../../utility-scripts/startingUrls.txt'
+starting_urls = '../../utility-scripts/startingUrls.txt'
+
 start_urls_list = []
 with open(starting_urls) as file:
     while line := file.readline():
         start_urls_list.append(line.rstrip())
 
-domains = '../../../utility-scripts/domains.txt'
+domains = '../../utility-scripts/domains.txt'
 domains_list = []
 with open(domains) as file:
     while line := file.readline():
