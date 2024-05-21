@@ -2,11 +2,11 @@
 The home for the spider that supports search.gov
 
 ### Scrapy Web Crawler
-The spider can either scrape for URLs from the list of required domains or take in a domain and starting URL to scrape 
+The spider can either scrape for URLs from the list of required domains or take in a domain and starting URL to scrape
 site/domain.
 
 ## Running Against All Listed Search.gov Domains
-Navigate down to `search-gov-indexing/spider-foundational-work/search_gov_spiders/search_gov_spiders/spiders/`, then
+Navigate down to `search_gov_spiders/search_gov_spiders/spiders/`, then
 enter the command below:
 ```commandline
 scrapy crawl domain_spider
