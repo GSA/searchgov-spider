@@ -9,6 +9,7 @@ with open(starting_urls) as file:
         start_urls_list.append(line.rstrip())
 
 domains = "../utility_files/domains.txt"
+
 domains_list = []
 with open(domains) as file:
     while line := file.readline():
