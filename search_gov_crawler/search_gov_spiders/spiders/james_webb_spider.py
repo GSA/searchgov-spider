@@ -20,6 +20,5 @@ class JamesWebbSpider(CrawlSpider):
         ),
     )
 
-    # only including "url": response.url and not another response argument throws error
     def parse_item(self, response):
-        yield {"Link": response.url, "h1": response.xpath("//h1/text()").get()}
+        yield {"Link": response.url}
