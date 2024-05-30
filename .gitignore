@@ -159,7 +159,6 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-.DS_Store
 /search_gov_spiders/.scrapy
 /search_gov_crawler/search_gov_spiders/spiders/_trial_temp
 /search_gov_crawler/search_gov_spiders/spiders/scrapy_urls
