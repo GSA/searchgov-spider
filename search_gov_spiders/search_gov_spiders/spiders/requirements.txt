@@ -14,7 +14,7 @@ elastic-transport==8.4.0
 elasticsearch==8.5.0
 filelock==3.12.4
 hyperlink==21.0.0
-idna==3.4
+idna==3.7
 incremental==22.10.0
 itemadapter==0.8.0
 itemloaders==1.1.0
