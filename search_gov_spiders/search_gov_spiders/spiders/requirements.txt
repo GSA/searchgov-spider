@@ -9,6 +9,7 @@ charset-normalizer==2.1.1
 constantly==15.1.0
 cryptography==41.0.4
 cssselect==1.2.0
+docutils @ file:///private/tmp/docutils-20231015-5454-w1xze4/docutils-0.20.1
 elastic-transport==8.4.0
 elasticsearch==8.5.0
 filelock==3.12.4
@@ -35,7 +36,7 @@ rapidfuzz==3.4.0
 requests==2.28.1
 requests-file==1.5.1
 s3transfer==0.6.0
-Scrapy==2.11.0
+Scrapy==2.11.2
 scrapyd==1.4.3
 scrapyd-client==1.2.3
 service-identity==23.1.0
