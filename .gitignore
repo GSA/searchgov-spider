@@ -160,6 +160,5 @@ cython_debug/
 #.idea/
 
 /search_gov_spiders/.scrapy
-/search_gov_crawler/search_gov_spiders/spiders/_trial_temp
-/search_gov_crawler/search_gov_spiders/spiders/scrapy_urls
-/search_gov_crawler/search_gov_spiders/scrapy_urls/domain_spider
+/search_gov_spiders/search_gov_spiders/spiders/_trial_temp
+/search_gov_spiders/search_gov_spiders/spiders/scrapy_urls

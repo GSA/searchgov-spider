@@ -9,6 +9,7 @@ charset-normalizer==2.1.1
 constantly==15.1.0
 cryptography==41.0.4
 cssselect==1.2.0
+docutils @ file:///private/tmp/docutils-20231015-5454-w1xze4/docutils-0.20.1
 elastic-transport==8.4.0
 elasticsearch==8.5.0
 filelock==3.12.4
