@@ -20,8 +20,6 @@ with open(domains) as file:
 # scrapy crawl domain_spider -a domain=desired_domain -a urls=desired_url
 # ex: scrapy crawl domain_spider -a domain=travel.dod.mil -a urls=https://travel.dod.mil
 
-#TODO: determine DFO or BFO crawl based on amount of domains needed to crawl
-
 
 class DomainSpider(CrawlSpider):
     # name = "travelDodMil"

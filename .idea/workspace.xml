@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="add notes for later iterations of broad crawling">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/spiders/domain_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/spiders/domain_spider.py" afterDir="false" />
-    </list>
+    <list default="true" id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="fix parsing of multiple domain/start url inputs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -430,7 +427,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717687525748</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="fix parsing of multiple domain/start url inputs">
+      <option name="closed" value="true" />
+      <created>1717695707600</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1717695707600</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -446,7 +451,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove heroku from circleci config" />
     <MESSAGE value="remove heroku from deploy step in circleci config" />
     <MESSAGE value="trying different circleci config" />
     <MESSAGE value="update dependencies in requirements.txt" />
@@ -471,6 +475,7 @@
     <MESSAGE value="Update readme...again" />
     <MESSAGE value="add settings configurations for broad crawling" />
     <MESSAGE value="add notes for later iterations of broad crawling" />
-    <option name="LAST_COMMIT_MESSAGE" value="add notes for later iterations of broad crawling" />
+    <MESSAGE value="fix parsing of multiple domain/start url inputs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix parsing of multiple domain/start url inputs" />
   </component>
 </project>
