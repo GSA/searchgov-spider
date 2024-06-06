@@ -29,8 +29,21 @@ class DomainSpider(CrawlSpider):
 
     def __init__(self, domain=None, urls=None, *args, **kwargs):
         super(DomainSpider, self).__init__(*args, **kwargs)
-        self.allowed_domains = [domain] if domain else domains_list
-        self.start_urls = [urls] if urls else start_urls_list
+        # will grab singular domain
+        # multiple comma-separated inputs (ex input: domain=getsmartaboutdrugs.gov,travel.dod.mil)
+        # or the list of search.gov domains
+        if domain and ',' in domain:
+            self.allowed_domains = domain.split(',')
+        else:
+            self.allowed_domains = [domain] if domain else domains_list
+        # urls to start crawling from in domain(s)
+        # will grab singular start url
+        # multiple comma-separated inputs (ex input: urls=https://getsmartaboutdrugs.gov,https://travel.dod.mil)
+        # or the list of search.gov start urls
+        if urls and ',' in urls:
+            self.start_urls = urls.split(',')
+        else:
+            self.start_urls = [urls] if urls else start_urls_list
 
     # file type exclusions
     rules = (
