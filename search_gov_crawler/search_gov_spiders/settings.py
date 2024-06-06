@@ -20,8 +20,19 @@ USER_AGENT = "usasearch"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+# settings for broad crawling
+SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-# CONCURRENT_REQUESTS = 8
+CONCURRENT_REQUESTS = 100
+REACTOR_THREADPOOL_MAXSIZE = 20
+LOG_LEVEL = "INFO"
+RETRY_ENABLED = False
+DOWNLOAD_TIMEOUT = 15
+AJAXCRAWL_ENABLED = True
+# crawl in BFO order rather than DFO
+DEPTH_PRIORITY = 1
+SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
+SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay

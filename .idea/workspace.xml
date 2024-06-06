@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="Update readme...again">
+      <change beforePath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/settings.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2WfU0GiSaHTw9C4ZsdO3yDilPcw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "implement-broad-crawling",
+    "last_opened_file_path": "/Users/ccrawford/Documents/search_gov/repos/search-gov-spider",
+    "settings.editor.selected.configurable": "PyConsoleConfigurable.Python Console"
+  }
+}]]></component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings sdk-home="/usr/bin/python3">
+        <option name="sdk">
+          <Sdk />
+        </option>
+        <option name="mySdkHome" value="/usr/bin/python3" />
+        <option name="mySdk">
+          <Sdk />
+        </option>
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/spider-foundational-work" />
+      <recent name="$PROJECT_DIR$/spider-foundational-work/" />
+      <recent name="$PROJECT_DIR$/spider-foundational-work/search_gov_spiders/search_gov_spiders/spiders/test" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="search-gov-indexing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="search-gov-indexing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Docutils task">
+      <module name="search-gov-indexing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Sphinx task">
+      <module name="search-gov-indexing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for crawl_tests.SpiderCrawlTest" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/PycharmProjects/scrapyPractice/venv/bin/python" />
+      <option name="SDK_NAME" value="Python 3.9 (scrapyPractice)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/spider-foundational-work/spiders/test" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;crawl_tests.SpiderCrawlTest&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for crawl_tests.SpiderCrawlTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="" />
+      <created>1697122903052</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697122903052</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Add bash script for running python scripts via screen">
+      <option name="closed" value="true" />
+      <created>1701886331506</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701886331506</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add middleware, alter settings for faster crawls">
+      <option name="closed" value="true" />
+      <created>1706120396985</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706120396985</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Exclude .idea directory from repo">
+      <option name="closed" value="true" />
+      <created>1706281708474</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706281708474</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fix .idea directory exclusion from repo">
+      <option name="closed" value="true" />
+      <created>1706283576751</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706283576751</updated>
+    </task>
+    <task id="LOCAL-00005" summary="SRCH-4758, change settings to use search.gov user agent">
+      <option name="closed" value="true" />
+      <created>1706647706803</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1706647706803</updated>
+    </task>
+    <task id="LOCAL-00006" summary="start of adding scrapy tests (contracts)">
+      <option name="closed" value="true" />
+      <created>1706809816631</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706809816631</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add spider crawl unit test">
+      <option name="closed" value="true" />
+      <created>1707836464133</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707836464133</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add CircleCI config">
+      <option name="closed" value="true" />
+      <created>1707850814019</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707850814019</updated>
+    </task>
+    <task id="LOCAL-00009" summary="remove heroku from circleci config">
+      <option name="closed" value="true" />
+      <created>1707940286115</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1707940286115</updated>
+    </task>
+    <task id="LOCAL-00010" summary="remove heroku from deploy step in circleci config">
+      <option name="closed" value="true" />
+      <created>1707940365349</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1707940365349</updated>
+    </task>
+    <task id="LOCAL-00011" summary="trying different circleci config">
+      <option name="closed" value="true" />
+      <created>1708009224854</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708009224854</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update dependencies in requirements.txt">
+      <option name="closed" value="true" />
+      <created>1708010228821</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708010228821</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update docutils dependency in requirements.txt">
+      <option name="closed" value="true" />
+      <created>1708011277766</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1708011277766</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix project structure, move tests into own folder, change circleci config to point at new tests folder">
+      <option name="closed" value="true" />
+      <created>1708030542121</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1708030542122</updated>
+    </task>
+    <task id="LOCAL-00015" summary="rename test folder so unittest.TestCase can run/be discovered">
+      <option name="closed" value="true" />
+      <created>1708093552731</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1708093552731</updated>
+    </task>
+    <task id="LOCAL-00016" summary="update circleci config to target test module">
+      <option name="closed" value="true" />
+      <created>1708093829938</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708093829938</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update circleci config to target test directory">
+      <option name="closed" value="true" />
+      <created>1708093933806</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1708093933806</updated>
+    </task>
+    <task id="LOCAL-00018" summary="start work on getting scrutiny plist to parse into scrapy start_urls">
+      <option name="closed" value="true" />
+      <created>1708721592736</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1708721592736</updated>
+    </task>
+    <task id="LOCAL-00019" summary="add import of start urls and domains list for use with spider, add more file extensions exclusions for crawls">
+      <option name="closed" value="true" />
+      <created>1709329882470</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1709329882470</updated>
+    </task>
+    <task id="LOCAL-00020" summary="move test to spiders/, change circleci python orb version">
+      <option name="closed" value="true" />
+      <created>1709577674023</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709577674023</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix test directory for unit tests">
+      <option name="closed" value="true" />
+      <created>1709579048230</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1709579048230</updated>
+    </task>
+    <task id="LOCAL-00022" summary="add test directory back, update circleci config with new test directory">
+      <option name="closed" value="true" />
+      <created>1709653380763</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1709653380763</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fix circleci config to target test file specifically (thanks Lora!)">
+      <option name="closed" value="true" />
+      <created>1709748537248</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1709748537248</updated>
+    </task>
+    <task id="LOCAL-00024" summary="code cleanup before moving PR to ready">
+      <option name="closed" value="true" />
+      <created>1709749923817</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1709749923817</updated>
+    </task>
+    <task id="LOCAL-00025" summary="move and regenerate requirements.txt, optimize circleci config steps, code cleanup">
+      <option name="closed" value="true" />
+      <created>1709865335397</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1709865335397</updated>
+    </task>
+    <task id="LOCAL-00026" summary="removed commented out line in circleci config.yml">
+      <option name="closed" value="true" />
+      <created>1709901377050</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1709901377050</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Update readme, fix example commands for scrapy in domain_spider.py">
+      <option name="closed" value="true" />
+      <created>1710181011093</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1710181011093</updated>
+    </task>
+    <task id="LOCAL-00028" summary="cleanup before moving to new repo">
+      <option name="closed" value="true" />
+      <created>1713980825900</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1713980825900</updated>
+    </task>
+    <task id="LOCAL-00029" summary="initial commit for project files">
+      <option name="closed" value="true" />
+      <created>1714085993298</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1714085993298</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Update readme">
+      <option name="closed" value="true" />
+      <created>1714401597733</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1714401597733</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Update readme...again">
+      <option name="closed" value="true" />
+      <created>1714401826304</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1714401826304</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="add spider crawl unit test" />
+    <MESSAGE value="add CircleCI config" />
+    <MESSAGE value="remove heroku from circleci config" />
+    <MESSAGE value="remove heroku from deploy step in circleci config" />
+    <MESSAGE value="trying different circleci config" />
+    <MESSAGE value="update dependencies in requirements.txt" />
+    <MESSAGE value="update docutils dependency in requirements.txt" />
+    <MESSAGE value="fix project structure, move tests into own folder, change circleci config to point at new tests folder" />
+    <MESSAGE value="rename test folder so unittest.TestCase can run/be discovered" />
+    <MESSAGE value="update circleci config to target test module" />
+    <MESSAGE value="update circleci config to target test directory" />
+    <MESSAGE value="start work on getting scrutiny plist to parse into scrapy start_urls" />
+    <MESSAGE value="add import of start urls and domains list for use with spider, add more file extensions exclusions for crawls" />
+    <MESSAGE value="move test to spiders/, change circleci python orb version" />
+    <MESSAGE value="fix test directory for unit tests" />
+    <MESSAGE value="add test directory back, update circleci config with new test directory" />
+    <MESSAGE value="fix circleci config to target test file specifically (thanks Lora!)" />
+    <MESSAGE value="code cleanup before moving PR to ready" />
+    <MESSAGE value="move and regenerate requirements.txt, optimize circleci config steps, code cleanup" />
+    <MESSAGE value="removed commented out line in circleci config.yml" />
+    <MESSAGE value="Update readme, fix example commands for scrapy in domain_spider.py" />
+    <MESSAGE value="cleanup before moving to new repo" />
+    <MESSAGE value="initial commit for project files" />
+    <MESSAGE value="Update readme" />
+    <MESSAGE value="Update readme...again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update readme...again" />
+  </component>
+</project>
