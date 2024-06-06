@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="Update readme...again">
-      <change beforePath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/settings.py" afterDir="false" />
+    <list default="true" id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="add settings configurations for broad crawling">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -413,7 +413,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714401826304</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="add settings configurations for broad crawling">
+      <option name="closed" value="true" />
+      <created>1717683271181</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1717683271181</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -429,7 +437,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add spider crawl unit test" />
     <MESSAGE value="add CircleCI config" />
     <MESSAGE value="remove heroku from circleci config" />
     <MESSAGE value="remove heroku from deploy step in circleci config" />
@@ -454,6 +461,7 @@
     <MESSAGE value="initial commit for project files" />
     <MESSAGE value="Update readme" />
     <MESSAGE value="Update readme...again" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update readme...again" />
+    <MESSAGE value="add settings configurations for broad crawling" />
+    <option name="LAST_COMMIT_MESSAGE" value="add settings configurations for broad crawling" />
   </component>
 </project>
