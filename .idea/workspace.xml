@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="fix parsing of multiple domain/start url inputs" />
+    <list default="true" id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="remove unneeded TODO">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -435,7 +438,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717695707600</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="remove unneeded TODO">
+      <option name="closed" value="true" />
+      <created>1717695781480</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1717695781480</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -451,7 +462,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove heroku from deploy step in circleci config" />
     <MESSAGE value="trying different circleci config" />
     <MESSAGE value="update dependencies in requirements.txt" />
     <MESSAGE value="update docutils dependency in requirements.txt" />
@@ -476,6 +486,7 @@
     <MESSAGE value="add settings configurations for broad crawling" />
     <MESSAGE value="add notes for later iterations of broad crawling" />
     <MESSAGE value="fix parsing of multiple domain/start url inputs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix parsing of multiple domain/start url inputs" />
+    <MESSAGE value="remove unneeded TODO" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove unneeded TODO" />
   </component>
 </project>
