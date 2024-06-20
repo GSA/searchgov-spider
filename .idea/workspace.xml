@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="remove unneeded TODO">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="6a3abe4f-d2c9-4817-8eca-1765af4f8a51" name="Changes" comment="add unneeded intellij directories to .gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/spiders/domain_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/spiders/domain_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/spiders/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/search_gov_crawler/search_gov_spiders/spiders/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +24,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="implement-broad-crawling" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -44,7 +51,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "implement-broad-crawling",
+    "git-widget-placeholder": "SRCH-4763-render-javascript",
     "last_opened_file_path": "/Users/ccrawford/Documents/search_gov/repos/search-gov-spider",
     "settings.editor.selected.configurable": "PyConsoleConfigurable.Python Console"
   }
@@ -446,7 +453,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717695781480</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="add unneeded intellij directories to .gitignore">
+      <option name="closed" value="true" />
+      <created>1718029452005</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1718029452005</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -462,7 +477,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="trying different circleci config" />
     <MESSAGE value="update dependencies in requirements.txt" />
     <MESSAGE value="update docutils dependency in requirements.txt" />
     <MESSAGE value="fix project structure, move tests into own folder, change circleci config to point at new tests folder" />
@@ -487,6 +501,7 @@
     <MESSAGE value="add notes for later iterations of broad crawling" />
     <MESSAGE value="fix parsing of multiple domain/start url inputs" />
     <MESSAGE value="remove unneeded TODO" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove unneeded TODO" />
+    <MESSAGE value="add unneeded intellij directories to .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="add unneeded intellij directories to .gitignore" />
   </component>
 </project>

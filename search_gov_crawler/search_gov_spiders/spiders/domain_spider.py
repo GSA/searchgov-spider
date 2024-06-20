@@ -1,5 +1,10 @@
+import pprint
+
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
+from urllib.parse import urlparse
+import chompjs
+import validators
 
 starting_urls = "../utility_files/startingUrls.txt"
 
@@ -34,6 +39,8 @@ class DomainSpider(CrawlSpider):
             self.allowed_domains = domain.split(',')
         else:
             self.allowed_domains = [domain] if domain else domains_list
+            # print('--ALLOWED DOMAINS--')
+            # pprint.pprint(self.allowed_domains)
         # urls to start crawling from in domain(s)
         # will grab singular start url
         # multiple comma-separated inputs (ex input: urls=https://getsmartaboutdrugs.gov,https://travel.dod.mil)
@@ -91,11 +98,40 @@ class DomainSpider(CrawlSpider):
 
     @staticmethod
     def parse_item(response):
-        """This function gathers the url and the status.
+        # it's not respecting allowed_domains for some reason??
+        # need a fucking regex for the js object fml
 
-        @url http://quotes.toscrape.com/
-        @returns items 1 2
-        @returns requests 0 0
-        @scrapes Status Link
-        """
-        yield {"Link": response.url}
+        # Js: {object} < -- regex
+
+        # regex needs to filter out non-domain sites
+
+        javascript = response.css("script::text").get()
+        data = chompjs.parse_js_object(javascript)
+        for element in data:
+            if element:
+                valid_url = validators.url(element)
+                if valid_url:
+                    print('VALID URL: ', valid_url)
+                    non_query_url = urlparse(element).query
+                    url_domain = urlparse(element).netloc
+
+                    print('NON-QUERY URL: ', non_query_url)
+                    print('DOMAIN OF URL: ', url_domain)
+
+            #     yield {
+            #         'VALID URL': valid_url,
+            #         'NON-QUERY URL': non_query_url,
+            #         'DOMAIN OF URL': url_domain
+            #     }
+
+            if element and validators.url(element):
+                # print('VALID JS URL: ' + element)
+                yield {'JS URL: ': element}
+
+        # yield {'NON-JS URL: ': response.url}
+        # print('NEW OBJECT:')
+        # pprint.pprint(data)
+
+        # yield {"JS": data}
+
+        # yield {"Link": response.url}
