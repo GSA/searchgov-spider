@@ -1,3 +1,7 @@
+from typing import Iterable
+
+import scrapy
+from scrapy import Request
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
@@ -19,6 +23,12 @@ with open(domains) as file:
 # scrapy command for crawling domain/site
 # scrapy crawl domain_spider -a domain=desired_domain -a urls=desired_url
 # ex: scrapy crawl domain_spider -a domain=travel.dod.mil -a urls=https://travel.dod.mil
+
+# needed for meta tag for playwright to be added
+# note: this seems to work for js rendering but it is resource and time heavy
+def set_playwright_true(request, response):
+    request.meta["playwright"] = True
+    return request
 
 
 class DomainSpider(CrawlSpider):
@@ -86,6 +96,7 @@ class DomainSpider(CrawlSpider):
             ),
             callback="parse_item",
             follow=True,
+            process_request=set_playwright_true
         ),
     )
 
