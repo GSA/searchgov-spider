@@ -26,6 +26,12 @@ SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 CONCURRENT_REQUESTS = 100
 REACTOR_THREADPOOL_MAXSIZE = 20
 LOG_LEVEL = "INFO"
+
+# uncomment to log everything to this file below
+# LOG_ENABLED = False
+# LOG_FILE = "log_file.log"
+# LOG_FILE_APPEND = False
+
 RETRY_ENABLED = False
 REDIRECT_ENABLED = False
 DOWNLOAD_TIMEOUT = 15
