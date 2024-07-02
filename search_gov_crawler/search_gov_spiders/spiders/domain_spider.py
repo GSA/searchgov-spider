@@ -1,14 +1,16 @@
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
+import os
+import sys
 
-starting_urls = "../utility_files/startingUrls.txt"
+starting_urls = os.path.join(os.path.dirname(sys.modules[__name__].__file__),"../utility_files/startingUrls.txt")
 
 start_urls_list = []
 with open(starting_urls) as file:
     while line := file.readline():
         start_urls_list.append(line.rstrip())
 
-domains = "../utility_files/domains.txt"
+domains = os.path.join(os.path.dirname(sys.modules[__name__].__file__),"../utility_files/domains.txt")
 
 domains_list = []
 with open(domains) as file:
@@ -22,7 +24,6 @@ with open(domains) as file:
 
 
 class DomainSpider(CrawlSpider):
-    # name = "travelDodMil"
     name = "domain_spider"
 
     def __init__(self, domain=None, urls=None, *args, **kwargs):
