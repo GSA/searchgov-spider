@@ -45,6 +45,6 @@ tldextract==5.0.1
 Twisted==22.10.0
 typing_extensions==4.8.0
 uberegg==0.1.1
-urllib3==1.26.12
+urllib3==1.26.19
 w3lib==2.1.2
 zope.interface==6.1
