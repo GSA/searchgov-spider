@@ -3,7 +3,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
 
-class armymwr(CrawlSpider):
+class ArmymwrSpider(CrawlSpider):
     name = "armymwr"
     allowed_domains = ["armymwr.com"]
     start_urls = ["https://www.armymwr.com/"]
