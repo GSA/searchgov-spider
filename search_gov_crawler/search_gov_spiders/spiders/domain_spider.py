@@ -99,4 +99,9 @@ class DomainSpider(CrawlSpider):
         @returns requests 0 0
         @scrapes Status Link
         """
-        yield {"Link": response.url}
+        # "status","url","redir","On page"
+        yield {"status": response.status,
+               "url": response.url,
+               "redir": response.url,
+               "On page": response.url,
+               }
