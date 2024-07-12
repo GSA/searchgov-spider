@@ -31,8 +31,6 @@ def run_test_spider():
     )
     process.crawl(ArmymwrSpider)
     process.start()
-    # need to get latest file
-    separateOutput("items.json", 1000)
 
 
 def run_all_domains():
@@ -40,4 +38,3 @@ def run_all_domains():
     process = CrawlerProcess(settings)
     process.crawl(DomainSpider)
     process.start()
-    # TODO: separateOutput(fileFromSpider, 3900000)
