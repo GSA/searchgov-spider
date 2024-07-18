@@ -1,0 +1,17 @@
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        python:
+          python_version: 3
+plugins:
+  sonar-python:
+    enabled: true
+    config:
+      tests_patterns:
+        - search_gov_crawler/**/*.py
+exclude_patterns:
+- "search_gov_crawler/**/mocks"
+- "search_gov_crawler/**/test"
+- "**/*.htm*"
