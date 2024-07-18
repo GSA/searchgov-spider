@@ -1,17 +1,33 @@
-engines:
+version: '2'
+checks:
+  file-lines:
+    enabled: true
+    config:
+      threshold: 300
+  method-lines:
+    enabled: false
+  method-count:
+    enabled: false
+  method-complexity:
+    enabled: false
+  file-lines:
+    enabled: false
+
+plugins:
   duplication:
     enabled: true
-    config:
-      languages:
-        python:
-          python_version: 3
-plugins:
+  fixme:
+    enabled: true
   sonar-python:
     enabled: true
-    config:
-      tests_patterns:
-        - search_gov_crawler/**/*.py
+    exclude_patterns:
+    - "**/settings.py"
+  pep8:
+    enabled: true
+
 exclude_patterns:
-- "search_gov_crawler/**/mocks"
-- "search_gov_crawler/**/test"
-- "**/*.htm*"
+- "**/*.htm"
+- "**/*.html"
+- "**/*.xml"
+- "**/*.yml"
+- "**/.*"
