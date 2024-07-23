@@ -2,6 +2,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 import os
 import sys
+from ..items import SearchGovSpidersItem
 
 starting_urls = os.path.join(
     os.path.dirname(sys.modules[__name__].__file__), "../utility_files/startingUrls.txt"
@@ -103,4 +104,8 @@ class DomainSpider(CrawlSpider):
         @returns requests 0 0
         @scrapes Status Link
         """
-        yield {"url": response.url}
+        # yield {"url": response.url}
+
+        items = SearchGovSpidersItem()
+        items["url"] = response.url
+        yield items
