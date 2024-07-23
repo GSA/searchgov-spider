@@ -31,6 +31,7 @@ def run_test_spider():
     )
     process.crawl(ArmymwrSpider)
     process.start()
+
     # need to get latest file
     separateOutput("items.json", 1000)
 
