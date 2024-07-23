@@ -11,8 +11,8 @@
 
 BOT_NAME = "search_gov_spiders"
 
-SPIDER_MODULES = ["search_gov_spiders.spiders"]
-NEWSPIDER_MODULE = "search_gov_spiders.spiders"
+SPIDER_MODULES = ["search_gov_crawler.search_gov_spiders.spiders"]
+NEWSPIDER_MODULE = "search_gov_crawler.search_gov_spiders.spiders"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = "usasearch"
@@ -60,13 +60,13 @@ COOKIES_ENABLED = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
-    "search_gov_spiders.middlewares.SearchGovSpidersSpiderMiddleware": 543,
+    "search_gov_crawler.search_gov_spiders.middlewares.SearchGovSpidersSpiderMiddleware": 543,
 }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    "search_gov_spiders.middlewares.SearchGovSpidersDownloaderMiddleware": 543,
+    "search_gov_crawler.search_gov_spiders.middlewares.SearchGovSpidersDownloaderMiddleware": 543,
 }
 
 # Enable or disable extensions
