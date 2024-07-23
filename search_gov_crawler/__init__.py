@@ -1,14 +1,15 @@
+""" Init file to package project for EC2"""
+
+import os
 from pathlib import Path
 from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings
 from scrapy.utils.project import get_project_settings
 from search_gov_crawler.search_gov_spiders.spiders.armymwr import ArmymwrSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
-from search_gov_crawler.separateOutput import separateOutput
-import os
 
-settings_file_path = "search_gov_crawler.search_gov_spiders.pip_settings"
-os.environ.setdefault("SCRAPY_SETTINGS_MODULE", settings_file_path)
+SETTINGS_FILE_PATH = "search_gov_crawler.search_gov_spiders.pip_settings"
+os.environ.setdefault("SCRAPY_SETTINGS_MODULE", SETTINGS_FILE_PATH)
 
 
 def hello_world():
@@ -34,6 +35,7 @@ def run_test_spider():
 
 
 def run_all_domains():
+    """Test that domain spider is working."""
     settings = get_project_settings()
     process = CrawlerProcess(settings)
     process.crawl(DomainSpider)
