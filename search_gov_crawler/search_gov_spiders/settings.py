@@ -20,15 +20,15 @@ USER_AGENT = "usasearch"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+LOG_LEVEL = "INFO"
+
 # settings for broad crawling
 SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 100
 REACTOR_THREADPOOL_MAXSIZE = 20
-LOG_LEVEL = "INFO"
 RETRY_ENABLED = False
-# UNDO: CHANGED FROM 15 TO 180
-DOWNLOAD_TIMEOUT = 180
+DOWNLOAD_TIMEOUT = 15
 # set to True for BFO
 AJAXCRAWL_ENABLED = True
 # crawl in BFO order rather than DFO
@@ -96,7 +96,8 @@ AUTOTHROTTLE_MAX_DELAY = 5
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-HTTPCACHE_ENABLED = True
+# HTTPCACHE_ENABLED must be set to false for scrapy playwright to run
+HTTPCACHE_ENABLED = False
 # HTTPCACHE_EXPIRATION_SECS = 0
 HTTPCACHE_DIR = "httpcache"
 # HTTPCACHE_IGNORE_HTTP_CODES = []
@@ -111,4 +112,14 @@ FEEDS = {
     "scrapy_urls/%(name)s/%(name)s_%(time)s.txt": {
         "format": "csv",
     }
+}
+
+# Playwright Settings
+PLAYWRIGHT_BROWSER_TYPE = "chromium"
+
+PLAYWRIGHT_LAUNCH_OPTIONS = {"headless": True}
+
+DOWNLOAD_HANDLERS = {
+    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
