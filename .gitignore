@@ -203,3 +203,5 @@ cython_debug/
 /search_gov_crawler/search_gov_spiders/spiders/_trial_temp
 /search_gov_crawler/search_gov_spiders/spiders/scrapy_urls
 /search_gov_crawler/search_gov_spiders/scrapy_urls/domain_spider
+
+.DS_Store

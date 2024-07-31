@@ -1,9 +1,8 @@
-# Orb 'circleci/python@2.1.1' resolved to 'circleci/python@2.1.1'
 version: 2
 jobs:
   build_and_test:
     docker:
-    - image: cimg/python:3.8
+    - image: cimg/python:3.12
     steps:
     - checkout
     - run:
@@ -43,7 +42,7 @@ jobs:
     - run:
         command: "# shellcheck source=detect-env.sh\nsource \"$AUTO_DETECT_ENV_SCRIPT\"\n\nCACHE_DIR=\"/tmp/cci_pycache\"\nLOCKFILE_PATH=\"${CACHE_DIR}/lockfile\"\n\nmkdir -p \"${CACHE_DIR}\"\n\nif [ ! -f \"${LOCKFILE_PATH}\" ]; then\n    case ${DETECT_PKG_MNGR:-${PARAM_PKG_MNGR}} in\n        pip | pip-dist)\n            LOCK_FILE=\"${PARAM_DEPENDENCY_FILE:-requirements.txt}\"\n        ;;\n        pipenv)\n            LOCK_FILE=\"Pipfile.lock\"\n        ;;\n        poetry)\n            LOCK_FILE=\"poetry.lock\"\n        ;;\n    esac\n    \n    if [ -z \"${LOCK_FILE}\" ]; then\n        echo \"WARNING: Could not determine lockfile path for ${DETECT_PKG_MNGR:-PARAM_PKG_MNGR}\"\n    else\n        FULL_LOCK_FILE=$(readlink -f \"${LOCK_FILE}\")\n\n        if [ -f \"${LOCK_FILE}\" ]; then\n            echo \"INFO: Copying ${FULL_LOCK_FILE} to ${LOCKFILE_PATH}\"\n            cp \"${FULL_LOCK_FILE}\" \"${LOCKFILE_PATH}\"\n        else\n            echo \"WARNING: Could not find lockfile at ${LOCK_FILE}\"\n        fi\n    fi\nfi"
         environment:
-          PARAM_DEPENDENCY_FILE: ./spider-foundational-work/search_gov_spiders/requirements.txt
+          PARAM_DEPENDENCY_FILE: ./search_gov_spiders/requirements.txt
           PARAM_PKG_MNGR: pip
           PARAM_PYPI_CACHE: true
           PARAM_VENV_CACHE: true
@@ -64,13 +63,13 @@ jobs:
         name: Move restored cache
         working_directory: .
     - run:
-        command: "pip install -r ./spider-foundational-work/search_gov_spiders/requirements.txt \n"
-        name: Install dependencies with pip using project ./spider-foundational-work/search_gov_spiders/requirements.txt
+        command: "pip install -r ./search_gov_spiders/requirements.txt \n"
+        name: Install dependencies with pip using project ./search_gov_spiders/requirements.txt
         working_directory: .
     - run:
         command: "# shellcheck source=detect-env.sh\nsource \"$AUTO_DETECT_ENV_SCRIPT\"\n\ncase ${DETECT_PKG_MNGR:-${PARAM_PKG_MNGR}} in\n    pip | pip-dist)\n        LOCK_FILE=\"${PARAM_DEPENDENCY_FILE:-requirements.txt}\"\n        CACHE_PATHS='[ \"/home/circleci/.cache/pip\", \"/home/circleci/.pyenv/versions\", \"/home/circleci/.local/lib\" ]'\n    ;;\n    pipenv) # TODO: use PIPENV_PIPFILE\n        LOCK_FILE=\"Pipfile.lock\"\n        PIPENV_VENV_PATH=\"${WORKON_HOME:-/home/circleci/.local/share/virtualenvs}\"\n        \n        if [ -z \"${PIPENV_VENV_IN_PROJECT}\" ]; then\n            VENV_PATHS=\"[ \\\"${PIPENV_VENV_PATH}\\\" ]\"\n        else\n            VENV_PATHS=\"[ \\\"${CIRCLE_WORKING_DIRECTORY}/.venvs\\\" ]\"\n        fi\n        \n        CACHE_PATHS='[ \"/home/circleci/.cache/pip\", \"/home/circleci/.cache/pipenv\" ]'\n    ;;\n    poetry)\n        LOCK_FILE=\"poetry.lock\"\n        VENV_PATHS='[ \"/home/circleci/.cache/pypoetry/virtualenvs\" ]'\n        CACHE_PATHS='[ \"/home/circleci/.cache/pip\" ]'\n    ;;\nesac\n\nif [ -n \"${PARAM_VENV_PATH}\" ]; then\n    VENV_PATHS=\"${PARAM_VENV_PATH}\"\nfi\n\nCACHE_DIR=\"/tmp/cci_pycache\"\nmkdir -p \"${CACHE_DIR}\"\n\nlink_paths() {\n    if [ -d \"${1}\" ]; then\n        echo \"INFO: Cache directory already exists. Skipping...\"\n        return\n    fi\n    \n    mkdir \"${1}\"\n    \n    for encoded in $(echo \"${2}\" | jq -r '.[] | @base64'); do\n        decoded=$(echo \"${encoded}\" | base64 -d)\n        \n        if [ -e \"${decoded}\" ]; then\n            echo \"INFO: Copying ${decoded} to ${1}/${encoded}\"\n            cp -a \"${decoded}\" \"${1}/${encoded}\"\n        else\n            echo \"INFO: Could not find ${decoded}. Skipping...\"\n        fi\n    done\n}\n\nif [ \"${PARAM_VENV_CACHE}\" = \"1\" ] && [ -n \"${VENV_PATHS}\" ]; then\n    link_paths \"${CACHE_DIR}/venv\" \"${VENV_PATHS}\"\nfi\n\nif [ \"${PARAM_PYPI_CACHE}\" = \"1\" ]; then\n    link_paths \"${CACHE_DIR}/pypi\" \"${CACHE_PATHS}\"\nfi\n\nLOCKFILE_PATH=\"${CACHE_DIR}/lockfile\"\n\nif [ -e \"${LOCKFILE_PATH}\" ]; then\n    rm -f \"${LOCKFILE_PATH}\"\nfi\n\nif [ -e \"${LOCK_FILE}\" ]; then\n    FULL_LOCK_FILE=$(readlink -f \"${LOCK_FILE}\")\n    \n    echo \"INFO: Copying ${FULL_LOCK_FILE} to ${LOCKFILE_PATH}\"\n    cp \"${FULL_LOCK_FILE}\" \"${LOCKFILE_PATH}\"\nfi"
         environment:
-          PARAM_DEPENDENCY_FILE: ./spider-foundational-work/search_gov_spiders/requirements.txt
+          PARAM_DEPENDENCY_FILE: ./search_gov_spiders/requirements.txt
           PARAM_PKG_MNGR: pip
           PARAM_PYPI_CACHE: true
           PARAM_VENV_CACHE: true
@@ -82,31 +81,85 @@ jobs:
         paths:
         - /tmp/cci_pycache
     - run:
-        command: python -m unittest discover -s test -p "crawl_tests.py"
+        command: python3 -m unittest ./search_gov_crawler/search_gov_spiders/test/crawl_tests.py
         name: Test
+    build_and_deploy:
+    jobs:
+      - test-and-coverage:
+          name: "test-coverage"
+      - dry-run-deploy:
+          name: "dry-run-deploy"
+          requires:
+            - test-coverage
+      - deploy:
+          requires:
+            - dry-run-deploy
+          filters:
+            branches:
+              only: main
+  test-and-coverage:
+    docker:
+      - image: circleci/python:3.12
+        environment:
+          - CC_TEST_REPORTER_ID: 669aaf3b18bdc340358112dc
+    steps:
+      - checkout
+      - run:
+        name: install dependencies
+        command: |
+          python3 -m venv env
+          . env/bin/activate
+          pip3 install -r ./search_gov_spiders/requirements.txt
+      - run:
+        name: install codeclimate test-reporter
+        command: |
+            # download test reporter as a static binary
+            curl -L https://codeclimate.com/downloads/test-     reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+        command: |
+            ./cc-test-reporter before-build
+      - run:
+        name: run tests
+        command: |
+            coverage run -m pytest
+            coverage html --omit=env/*,tests/*
+            coverage xml --omit=env/*,tests/*
+      - run:
+        name: Run coverage report
+        command: |
+            . env/bin/activate
+            ./cc-test-reporter format-coverage -t coverage.py
+            ./cc-test-reporter upload-coverage
+      - run:
+        command: |
+        ./cc-test-reporter after-build --exit-code $?
+  dry-run-deploy:
+    docker:
+      - image: circleci/python:3.12
+    steps:
+      - checkout
+      - run:
+        name: Install Python Dependencies
+        command: |
+            python3 -m venv env
+            . env/bin/activate
+            pip3 install -r ./search_gov_spiders/requirements.txt
+ deploy:
+    docker:
+      - image: circleci/python:3.12
+    steps:
+      - checkout
+      - run:
+        name: Install Python Dependencies
+        command: |
+           python3 -m venv env
+           . env/bin/activate
+           pip3 install -r ./search_gov_spiders/requirements.txt
 workflows:
   main:
     jobs:
     - build_and_test
+    - test-and-coverage
+    - dry-run-deploy
   version: 2
-
-# Original config.yml file:
-# version: '2.1'
-# orbs:
-#   python: circleci/python@2.1.1
-# jobs:
-#   build_and_test:
-#     executor: python/default
-#     steps:
-#       - checkout
-#       - python/install-packages:
-# #          pip-dependency-file: requirements.txt
-#           pip-dependency-file: ./spider-foundational-work/search_gov_spiders/requirements.txt
-#           pkg-manager: pip
-#       - run:
-#           command: python -m unittest discover -s test -p \"crawl_tests.py\"
-#           name: Test
-# workflows:
-#   main:
-#     jobs:
-#       - build_and_test
