@@ -75,7 +75,7 @@ EXTENSIONS = {
     "scrapy.extensions.closespider.CloseSpider": 500,
 }
 
-CLOSESPIDER_TIMEOUT_NO_ITEM = 5
+CLOSESPIDER_TIMEOUT_NO_ITEM = 50
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html

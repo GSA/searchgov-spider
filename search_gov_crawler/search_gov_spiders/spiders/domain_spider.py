@@ -39,7 +39,7 @@ PLAYWRIGHT_FLAG = True
 def set_playwright_true(request, _response):
     if PLAYWRIGHT_FLAG:
         request.meta["playwright"] = True
-        request.meta["playwright_include_page"] = True
+        # request.meta["playwright_include_page"] = True
         request.meta["errback"] = request.errback
     # We can use below to wait for certain items on a page to load.
     # But not sure what would be a good thing on all pages.
@@ -125,14 +125,14 @@ class DomainSpider(CrawlSpider):
         @scrapes Status Link
         """
 
-        if PLAYWRIGHT_FLAG:
-            page = response.meta["playwright_page"]
-            await page.close()
+        # if PLAYWRIGHT_FLAG:
+        #     page = response.meta["playwright_page"]
+        #     await page.close()
         items = SearchGovSpidersItem()
         items["url"] = response.url
         yield items
 
-    async def errback(self, failure):
-        if PLAYWRIGHT_FLAG:
-            page = failure.request.meta["playwright_page"]
-            await page.close()
+    # async def errback(self, failure):
+    #     if PLAYWRIGHT_FLAG:
+    #         page = failure.request.meta["playwright_page"]
+    #         await page.close()
