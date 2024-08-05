@@ -37,7 +37,7 @@ requests==2.28.1
 requests-file==1.5.1
 s3transfer==0.6.0
 Scrapy==2.11.0
-scrapy-playwright
+scrapy-playwright==1.45.1
 scrapyd==1.4.3
 scrapyd-client==1.2.3
 service-identity==23.1.0
