@@ -1,64 +1,19 @@
-import os
-import sys
-
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from ..items import SearchGovSpidersItem
+from . import domain_spider_helper_variables as helper_variables
+from . import domain_spider_helper_functions as helper_functions
 
 # scrapy command for crawling domain/site
 # scrapy crawl domain_spider -a domain=desired_domain -a urls=desired_url
 # ex: scrapy crawl domain_spider -a domain=travel.dod.mil -a urls=https://travel.dod.mil
 
-starting_urls = os.path.join(
-    os.path.dirname(sys.modules[__name__].__file__), "../utility_files/startingUrls.txt"
-)
-
-start_urls_list = []
-with open(starting_urls, encoding="utf-8") as file:
-    while line := file.readline():
-        start_urls_list.append(line.rstrip())
-
-domains = os.path.join(
-    os.path.dirname(sys.modules[__name__].__file__), "../utility_files/domains.txt"
-)
-
-domains_list = []
-with open(domains, encoding="utf-8") as file:
-    while line := file.readline():
-        domains_list.append(line.rstrip())
-
-
-PLAYWRIGHT_FLAG = True
-
-
-# needed for meta tag for playwright to be added
-# note: this seems to work for js rendering but it is resource and time heavy
-def set_playwright_true(request, _response):
-    if PLAYWRIGHT_FLAG:
-        request.meta["playwright"] = True
-        request.meta["errback"] = request.errback
-    return request
-
-
-# fmt: off
-filter_extensions = [
-    "cfm","css","eventsource","exe","fetch","font","gif",
-    "ibooks","ics","image","jpeg","jpg","js","manifest",
-    "media","mp3","mp4","nc","png","ppt","pptx",
-    "prj","rss","sfx","stylesheet","svg","tar.gz","tar",
-    "tif","wav","websocket","wmv","xhr","xml","zip",]
-# fmt: on
-
-
-def should_abort_request(request):
-    if request.resource_type in filter_extensions:
-        return True
-    return False
-
 
 class DomainSpider(CrawlSpider):
     name = "domain_spider"
-    custom_settings = {"PLAYWRIGHT_ABORT_REQUEST": should_abort_request}
+    custom_settings = {
+        "PLAYWRIGHT_ABORT_REQUEST": helper_functions.should_abort_request
+    }
 
     def __init__(self, *args, domain=None, urls=None, **kwargs):
         super(DomainSpider, self).__init__(*args, **kwargs)
@@ -69,7 +24,7 @@ class DomainSpider(CrawlSpider):
         if domain and "," in domain:
             self.allowed_domains = domain.split(",")
         else:
-            self.allowed_domains = [domain] if domain else domains_list
+            self.allowed_domains = [domain] if domain else helper_variables.domains_list
 
         # urls to start crawling from in domain(s)
         # will grab singular start url
@@ -79,7 +34,7 @@ class DomainSpider(CrawlSpider):
         if urls and "," in urls:
             self.start_urls = urls.split(",")
         else:
-            self.start_urls = [urls] if urls else start_urls_list
+            self.start_urls = [urls] if urls else helper_variables.start_urls_list
 
     # file type exclusions
     rules = (
@@ -92,12 +47,12 @@ class DomainSpider(CrawlSpider):
                     "DTMO-Site-Map/FileId/",
                     # "\*redirect"
                 ],
-                deny_extensions=filter_extensions,
+                deny_extensions=helper_variables.filter_extensions,
                 unique=True,
             ),
             callback="parse_item",
             follow=True,
-            process_request=set_playwright_true,
+            process_request=helper_functions.set_playwright_true,
         ),
     )
 
