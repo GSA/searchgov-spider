@@ -1,11 +1,8 @@
 import os
 import sys
-import scrapy_playwright
 
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-
-from scrapy_playwright.page import PageMethod
 from ..items import SearchGovSpidersItem
 
 # scrapy command for crawling domain/site
@@ -39,19 +36,7 @@ PLAYWRIGHT_FLAG = True
 def set_playwright_true(request, _response):
     if PLAYWRIGHT_FLAG:
         request.meta["playwright"] = True
-        # request.meta["playwright_include_page"] = True
         request.meta["errback"] = request.errback
-    # We can use below to wait for certain items on a page to load.
-    # But not sure what would be a good thing on all pages.
-    # This is for js rendering - https://scrapeops.io/python-scrapy-playbook/scrapy-playwright/
-    # request.meta["playwright_page_methods"] = (
-    #     # fixed timeout wait
-    #     [PageMethod("wait_for_timeout", 5000)],
-    #     # wait for the document to load
-    #     [PageMethod("wait_for_load_state", "domcontentloaded")],
-    #     # wait for the network to be idle
-    #     [PageMethod("wait_for_load_state", "networkidle")],
-    # )
     return request
 
 
@@ -125,14 +110,6 @@ class DomainSpider(CrawlSpider):
         @scrapes Status Link
         """
 
-        # if PLAYWRIGHT_FLAG:
-        #     page = response.meta["playwright_page"]
-        #     await page.close()
         items = SearchGovSpidersItem()
         items["url"] = response.url
         yield items
-
-    # async def errback(self, failure):
-    #     if PLAYWRIGHT_FLAG:
-    #         page = failure.request.meta["playwright_page"]
-    #         await page.close()
