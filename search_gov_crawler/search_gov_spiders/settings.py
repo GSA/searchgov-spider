@@ -80,7 +80,8 @@ CLOSESPIDER_TIMEOUT_NO_ITEM = 50
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "search_gov_spiders.pipelines.SearchGovSpidersPipeline": 300,
+    "search_gov_spiders.pipelines.DeDeuplicatorPipeline": 100,
+    "search_gov_spiders.pipelines.SearchGovSpidersPipeline": 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
