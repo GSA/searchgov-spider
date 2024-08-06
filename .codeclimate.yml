@@ -10,8 +10,6 @@ checks:
     enabled: false
   method-complexity:
     enabled: false
-  file-lines:
-    enabled: false
 
 plugins:
   duplication:
@@ -31,3 +29,4 @@ exclude_patterns:
 - "**/*.xml"
 - "**/*.yml"
 - "**/.*"
+- "**/__pycache__/"
