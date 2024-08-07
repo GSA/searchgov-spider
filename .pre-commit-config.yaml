@@ -22,6 +22,9 @@ repos:
       - id: requirements-txt-fixer # sorts entries in requirements.txt.
       - id: trailing-whitespace # trims trailing whitespace.
 
+
+  # Disabled for now since there are too many errors.
+
   # - repo: https://github.com/PyCQA/pylint
   #   rev: v3.1.0
   #   hooks:
