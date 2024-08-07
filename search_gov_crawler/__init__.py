@@ -1,12 +1,11 @@
 """ Init file to package project for EC2"""
 
 import os
-from pathlib import Path
 from scrapy.crawler import CrawlerProcess
-from scrapy.settings import Settings
 from scrapy.utils.project import get_project_settings
 from search_gov_crawler.search_gov_spiders.spiders.armymwr import ArmymwrSpider
-from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
+from search_gov_crawler.search_gov_spiders.spiders.domain_spider \
+    import DomainSpider
 
 SETTINGS_FILE_PATH = "search_gov_crawler.search_gov_spiders.pip_settings"
 os.environ.setdefault("SCRAPY_SETTINGS_MODULE", SETTINGS_FILE_PATH)
@@ -14,14 +13,16 @@ os.environ.setdefault("SCRAPY_SETTINGS_MODULE", SETTINGS_FILE_PATH)
 
 def hello_world():
     """
-    This is meant to be a quick sanity check test method that package was installed correctly.
+    This is meant to be a quick sanity check to
+    test that package was installed correctly.
     """
     print("Hello World")
 
 
 def run_test_spider():
     """
-    This is meant to be a quick check test method that we can run a short spider.
+    This is meant to be a quick check test method
+    that we can run a short spider.
     """
     process = CrawlerProcess(
         settings={

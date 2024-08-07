@@ -7,7 +7,10 @@ import os
 
 
 class SearchGovSpidersPipeline:
-    """Class for pipeline that takes items and adds them to output file with a max size of 3.9MB"""
+    """
+    Class for pipeline that takes items and adds them
+    to output file with a max size of 3.9MB
+    """
 
     current_file_size = 0
     file_number = 1
