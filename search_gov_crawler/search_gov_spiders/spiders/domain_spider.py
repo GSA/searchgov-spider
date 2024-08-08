@@ -1,27 +1,8 @@
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-import os
-import sys
 from ..items import SearchGovSpidersItem
-
-starting_urls = os.path.join(
-    os.path.dirname(sys.modules[__name__].__file__), "../utility_files/startingUrls.txt"
-)
-
-start_urls_list = []
-with open(starting_urls) as file:
-    while line := file.readline():
-        start_urls_list.append(line.rstrip())
-
-domains = os.path.join(
-    os.path.dirname(sys.modules[__name__].__file__), "../utility_files/domains.txt"
-)
-
-domains_list = []
-with open(domains) as file:
-    while line := file.readline():
-        domains_list.append(line.rstrip())
-
+from . import domain_spider_helper_variables as helper_variables
+from . import domain_spider_helper_functions as helper_functions
 
 # scrapy command for crawling domain/site
 # scrapy crawl domain_spider -a domain=desired_domain -a urls=desired_url
@@ -30,24 +11,30 @@ with open(domains) as file:
 
 class DomainSpider(CrawlSpider):
     name = "domain_spider"
+    custom_settings = {
+        "PLAYWRIGHT_ABORT_REQUEST": helper_functions.should_abort_request
+    }
 
-    def __init__(self, domain=None, urls=None, *args, **kwargs):
+    def __init__(self, *args, domain=None, urls=None, **kwargs):
         super(DomainSpider, self).__init__(*args, **kwargs)
         # will grab singular domain
-        # multiple comma-separated inputs (ex input: domain=getsmartaboutdrugs.gov,travel.dod.mil)
+        # multiple comma-separated inputs
+        # (ex input: domain=getsmartaboutdrugs.gov,travel.dod.mil)
         # or the list of search.gov domains
         if domain and "," in domain:
             self.allowed_domains = domain.split(",")
         else:
-            self.allowed_domains = [domain] if domain else domains_list
+            self.allowed_domains = [domain] if domain else helper_variables.domains_list
+
         # urls to start crawling from in domain(s)
         # will grab singular start url
-        # multiple comma-separated inputs (ex input: urls=https://getsmartaboutdrugs.gov,https://travel.dod.mil)
+        # multiple comma-separated inputs
+        # (ex input: urls=https://getsmartaboutdrugs.gov,https://travel.dod.mil)
         # or the list of search.gov start urls
         if urls and "," in urls:
             self.start_urls = urls.split(",")
         else:
-            self.start_urls = [urls] if urls else start_urls_list
+            self.start_urls = [urls] if urls else helper_variables.start_urls_list
 
     # file type exclusions
     rules = (
@@ -60,43 +47,16 @@ class DomainSpider(CrawlSpider):
                     "DTMO-Site-Map/FileId/",
                     # "\*redirect"
                 ],
-                deny_extensions=[
-                    "js",
-                    "xml",
-                    "gif",
-                    "wmv",
-                    "wav",
-                    "ibooks",
-                    "zip",
-                    "css",
-                    "mp3",
-                    "mp4",
-                    "cfm",
-                    "jpg",
-                    "jpeg",
-                    "png",
-                    "exe",
-                    "svg",
-                    "ppt",
-                    "pptx",
-                    "ics",
-                    "nc",
-                    "tif",
-                    "prj",
-                    "tar",
-                    "tar.gz",
-                    "rss",
-                    "sfx",
-                ],
+                deny_extensions=helper_variables.filter_extensions,
                 unique=True,
             ),
             callback="parse_item",
             follow=True,
+            process_request=helper_functions.set_playwright_true,
         ),
     )
 
-    @staticmethod
-    def parse_item(response):
+    async def parse_item(self, response):
         """This function gathers the url and the status.
 
         @url http://quotes.toscrape.com/
