@@ -11,8 +11,8 @@ class SearchGovSpidersPipeline:
 
     current_file_size = 0
     file_number = 1
-    base_path_name = "output/all-links.csv"
-    short_file = open(base_path_name, "w", encoding="utf-8")
+    base_path_name = "all-links.csv"
+    short_file = open(base_path_name, "x", encoding="utf-8")
     max_file_size = 3900
 
     def process_item(self, item, spider):
@@ -22,7 +22,7 @@ class SearchGovSpidersPipeline:
         self.current_file_size += 1
         if self.current_file_size + len(line) > self.max_file_size:
             self.short_file.close()
-            new_name = "output/all-links" + str(self.file_number) + ".csv"
+            new_name = "all-links" + str(self.file_number) + ".csv"
             os.rename(self.base_path_name, new_name)
             self.file_number = self.file_number + 1
             self.short_file = open(self.base_path_name, "w", encoding="utf-8")
