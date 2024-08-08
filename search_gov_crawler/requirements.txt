@@ -40,6 +40,7 @@ Scrapy==2.11.0
 scrapy-playwright==1.45.1
 scrapyd==1.4.3
 scrapyd-client==1.2.3
+scrapyd_api==0.0.4
 service-identity==23.1.0
 six==1.16.0
 soupsieve==2.3.2.post1
