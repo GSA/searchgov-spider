@@ -9,55 +9,77 @@
 
 BOT_NAME = "search_gov_spiders"
 
-SPIDER_MODULES = ["search_gov_crawler.search_gov_spiders.spiders"]
-
-NEWSPIDER_MODULE = "search_gov_crawler.search_gov_spiders.spiders"
+SPIDER_MODULES = ["search_gov_spiders.spiders"]
+NEWSPIDER_MODULE = "search_gov_spiders.spiders"
 
 USER_AGENT = "usasearch"
 
 ROBOTSTXT_OBEY = True
 
-SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
-
-CONCURRENT_REQUESTS = 100
-
-REACTOR_THREADPOOL_MAXSIZE = 20
-
 LOG_LEVEL = "INFO"
 
+# settings for broad crawling
+SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
+# Configure maximum concurrent requests performed by Scrapy (default: 16)
+# For optimum performance, you should pick a concurrency where
+# CPU usage is at 80-90%.
+CONCURRENT_REQUESTS = 100
+CONCURRENT_REQUESTS_PER_DOMAIN = 100
+COOKIES_ENABLED = False
+REACTOR_THREADPOOL_MAXSIZE = 20
 RETRY_ENABLED = False
-
-DOWNLOAD_TIMEOUT = 180
-
+DOWNLOAD_TIMEOUT = 15
+# set to True for BFO
 AJAXCRAWL_ENABLED = True
 
 DEPTH_PRIORITY = 1
 SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
 SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 
+
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 0
+# The download delay setting will honor only one of:
 
-CONCURRENT_REQUESTS_PER_DOMAIN = 128
-
-COOKIES_ENABLED = False
 
 MIDDLEWARE_ROOT = "search_gov_crawler.search_gov_spiders.middlewares"
 SPIDER_MIDDLEWARES = {
-    f"{MIDDLEWARE_ROOT}.SearchGovSpidersSpiderMiddleware": 543,
+    "search_gov_spiders.middlewares.SearchGovSpidersSpiderMiddleware": 543,
 }
 
 DOWNLOADER_MIDDLEWARES = {
-    f"{MIDDLEWARE_ROOT}.SearchGovSpidersDownloaderMiddleware": 543,
+    "search_gov_spiders.middlewares.SearchGovSpidersDownloaderMiddleware": 543,
 }
 
+# Enable or disable extensions
+# See https://docs.scrapy.org/en/latest/topics/extensions.html
+EXTENSIONS = {
+    "scrapy.extensions.closespider.CloseSpider": 500,
+}
+
+CLOSESPIDER_TIMEOUT_NO_ITEM = 50
+
+# Configure item pipelines
+# See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+ITEM_PIPELINES = {
+    "search_gov_spiders.pipelines.DeDeuplicatorPipeline": 100,
+    "search_gov_spiders.pipelines.SearchGovSpidersPipeline": 200,
+}
+
+# Enable and configure the AutoThrottle extension (disabled by default)
+# See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 AUTOTHROTTLE_ENABLED = False
 
 AUTOTHROTTLE_MAX_DELAY = 5
 
-HTTPCACHE_ENABLED = True
+# Enable and configure HTTP caching (disabled by default)
+# HTTPCACHE_ENABLED must be set to false for scrapy playwright to run
+HTTPCACHE_ENABLED = False
+
+HTTPCACHE_DIR = "httpcache"
+
 
 HTTPCACHE_DIR = "httpcache"
 
@@ -69,4 +91,14 @@ FEEDS = {
     "scrapy_urls/%(name)s/%(name)s_%(time)s.txt": {
         "format": "csv",
     }
+}
+
+# Playwright Settings
+PLAYWRIGHT_BROWSER_TYPE = "chromium"
+
+PLAYWRIGHT_LAUNCH_OPTIONS = {"headless": True}
+
+DOWNLOAD_HANDLERS = {
+    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }

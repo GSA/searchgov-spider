@@ -4,6 +4,7 @@ See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 """
 
 import os
+from scrapy.exceptions import DropItem
 
 
 class SearchGovSpidersPipeline:
@@ -17,13 +18,15 @@ class SearchGovSpidersPipeline:
     base_path_name = "output/all-links.csv"
     short_file = open(base_path_name, "w", encoding="utf-8")
     max_file_size = 3900
+    PAGINATE = True
 
     def process_item(self, item, spider):
         """Checks that the file is not at max size.
         Adds it to the file if less, or creates a new file if too large."""
         line = item["url"]
         self.current_file_size += 1
-        if self.current_file_size + len(line) > self.max_file_size:
+        next_file_size = self.current_file_size + len(line)
+        if self.PAGINATE and next_file_size > self.max_file_size:
             self.short_file.close()
             new_name = "output/all-links" + str(self.file_number) + ".csv"
             os.rename(self.base_path_name, new_name)
@@ -34,5 +37,20 @@ class SearchGovSpidersPipeline:
         self.short_file.write(line)
         self.short_file.write("\n")
         self.current_file_size = self.current_file_size + len(line)
+
+        return item
+
+
+class DeDeuplicatorPipeline:
+    """Class for pipeline that removes duplicate items"""
+
+    itemlist = []
+
+    def process_item(self, item, spider):
+        """Checks that the file is not at max size.
+        Adds it to the file if less, or creates a new file if too large."""
+        if item in self.itemlist:
+            raise DropItem("already in list")
+        self.itemlist.append(item)
 
         return item
