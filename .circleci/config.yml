@@ -1,18 +1,336 @@
-version: '2.1'
-orbs:
-  python: circleci/python@2.1.1
+---
+version: 2
 jobs:
   build_and_test:
-    executor: python/default
+    docker:
+      - image: cimg/python:3.12
     steps:
       - checkout
-      - python/install-packages:
-          pip-dependency-file: ./search_gov_spiders/requirements.txt
-          pkg-manager: pip
       - run:
-          command: python -m unittest discover -s test -p "crawl_tests.py"
-          name: Test
+          command: >-
+            # shellcheck disable=SC2016
+
+            echo 'if [ "${PARAM_PKG_MNGR}" = "auto" ]; then
+              if [ -f "requirements.txt" ]; then
+                  if [ -f "${PARAM_SETUP_FILE_PATH:-setup.py}" ]; then
+                      export DETECT_PKG_MNGR="pip-dist"
+                  else
+                      export DETECT_PKG_MNGR="pip"
+                  fi
+                  elif [ -f "Pipfile" ]; then
+                  export DETECT_PKG_MNGR="pipenv"
+                  export PYTHON_ENV_TOOL="pipenv"
+                  elif [ -f "pyproject.toml" ]; then
+                  export DETECT_PKG_MNGR="poetry"
+                  export PYTHON_ENV_TOOL="poetry"
+              fi
+              echo "INFO: Detected Package Manager ${DETECT_PKG_MNGR}"
+            fi' > /tmp/detect-env.sh
+
+            chmod +x /tmp/detect-env.sh
+
+            echo 'export AUTO_DETECT_ENV_SCRIPT="/tmp/detect-env.sh"' >> "$BASH_ENV"
+          name: Export automatic environment detection script
+      - run:
+          command: |-
+            if [ ! "${BASH_ENV_PYTHON_ALIASED}" ]; then
+                echo 'if [ ! $(command -v python) ]; then
+              shopt -s expand_aliases
+              alias python=python3
+              alias pip=pip3
+            fi
+
+            BASH_ENV_PYTHON_ALIASED=true' >> "$BASH_ENV"
+            fi
+          name: Alias Python
+      - run:
+          command: >-
+            # shellcheck source=detect-env.sh
+
+            source "$AUTO_DETECT_ENV_SCRIPT"
+
+
+            CACHE_DIR="/tmp/cci_pycache"
+
+            LOCKFILE_PATH="${CACHE_DIR}/lockfile"
+
+
+            mkdir -p "${CACHE_DIR}"
+
+
+            if [ ! -f "${LOCKFILE_PATH}" ]; then
+                case ${DETECT_PKG_MNGR:-${PARAM_PKG_MNGR}} in
+                    pip | pip-dist)
+                        LOCK_FILE="${PARAM_DEPENDENCY_FILE:-requirements.txt}"
+                    ;;
+                    pipenv)
+                        LOCK_FILE="Pipfile.lock"
+                    ;;
+                    poetry)
+                        LOCK_FILE="poetry.lock"
+                    ;;
+                esac
+
+                if [ -z "${LOCK_FILE}" ]; then
+                    echo "WARNING: Could not determine lockfile path for ${DETECT_PKG_MNGR:-PARAM_PKG_MNGR}"
+                else
+                    FULL_LOCK_FILE=$(readlink -f "${LOCK_FILE}")
+
+                    if [ -f "${LOCK_FILE}" ]; then
+                        echo "INFO: Copying ${FULL_LOCK_FILE} to ${LOCKFILE_PATH}"
+                        cp "${FULL_LOCK_FILE}" "${LOCKFILE_PATH}"
+                    else
+                        echo "WARNING: Could not find lockfile at ${LOCK_FILE}"
+                    fi
+                fi
+            fi
+          environment:
+            PARAM_DEPENDENCY_FILE: ./search_gov_spiders/requirements.txt
+            PARAM_PKG_MNGR: pip
+            PARAM_PYPI_CACHE: true
+            PARAM_VENV_CACHE: true
+            PARAM_VENV_PATH: ""
+          name: Link lockfile
+          working_directory: .
+      - run:
+          command: python --version | cut -d ' ' -f2 > /tmp/python-version
+          name: Save python version
+      - restore_cache:
+          keys:
+            - v1-cci_pycache-{{ .Branch }}-{{ checksum
+              "/tmp/cci_pycache/lockfile" }}-{{ checksum "/tmp/python-version"
+              }}-
+      - run:
+          command: |-
+            recurse() {
+                if [ ! -d "$1" ] || [ ! -e "$2" ]; then
+                    mv -u "$1" "$2" || exit
+                    return
+                fi
+                for entry in "$1/"* "$1/."[!.]* "$1/.."?*; do
+                    if [ -e "$entry" ]; then
+                        recurse "$entry" "$2/${entry##"$1/"}"
+                    fi
+                done
+            }
+
+            restore_paths() {
+                if [ -d "${1}" ] && [ -n "$(ls -A "${1}" 2>/dev/null)" ]; then
+                    for file in "${1}"/*; do
+                        decoded=$(basename "${file}" | base64 -d)
+                        parent_dir=$(dirname "${decoded}")
+
+                        # make sure the parent directories exist
+                        if [ ! -d "${parent_dir}" ]; then
+                            mkdir -p "${parent_dir}"
+                        fi
+
+                        echo "INFO: Restoring ${file} to ${decoded}"
+
+                        recurse "${file}" "${decoded}"
+                    done
+                fi
+            }
+
+            CACHE_DIR="/tmp/cci_pycache"
+
+            if [ "${PARAM_VENV_CACHE}" = "1" ]; then
+                restore_paths "${CACHE_DIR}/venv"
+            fi
+
+            if [ "${PARAM_PYPI_CACHE}" = "1" ]; then
+                restore_paths "${CACHE_DIR}/pypi"
+            fi
+          environment:
+            PARAM_PYPI_CACHE: true
+            PARAM_VENV_CACHE: true
+          name: Move restored cache
+          working_directory: .
+      - run:
+          command: |
+            pip install -r ./search_gov_spiders/requirements.txt
+          name: Install dependencies with pip using project
+            ./search_gov_spiders/requirements.txt
+          working_directory: .
+      - run:
+          command: >-
+            # shellcheck source=detect-env.sh
+
+            source "$AUTO_DETECT_ENV_SCRIPT"
+
+
+            case ${DETECT_PKG_MNGR:-${PARAM_PKG_MNGR}} in
+                pip | pip-dist)
+                    LOCK_FILE="${PARAM_DEPENDENCY_FILE:-requirements.txt}"
+                    CACHE_PATHS='[ "/home/circleci/.cache/pip", "/home/circleci/.pyenv/versions", "/home/circleci/.local/lib" ]'
+                ;;
+                pipenv) # TODO: use PIPENV_PIPFILE
+                    LOCK_FILE="Pipfile.lock"
+                    PIPENV_VENV_PATH="${WORKON_HOME:-/home/circleci/.local/share/virtualenvs}"
+
+                    if [ -z "${PIPENV_VENV_IN_PROJECT}" ]; then
+                        VENV_PATHS="[ \"${PIPENV_VENV_PATH}\" ]"
+                    else
+                        VENV_PATHS="[ \"${CIRCLE_WORKING_DIRECTORY}/.venvs\" ]"
+                    fi
+
+                    CACHE_PATHS='[ "/home/circleci/.cache/pip", "/home/circleci/.cache/pipenv" ]'
+                ;;
+                poetry)
+                    LOCK_FILE="poetry.lock"
+                    VENV_PATHS='[ "/home/circleci/.cache/pypoetry/virtualenvs" ]'
+                    CACHE_PATHS='[ "/home/circleci/.cache/pip" ]'
+                ;;
+            esac
+
+
+            if [ -n "${PARAM_VENV_PATH}" ]; then
+                VENV_PATHS="${PARAM_VENV_PATH}"
+            fi
+
+
+            CACHE_DIR="/tmp/cci_pycache"
+
+            mkdir -p "${CACHE_DIR}"
+
+
+            link_paths() {
+                if [ -d "${1}" ]; then
+                    echo "INFO: Cache directory already exists. Skipping..."
+                    return
+                fi
+
+                mkdir "${1}"
+
+                for encoded in $(echo "${2}" | jq -r '.[] | @base64'); do
+                    decoded=$(echo "${encoded}" | base64 -d)
+
+                    if [ -e "${decoded}" ]; then
+                        echo "INFO: Copying ${decoded} to ${1}/${encoded}"
+                        cp -a "${decoded}" "${1}/${encoded}"
+                    else
+                        echo "INFO: Could not find ${decoded}. Skipping..."
+                    fi
+                done
+            }
+
+
+            if [ "${PARAM_VENV_CACHE}" = "1" ] && [ -n "${VENV_PATHS}" ]; then
+                link_paths "${CACHE_DIR}/venv" "${VENV_PATHS}"
+            fi
+
+
+            if [ "${PARAM_PYPI_CACHE}" = "1" ]; then
+                link_paths "${CACHE_DIR}/pypi" "${CACHE_PATHS}"
+            fi
+
+
+            LOCKFILE_PATH="${CACHE_DIR}/lockfile"
+
+
+            if [ -e "${LOCKFILE_PATH}" ]; then
+                rm -f "${LOCKFILE_PATH}"
+            fi
+
+
+            if [ -e "${LOCK_FILE}" ]; then
+                FULL_LOCK_FILE=$(readlink -f "${LOCK_FILE}")
+
+                echo "INFO: Copying ${FULL_LOCK_FILE} to ${LOCKFILE_PATH}"
+                cp "${FULL_LOCK_FILE}" "${LOCKFILE_PATH}"
+            fi
+          environment:
+            PARAM_DEPENDENCY_FILE: ./search_gov_spiders/requirements.txt
+            PARAM_PKG_MNGR: pip
+            PARAM_PYPI_CACHE: true
+            PARAM_VENV_CACHE: true
+            PARAM_VENV_PATH: ""
+          name: Copy to cache directory
+          working_directory: .
+      - save_cache:
+          key: v1-cci_pycache-{{ .Branch }}-{{ checksum "/tmp/cci_pycache/lockfile" }}-{{
+            checksum "/tmp/python-version" }}-
+          paths:
+            - /tmp/cci_pycache
+    build_and_deploy: null
+    jobs:
+      - test-and-coverage:
+          name: test-coverage
+      - dry-run-deploy:
+          name: dry-run-deploy
+          requires:
+            - test-coverage
+      - deploy:
+          requires:
+            - dry-run-deploy
+          filters:
+            branches:
+              only: main
+  test-and-coverage:
+    docker:
+      - image: circleci/python:3.12
+        environment:
+          - CC_TEST_REPORTER_ID: 669aaf3b18bdc340358112dc
+    steps:
+      - checkout
+      - run: null
+        name: install dependencies
+        command: |
+          python3 -m venv env
+          . env/bin/activate
+          pip3 install -r ./search_gov_spiders/requirements.txt
+      - run: null
+        name: install codeclimate test-reporter
+        command: >
+          # download test reporter as a static binary
+
+          curl -L https://codeclimate.com/downloads/test-     reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+
+          chmod +x ./cc-test-reporter
+      - run: null
+        command: |
+          ./cc-test-reporter before-build
+      - run: null
+        name: run tests
+        command: |
+          coverage run -m pytest
+          coverage html --omit=env/*,tests/*
+          coverage xml --omit=env/*,tests/*
+      - run: null
+        name: Run coverage report
+        command: |
+          . env/bin/activate
+          ./cc-test-reporter format-coverage -t coverage.py
+          ./cc-test-reporter upload-coverage
+      - run: null
+        command: |
+          ./cc-test-reporter after-build --exit-code $?
+  dry-run-deploy:
+    docker:
+      - image: circleci/python:3.12
+    steps:
+      - checkout
+      - run: null
+        name: Install Python Dependencies
+        command: |
+          python3 -m venv env
+          . env/bin/activate
+          pip3 install -r ./search_gov_spiders/requirements.txt
+deploy:
+  docker:
+    - image: circleci/python:3.12
+  steps:
+    - checkout
+    - run: null
+      name: Install Python Dependencies
+      command: |
+        python3 -m venv env
+        . env/bin/activate
+        pip3 install -r ./search_gov_spiders/requirements.txt
 workflows:
   main:
     jobs:
       - build_and_test
+      - test-and-coverage
+      - dry-run-deploy
+  version: 2

@@ -6,7 +6,19 @@ from . import domain_spider_helper_functions as helper_functions
 
 # scrapy command for crawling domain/site
 # scrapy crawl domain_spider -a domain=desired_domain -a urls=desired_url
-# ex: scrapy crawl domain_spider -a domain=travel.dod.mil -a urls=https://travel.dod.mil
+# ex: ... -a domain=travel.dod.mil -a urls=https://travel.dod.mil
+
+from scrapy.http import Response
+import re
+from ..items import SearchGovSpidersItem
+
+
+def valid_content_type(type_whitelist, content_type_header):
+    content_type_header = str(content_type_header)
+    for type_regex in type_whitelist:
+        if re.search(type_regex, content_type_header):
+            return True
+    return False
 
 
 class DomainSpider(CrawlSpider):
@@ -15,26 +27,22 @@ class DomainSpider(CrawlSpider):
         "PLAYWRIGHT_ABORT_REQUEST": helper_functions.should_abort_request
     }
 
-    def __init__(self, *args, domain=None, urls=None, **kwargs):
+    def __init__(self, domain: str = None, urls: str = None, *args, **kwargs):
         super(DomainSpider, self).__init__(*args, **kwargs)
         # will grab singular domain
-        # multiple comma-separated inputs
-        # (ex input: domain=getsmartaboutdrugs.gov,travel.dod.mil)
+        # multiple comma-separated inputs:
+        #   ex: domain=getsmartaboutdrugs.gov,travel.dod.mil
         # or the list of search.gov domains
-        if domain and "," in domain:
-            self.allowed_domains = domain.split(",")
-        else:
-            self.allowed_domains = [domain] if domain else helper_variables.domains_list
-
+        self.allowed_domains = domain.split(",") if domain \
+            else helper_variables.domains_list
         # urls to start crawling from in domain(s)
         # will grab singular start url
-        # multiple comma-separated inputs
-        # (ex input: urls=https://getsmartaboutdrugs.gov,https://travel.dod.mil)
+        # multiple comma-separated inputs:
+        #   ex: urls=https://getsmartaboutdrugs.gov,https://travel.dod.mil
         # or the list of search.gov start urls
-        if urls and "," in urls:
-            self.start_urls = urls.split(",")
-        else:
-            self.start_urls = [urls] if urls else helper_variables.start_urls_list
+        self.start_urls = urls.split(",") if urls \
+            else helper_variables.start_urls_list
+        self.url_map = {}
 
     # file type exclusions
     rules = (
@@ -56,15 +64,18 @@ class DomainSpider(CrawlSpider):
         ),
     )
 
-    async def parse_item(self, response):
+    def parse_item(self, response: Response):
         """This function gathers the url and the status.
-
         @url http://quotes.toscrape.com/
         @returns items 1 2
         @returns requests 0 0
         @scrapes Status Link
         """
-
-        items = SearchGovSpidersItem()
-        items["url"] = response.url
-        yield items
+        content_type = response.headers.get("content-type", None)
+        allowed_type = helper_variables.ALLOWED_CONTENT_TYPE
+        if valid_content_type(allowed_type, content_type) and \
+                response.url not in self.url_map:
+            self.url_map[response.url] = True
+            items = SearchGovSpidersItem()
+            items["url"] = response.url
+            yield items
