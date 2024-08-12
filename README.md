@@ -41,6 +41,8 @@ The spider can either scrape for URLs from the list of required domains or take 
 Running the spider produces a list of urls found in `search_gov_crawler/search_gov_spiders/spiders/scrapy_urls/{spider_name}/{spider_name}_{date}-{UTC_time}.txt`.
 
 ## Quick Start
+Make sure to run `pip install -r requirements.txt` and `playwright install` before running any spiders.
+
 ### Running Against All Listed Search.gov Domains
 Navigate down to `search_gov_crawler/search_gov_spiders/spiders/`, then
 enter the command below:
@@ -56,6 +58,8 @@ scrapy crawl domain_spider -a domain=example.com -a urls=www.example.com
 ```
 
 ## Setup and Use
+Make sure to run `pip install -r requirements.txt` and `playwright install` before running any spiders.
+
 ### Option 1: straight from command-line
 1. Navigate to the [*spiders*](search_gov_crawler/search_gov_spiders/spiders) directory
 2. Enter one of two following commands:
