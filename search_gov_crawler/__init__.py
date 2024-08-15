@@ -1,11 +1,10 @@
-""" Init file to package project for EC2"""
+"""Init file to package project for EC2"""
 
 import os
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from search_gov_crawler.search_gov_spiders.spiders.armymwr import ArmymwrSpider
-from search_gov_crawler.search_gov_spiders.spiders.domain_spider \
-    import DomainSpider
+from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 
 SETTINGS_FILE_PATH = "search_gov_crawler.search_gov_spiders.pip_settings"
 os.environ.setdefault("SCRAPY_SETTINGS_MODULE", SETTINGS_FILE_PATH)
