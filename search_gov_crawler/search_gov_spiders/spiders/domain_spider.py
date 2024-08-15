@@ -46,6 +46,9 @@ class DomainSpider(CrawlSpider):
     def __init__(
         self, *args, allowed_domains: Optional[str] = None, start_urls: Optional[str] = None, **kwargs
     ) -> None:
+        if any([allowed_domains, start_urls]) and not all([allowed_domains, start_urls]):
+            raise ValueError("Invalid arguments: allowed_domains and start_urls must be used together or not at all.")
+
         super().__init__(*args, **kwargs)
 
         self.allowed_domains = (
