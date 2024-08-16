@@ -76,7 +76,7 @@ run_all_domains = "search_gov_crawler:run_all_domains"
 Homepage = "https://github.com/GSA/searchgov-spider"
 
 [tool.pylint.'MAIN']
-py-version=3.12
+py-version=3.9
 
 [tool.pylint.'FORMAT']
 max-line-length=120
@@ -88,3 +88,6 @@ disable= [
     "missing-module-docstring",
     "missing-function-docstring"
 ]
+
+[tool.pylint.'VARIABLES']
+ignored-argument-names="args|kwargs"
