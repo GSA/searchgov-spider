@@ -54,12 +54,12 @@ class DomainSpider(CrawlSpider):
         self.allowed_domains = (
             allowed_domains.split(",")
             if allowed_domains
-            else helpers.get_default_allowed_domains(handle_javascript=self.handle_javascript)
+            else helpers.default_allowed_domains(handle_javascript=self.handle_javascript)
         )
         self.start_urls = (
             start_urls.split(",")
             if start_urls
-            else helpers.get_default_starting_urls(handle_javascript=self.handle_javascript)
+            else helpers.default_starting_urls(handle_javascript=self.handle_javascript)
         )
 
     rules = (

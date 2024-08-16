@@ -1,8 +1,7 @@
+import json
 import re
 from pathlib import Path
-from typing import Any
-
-PLAYWRIGHT_FLAG = False
+from typing import Any, Optional
 
 
 # fmt: off
@@ -47,21 +46,32 @@ def is_valid_content_type(content_type_header: Any) -> bool:
     return False
 
 
-def get_default_starting_urls(handle_javascript: bool) -> list[str]:
-    """Retrieve list of starting urls from text file"""
+def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
+    """Read in list of crawl sites from json file"""
+    if not crawl_file_path:
+        crawl_file = Path(__file__).parent.parent / "utility_files" / "crawl-sites.json"
+    else:
+        crawl_file = Path(crawl_file_path)
 
-    starting_urls_file = Path(__file__).parent.parent / "utility_files" / "startingUrls.txt"
-    start_urls_list = starting_urls_file.resolve().read_text().splitlines()
-    return start_urls_list
+    return json.loads(crawl_file.resolve().read_text())
 
 
-def get_default_allowed_domains(handle_javascript: bool) -> list[str]:
-    """Retrieve list of allowed domains from text file"""
+def default_starting_urls(handle_javascript: bool) -> list[str]:
+    """Created default list of starting urls filtered by ability to handle javascript"""
 
-    domains_file = Path(__file__).parent.parent / "utility_files" / "domains.txt"
-    domains_list = domains_file.resolve().read_text().splitlines()
+    crawl_sites_records = get_crawl_sites()
+    return [
+        record["starting_urls"] for record in crawl_sites_records if record["handle_javascript"] is handle_javascript
+    ]
 
-    return domains_list
+
+def default_allowed_domains(handle_javascript: bool) -> list[str]:
+    """Created default list of domains filtered by ability to handle javascript"""
+
+    crawl_sites_records = get_crawl_sites()
+    return [
+        record["allowed_domains"] for record in crawl_sites_records if record["handle_javascript"] is handle_javascript
+    ]
 
 
 def should_abort_request(request) -> bool:
