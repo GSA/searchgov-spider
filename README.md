@@ -26,8 +26,10 @@ The spider can be found at `search_gov_crawler/search_gov_spiders/spiders/domain
 ├── search_gov_crawler ( scrapy root )
 │   ├── search_gov_spider ( scrapy project *Note multiple projects can exist within a project root )
 │   │   ├── spiders
-│   │   │   ├── domain_spider.py ( main spider )
-│   │   ├── utility_files ( includes text files with domains to scrape )
+│   │   │   ├── domain_spider.py
+|   |   |   |   ├── domain_spider     ( spider for html pages )
+|   |   |   |   ├── domain_spider_js  ( spider for js pages )
+│   │   ├── utility_files ( includes json files with default domains to scrape )
 │   │   ├── items.py
 │   │   ├── middlewares.py
 │   │   ├── pipelines.py
@@ -38,23 +40,31 @@ The spider can be found at `search_gov_crawler/search_gov_spiders/spiders/domain
 ### Scrapy Web Crawler
 The spider can either scrape for URLs from the list of required domains or take in a domain and starting URL to scrape a site/domain.
 
-Running the spider produces a list of urls found in `search_gov_crawler/search_gov_spiders/spiders/scrapy_urls/{spider_name}/{spider_name}_{date}-{UTC_time}.txt`.
+Running the spider produces a list of urls found in `search_gov_crawler/search_gov_spiders/spiders/scrapy_urls/{spider_name}/{spider_name}_{date}-{UTC_time}.txt` as specified by `FEEDS` in `settings.py`.
 
 ## Quick Start
 Make sure to run `pip install -r requirements.txt` and `playwright install` before running any spiders.
 
 ### Running Against All Listed Search.gov Domains
-Navigate down to `search_gov_crawler/search_gov_spiders/spiders/`, then
-enter the command below:
+Navigate down to `search_gov_crawler/search_gov_spiders`, then enter the command below:
 ```commandline
 scrapy crawl domain_spider
 ```
-^^^ This will take a _long_ time
+to run for all urls / domains that do not require javacript handling.  To run for all sites that require
+javascript run:
+```commandline
+scrapy crawl domain_spider_js
+```
+^^^ These will take a _long_ time
 
 ### Running Against A Specific Domain
 In the same directory specified above, enter the command below, adding the domain and starting URL for the crawler:
 ```commandline
-scrapy crawl domain_spider -a domain=example.com -a urls=www.example.com
+scrapy crawl domain_spider -a allowed_domains=example.com -a start_urls=www.example.com
+```
+or
+```commandline
+scrapy crawl domain_spider -a allowed_domains=example.com -a start_urls=www.example.com
 ```
 
 ## Setup and Use
