@@ -1,0 +1,17 @@
+[
+    {
+        "allowed_domains": "quotes.toscrape.com",
+        "handle_javascript": false,
+        "starting_urls": "https://quotes.toscrape.com/"
+    },
+    {
+        "allowed_domains": "quotes.toscrape.com",
+        "handle_javascript": true,
+        "starting_urls": "https://quotes.toscrape.com/js/"
+    },
+    {
+        "allowed_domains": "quotes.toscrape.com",
+        "handle_javascript": true,
+        "starting_urls": "https://quotes.toscrape.com/js-delayed/"
+    }
+]
