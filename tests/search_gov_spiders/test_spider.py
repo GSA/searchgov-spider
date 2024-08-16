@@ -20,15 +20,18 @@ def get_results(spider, content: str):
 
 
 def test_valid_content(spider):
+    spider.url_map = set()
     results = get_results(spider, "text/html")
     assert results is not None and results.get("url") == TEST_URL
 
 
 def test_valid_content_plus(spider):
+    spider.url_map = set()
     results = get_results(spider, "text/html;utf-8")
     assert results is not None and results.get("url") == TEST_URL
 
 
 def test_invalid_content(spider):
+    spider.url_map = set()
     results = get_results(spider, "media/image")
     assert results is None
