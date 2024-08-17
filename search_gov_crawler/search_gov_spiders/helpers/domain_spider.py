@@ -3,6 +3,10 @@ import re
 from pathlib import Path
 from typing import Any, Optional
 
+from scrapy.http import Response
+from scrapy.linkextractors import LinkExtractor
+
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 # fmt: off
 FILTER_EXTENSIONS = [
@@ -36,6 +40,19 @@ ALLOWED_CONTENT_TYPE = [
 ]
 
 
+domain_spider_link_extractor = LinkExtractor(
+    allow=(),
+    deny=[
+        "calendar",
+        "location-contact",
+        "DTMO-Site-Map/FileId/",
+        # "\*redirect"
+    ],
+    deny_extensions=FILTER_EXTENSIONS,
+    unique=True,
+)
+
+
 def is_valid_content_type(content_type_header: Any) -> bool:
     """Check that content type header is in list of allowed values"""
 
@@ -44,6 +61,19 @@ def is_valid_content_type(content_type_header: Any) -> bool:
         if re.search(type_regex, content_type_header):
             return True
     return False
+
+
+def parse_item(response: Response):
+    """This function is called by spiders to gather the url.
+    @url http://quotes.toscrape.com/
+    @returns items 1 1
+    @scrapes url
+    """
+
+    if is_valid_content_type(response.headers.get("content-type", None)):
+        items = SearchGovSpidersItem()
+        items["url"] = response.url
+        yield items
 
 
 def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
