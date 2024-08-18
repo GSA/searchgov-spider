@@ -9,7 +9,6 @@ jobs:
       - restore_cache:
           keys:
             - deps-{{ checksum "./search_gov_crawler/requirements.txt" }}
-      - run: echo PYTHONPATH = $PYTHONPATH
       - run:
           name: Install dependencies
           command: |
