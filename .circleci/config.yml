@@ -1,7 +1,7 @@
 version: 2.1
 
 environment:
-  PYTHONPATH: ${HOME}/project
+  PYTHONPATH: /home/circleci/project
 
 jobs:
   build-and-test:
