@@ -1,8 +1,5 @@
 version: 2.1
 
-environment:
-  PYTHONPATH: /home/circleci/project:/home/circleci/project/venv
-
 jobs:
   build-and-test:
     docker:
@@ -11,7 +8,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - deps-{{ checksum "./requirements.txt" }}
+            - deps-{{ checksum "./search_gov_crawler/requirements.txt" }}
       - run: echo PYTHONPATH = $PYTHONPATH
       - run:
           name: Install dependencies
@@ -27,7 +24,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            pytest -k 'not TestSpiderFullCrawl'
+            python -m pytest -k 'not TestSpiderFullCrawl'
 
 workflows:
   version: 2
