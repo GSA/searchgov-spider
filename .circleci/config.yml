@@ -1,7 +1,7 @@
 version: 2.1
 
 environment:
-  PYTHONPATH: ${HOME}/sdarchgov-spider
+  PYTHONPATH: ${HOME}/project
 
 jobs:
   build-and-test:
