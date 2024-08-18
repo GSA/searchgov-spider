@@ -23,7 +23,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            pytest ./search_gov_crawler/search_gov_spiders/test/test_spider.py
+            pytest tests -k 'not TestSpiderFullCrawl'
 
 workflows:
   version: 2
