@@ -1,7 +1,7 @@
 version: 2.1
 
 environment:
-  PYTHONPATH: /home/circleci/project
+  PYTHONPATH: PYTHONPATH=${PYTHONPATH}:/home/circleci/project
 
 jobs:
   build-and-test:
@@ -11,7 +11,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - deps-{{ checksum "./search_gov_crawler/requirements.txt" }}
+            - deps-{{ checksum "./requirements.txt" }}
       - run:
           name: Install dependencies
           command: |
@@ -26,7 +26,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            pytest tests -k 'not TestSpiderFullCrawl'
+            pytest -k 'not TestSpiderFullCrawl'
 
 workflows:
   version: 2
