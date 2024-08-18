@@ -1,4 +1,5 @@
 import json
+import tempfile
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -11,6 +12,7 @@ from scrapy.utils.project import get_project_settings
 
 
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
+from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
 
 
 with Betamax.configure() as config:
@@ -20,10 +22,10 @@ with Betamax.configure() as config:
 pytest.mark.usefixtures("betamax_session")
 
 
-class TestDomainSpider:
-    @pytest.fixture()
-    def spider(self) -> DomainSpider:
-        return DomainSpider(allowed_domains="quotes.toscrape.com", start_urls="https://quotes.toscrape.com")
+class TestSpiderCrawl:
+    @pytest.fixture(params=[DomainSpider, DomainSpiderJs])
+    def spider(self, request):
+        return request.param(allowed_domains="quotes.toscrape.com", start_urls="https://quotes.toscrape.com")
 
     def test_parse_item(self, spider, betamax_session):
         response = betamax_session.get(spider.start_urls[0])
@@ -41,7 +43,7 @@ class TestDomainSpider:
         assert len(links) == 49  # unique links from first page
 
 
-class TestDomainSpiderCrawl:
+class TestSpiderFullCrawl:
     def test_crawl(self, monkeypatch, betamax_session):
         def mock_process_request(*args, **kwargs):
             if kwargs:
@@ -81,18 +83,15 @@ class TestDomainSpiderCrawl:
 
         settings.delete("ITEM_PIPELINES")
 
-        output_file = Path(__file__).parent / "test-output.json"
-        settings.set("FEEDS", {output_file: {"format": "json"}})
+        with tempfile.NamedTemporaryFile(suffix=".json") as output_file:
+            settings.set("FEEDS", {output_file.name: {"format": "json"}})
 
-        process = CrawlerProcess(settings)
-        process.crawl(DomainSpider, allowed_domains="quotes.toscrape.com", start_urls="https://quotes.toscrape.com")
+            process = CrawlerProcess(settings)
+            process.crawl(DomainSpider, allowed_domains="quotes.toscrape.com", start_urls="https://quotes.toscrape.com")
 
-        process.start()
+            process.start()
 
-        with open(output_file, encoding="UTF") as f:
-            links = json.load(f)
+            with open(output_file.name, encoding="UTF") as f:
+                links = json.load(f)
 
-        assert len(links) == 378
-
-        # tear down
-        output_file.unlink(missing_ok=True)
+            assert len(links) == 378
