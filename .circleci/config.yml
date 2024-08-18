@@ -1,5 +1,8 @@
 version: 2.1
 
+environment:
+  PYTHONPATH: ${HOME}/sdarchgov-spider
+
 jobs:
   build-and-test:
     docker:
