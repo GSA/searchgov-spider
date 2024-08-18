@@ -1,7 +1,7 @@
 version: 2.1
 
 environment:
-  PYTHONPATH: PYTHONPATH=${PYTHONPATH}:/home/circleci/project
+  PYTHONPATH: /home/circleci/project:/home/circleci/project/venv
 
 jobs:
   build-and-test:
@@ -12,6 +12,7 @@ jobs:
       - restore_cache:
           keys:
             - deps-{{ checksum "./requirements.txt" }}
+      - run: echo PYTHONPATH = $PYTHONPATH
       - run:
           name: Install dependencies
           command: |
