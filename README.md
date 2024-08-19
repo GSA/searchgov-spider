@@ -26,9 +26,8 @@ The spider can be found at `search_gov_crawler/search_gov_spiders/spiders/domain
 ├── search_gov_crawler ( scrapy root )
 │   ├── search_gov_spider ( scrapy project *Note multiple projects can exist within a project root )
 │   │   ├── spiders
-│   │   │   ├── domain_spider.py
-|   |   |   |   ├── domain_spider     ( spider for html pages )
-|   |   |   |   ├── domain_spider_js  ( spider for js pages )
+│   │   │   ├── domain_spider.py ( spider for html pages )
+|   |   |   |-- domain_spider_js.py  ( spider for js pages )
 │   │   ├── utility_files ( includes json files with default domains to scrape )
 │   │   ├── items.py
 │   │   ├── middlewares.py
