@@ -10,7 +10,7 @@ from scrapy import http
 from scrapy.exceptions import IgnoreRequest
 from scrapy.utils.project import get_project_settings
 
-
+from search_gov_crawler.search_gov_spiders.helpers.domain_spider import parse_item
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
 
@@ -31,7 +31,7 @@ class TestSpiderCrawl:
         response = betamax_session.get(spider.start_urls[0])
         scrapy_response = http.Response(body=response.content, url=spider.start_urls[0], headers=response.headers)
 
-        items = list(spider.parse_item(scrapy_response))
+        items = list(parse_item(scrapy_response))
         assert items == [{"url": "https://quotes.toscrape.com"}]
 
     def test_link_extractor(self, spider, betamax_session):

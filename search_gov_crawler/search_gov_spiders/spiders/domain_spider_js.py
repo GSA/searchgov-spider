@@ -4,7 +4,6 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Response, Request
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
-from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
 class DomainSpiderJs(CrawlSpider):
@@ -58,24 +57,11 @@ class DomainSpiderJs(CrawlSpider):
     rules = (
         Rule(
             link_extractor=helpers.domain_spider_link_extractor,
-            callback="parse_item",
+            callback=helpers.parse_item,
             follow=True,
             process_request="set_playwright_usage",
         ),
     )
-
-    def parse_item(self, response: Response):
-        """This function gathers the url for valid content-type responses
-        @url http://quotes.toscrape.com/
-        @returns items 1 1
-        @scrapes url
-        """
-        content_type = response.headers.get("content-type", None)
-
-        if helpers.is_valid_content_type(content_type):
-            items = SearchGovSpidersItem()
-            items["url"] = response.url
-            yield items
 
     def set_playwright_usage(self, request: Request, _response: Response) -> Request:
         """Set meta tags for playwright to run"""

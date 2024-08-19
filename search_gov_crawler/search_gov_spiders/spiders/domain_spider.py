@@ -56,17 +56,4 @@ class DomainSpider(CrawlSpider):
             start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=False)
         )
 
-    rules = (Rule(link_extractor=helpers.domain_spider_link_extractor, callback="parse_item", follow=True),)
-
-    def parse_item(self, response: Response):
-        """This function gathers the url for valid content-type responses
-        @url http://quotes.toscrape.com/
-        @returns items 1 1
-        @scrapes url
-        """
-        content_type = response.headers.get("content-type", None)
-
-        if helpers.is_valid_content_type(content_type):
-            items = SearchGovSpidersItem()
-            items["url"] = response.url
-            yield items
+    rules = (Rule(link_extractor=helpers.domain_spider_link_extractor, callback=helpers.parse_item, follow=True),)

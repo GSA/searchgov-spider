@@ -1,5 +1,7 @@
 import pytest
 from scrapy.http import Response, Request
+
+from search_gov_crawler.search_gov_spiders.helpers.domain_spider import parse_item
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
 
@@ -17,7 +19,7 @@ def get_results(spider, content: str):
     response = Response(url=TEST_URL, request=request, headers={"content-type": content})
 
     spider.allowed_domains = ["example.com"]
-    return next(spider.parse_item(response), None)
+    return next(parse_item(response), None)
 
 
 def test_valid_content(spider):
