@@ -27,10 +27,10 @@ def test_create_allowed_domain(input_url, expected_result):
 
 
 def test_convert_plist_to_json(monkeypatch):
-    def mock_read_text(*args, **kwargs):
+    def mock_read_text(*_args, **_kwargs):
         return "some text"
 
-    def mock_plist_loads(*args, **kwargs):
+    def mock_plist_loads(*_args, **_kwargs):
         return [
             {
                 "dateStamp": datetime(2024, 1, 1, 12, 12, 12),

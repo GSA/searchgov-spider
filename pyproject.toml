@@ -45,6 +45,3 @@ disable= [
     "missing-module-docstring",
     "missing-function-docstring"
 ]
-
-[tool.pylint.'VARIABLES']
-ignored-argument-names="args|kwargs"

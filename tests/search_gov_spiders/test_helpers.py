@@ -36,7 +36,7 @@ def test_get_crawl_sites_test_file(crawl_sites_test_file):
 
 @pytest.mark.parametrize(("handle_javascript", "results"), [(True, 2), (False, 1)])
 def test_default_starting_urls(monkeypatch, crawl_sites_test_file_json, handle_javascript, results):
-    def mock_get_crawl_sites(*args, **kwargs):
+    def mock_get_crawl_sites(*_args, **_kwargs):
         return crawl_sites_test_file_json
 
     monkeypatch.setattr(
@@ -49,7 +49,7 @@ def test_default_starting_urls(monkeypatch, crawl_sites_test_file_json, handle_j
 
 @pytest.mark.parametrize(("handle_javascript", "results"), [(True, 2), (False, 1)])
 def test_default_allowed_domains(monkeypatch, crawl_sites_test_file_json, handle_javascript, results):
-    def mock_get_crawl_sites(*args, **kwargs):
+    def mock_get_crawl_sites(*_args, **_kwargs):
         return crawl_sites_test_file_json
 
     monkeypatch.setattr(

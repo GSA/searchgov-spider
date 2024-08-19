@@ -1,11 +1,8 @@
 from typing import Optional
 
-from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from scrapy.http import Response
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
-from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
 class DomainSpider(CrawlSpider):
