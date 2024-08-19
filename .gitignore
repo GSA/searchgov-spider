@@ -203,6 +203,6 @@ cython_debug/
 .scrapy/
 /search_gov_crawler/search_gov_spiders/spiders/_trial_temp
 scrapy_urls/
-search_gov_crawler/dbs/
+dbs/
 
 .DS_Store
