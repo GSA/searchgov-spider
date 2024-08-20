@@ -105,9 +105,6 @@ db.sqlite3-journal
 instance/
 .webassets-cache
 
-# Scrapy stuff:
-.scrapy
-
 # Sphinx documentation
 docs/_build/
 
@@ -201,7 +198,6 @@ cython_debug/
 
 # Scrapy specific files
 .scrapy/
-/search_gov_crawler/search_gov_spiders/spiders/_trial_temp
 scrapy_urls/
 dbs/
 
