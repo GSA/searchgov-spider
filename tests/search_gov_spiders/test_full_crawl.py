@@ -29,7 +29,9 @@ def fixture_mock_scrapy_settings(monkeypatch):
         {f"search_gov_crawler.{k}": v for k, v in dict(settings.get("DOWNLOADER_MIDDLEWARES").attributes).items()},
     )
     settings.set("HTTPCACHE_ENABLED", True)
+    settings.set("HTTPCACHE_DBM_MODULE", "dbm.dumb")
     settings.set("HTTPCACHE_DIR", Path(__file__).parent.joinpath("scrapy_httpcache"))
+    settings.set("HTTPCACHE_IGNORE_MISSING", True)
     settings.set("HTTPCACHE_STORAGE", "scrapy.extensions.httpcache.DbmCacheStorage")
 
     yield settings

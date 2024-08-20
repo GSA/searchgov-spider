@@ -3,22 +3,30 @@ version: 2.1
 jobs:
   build-and-test:
     docker:
-      - image: cimg/python:3.12
+      - image: cimg/python:3.10
     steps:
       - checkout
+      - run: python --version > python_version
+      - run: python -c 'from dbm import whichdb; print(whichdb("./tests/search_gov_spiders/scrapy_httpcache/domain_spider.db"))'
       - restore_cache:
           keys:
-            - deps-{{ checksum "./search_gov_crawler/requirements.txt" }}
+            - deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
       - run:
           name: Install dependencies
           command: |
             python -m venv venv
             . venv/bin/activate
             pip install -r ./search_gov_crawler/requirements.txt
+      - run:
+          name: gdbm install
+          command: |
+           sudo apt-get update && \
+           sudo apt-get install -y python3-gdbm libdb-dev libgdbm-dev
+
       - save_cache:
           paths:
             - ./venv
-          key: deps-{{ checksum "./search_gov_crawler/requirements.txt" }}
+          key: deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
       - run:
           name: Run tests
           command: |

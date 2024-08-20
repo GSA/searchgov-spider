@@ -46,7 +46,7 @@ class DeDeuplicatorPipeline:
 
     itemlist = []
 
-    def process_item(self, item, spider):
+    def process_item(self, item, _spider):
         """Checks that the file is not at max size.
         Adds it to the file if less, or creates a new file if too large."""
         if item in self.itemlist:
