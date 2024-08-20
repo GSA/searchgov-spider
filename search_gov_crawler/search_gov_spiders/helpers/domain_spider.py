@@ -102,11 +102,3 @@ def default_allowed_domains(handle_javascript: bool) -> list[str]:
     return [
         record["allowed_domains"] for record in crawl_sites_records if record["handle_javascript"] is handle_javascript
     ]
-
-
-def should_abort_request(request) -> bool:
-    """Helper function to tell playwright if it should process requests based on resource type"""
-
-    if request.resource_type in FILTER_EXTENSIONS:
-        return True
-    return False

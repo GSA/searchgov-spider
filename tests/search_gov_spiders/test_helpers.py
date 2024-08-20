@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 
 from search_gov_crawler.search_gov_spiders.helpers import domain_spider as helpers
+from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import should_abort_request
 
 
 @pytest.mark.parametrize(
@@ -69,4 +70,4 @@ def fixture_request_with_resource_type(request) -> Request:
 
 
 def test_should_abort_request(request_with_resource_type):
-    assert helpers.should_abort_request(request_with_resource_type) == request_with_resource_type.should_abort
+    assert should_abort_request(request_with_resource_type) == request_with_resource_type.should_abort

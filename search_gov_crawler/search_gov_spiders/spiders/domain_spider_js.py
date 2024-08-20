@@ -6,6 +6,14 @@ from scrapy.http import Response, Request
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 
 
+def should_abort_request(request):
+    """Helper function to tell playwright if it should process requests based on resource type"""
+
+    if request.resource_type in helpers.FILTER_EXTENSIONS:
+        return True
+    return False
+
+
 class DomainSpiderJs(CrawlSpider):
     """
     Main spider for crawling and retrieving URLs using a headless browser to hanlde javascript.
@@ -39,7 +47,7 @@ class DomainSpiderJs(CrawlSpider):
     """
 
     name: str = "domain_spider_js"
-    custom_settings: dict = {"PLAYWRIGHT_ABORT_REQUEST": helpers.should_abort_request}
+    custom_settings: dict = {"PLAYWRIGHT_ABORT_REQUEST": should_abort_request}
 
     def __init__(
         self, *args, allowed_domains: Optional[str] = None, start_urls: Optional[str] = None, **kwargs
