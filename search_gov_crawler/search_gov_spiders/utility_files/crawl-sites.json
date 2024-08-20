@@ -1,0 +1,332 @@
+[
+    {
+        "allowed_domains": "armymwr.com",
+        "handle_javascript": false,
+        "starting_urls": "https://www.armymwr.com/"
+    },
+    {
+        "allowed_domains": "travel.dod.mil",
+        "handle_javascript": false,
+        "starting_urls": "https://www.travel.dod.mil/"
+    },
+    {
+        "allowed_domains": "ais.usvisa-info.com",
+        "handle_javascript": false,
+        "starting_urls": "https://ais.usvisa-info.com/"
+    },
+    {
+        "allowed_domains": "toolkit.climate.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://toolkit.climate.gov"
+    },
+    {
+        "allowed_domains": "oha.ed.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://oha.ed.gov"
+    },
+    {
+        "allowed_domains": "accessdata.fda.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.accessdata.fda.gov/CMS_IA/default.html"
+    },
+    {
+        "allowed_domains": "drive.hhs.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://drive.hhs.gov/"
+    },
+    {
+        "allowed_domains": "jwst.nasa.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.jwst.nasa.gov/"
+    },
+    {
+        "allowed_domains": "allhands.navy.mil",
+        "handle_javascript": true,
+        "starting_urls": "https://allhands.navy.mil/"
+    },
+    {
+        "allowed_domains": "mynavyhr.navy.mil",
+        "handle_javascript": false,
+        "starting_urls": "https://www.mynavyhr.navy.mil/"
+    },
+    {
+        "allowed_domains": "diversity.nih.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://diversity.nih.gov/"
+    },
+    {
+        "allowed_domains": "lrp.nih.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.lrp.nih.gov/"
+    },
+    {
+        "allowed_domains": "orwh.od.nih.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://orwh.od.nih.gov/"
+    },
+    {
+        "allowed_domains": "coastwatch.noaa.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://coastwatch.noaa.gov/cw/index.html"
+    },
+    {
+        "allowed_domains": "cwcaribbean.aoml.noaa.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://cwcaribbean.aoml.noaa.gov/"
+    },
+    {
+        "allowed_domains": "oceanwatch.pifsc.noaa.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://oceanwatch.pifsc.noaa.gov/"
+    },
+    {
+        "allowed_domains": "eastcoast.coastwatch.noaa.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://eastcoast.coastwatch.noaa.gov/"
+    },
+    {
+        "allowed_domains": "coastwatch.glerl.noaa.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://coastwatch.glerl.noaa.gov/"
+    },
+    {
+        "allowed_domains": "coastwatch.pfeg.noaa.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://coastwatch.pfeg.noaa.gov/"
+    },
+    {
+        "allowed_domains": "goes-r.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.goes-r.gov"
+    },
+    {
+        "allowed_domains": "nrcs.usda.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.nrcs.usda.gov/wps/portal/wcc/home/"
+    },
+    {
+        "allowed_domains": "fincen.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.fincen.gov/"
+    },
+    {
+        "allowed_domains": "cmts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.cmts.gov/downloads/"
+    },
+    {
+        "allowed_domains": "cacb.uscourts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.cacb.uscourts.gov"
+    },
+    {
+        "allowed_domains": "are.uscourts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.are.uscourts.gov/"
+    },
+    {
+        "allowed_domains": "caep.uscourts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.caep.uscourts.gov/"
+    },
+    {
+        "allowed_domains": "jpml.uscourts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.jpml.uscourts.gov"
+    },
+    {
+        "allowed_domains": "msnd.uscourts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.msnd.uscourts.gov/"
+    },
+    {
+        "allowed_domains": "mssd.uscourts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.mssd.uscourts.gov/"
+    },
+    {
+        "allowed_domains": "ncwba.uscourts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.ncwba.uscourts.gov/"
+    },
+    {
+        "allowed_domains": "pawd.uscourts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.pawd.uscourts.gov/"
+    },
+    {
+        "allowed_domains": "utb.uscourts.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.utb.uscourts.gov/"
+    },
+    {
+        "allowed_domains": "fpacbc.usda.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.fpacbc.usda.gov/index.html"
+    },
+    {
+        "allowed_domains": "help.nfc.usda.gov",
+        "handle_javascript": true,
+        "starting_urls": "https://help.nfc.usda.gov/"
+    },
+    {
+        "allowed_domains": "uspto.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.uspto.gov"
+    },
+    {
+        "allowed_domains": "accesstocare.va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.accesstocare.va.gov"
+    },
+    {
+        "allowed_domains": "benefits.va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://benefits.va.gov/benefits/"
+    },
+    {
+        "allowed_domains": "cfm.va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.cfm.va.gov/til/"
+    },
+    {
+        "allowed_domains": "cider.research.va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.cider.research.va.gov"
+    },
+    {
+        "allowed_domains": "herc.research.va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.herc.research.va.gov/"
+    },
+    {
+        "allowed_domains": "hsrd.research.va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.hsrd.research.va.gov/"
+    },
+    {
+        "allowed_domains": "myhealth.va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.myhealth.va.gov"
+    },
+    {
+        "allowed_domains": "va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.va.gov/accountability/"
+    },
+    {
+        "allowed_domains": "queri.research.va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.queri.research.va.gov/"
+    },
+    {
+        "allowed_domains": "research.va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.research.va.gov/"
+    },
+    {
+        "allowed_domains": "va.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.va.gov/resources/"
+    },
+    {
+        "allowed_domains": "dantes.mil",
+        "handle_javascript": false,
+        "starting_urls": "https://www.dantes.mil/"
+    },
+    {
+        "allowed_domains": "acc.af.mil",
+        "handle_javascript": false,
+        "starting_urls": "https://www.acc.af.mil/"
+    },
+    {
+        "allowed_domains": "usacac.army.mil",
+        "handle_javascript": false,
+        "starting_urls": "https://usacac.army.mil/"
+    },
+    {
+        "allowed_domains": "get.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://get.gov"
+    },
+    {
+        "allowed_domains": "ccad.army.mil",
+        "handle_javascript": false,
+        "starting_urls": "https://www.ccad.army.mil"
+    },
+    {
+        "allowed_domains": "jts.health.mil",
+        "handle_javascript": false,
+        "starting_urls": "https://jts.health.mil/"
+    },
+    {
+        "allowed_domains": "campusdrugprevention.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.campusdrugprevention.gov/"
+    },
+    {
+        "allowed_domains": "getsmartaboutdrugs.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.getsmartaboutdrugs.gov/"
+    },
+    {
+        "allowed_domains": "transportation.gov",
+        "handle_javascript": true,
+        "starting_urls": "https://www7.transportation.gov/civil-rights/disadvantaged-business-enterprise/denials-appeals?qt-docr_dbe_dc_decision_appeals=1#qt-docr_dbe_dc_decision_appeals"
+    },
+    {
+        "allowed_domains": "ed.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www2.ed.gov/about/offices/list/ocr/index.html"
+    },
+    {
+        "allowed_domains": "dola.colorado.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://dola.colorado.gov/lgis/municipalities.jsf"
+    },
+    {
+        "allowed_domains": "ccb.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.ccb.gov/"
+    },
+    {
+        "allowed_domains": "my.navy.mil",
+        "handle_javascript": false,
+        "starting_urls": "https://my.navy.mil"
+    },
+    {
+        "allowed_domains": "clinicaltrials.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.clinicaltrials.gov/"
+    },
+    {
+        "allowed_domains": "ncei.noaa.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.ncei.noaa.gov/access/monitoring/products/"
+    },
+    {
+        "allowed_domains": "usa.gov",
+        "handle_javascript": false,
+        "starting_urls": "http://www.usa.gov"
+    },
+    {
+        "allowed_domains": "fns.usda.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.fns.usda.gov/tn/schools"
+    },
+    {
+        "allowed_domains": "wicbreastfeeding.fns.usda.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://wicbreastfeeding.fns.usda.gov/"
+    },
+    {
+        "allowed_domains": "nutrition.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.nutrition.gov"
+    },
+    {
+        "allowed_domains": "weather.gov",
+        "handle_javascript": false,
+        "starting_urls": "https://www.weather.gov/"
+    }
+]
