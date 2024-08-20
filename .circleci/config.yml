@@ -23,7 +23,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            python -m pytest -k 'not TestSpiderFullCrawl'
+            python -m pytest tests
 
 workflows:
   version: 2
