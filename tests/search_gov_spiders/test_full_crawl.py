@@ -1,4 +1,5 @@
 import json
+import os
 import tempfile
 import sys
 from pathlib import Path
@@ -31,8 +32,9 @@ def fixture_mock_scrapy_settings(monkeypatch):
     settings.set("HTTPCACHE_ENABLED", True)
     settings.set("HTTPCACHE_DBM_MODULE", "dbm.dumb")
     settings.set("HTTPCACHE_DIR", Path(__file__).parent.joinpath("scrapy_httpcache"))
-    settings.set("HTTPCACHE_IGNORE_MISSING", True)
     settings.set("HTTPCACHE_STORAGE", "scrapy.extensions.httpcache.DbmCacheStorage")
+    if os.getenv("CIRCLECI"):
+        settings.set("HTTPCACHE_IGNORE_MISSING", True)
 
     yield settings
 
