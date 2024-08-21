@@ -1,5 +1,4 @@
 import json
-import os
 import tempfile
 import sys
 from pathlib import Path
