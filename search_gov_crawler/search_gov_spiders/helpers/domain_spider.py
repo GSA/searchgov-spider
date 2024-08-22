@@ -71,9 +71,7 @@ def parse_item(response: Response):
     """
 
     if is_valid_content_type(response.headers.get("content-type", None)):
-        items = SearchGovSpidersItem()
-        items["url"] = response.url
-        yield items
+        yield SearchGovSpidersItem(url=response.url)
 
 
 def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
