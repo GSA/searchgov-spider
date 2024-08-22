@@ -1,10 +1,12 @@
 
 # testing and linting
 betamax==0.9.0
+logparser=0.8.2
 pylint==3.2.6
 pytest==8.3.2
-scrapy==2.11.2
 scrapy-playwright==0.0.41
-scrapyd==1.4.3
-scrapyd-client==1.2.3
+scrapy==2.11.2
 scrapyd_api==0.0.4
+scrapyd-client==1.2.3
+scrapyd==1.4.3
+scrapydweb==1.5.0
