@@ -32,4 +32,5 @@ exclude_patterns:
 - "**/__pycache__/"
 - "**/.mypy_cache/"
 - "**/.pytest_cache/"
+- "**/build/"
 - "**/test/"
