@@ -3,12 +3,13 @@ version: 2.1
 jobs:
   build-and-test:
     docker:
-      - image: cimg/python:3.9
+      - image: cimg/python:3.12
     steps:
       - checkout
+      - run: python --version > python_version
       - restore_cache:
           keys:
-            - deps-{{ checksum "./search_gov_crawler/requirements.txt" }}
+            - deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
       - run:
           name: Install dependencies
           command: |
@@ -18,12 +19,12 @@ jobs:
       - save_cache:
           paths:
             - ./venv
-          key: deps-{{ checksum "./search_gov_crawler/requirements.txt" }}
+          key: deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
       - run:
           name: Run tests
           command: |
             . venv/bin/activate
-            python -m pytest -k 'not TestSpiderFullCrawl'
+            python -m pytest tests
 
 workflows:
   version: 2
