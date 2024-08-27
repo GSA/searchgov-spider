@@ -1,5 +1,6 @@
 exclude: "^\
-  (third-party/.*)\
+  (third-party/.*)|\
+  scrapy_httpcache/.*\
   "
 
 repos:

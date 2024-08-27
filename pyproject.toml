@@ -9,7 +9,6 @@ description = "The home for the spider that supports search.gov."
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
-    "betamax==0.9.0",
     "pylint==3.2.6",
     "pytest==8.3.2",
     "scrapy==2.11.2",
@@ -33,7 +32,7 @@ run_all_domains = "search_gov_crawler:run_all_domains"
 Homepage = "https://github.com/GSA/searchgov-spider"
 
 [tool.pylint.'MAIN']
-py-version=3.9
+py-version=3.12
 
 [tool.pylint.'FORMAT']
 max-line-length=120
@@ -41,6 +40,7 @@ max-line-length=120
 [tool.pylint.'MESSAGES CONTROL']
 disable= [
     "abstract-method",
+    "too-few-public-methods",
     "missing-class-docstring",
     "missing-module-docstring",
     "missing-function-docstring"
