@@ -1,0 +1,40 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - echo "Setting up Python virtual environment..."
+      - python -m venv venv
+      - source venv/bin/activate
+      - echo "Installing dependencies..."
+      - pip install --upgrade pip
+      - pip install --upgrade --force-reinstall -r ./search_gov_crawler/requirements.txt
+
+  pre_build:
+    commands:
+      - echo "Pre-build phase - preparing environment..."
+
+  build:
+    commands:
+      - echo "Running the domain_spider"
+      - cd ./search_gov_crawler
+      - pkill scrapy
+      - scrapy crawl domain_spider
+      - echo "Finished all non-js domain_spider urls"
+      - scrapy crawl domain_spider_js
+      - echo "Finished all js domain_spider urls"
+
+  post_build:
+    commands:
+      - echo "Build completed!"
+      - deactivate
+
+artifacts:
+  files:
+    - '**/*'
+
+cache:
+  paths:
+    - '/root/.cache/pip'
