@@ -5,4 +5,4 @@ scrapy==2.11.2
 scrapyd_api==0.0.4
 scrapyd-client==1.2.3
 scrapyd==1.4.3
-scrapydweb==1.5.0
+git+https://github.com/GSA-TTS/searchgov_scrapydweb
