@@ -28,6 +28,10 @@ def fixture_mock_scrapy_settings(monkeypatch):
         "DOWNLOADER_MIDDLEWARES",
         {f"search_gov_crawler.{k}": v for k, v in dict(settings.get("DOWNLOADER_MIDDLEWARES").attributes).items()},
     )
+    settings.set(
+        "EXTENSIONS",
+        {k: v for k, v in dict(settings.get("EXTENSIONS").attributes).items() if "json_logging" not in k},
+    )
     settings.set("HTTPCACHE_ENABLED", True)
     settings.set("HTTPCACHE_DBM_MODULE", "dbm.dumb")
     settings.set("HTTPCACHE_DIR", Path(__file__).parent.joinpath("scrapy_httpcache"))
@@ -93,7 +97,7 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
 
         mock_scrapy_settings.set("FEEDS", {output_file.name: {"format": "json"}})
 
-        process = CrawlerProcess(mock_scrapy_settings)
+        process = CrawlerProcess(mock_scrapy_settings, install_root_handler=False)
         process.crawl(spider, **crawl_kwargs)
         process.start()
 
