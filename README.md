@@ -12,12 +12,12 @@ The home for the spider that supports search.gov.
   * [Option 1: command-line](#option-1-straight-from-command-line)
   * [Option 2: server](#option-2-deploying-on-server-scrapyd)
 * [Adding New Spiders](#adding-new-spiders)
-
+* [Running Scrapydweb UI](#running-scrapydweb-ui)
 
 ## About
 The spider uses the open source [scrapy](https://scrapy.org/) framework.
 
-The spider can be found at `search_gov_crawler/search_gov_spiders/spiders/domain_spider.py`.
+The spiders can be found at `search_gov_crawler/search_gov_spiders/spiders/`.
 
 ### Core Scrapy File Structure
 *Note: Other files and directories are within the repository but the folders and files below relate to those needed for the scrapy framework.
@@ -25,9 +25,11 @@ The spider can be found at `search_gov_crawler/search_gov_spiders/spiders/domain
 ```bash
 ├── search_gov_crawler ( scrapy root )
 │   ├── search_gov_spider ( scrapy project *Note multiple projects can exist within a project root )
+│   │   ├── extensions ( includes custom scrapy extensions )
+│   │   ├── helpers ( includes common functions )
 │   │   ├── spiders
 │   │   │   ├── domain_spider.py ( spider for html pages )
-|   |   |   |-- domain_spider_js.py  ( spider for js pages )
+│   │   │   ├── domain_spider_js.py  ( spider for js pages )
 │   │   ├── utility_files ( includes json files with default domains to scrape )
 │   │   ├── items.py
 │   │   ├── middlewares.py
@@ -147,3 +149,5 @@ Make sure to run `pip install -r requirements.txt` and `playwright install` befo
         $ scrapyd-deploy <default or endpoint_name>
 
         ## Running Against All Listed Search.gov Domains
+
+## Running Scrapydweb UI
