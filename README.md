@@ -151,3 +151,23 @@ Make sure to run `pip install -r requirements.txt` and `playwright install` befo
         ## Running Against All Listed Search.gov Domains
 
 ## Running Scrapydweb UI
+
+### Local Environment Setup
+
+0. Source virtual environment, update dependencies, and change working directory to `search_gov_crawler`
+
+1. Start scrapyd
+
+        $ scrapyd
+
+2. Build latest version of scrapy project (if any changes have been made since last run)
+
+        $ scrapyd-deploy local -p search_gov_spiders
+
+3. Start logparser
+
+        $ python -m search_gov_cralwer.search_gov_logparser
+
+4. Start scrapydweb
+
+        $ python -m search_gov_cralwer.search_scrapydweb
