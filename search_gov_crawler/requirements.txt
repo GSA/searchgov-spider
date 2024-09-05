@@ -6,7 +6,6 @@ python-json-logger @ https://github.com/nhairs/python-json-logger/releases/downl
 scrapy==2.11.2
 scrapy-playwright==0.0.41
 scrapyd==1.4.3
-git+https://github.com/GSA/searchgov-scrapydweb
 scrapyd-client==1.2.3
 scrapyd_api==0.0.4
-
+scrapydweb @ git+https://github.com/GSA/searchgov-scrapydweb
