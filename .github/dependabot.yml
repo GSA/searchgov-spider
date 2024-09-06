@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directories:
+      - "/"
+      - "/search_gov_crawler"
+    schedule:
+      interval: "weekly"
+    groups:
+      production-dependencies:
+        patterns:
+          - "scrapy*"
+      testing-and-linting:
+        patterns:
+          - "pylint"
+          - "pytest"
