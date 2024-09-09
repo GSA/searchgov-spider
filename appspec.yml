@@ -1,0 +1,34 @@
+version: 0.0
+os: linux
+files:
+  - source: .
+    destination: /home/ec2-user/spider
+permissions:
+  - object: /home/ec2-user/spider/cicd-scripts/app_install.sh
+    owner: search
+    mode: 755
+    type:
+      - file
+  - object: /home/ec2-user/spider/cicd-scripts/app_start.sh
+    owner: search
+    mode: 755
+    type:
+      - file
+  - object: /home/ec2-user/spider/cicd-scripts/app_stop.sh
+    owner: search
+    mode: 755
+    type:
+      - file
+hooks:
+  AfterInstall:
+    - location: spider/cicd-scripts/app_install.sh
+      timeout: 300
+      runas: search
+  ApplicationStart:
+    - location: spider/cicd-scripts/app_start.sh
+      timeout: 300
+      runas: search
+  ApplicationStop:
+    - location: spider/cicd-scripts/app_stop.sh
+      timeout: 300
+      runas: search
