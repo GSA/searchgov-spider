@@ -9,7 +9,7 @@ description = "The home for the spider that supports search.gov."
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
-    "pylint==3.2.6",
+    "pylint==3.2.7",
     "pytest==8.3.2",
     "scrapy==2.11.2",
     "scrapy-playwright==0.0.41",
