@@ -44,17 +44,16 @@ fi
 
 pip install virtualenv
 
-cd /home/ec2-user/python-flask-service
+cd /home/ec2-user/spider
 
 echo "Creating python3.12 virtual environment..."
-python3.12 -m venv /home/ec2-user/app/venv
-source /home/ec2-user/app/venv/bin/activate
+python3.12 -m venv /home/ec2-user/spider/venv
+source /home/ec2-user/spider/venv/bin/activate
 
 # Installing all spider dependencies
 echo "Installing dependencies..."
 pip install --upgrade pip
 
-# pip install -r /home/ec2-user/app/requirements.txt
 pip install --upgrade --force-reinstall -r ./search_gov_crawler/requirements.txt
 
 echo "Dependencies installed."
