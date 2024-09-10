@@ -21,14 +21,14 @@ permissions:
       - file
 hooks:
   AfterInstall:
-    - location: spider/cicd-scripts/app_install.sh
+    - location: /home/ec2-user/spider/cicd-scripts/app_install.sh
       timeout: 300
       runas: search
   ApplicationStart:
-    - location: spider/cicd-scripts/app_start.sh
+    - location: /home/ec2-user/spider/cicd-scripts/app_start.sh
       timeout: 300
       runas: search
   ApplicationStop:
-    - location: spider/cicd-scripts/app_stop.sh
+    - location: /home/ec2-user/spider/cicd-scripts/app_stop.sh
       timeout: 300
       runas: search
