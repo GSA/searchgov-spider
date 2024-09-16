@@ -3,22 +3,22 @@ os: linux
 # files:
 #   - source: .
 #     destination: /home/ec2-user/spider
-permissions:
-  - object: cicd-scripts/app_install.sh
-    owner: search
-    mode: 755
-    type:
-      - file
-  - object: cicd-scripts/app_start.sh
-    owner: search
-    mode: 755
-    type:
-      - file
-  - object: cicd-scripts/app_stop.sh
-    owner: search
-    mode: 755
-    type:
-      - file
+# permissions:
+#   - object: cicd-scripts/app_install.sh
+#     owner: search
+#     mode: 755
+#     type:
+#       - file
+#   - object: cicd-scripts/app_start.sh
+#     owner: search
+#     mode: 755
+#     type:
+#       - file
+#   - object: cicd-scripts/app_stop.sh
+#     owner: search
+#     mode: 755
+#     type:
+#       - file
 hooks:
   AfterInstall:
     - location: cicd-scripts/app_install.sh
