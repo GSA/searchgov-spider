@@ -7,6 +7,7 @@ GitHub: https://github.com/my8100/scrapydweb
 DOCS: https://github.com/my8100/files/blob/master/scrapydweb/README.md
 文档：https://github.com/my8100/files/blob/master/scrapydweb/README_CN.md
 """
+
 import os
 
 
@@ -65,7 +66,11 @@ LOCAL_SCRAPYD_SERVER = "127.0.0.1:6800"
 
 # Enter the directory when you run Scrapyd, run the command below
 # to find out where the Scrapy logs are stored:
-# python -c "from os.path import abspath, isdir; from scrapyd.config import Config; path = abspath(Config().get('logs_dir')); print(path); print(isdir(path))"
+# python -c "from os.path import abspath, isdir;\
+#            from scrapyd.config import Config;\
+#            path = abspath(Config().get('logs_dir'));\
+#            print(path);\
+#            print(isdir(path))"
 # Check out https://scrapyd.readthedocs.io/en/stable/config.html#logs-dir for more info.
 # e.g. 'C:/Users/username/logs' or '/home/username/logs'
 LOCAL_SCRAPYD_LOGS_DIR = "scrapyd-logs"
@@ -74,7 +79,7 @@ LOCAL_SCRAPYD_LOGS_DIR = "scrapyd-logs"
 # Note that you can run the LogParser service separately via command 'logparser' as you like.
 # Run 'logparser -h' to find out the config file of LogParser for more advanced settings.
 # Visit https://github.com/my8100/logparser for more info.
-ENABLE_LOGPARSER = True
+ENABLE_LOGPARSER = False
 ############################## QUICK SETUP end ################################
 ############################## 快速设置 结束 ###################################
 

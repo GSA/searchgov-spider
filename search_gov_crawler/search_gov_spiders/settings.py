@@ -7,6 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+# Settings for json logging
+LOG_ENABLED = False
+JSON_LOGGING_ENABLED = True
+
 BOT_NAME = "search_gov_spiders"
 
 SPIDER_MODULES = ["search_gov_spiders.spiders"]
@@ -62,6 +66,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
+    "search_gov_spiders.extensions.json_logging.JsonLogging": -1,
     "scrapy.extensions.closespider.CloseSpider": 500,
 }
 
