@@ -3,12 +3,12 @@ os: linux
 # files:
 #   - source: .
 #     destination: /home/ec2-user/spider
-permissions:
-  - object: cicd-scripts
-    owner: search
-    mode: 755
-    type:
-      - directory
+# permissions:
+#   - object: cicd-scripts
+#     owner: search
+#     mode: 755
+#     type:
+#       - directory
 #   - object: cicd-scripts/app_start.sh
 #     owner: search
 #     mode: 755
