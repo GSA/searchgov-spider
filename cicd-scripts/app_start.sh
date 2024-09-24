@@ -54,15 +54,15 @@ scrapyd_dir=$(get_abs_path "../")
 scrapydweb_dir=$(get_abs_path "../search_gov_crawler")
 
 echo "Killing any existing scrapyd and scrapydweb services"
-pkill -f "scrapydweb" 2>/dev/null
-pkill -f "scrapyd" 2>/dev/null
+sudo pkill -f "scrapydweb" 2>/dev/null
+sudo pkill -f "scrapyd" 2>/dev/null
 
 echo "Running searchgov-spider application..."
 
 # Start scrapyd
 echo "Starting scrapyd service..."
 cd "$scrapyd_dir"
-nohup scrapyd > /var/log/scrapyd.log 2>&1 &
+sudo nohup scrapyd > /var/log/scrapyd.log 2>&1 &
 PID1=$!
 echo "Started scrapyd with PID $PID1"
 
@@ -70,7 +70,7 @@ echo "Started scrapyd with PID $PID1"
 if check_url "$SCRAPYD_URL"; then
     echo "The scrapyd service is running at $SCRAPYD_URL"
     cd "$scrapydweb_dir"
-    nohup scrapydweb > /var/log/scrapydweb.log 2>&1 &
+    sudo nohup scrapydweb > /var/log/scrapydweb.log 2>&1 &
     PID2=$!
     echo "Started scrapydweb with PID $PID2"
 
@@ -84,6 +84,11 @@ else
     echo "Error: scrapyd failed at $SCRAPYD_URL."
     exit 1
 fi
+
+# Add startup cron for this script:
+echo "
+export LATEST_SPIDER_CICD_DEPLOY_PATH=$(CICD_SCRIPTS_BASE_DIR)
+" | tee '/etc/profile.d/spider_env.sh' > /dev/null
 
 # Display the last few lines of logs
 echo -e "\n-- Last 10 lines of scrapyd.log:\n"
