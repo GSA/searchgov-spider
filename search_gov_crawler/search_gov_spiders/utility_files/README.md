@@ -69,7 +69,7 @@ To initialize the above schedule in scrapydweb follow these instructions:
 * Apply sql scripts to databases as shown in order to clear existing scheduled jobs and apply new schedule:
 
         $ sqlite3 <scrapydweb-data-dir>/database/apscheduler.db 'delete from apscheduler_jobs;'
-        $ sqlite3 <scrapydweb-data-dir>/database/timer_tasks.db < ./initialize_schedule.sql
+        $ sqlite3 <scrapydweb-data-dir>/database/timer_tasks.db < ./init_schedule.sql
 * Refresh scrapydweb Timer Tasks page
 * All tasks will initially be in an inactive state.  To reactivate:
   * Click `Edit` button on any task
