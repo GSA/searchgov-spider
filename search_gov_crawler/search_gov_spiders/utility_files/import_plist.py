@@ -18,6 +18,19 @@ def create_allowed_domain(starting_url: str) -> str:
     return domain_netloc
 
 
+def apply_manual_updates(input_record: dict) -> dict:
+    """Fixes issues found in scrutiny file so that the json file is reproducable."""
+    match input_record:
+        case {"starting_urls": "https://www.dantes.mil/"}:
+            output_record = input_record | {"name": "DOD DANTES", "job_id": "dod-dantes"}
+        case {"starting_urls": "https://www.cmts.gov/downloads/"}:
+            output_record = input_record | {"starting_urls": "https://www.cmts.gov/"}
+        case _:
+            output_record = input_record
+
+    return output_record
+
+
 def convert_plist_to_json(input_file: str, output_file: str, write_full_output: bool):
     """Convert scrutiny plist into filterd json for search.gov crawling."""
 
@@ -46,16 +59,21 @@ def convert_plist_to_json(input_file: str, output_file: str, write_full_output: 
     # filter and write fields we need
     search_gov_records = [
         {
+            "name": str(record["name"]).lstrip("_"),
+            "job_id": str(record["name"]).lstrip("_").lower().replace(" ", "-").replace("---", "-"),
             "allowed_domains": create_allowed_domain(record["startingUrl"]),
             "handle_javascript": record["runJS"],
             "starting_urls": record["startingUrl"],
         }
         for record in transformed_scrutiny_records
+        if record["scheduleCalendarIntervalMatrix"] > 0
     ]
 
+    # apply manual fixes
+    final_search_gov_records = [apply_manual_updates(record) for record in search_gov_records]
     search_gov_json_file = Path(__file__).parent / output_file
     with search_gov_json_file.open("w", encoding="UTF-8") as output:
-        json.dump(search_gov_records, output, indent=4)
+        json.dump(final_search_gov_records, output, indent=4)
 
 
 if __name__ == "__main__":
