@@ -33,22 +33,36 @@ def test_convert_plist_to_json(monkeypatch):
     def mock_plist_loads(*_args, **_kwargs):
         return [
             {
+                "name": "scrape example 1",
                 "dateStamp": datetime(2024, 1, 1, 12, 12, 12),
                 "startingUrl": "https://www.example.com/1",
                 "runJS": True,
                 "AnotherField": 100,
+                "scheduleCalendarIntervalMatrix": 1,
             },
             {
+                "name": "Scrape Example 2",
                 "dateStamp": datetime(2024, 2, 1, 12, 12, 12),
                 "startingUrl": "https://www.example.com/2",
                 "runJS": False,
                 "AnotherField": 200,
+                "scheduleCalendarIntervalMatrix": 1,
             },
             {
+                "name": "Scrape Example - 3",
                 "dateStamp": datetime(2024, 3, 1, 12, 12, 12),
                 "startingUrl": "https://www.example.com/3",
                 "runJS": True,
                 "AnotherField": 300,
+                "scheduleCalendarIntervalMatrix": 1,
+            },
+            {
+                "name": "Inactive Example",
+                "dateStamp": datetime(2024, 3, 1, 12, 12, 12),
+                "startingUrl": "https://www.example.com/3",
+                "runJS": False,
+                "AnotherField": 400,
+                "scheduleCalendarIntervalMatrix": 0,
             },
         ]
 
@@ -69,14 +83,18 @@ def test_convert_plist_to_json(monkeypatch):
 
         assert len(crawl_output_records) == 3
         assert crawl_output_records[0] == {
+            "name": "scrape example 1",
+            "job_id": "scrape-example-1",
             "allowed_domains": "example.com",
             "handle_javascript": True,
             "starting_urls": "https://www.example.com/1",
         }
-        assert len(full_output_records) == 3
+        assert len(full_output_records) == 4
         assert full_output_records[0] == {
             "dateStamp": "2024-01-01T12:12:12",
+            "name": "scrape example 1",
             "startingUrl": "https://www.example.com/1",
             "runJS": True,
+            "scheduleCalendarIntervalMatrix": 1,
             "AnotherField": 100,
         }

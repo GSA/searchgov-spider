@@ -1,15 +1,18 @@
 [
     {
+        "name": "Quotes 1",
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": false,
         "starting_urls": "https://quotes.toscrape.com/"
     },
     {
+        "name": "Quotes 2",
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "starting_urls": "https://quotes.toscrape.com/js/"
     },
     {
+        "name": "Quotes 3",
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "starting_urls": "https://quotes.toscrape.com/js-delayed/"

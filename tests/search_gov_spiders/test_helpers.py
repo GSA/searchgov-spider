@@ -18,7 +18,7 @@ def test_is_valid_content_type(content_type_header, result):
 
 
 def test_get_crawl_sites_default():
-    assert len(helpers.get_crawl_sites()) == 66
+    assert len(helpers.get_crawl_sites()) == 46
 
 
 @pytest.fixture(name="crawl_sites_test_file")
