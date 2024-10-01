@@ -49,13 +49,6 @@
         "starting_urls": "https://drive.hhs.gov/"
     },
     {
-        "name": "NASA James Webb Space Telescope",
-        "job_id": "nasa-james-webb-space-telescope",
-        "allowed_domains": "jwst.nasa.gov",
-        "handle_javascript": false,
-        "starting_urls": "https://www.jwst.nasa.gov/"
-    },
-    {
         "name": "Navy All Hands Magazine",
         "job_id": "navy-all-hands-magazine",
         "allowed_domains": "allhands.navy.mil",
@@ -105,13 +98,6 @@
         "starting_urls": "https://cwcaribbean.aoml.noaa.gov/"
     },
     {
-        "name": "NOAA CoastWatch Central Pacific",
-        "job_id": "noaa-coastwatch-central-pacific",
-        "allowed_domains": "oceanwatch.pifsc.noaa.gov",
-        "handle_javascript": false,
-        "starting_urls": "https://oceanwatch.pifsc.noaa.gov/"
-    },
-    {
         "name": "NOAA CoastWatch East Coast Node",
         "job_id": "noaa-coastwatch-east-coast-node",
         "allowed_domains": "eastcoast.coastwatch.noaa.gov",
@@ -152,13 +138,6 @@
         "allowed_domains": "fincen.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.fincen.gov/"
-    },
-    {
-        "name": "US Committee on the Marine Transportation System",
-        "job_id": "us-committee-on-the-marine-transportation-system",
-        "allowed_domains": "cmts.gov",
-        "handle_javascript": false,
-        "starting_urls": "https://www.cmts.gov/"
     },
     {
         "name": "US COURTS CACB",
@@ -254,7 +233,7 @@
     {
         "name": "VA CFM Technical Information Library TIL",
         "job_id": "va-cfm-technical-information-library-til",
-        "allowed_domains": "cfm.va.gov",
+        "allowed_domains": "cfm.va.gov/til/",
         "handle_javascript": false,
         "starting_urls": "https://www.cfm.va.gov/til/"
     },
@@ -289,7 +268,7 @@
     {
         "name": "VA Offica of Accountability and Whistleblower Protection",
         "job_id": "va-offica-of-accountability-and-whistleblower-protection",
-        "allowed_domains": "va.gov",
+        "allowed_domains": "va.gov/accountability/",
         "handle_javascript": false,
         "starting_urls": "https://www.va.gov/accountability/"
     },
@@ -310,7 +289,7 @@
     {
         "name": "VA Resources",
         "job_id": "va-resources",
-        "allowed_domains": "va.gov",
+        "allowed_domains": "va.gov/resources/",
         "handle_javascript": false,
         "starting_urls": "https://www.va.gov/resources/"
     },
