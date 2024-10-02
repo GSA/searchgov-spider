@@ -3,7 +3,10 @@ import pytest
 from scrapy import Request, Spider
 from scrapy.exceptions import IgnoreRequest
 from scrapy.utils.test import get_crawler
-from search_gov_crawler.search_gov_spiders.middlewares import SearchGovSpidersOffsiteMiddleware
+from search_gov_crawler.search_gov_spiders.middlewares import (
+    SearchGovSpidersOffsiteMiddleware,
+    SearchGovSpidersDownloaderMiddleware,
+)
 
 
 MIDDLEWARE_TEST_CASES = [
@@ -19,7 +22,7 @@ MIDDLEWARE_TEST_CASES = [
 
 
 @pytest.mark.parametrize(("allowed_domain", "allowed_domain_path", "url", "allowed"), MIDDLEWARE_TEST_CASES)
-def test_process_request_domain_filtering(allowed_domain, allowed_domain_path, url, allowed):
+def test_offsite_process_request_domain_filtering(allowed_domain, allowed_domain_path, url, allowed):
     # pylint: disable=protected-access
     crawler = get_crawler(Spider)
     spider = crawler._create_spider(
@@ -53,7 +56,7 @@ INVALID_DOMAIN_TEST_CASES = [
 
 
 @pytest.mark.parametrize(("allowed_domain", "allowed_domain_path", "warning_message"), INVALID_DOMAIN_TEST_CASES)
-def test_invalid_domain_paths(allowed_domain, allowed_domain_path, warning_message):
+def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warning_message):
     # pylint: disable=protected-access
     crawler = get_crawler(Spider)
     spider = crawler._create_spider(
@@ -66,3 +69,16 @@ def test_invalid_domain_paths(allowed_domain, allowed_domain_path, warning_messa
 
     request = Request("http://www.example.com")
     assert mw.process_request(request, spider) is None
+
+
+def test_spider_downloader_middleware():
+    # pylint: disable=protected-access
+    crawler = get_crawler(Spider)
+    spider = crawler._create_spider(name="test", allowed_domains="example.com")
+    mw = SearchGovSpidersDownloaderMiddleware.from_crawler(crawler)
+
+    mw.spider_opened(spider)
+    request = Request("http://www.example.com/test?parm=value")
+
+    with pytest.raises(IgnoreRequest):
+        mw.process_request(request=request, spider=spider)
