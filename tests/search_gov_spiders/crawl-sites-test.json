@@ -16,5 +16,11 @@
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "starting_urls": "https://quotes.toscrape.com/js-delayed/"
+    },
+    {
+        "name": "Quotes 4",
+        "allowed_domains": "quotes.toscrape.com/tag/",
+        "handle_javascript": false,
+        "starting_urls": "https://quotes.toscrape.com/"
     }
 ]
