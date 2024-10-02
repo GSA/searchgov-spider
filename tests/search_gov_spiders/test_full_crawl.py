@@ -2,10 +2,12 @@ import json
 import tempfile
 import sys
 from pathlib import Path
+from weakref import WeakKeyDictionary
 
 import pytest
 
 from scrapy.crawler import CrawlerProcess
+from scrapy.utils.httpobj import _urlparse_cache
 from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
@@ -38,11 +40,10 @@ def fixture_mock_scrapy_settings(monkeypatch):
     settings.set("HTTPCACHE_STORAGE", "scrapy.extensions.httpcache.DbmCacheStorage")
 
     # Ensures cache does not change, set to False if you need to update or replace cache files
-    settings.set("HTTPCACHE_IGNORE_MISSING", True)
+    settings.set("HTTPCACHE_IGNORE_MISSING", False)
 
     yield settings
 
-    # tear down between runs
     try:
         del sys.modules["twisted.internet.reactor"]
         del sys.modules["twisted.internet"]
@@ -58,10 +59,22 @@ FULL_CRAWL_TEST_CASES = [
         378,
     ),
     (
+        DomainSpider,
+        False,
+        {"allowed_domains": "quotes.toscrape.com/tag/", "start_urls": "https://quotes.toscrape.com/"},
+        120,
+    ),
+    (
         DomainSpiderJs,
         True,
         {"allowed_domains": "quotes.toscrape.com", "start_urls": "https://quotes.toscrape.com/js/"},
         388,
+    ),
+    (
+        DomainSpiderJs,
+        True,
+        {"allowed_domains": "quotes.toscrape.com/js/", "start_urls": "https://quotes.toscrape.com/js/"},
+        10,
     ),
 ]
 
