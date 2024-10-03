@@ -2,12 +2,10 @@ import json
 import tempfile
 import sys
 from pathlib import Path
-from weakref import WeakKeyDictionary
 
 import pytest
 
 from scrapy.crawler import CrawlerProcess
-from scrapy.utils.httpobj import _urlparse_cache
 from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
@@ -40,7 +38,7 @@ def fixture_mock_scrapy_settings(monkeypatch):
     settings.set("HTTPCACHE_STORAGE", "scrapy.extensions.httpcache.DbmCacheStorage")
 
     # Ensures cache does not change, set to False if you need to update or replace cache files
-    settings.set("HTTPCACHE_IGNORE_MISSING", False)
+    settings.set("HTTPCACHE_IGNORE_MISSING", True)
 
     yield settings
 
