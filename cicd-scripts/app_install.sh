@@ -53,9 +53,8 @@ else
     install_python
 fi
 
-# Install virtualenv using Python pip
+# Use venv with Python 3.12
 sudo /usr/local/bin/python${SPIDER_PYTHON_VERSION} -m pip install --upgrade pip
-sudo /usr/local/bin/python${SPIDER_PYTHON_VERSION} -m pip install virtualenv
 
 # Create a virtual environment using Python
 echo "Creating python${SPIDER_PYTHON_VERSION} virtual environment..."
