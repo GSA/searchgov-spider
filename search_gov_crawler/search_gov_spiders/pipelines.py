@@ -31,7 +31,7 @@ class SearchGovSpidersPipeline:
         else:
             self.urls_batch = []
 
-    def process_item(self, item, _spider):
+    def process_item(self, item, spider):
         """Process item either by writing to file or by posting to API."""
 
         line = item.get("url", "") + "\n"
@@ -41,7 +41,7 @@ class SearchGovSpidersPipeline:
         if self.api_url:
             self.urls_batch.append(item.get("url", ""))
             if self._is_batch_too_large(line_size):
-                self._post_urls()
+                self._post_urls(spider)
         # Otherwise, write to file and rotate if needed
         else:
             self.current_file.write(line)
@@ -67,15 +67,15 @@ class SearchGovSpidersPipeline:
         self.file_number += 1
         self.current_file = open(self.file_path, "w", encoding="utf-8")
 
-    def _post_urls(self):
+    def _post_urls(self, spider):
         """Send a POST request with the batch of URLs if any exist."""
         if self.urls_batch:
             try:
                 response = requests.post(self.api_url, json={"urls": self.urls_batch})
                 response.raise_for_status()
-                print(f"Successfully posted {len(self.urls_batch)} URLs to {self.api_url}.")
+                spider.logger.info(f"Successfully posted {len(self.urls_batch)} URLs to {self.api_url}.")
             except requests.exceptions.RequestException as e:
-                print(f"Failed to send URLs to {self.api_url}: {e}")
+                raise SystemExit(f"Failed to send URLs to {self.api_url}: {e}")
             finally:
                 self.urls_batch.clear()
 
