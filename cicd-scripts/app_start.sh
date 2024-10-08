@@ -62,7 +62,7 @@ echo "Started scrapyd with PID $PID1"
 # Check if scrapyd is running
 if check_url "$SCRAPYD_URL"; then
     echo "The scrapyd service is running at $SCRAPYD_URL"
-    sudo bash -c 'nohup cd ./search_gov_crawler && scrapydweb > /var/log/scrapydweb.log 2>&1 &'
+    sudo bash -c 'cd ./search_gov_crawler && nohup scrapydweb > /var/log/scrapydweb.log 2>&1 &'
     PID2=$!
     echo "Started scrapydweb with PID $PID2"
 
