@@ -65,11 +65,10 @@ UTC | 	Mon	|	Tue	|	Wed	|	Thu	|	Fri	|
 ## Schedule Import
 To initialize the above schedule in scrapydweb follow these instructions:
 * Run scrapyd, logparser, and scrapydweb using directions in main [README](/README.md#running-scrapydweb-ui) file.
-* Find scrapydweb Sqlite database directory.  If not specified in the DATA_PATH environment variable or in scrapydweb config it will be set to `<venv-path>/lib/python3.12/site-packages/scrapydweb/data/database`
-* Apply sql scripts to databases as shown in order to clear existing scheduled jobs and apply new schedule:
-
-        $ sqlite3 <scrapydweb-data-dir>/database/apscheduler.db 'delete from apscheduler_jobs;'
-        $ sqlite3 <scrapydweb-data-dir>/database/timer_tasks.db < ./init_schedule.sql
+* Apply schedule to database by running the init script
+        $ cd search_gov_crawler/search_gov_spiders/utility_files
+        $ python init_schedule.py --input_file=./crawl-sites.json
+* If there are any issues finding the database files, you may need to set the DATA_PATH environment variable.  If you have not set DATA_PATH as an environment variable or in scrapydweb config, it will be set to `<venv-path>/lib/python3.12/site-packages/scrapydweb/data/database`
 * Refresh scrapydweb Timer Tasks page
 * All tasks will initially be in an inactive state.  To reactivate:
   * Click `Edit` button on any task
