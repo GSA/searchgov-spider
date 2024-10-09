@@ -1,4 +1,6 @@
+import argparse
 import json
+import logging
 import sqlite3
 import os
 import subprocess
@@ -7,6 +9,10 @@ from collections import namedtuple
 from datetime import datetime, timedelta, UTC
 from pathlib import Path
 from typing import Optional
+
+FORMAT = "%(asctime)s;%(levelname)s;%(name)s;%(message)s"
+log = logging.getLogger(__name__)
+logging.basicConfig(encoding="utf-8", datefmt="%Y-%m-%d %H:%M:%S", format=FORMAT, level=logging.INFO)
 
 SpiderScheduleSlot = namedtuple("SpiderScheduleSlot", ["day", "hour", "minute"])
 
@@ -70,48 +76,40 @@ def truncate_table(conn: sqlite3.Connection, table_name: str):
     delete_stmt = f"DELETE FROM {table_name}"
     conn.execute(delete_stmt)
     conn.commit()
+    log.info("Successfully truncated table %s", table_name)
 
 
-def get_data_dir() -> Path:
+def get_data_path() -> Path:
     """
     Helps find database files in local venv.  Does not cover all cases.  The DATA_PATH environment
     variable is used by scrapydweb to place the database files (along with other files).  Set DATA_PATH
     if encountering issues.
     """
-    data_dir = os.getenv("DATA_PATH")
+    if data_path := os.getenv("DATA_PATH"):
+        return Path(data_path)
 
-    if not data_dir:
-        which_proc = subprocess.run(["which", "scrapydweb"], stdout=subprocess.PIPE, check=True)
-        venv_python = Path(which_proc.stdout.decode("UTF-8").rstrip())
-        lib = venv_python.parent.parent / "lib"
-        venv_version = [child for child in lib.iterdir()][0]
-        return venv_version / "site-packages/scrapydweb/data"
-
-    return Path(data_dir)
+    which_proc = subprocess.run(["which", "scrapydweb"], stdout=subprocess.PIPE, check=True)
+    venv_python = Path(which_proc.stdout.decode("UTF-8").rstrip())
+    lib = venv_python.parent.parent / "lib"
+    venv_version = [child for child in lib.iterdir()][0]
+    return venv_version / "site-packages" / "scrapydweb" / "data"
 
 
-def init_schedule():
-    """
-    Initalize a schedule in scrapydweb using the info in the crawl sites json file.  Ideally
-    this should be used for development or for standing up a new environment.  Attention should
-    be paid to the location of the scrapydweb databases in the environment in which this is run.
-    """
+def transform_crawl_sites(crawl_sites: list[dict]) -> list[dict]:
+    """Transform crawl sites data to a format compaitble with scrapydweb timer tasks"""
 
-    # read crawl sites from file and transform into scrapydweb tasks format.
-    crawl_sites_file = Path(__file__).parent / "crawl-sites.json"
-    crawl_sites = json.loads(crawl_sites_file.read_text(encoding="UTF-8"))
-
-    scrapydweb_tasks = []
     current_timestamp = datetime.now(tz=UTC).strftime("%Y-%m-%d %H:%M:%S%:z")
     schedule = SpiderSchedule()
+    transformed_crawl_sites = []
+
     for idx, crawl_site in enumerate(crawl_sites):
         job_name = str(crawl_site["name"])
         schedule_slot = schedule.get_next_slot()
-        scrapydweb_tasks.append(
+        transformed_crawl_sites.append(
             {
                 "id": idx + 1,
                 "name": job_name,
-                "triger": "cron",
+                "trigger": "cron",
                 "create_time": current_timestamp,
                 "update_time": current_timestamp,
                 "project": "search_gov_spiders",
@@ -124,7 +122,7 @@ def init_schedule():
                         "setting": [],
                         "start_urls": crawl_site["starting_urls"],
                     }
-                ),
+                ).replace("'", '"'),
                 "selected_nodes": "[1]",
                 "year": "*",
                 "month": "*",
@@ -144,10 +142,27 @@ def init_schedule():
             }
         )
 
+    return transformed_crawl_sites
+
+
+def init_schedule(input_file: str) -> None:
+    """
+    Initalize a schedule in scrapydweb using the info in the crawl sites json file.  Ideally
+    this should be used for development or for standing up a new environment.  Attention should
+    be paid to the location of the scrapydweb databases in the environment in which this is run.
+    """
+    # read crawl sites from file and transform into scrapydweb tasks format.
+    crawl_sites_file = Path(input_file).resolve()
+    if not crawl_sites_file.exists():
+        raise FileNotFoundError(f"Input file {input_file} does not exist!")
+
+    crawl_sites = json.loads(crawl_sites_file.read_text(encoding="UTF-8"))
+    scrapydweb_tasks = transform_crawl_sites(crawl_sites)
+
     # Locate scrapydweb database files and init
-    data_dir = get_data_dir()
-    ap_scheduler_db = data_dir / "database/apscheduler.db"
-    timer_tasks_db = data_dir / "database/timer_tasks.db"
+    data_dir = get_data_path()
+    ap_scheduler_db = data_dir / "database" / "apscheduler.db"
+    timer_tasks_db = data_dir / "database" / "timer_tasks.db"
 
     with sqlite3.connect(ap_scheduler_db) as ap_scheduler_conn:
         truncate_table(ap_scheduler_conn, "apscheduler_jobs")
@@ -159,14 +174,19 @@ def init_schedule():
 
         timer_tasks_conn.executemany(
             """
-            INSERT INTO task VALUES(:id, :name, :triger, :create_time, :update_time, :project,
+            INSERT INTO task VALUES(:id, :name, :trigger, :create_time, :update_time, :project,
                                     :version, :spider, :jobid, :settings_arguments, :selected_nodes,
                                     :year, :month, :day, :week, :day_of_week, :hour, :minute, :second,
                                     :start_date, :end_date, :timezone, :jitter, :misfire_grace_time,
                                     :coalesce, :max_instances)""",
             scrapydweb_tasks,
         )
+        log.info("Inserted %s records into task table!", len(scrapydweb_tasks))
 
 
 if __name__ == "__main__":
-    init_schedule()
+    parser = argparse.ArgumentParser(description="Initialize a scrapydweb scheduled based on a crawl sites file.")
+    parser.add_argument("--input_file", type=str, help="path to input file")
+    args = parser.parse_args()
+
+    init_schedule(input_file=args.input_file)

@@ -1,6 +1,4 @@
-import json
 from collections import namedtuple
-from pathlib import Path
 
 import pytest
 
@@ -19,16 +17,6 @@ def test_is_valid_content_type(content_type_header, result):
 
 def test_get_crawl_sites_default():
     assert len(helpers.get_crawl_sites()) == 43
-
-
-@pytest.fixture(name="crawl_sites_test_file")
-def fixture_crawl_sites_test_file():
-    return Path(__file__).parent / "crawl-sites-test.json"
-
-
-@pytest.fixture(name="crawl_sites_test_file_json")
-def fixture_crawl_sites_test_file_json(crawl_sites_test_file):
-    return json.loads(crawl_sites_test_file.resolve().read_text())
 
 
 def test_get_crawl_sites_test_file(crawl_sites_test_file):
