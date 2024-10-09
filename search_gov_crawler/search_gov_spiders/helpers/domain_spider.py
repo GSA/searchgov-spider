@@ -3,10 +3,7 @@ import re
 from pathlib import Path
 from typing import Any, Optional
 
-from scrapy.http import Response
 from scrapy.linkextractors import LinkExtractor
-
-from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 # fmt: off
 FILTER_EXTENSIONS = [
@@ -39,18 +36,28 @@ ALLOWED_CONTENT_TYPE = [
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 ]
 
+LINK_DENY_REGEX_STR = ["calendar", "location-contact", "DTMO-Site-Map/FileId/"]
 
 domain_spider_link_extractor = LinkExtractor(
     allow=(),
-    deny=[
-        "calendar",
-        "location-contact",
-        "DTMO-Site-Map/FileId/",
-        # "\*redirect"
-    ],
+    deny=LINK_DENY_REGEX_STR,
     deny_extensions=FILTER_EXTENSIONS,
     unique=True,
 )
+
+
+def split_allowed_domains(allowed_domains: str) -> list[str]:
+    """Remove path information from comma-seperated list of domains"""
+    host_only_domains = []
+
+    all_domains = allowed_domains.split(",")
+    for domain in all_domains:
+        if (slash_idx := domain.find("/")) > 0:
+            host_only_domains.append(domain[:slash_idx])
+        else:
+            host_only_domains.append(domain)
+
+    return host_only_domains
 
 
 def is_valid_content_type(content_type_header: Any) -> bool:
@@ -61,17 +68,6 @@ def is_valid_content_type(content_type_header: Any) -> bool:
         if re.search(type_regex, content_type_header):
             return True
     return False
-
-
-def parse_item(response: Response):
-    """This function is called by spiders to gather the url.
-    @url http://quotes.toscrape.com/
-    @returns items 1 1
-    @scrapes url
-    """
-
-    if is_valid_content_type(response.headers.get("content-type", None)):
-        yield SearchGovSpidersItem(url=response.url)
 
 
 def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
@@ -93,10 +89,18 @@ def default_starting_urls(handle_javascript: bool) -> list[str]:
     ]
 
 
-def default_allowed_domains(handle_javascript: bool) -> list[str]:
+def default_allowed_domains(handle_javascript: bool, remove_paths: bool = True) -> list[str]:
     """Created default list of domains filtered by ability to handle javascript"""
 
+    allowed_domains = []
+
     crawl_sites_records = get_crawl_sites()
-    return [
-        record["allowed_domains"] for record in crawl_sites_records if record["handle_javascript"] is handle_javascript
-    ]
+    for record in crawl_sites_records:
+        if record["handle_javascript"] is handle_javascript:
+            domains = record["allowed_domains"]
+            if remove_paths:
+                allowed_domains.extend(split_allowed_domains(domains))
+            else:
+                allowed_domains.extend(domains.split(","))
+
+    return allowed_domains

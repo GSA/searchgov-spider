@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from search_gov_crawler.search_gov_spiders.utility_files.import_plist import (
+    apply_manual_updates,
     convert_plist_to_json,
     create_allowed_domain,
 )
@@ -39,6 +40,7 @@ def test_convert_plist_to_json(monkeypatch):
                 "runJS": True,
                 "AnotherField": 100,
                 "scheduleCalendarIntervalMatrix": 1,
+                "id": "test1",
             },
             {
                 "name": "Scrape Example 2",
@@ -47,6 +49,7 @@ def test_convert_plist_to_json(monkeypatch):
                 "runJS": False,
                 "AnotherField": 200,
                 "scheduleCalendarIntervalMatrix": 1,
+                "id": "test2",
             },
             {
                 "name": "Scrape Example - 3",
@@ -55,6 +58,7 @@ def test_convert_plist_to_json(monkeypatch):
                 "runJS": True,
                 "AnotherField": 300,
                 "scheduleCalendarIntervalMatrix": 1,
+                "id": "test3",
             },
             {
                 "name": "Inactive Example",
@@ -63,6 +67,16 @@ def test_convert_plist_to_json(monkeypatch):
                 "runJS": False,
                 "AnotherField": 400,
                 "scheduleCalendarIntervalMatrix": 0,
+                "id": "test4",
+            },
+            {
+                "name": "Filtered Example",
+                "dateStamp": datetime(2024, 3, 1, 12, 12, 12),
+                "startingUrl": "https://www.example.com/4",
+                "runJS": False,
+                "AnotherField": 400,
+                "scheduleCalendarIntervalMatrix": 1,
+                "id": "20220616-073159",
             },
         ]
 
@@ -89,7 +103,7 @@ def test_convert_plist_to_json(monkeypatch):
             "handle_javascript": True,
             "starting_urls": "https://www.example.com/1",
         }
-        assert len(full_output_records) == 4
+        assert len(full_output_records) == 5
         assert full_output_records[0] == {
             "dateStamp": "2024-01-01T12:12:12",
             "name": "scrape example 1",
@@ -97,4 +111,20 @@ def test_convert_plist_to_json(monkeypatch):
             "runJS": True,
             "scheduleCalendarIntervalMatrix": 1,
             "AnotherField": 100,
+            "id": "test1",
         }
+
+
+MANUAL_UPDATE_TEST_CASES = [
+    ("https://www.dantes.mil/", "name", "DOD DANTES"),
+    ("https://www.cfm.va.gov/til/", "allowed_domains", "cfm.va.gov/til/"),
+    ("https://www.va.gov/accountability/", "allowed_domains", "va.gov/accountability/"),
+    ("https://www.va.gov/resources/", "allowed_domains", "va.gov/resources/"),
+]
+
+
+@pytest.mark.parametrize(("starting_urls", "field", "value"), MANUAL_UPDATE_TEST_CASES)
+def test_manual_updates(starting_urls, field, value):
+    input_record = {"some_field": "some_value"} | {"starting_urls": starting_urls}
+    record = apply_manual_updates(input_record)
+    assert record[field] == value

@@ -42,7 +42,6 @@ def fixture_mock_scrapy_settings(monkeypatch):
 
     yield settings
 
-    # tear down between runs
     try:
         del sys.modules["twisted.internet.reactor"]
         del sys.modules["twisted.internet"]
@@ -58,10 +57,22 @@ FULL_CRAWL_TEST_CASES = [
         378,
     ),
     (
+        DomainSpider,
+        False,
+        {"allowed_domains": "quotes.toscrape.com/tag/", "start_urls": "https://quotes.toscrape.com/"},
+        120,
+    ),
+    (
         DomainSpiderJs,
         True,
         {"allowed_domains": "quotes.toscrape.com", "start_urls": "https://quotes.toscrape.com/js/"},
         388,
+    ),
+    (
+        DomainSpiderJs,
+        True,
+        {"allowed_domains": "quotes.toscrape.com/js/", "start_urls": "https://quotes.toscrape.com/js/"},
+        10,
     ),
 ]
 

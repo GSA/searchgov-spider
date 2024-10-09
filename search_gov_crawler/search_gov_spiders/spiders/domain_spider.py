@@ -1,15 +1,17 @@
 from typing import Optional
 
+from scrapy.http import Response
 from scrapy.spiders import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
 class DomainSpider(CrawlSpider):
     """
     Main spider for crawling and retrieving URLs.  Will grab single values for url and domain
     or use multiple comma-separated inputs.  If nothing is passed, it will crawl using the default list of
-    domains and urls.
+    domains and urls.  Supports path filtering of domains by extending the built-in OffsiteMiddleware.
 
     Playwright javascript handling is disabled, use `domain_spider_js` for site that need to handle javascript.
 
@@ -37,6 +39,7 @@ class DomainSpider(CrawlSpider):
     """
 
     name: str = "domain_spider"
+    rules = (Rule(link_extractor=helpers.domain_spider_link_extractor, callback="parse_item", follow=True),)
 
     def __init__(
         self, *args, allowed_domains: Optional[str] = None, start_urls: Optional[str] = None, **kwargs
@@ -47,10 +50,30 @@ class DomainSpider(CrawlSpider):
         super().__init__(*args, **kwargs)
 
         self.allowed_domains = (
-            allowed_domains.split(",") if allowed_domains else helpers.default_allowed_domains(handle_javascript=False)
+            helpers.split_allowed_domains(allowed_domains)
+            if allowed_domains
+            else helpers.default_allowed_domains(handle_javascript=False)
         )
+
+        self.allowed_domain_paths = (
+            allowed_domains.split(",")
+            if allowed_domains
+            else helpers.default_allowed_domains(handle_javascript=False, remove_paths=False)
+        )
+
         self.start_urls = (
             start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=False)
         )
 
-    rules = (Rule(link_extractor=helpers.domain_spider_link_extractor, callback=helpers.parse_item, follow=True),)
+    def parse_item(self, response: Response):
+        """
+        This method is called by spiders to gather the url.  Placed in the spider to assist with
+        testing and validtion.
+
+        @url http://quotes.toscrape.com/
+        @returns items 1 1
+        @scrapes url
+        """
+
+        if helpers.is_valid_content_type(response.headers.get("content-type", None)):
+            yield SearchGovSpidersItem(url=response.url)
