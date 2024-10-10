@@ -19,6 +19,8 @@ def search_gov_default(obj) -> str | None:
     if isinstance(obj, Crawler):
         return str(obj.settings.get("BOT_NAME", "Unknown"))
 
+    return None
+
 
 class SearchGovSpiderStreamHandler(logging.StreamHandler):
     """Extension of logging.StreamHandler with our level, fmt, and defaults"""

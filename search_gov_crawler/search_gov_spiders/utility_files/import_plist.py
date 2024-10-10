@@ -29,7 +29,7 @@ def apply_manual_updates(input_record: dict) -> dict:
     """Fixes issues found in scrutiny file so that the json file is reproducable."""
     match input_record:
         case {"starting_urls": "https://www.dantes.mil/"}:
-            output_record = input_record | {"name": "DOD DANTES", "job_id": "dod-dantes"}
+            output_record = input_record | {"name": "DOD DANTES"}
         case {"starting_urls": "https://www.cfm.va.gov/til/"}:
             output_record = input_record | {"allowed_domains": "cfm.va.gov/til/"}
         case {"starting_urls": "https://www.va.gov/accountability/"}:
@@ -71,7 +71,6 @@ def convert_plist_to_json(input_file: str, output_file: str, write_full_output: 
     search_gov_records = [
         {
             "name": str(record["name"]).lstrip("_"),
-            "job_id": str(record["name"]).lstrip("_").lower().replace(" ", "-").replace("---", "-"),
             "allowed_domains": create_allowed_domain(record["startingUrl"]),
             "handle_javascript": record["runJS"],
             "starting_urls": record["startingUrl"],

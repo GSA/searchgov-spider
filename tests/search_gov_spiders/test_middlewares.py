@@ -50,7 +50,10 @@ INVALID_DOMAIN_TEST_CASES = [
     (
         ["example.com"],
         ["example.com:443"],
-        "allowed_domain_paths accepts only domains without ports. Ignoring entry example.com:443 in allowed_domain_paths.",
+        (
+            "allowed_domain_paths accepts only domains without ports. "
+            "Ignoring entry example.com:443 in allowed_domain_paths."
+        ),
     ),
 ]
 

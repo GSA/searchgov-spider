@@ -49,8 +49,7 @@ class SearchGovSpidersSpiderMiddleware(MiddlewareBase):
         # it has processed the response.
 
         # Must return an iterable of Request, or item objects.
-        for i in result:
-            yield i
+        yield from result
 
     def process_spider_exception(self, response, exception, spider):
         # Called when a spider or process_spider_input() method
@@ -65,8 +64,7 @@ class SearchGovSpidersSpiderMiddleware(MiddlewareBase):
         # that it doesn’t have a response associated.
 
         # Must return only requests (not items).
-        for r in start_requests:
-            yield r
+        yield from start_requests
 
 
 class SearchGovSpidersDownloaderMiddleware(MiddlewareBase):
@@ -89,8 +87,6 @@ class SearchGovSpidersDownloaderMiddleware(MiddlewareBase):
 
         if urlparse(request.url).query:
             raise IgnoreRequest
-
-        return None
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.

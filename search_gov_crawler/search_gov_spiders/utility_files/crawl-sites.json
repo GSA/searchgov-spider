@@ -1,301 +1,258 @@
 [
     {
         "name": "DOD Army MWR",
-        "job_id": "dod-army-mwr",
         "allowed_domains": "armymwr.com",
         "handle_javascript": false,
         "starting_urls": "https://www.armymwr.com/"
     },
     {
         "name": "DOD Defense Travel Management Office",
-        "job_id": "dod-defense-travel-management-office",
         "allowed_domains": "travel.dod.mil",
         "handle_javascript": false,
         "starting_urls": "https://www.travel.dod.mil/"
     },
     {
         "name": "DOS AIS USVISA INFO",
-        "job_id": "dos-ais-usvisa-info",
         "allowed_domains": "ais.usvisa-info.com",
         "handle_javascript": false,
         "starting_urls": "https://ais.usvisa-info.com/"
     },
     {
         "name": "Drought - Toolkit.climate.gov",
-        "job_id": "drought-toolkit.climate.gov",
         "allowed_domains": "toolkit.climate.gov",
         "handle_javascript": false,
         "starting_urls": "https://toolkit.climate.gov"
     },
     {
         "name": "ED Office of Hearings and Appeals OHA",
-        "job_id": "ed-office-of-hearings-and-appeals-oha",
         "allowed_domains": "oha.ed.gov",
         "handle_javascript": false,
         "starting_urls": "https://oha.ed.gov"
     },
     {
         "name": "FDA Import Alerts",
-        "job_id": "fda-import-alerts",
         "allowed_domains": "accessdata.fda.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.accessdata.fda.gov/CMS_IA/default.html"
     },
     {
         "name": "HHS ASPR Drive",
-        "job_id": "hhs-aspr-drive",
         "allowed_domains": "drive.hhs.gov",
         "handle_javascript": false,
         "starting_urls": "https://drive.hhs.gov/"
     },
     {
         "name": "Navy All Hands Magazine",
-        "job_id": "navy-all-hands-magazine",
         "allowed_domains": "allhands.navy.mil",
         "handle_javascript": true,
         "starting_urls": "https://allhands.navy.mil/"
     },
     {
         "name": "Navy MyNavyHR",
-        "job_id": "navy-mynavyhr",
         "allowed_domains": "mynavyhr.navy.mil",
         "handle_javascript": false,
         "starting_urls": "https://www.mynavyhr.navy.mil/"
     },
     {
         "name": "NIH Diversity",
-        "job_id": "nih-diversity",
         "allowed_domains": "diversity.nih.gov",
         "handle_javascript": false,
         "starting_urls": "https://diversity.nih.gov/"
     },
     {
         "name": "NIH LRP",
-        "job_id": "nih-lrp",
         "allowed_domains": "lrp.nih.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.lrp.nih.gov/"
     },
     {
         "name": "NIH ORWH",
-        "job_id": "nih-orwh",
         "allowed_domains": "orwh.od.nih.gov",
         "handle_javascript": false,
         "starting_urls": "https://orwh.od.nih.gov/"
     },
     {
         "name": "NOAA CoastWatch",
-        "job_id": "noaa-coastwatch",
         "allowed_domains": "coastwatch.noaa.gov",
         "handle_javascript": false,
         "starting_urls": "https://coastwatch.noaa.gov/cw/index.html"
     },
     {
         "name": "NOAA Coastwatch Caribbean",
-        "job_id": "noaa-coastwatch-caribbean",
         "allowed_domains": "cwcaribbean.aoml.noaa.gov",
         "handle_javascript": false,
         "starting_urls": "https://cwcaribbean.aoml.noaa.gov/"
     },
     {
         "name": "NOAA CoastWatch East Coast Node",
-        "job_id": "noaa-coastwatch-east-coast-node",
         "allowed_domains": "eastcoast.coastwatch.noaa.gov",
         "handle_javascript": false,
         "starting_urls": "https://eastcoast.coastwatch.noaa.gov/"
     },
     {
         "name": "NOAA Coastwatch Great Lakes",
-        "job_id": "noaa-coastwatch-great-lakes",
         "allowed_domains": "coastwatch.glerl.noaa.gov",
         "handle_javascript": false,
         "starting_urls": "https://coastwatch.glerl.noaa.gov/"
     },
     {
         "name": "NOAA CoastWatch West Coast",
-        "job_id": "noaa-coastwatch-west-coast",
         "allowed_domains": "coastwatch.pfeg.noaa.gov",
         "handle_javascript": false,
         "starting_urls": "https://coastwatch.pfeg.noaa.gov/"
     },
     {
         "name": "NOAA GOES-R",
-        "job_id": "noaa-goes-r",
         "allowed_domains": "goes-r.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.goes-r.gov"
     },
     {
         "name": "NRCS WCC portal",
-        "job_id": "nrcs-wcc-portal",
         "allowed_domains": "nrcs.usda.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.nrcs.usda.gov/wps/portal/wcc/home/"
     },
     {
         "name": "TREAS - FinCEN",
-        "job_id": "treas-fincen",
         "allowed_domains": "fincen.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.fincen.gov/"
     },
     {
         "name": "US COURTS CACB",
-        "job_id": "us-courts-cacb",
         "allowed_domains": "cacb.uscourts.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.cacb.uscourts.gov"
     },
     {
         "name": "USCOURTS ARE",
-        "job_id": "uscourts-are",
         "allowed_domains": "are.uscourts.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.are.uscourts.gov/"
     },
     {
         "name": "USCOURTS CAEP",
-        "job_id": "uscourts-caep",
         "allowed_domains": "caep.uscourts.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.caep.uscourts.gov/"
     },
     {
         "name": "USCOURTS JPML",
-        "job_id": "uscourts-jpml",
         "allowed_domains": "jpml.uscourts.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.jpml.uscourts.gov"
     },
     {
         "name": "USCOURTS MSND",
-        "job_id": "uscourts-msnd",
         "allowed_domains": "msnd.uscourts.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.msnd.uscourts.gov/"
     },
     {
         "name": "USCOURTS MSSD",
-        "job_id": "uscourts-mssd",
         "allowed_domains": "mssd.uscourts.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.mssd.uscourts.gov/"
     },
     {
         "name": "USCOURTS NCWBA",
-        "job_id": "uscourts-ncwba",
         "allowed_domains": "ncwba.uscourts.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.ncwba.uscourts.gov/"
     },
     {
         "name": "USCOURTS PAWD",
-        "job_id": "uscourts-pawd",
         "allowed_domains": "pawd.uscourts.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.pawd.uscourts.gov/"
     },
     {
         "name": "USCOURTS UTB",
-        "job_id": "uscourts-utb",
         "allowed_domains": "utb.uscourts.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.utb.uscourts.gov/"
     },
     {
         "name": "USDA FPAC Business Center",
-        "job_id": "usda-fpac-business-center",
         "allowed_domains": "fpacbc.usda.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.fpacbc.usda.gov/index.html"
     },
     {
         "name": "USDA NFC Help Documentation",
-        "job_id": "usda-nfc-help-documentation",
         "allowed_domains": "help.nfc.usda.gov",
         "handle_javascript": true,
         "starting_urls": "https://help.nfc.usda.gov/"
     },
     {
         "name": "VA Access To Care",
-        "job_id": "va-access-to-care",
         "allowed_domains": "accesstocare.va.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.accesstocare.va.gov"
     },
     {
         "name": "VA Benefits.va.gov",
-        "job_id": "va-benefits.va.gov",
         "allowed_domains": "benefits.va.gov",
         "handle_javascript": false,
         "starting_urls": "https://benefits.va.gov/benefits/"
     },
     {
         "name": "VA CFM Technical Information Library TIL",
-        "job_id": "va-cfm-technical-information-library-til",
         "allowed_domains": "cfm.va.gov/til/",
         "handle_javascript": false,
         "starting_urls": "https://www.cfm.va.gov/til/"
     },
     {
         "name": "VA CIDER Research",
-        "job_id": "va-cider-research",
         "allowed_domains": "cider.research.va.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.cider.research.va.gov"
     },
     {
         "name": "VA HERC Research - keep query strings",
-        "job_id": "va-herc-research-keep-query-strings",
         "allowed_domains": "herc.research.va.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.herc.research.va.gov/"
     },
     {
         "name": "VA HSRD Research",
-        "job_id": "va-hsrd-research",
         "allowed_domains": "hsrd.research.va.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.hsrd.research.va.gov/"
     },
     {
         "name": "VA My Health",
-        "job_id": "va-my-health",
         "allowed_domains": "myhealth.va.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.myhealth.va.gov"
     },
     {
         "name": "VA Offica of Accountability and Whistleblower Protection",
-        "job_id": "va-offica-of-accountability-and-whistleblower-protection",
         "allowed_domains": "va.gov/accountability/",
         "handle_javascript": false,
         "starting_urls": "https://www.va.gov/accountability/"
     },
     {
         "name": "VA QUERI Research",
-        "job_id": "va-queri-research",
         "allowed_domains": "queri.research.va.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.queri.research.va.gov/"
     },
     {
         "name": "VA Research & Development",
-        "job_id": "va-research-&-development",
         "allowed_domains": "research.va.gov",
         "handle_javascript": false,
         "starting_urls": "https://www.research.va.gov/"
     },
     {
         "name": "VA Resources",
-        "job_id": "va-resources",
         "allowed_domains": "va.gov/resources/",
         "handle_javascript": false,
         "starting_urls": "https://www.va.gov/resources/"
     },
     {
         "name": "DOD DANTES",
-        "job_id": "dod-dantes",
         "allowed_domains": "dantes.mil",
         "handle_javascript": false,
         "starting_urls": "https://www.dantes.mil/"

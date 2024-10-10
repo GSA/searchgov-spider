@@ -45,7 +45,7 @@ def fixture_mock_scrapy_settings(monkeypatch):
     try:
         del sys.modules["twisted.internet.reactor"]
         del sys.modules["twisted.internet"]
-    except KeyError:
+    except KeyError:  # pragma: no cover
         pass
 
 
