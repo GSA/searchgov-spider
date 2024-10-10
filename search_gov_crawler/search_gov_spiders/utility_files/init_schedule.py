@@ -154,7 +154,7 @@ def init_schedule(input_file: str) -> None:
     # read crawl sites from file and transform into scrapydweb tasks format.
     crawl_sites_file = Path(input_file).resolve()
     if not crawl_sites_file.exists():
-        raise FileNotFoundError(f"Input file {input_file} does not exist!")
+        raise FileNotFoundError(f"Input file {crawl_sites_file} does not exist!")
 
     crawl_sites = json.loads(crawl_sites_file.read_text(encoding="UTF-8"))
     scrapydweb_tasks = transform_crawl_sites(crawl_sites)

@@ -4,7 +4,7 @@ import tempfile
 import sqlite3
 import subprocess
 from collections import namedtuple
-from datetime import datetime, UTC
+from datetime import datetime
 from pathlib import Path
 from typing import Self
 
@@ -110,7 +110,6 @@ def test_convert_plist_to_json(monkeypatch):
         assert len(crawl_output_records) == 3
         assert crawl_output_records[0] == {
             "name": "scrape example 1",
-            "job_id": "scrape-example-1",
             "allowed_domains": "example.com",
             "handle_javascript": True,
             "starting_urls": "https://www.example.com/1",
@@ -125,6 +124,18 @@ def test_convert_plist_to_json(monkeypatch):
             "AnotherField": 100,
             "id": "test1",
         }
+
+
+def test_convert_plist_to_json_missing_input_file(monkeypatch):
+    non_existant_file = "./this-is-a-missing-file-path.txt"
+
+    def mock_resolve(*_args, **_kwargs) -> Path:
+        return Path(non_existant_file)
+
+    monkeypatch.setattr(Path, "resolve", mock_resolve)
+
+    with pytest.raises(FileNotFoundError, match="Input file this-is-a-missing-file-path.txt does not exist!"):
+        convert_plist_to_json(input_file=non_existant_file, output_file="crawl-sites.json", write_full_output=True)
 
 
 MANUAL_UPDATE_TEST_CASES = [
@@ -230,6 +241,7 @@ def test_get_data_path_env_not_set(monkeypatch):
 def test_transform_crawl_sites(crawl_sites_test_file_json):
     transformed_records = transform_crawl_sites(crawl_sites_test_file_json)
 
+    # pylint: disable=line-too-long
     assert transformed_records == [
         {
             "id": 1,
@@ -315,6 +327,34 @@ def test_transform_crawl_sites(crawl_sites_test_file_json):
             "coalesce": "True",
             "max_instances": 1,
         },
+        {
+            "id": 4,
+            "name": "Quotes 4",
+            "trigger": "cron",
+            "create_time": "2024-01-01 00:00:00+00:00",
+            "update_time": "2024-01-01 00:00:00+00:00",
+            "project": "search_gov_spiders",
+            "version": "default: the latest version",
+            "spider": "domain_spider",
+            "jobid": "quotes-4",
+            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com/tag/", "setting": [], "start_urls": "https://quotes.toscrape.com/"}',
+            "selected_nodes": "[1]",
+            "year": "*",
+            "month": "*",
+            "day": "*",
+            "week": "*",
+            "day_of_week": "mon",
+            "hour": "09",
+            "minute": "30",
+            "second": "0",
+            "start_date": None,
+            "end_date": None,
+            "timezone": "UTC",
+            "jitter": 0,
+            "misfire_grace_time": 600,
+            "coalesce": "True",
+            "max_instances": 1,
+        },
     ]
 
 
@@ -342,15 +382,9 @@ class MockSqlite3Connection:
 
 def test_truncate_table(caplog):
     with caplog.at_level("INFO"):
-        truncate_table(conn=MockSqlite3Connection("test_database.db"), table_name="some_full_table")
+        truncate_table(conn=MockSqlite3Connection("test_database.db"), table_name="some_full_table")  # type: ignore
 
     assert "Successfully truncated table some_full_table" in caplog.messages
-
-
-@pytest.fixture(name="mock_sqlite3_connect")
-def fixture_mock_sqlite3_connect():
-    with MockSqlite3Connection("test_database.db") as conn:
-        return conn
 
 
 def test_init_schedule(caplog, monkeypatch, crawl_sites_test_file):
@@ -369,7 +403,12 @@ def test_init_schedule(caplog, monkeypatch, crawl_sites_test_file):
     assert "Inserted 0 records into task table!" in caplog.messages
 
 
-def test_init_schedule_missing_input_file():
+def test_init_schedule_missing_input_file(monkeypatch):
     non_existant_file = "./this-is-a-missing-file-path.txt"
-    with pytest.raises(FileNotFoundError, match=f"Input file {non_existant_file} does not exist!"):
+
+    def mock_resolve(*_args, **_kwargs) -> Path:
+        return Path(non_existant_file)
+
+    monkeypatch.setattr(Path, "resolve", mock_resolve)
+    with pytest.raises(FileNotFoundError, match="Input file this-is-a-missing-file-path.txt does not exist!"):
         init_schedule(input_file=non_existant_file)
