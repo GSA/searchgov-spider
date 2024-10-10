@@ -91,7 +91,7 @@ def get_data_path() -> Path:
     which_proc = subprocess.run(["which", "scrapydweb"], stdout=subprocess.PIPE, check=True)
     venv_python = Path(which_proc.stdout.decode("UTF-8").rstrip())
     lib = venv_python.parent.parent / "lib"
-    venv_version = [child for child in lib.iterdir()][0]
+    venv_version = list(lib.iterdir())[0]
     return venv_version / "site-packages" / "scrapydweb" / "data"
 
 

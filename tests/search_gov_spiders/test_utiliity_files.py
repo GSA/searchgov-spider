@@ -229,7 +229,7 @@ def test_get_data_path_env_not_set(monkeypatch):
         temp_data_path = Path(temp_dir) / "lib/python3.12/site-packages/scrapydweb/data"
         temp_data_path.mkdir(parents=True, exist_ok=True)
 
-        def mock_run(*args, **kwargs):
+        def mock_run(*_args, **_kwargs):
             MockProcess = namedtuple("MockProcess", "stdout")
             return MockProcess(stdout=str(temp_scrapydweb_path).encode('UTF-8"'))
 
