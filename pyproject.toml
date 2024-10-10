@@ -28,6 +28,11 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/GSA/searchgov-spider"
 
+[tool.coverage.report]
+exclude_also = [
+    "if __name__ == .__main__.:",
+    ]
+
 [tool.pylint.'MAIN']
 py-version=3.12
 
