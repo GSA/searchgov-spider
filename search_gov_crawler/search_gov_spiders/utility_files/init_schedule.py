@@ -44,7 +44,7 @@ class SpiderSchedule:
 
             if self.last_slot_filled > self.end_datetime:
                 raise NotImplementedError(
-                    f"This class does not support assignment beyond {self.end_datetime.strftime("%a %H:%M")}"
+                    f"This class does not support assignment beyond {self.end_datetime.strftime('%a %H:%M')}"
                 )
 
             while not self._is_valid_slot(self.last_slot_filled):
