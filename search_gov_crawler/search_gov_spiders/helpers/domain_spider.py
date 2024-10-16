@@ -77,7 +77,7 @@ def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
     else:
         crawl_file = Path(crawl_file_path)
 
-    return json.loads(crawl_file.resolve().read_text())
+    return json.loads(crawl_file.resolve().read_text(encoding="utf-8"))
 
 
 def default_starting_urls(handle_javascript: bool) -> list[str]:

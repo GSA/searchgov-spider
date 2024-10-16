@@ -12,5 +12,6 @@ updates:
           - "scrapy*"
       testing-and-linting:
         patterns:
+          - "freezegun"
           - "pylint"
           - "pytest"
