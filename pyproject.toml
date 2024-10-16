@@ -14,9 +14,8 @@ dependencies = [
     "pytest==8.3.3",
     "scrapy==2.11.2",
     "scrapy-playwright==0.0.41",
-    "scrapyd==1.4.3",
-    "scrapyd-client==1.2.3",
-    "scrapyd_api==0.0.4",
+    "scrapyd==1.5.0",
+    "scrapyd-client==2.0.0",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
