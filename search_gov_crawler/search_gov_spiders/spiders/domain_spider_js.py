@@ -4,6 +4,7 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Response, Request
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
 def should_abort_request(request):
@@ -18,7 +19,8 @@ class DomainSpiderJs(CrawlSpider):
     """
     Main spider for crawling and retrieving URLs using a headless browser to hanlde javascript.
     Will grab single values for url and domain or use multiple comma-separated inputs.
-    If nothing is passed, it will crawl using the default list of domains and urls.
+    If nothing is passed, it will crawl using the default list of domains and urls.  Supports path
+    filtering of domains by extending the built-in OffsiteMiddleware.
 
     Playwright javascript handling is enabled and resource intensive, only use if needed.  For crawls
     that don't require html, use `domain_spider`.
@@ -48,6 +50,14 @@ class DomainSpiderJs(CrawlSpider):
 
     name: str = "domain_spider_js"
     custom_settings: dict = {"PLAYWRIGHT_ABORT_REQUEST": should_abort_request}
+    rules = (
+        Rule(
+            link_extractor=helpers.domain_spider_link_extractor,
+            callback="parse_item",
+            follow=True,
+            process_request="set_playwright_usage",
+        ),
+    )
 
     def __init__(
         self, *args, allowed_domains: Optional[str] = None, start_urls: Optional[str] = None, **kwargs
@@ -58,18 +68,30 @@ class DomainSpiderJs(CrawlSpider):
         super().__init__(*args, **kwargs)
 
         self.allowed_domains = (
-            allowed_domains.split(",") if allowed_domains else helpers.default_allowed_domains(handle_javascript=True)
+            helpers.split_allowed_domains(allowed_domains)
+            if allowed_domains
+            else helpers.default_allowed_domains(handle_javascript=True)
+        )
+
+        self.allowed_domain_paths = (
+            allowed_domains.split(",")
+            if allowed_domains
+            else helpers.default_allowed_domains(handle_javascript=False, remove_paths=False)
         )
         self.start_urls = start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=True)
 
-    rules = (
-        Rule(
-            link_extractor=helpers.domain_spider_link_extractor,
-            callback=helpers.parse_item,
-            follow=True,
-            process_request="set_playwright_usage",
-        ),
-    )
+    def parse_item(self, response: Response):
+        """
+        This method is called by spiders to gather the url.  Placed in the spider to assist with
+        testing and validtion.
+
+        @url http://quotes.toscrape.com/
+        @returns items 1 1
+        @scrapes url
+        """
+
+        if helpers.is_valid_content_type(response.headers.get("content-type", None)):
+            yield SearchGovSpidersItem(url=response.url)
 
     def set_playwright_usage(self, request: Request, _response: Response) -> Request:
         """Set meta tags for playwright to run"""

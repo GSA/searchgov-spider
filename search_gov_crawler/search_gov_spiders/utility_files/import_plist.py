@@ -5,6 +5,13 @@ from datetime import datetime, date
 from pathlib import Path
 from urllib.parse import urlparse
 
+# manually filter these scrutiny records by id
+FILTER_IDS = (
+    "20220616-073159",  # NOAA CoastWatch Central Pacific
+    "20220411-163415",  # US Committee on the Marine Transportation System
+    "20220712-164738",  # NASA James Webb Space Telescope
+)
+
 
 def create_allowed_domain(starting_url: str) -> str:
     """Create allowed_domains value based on starting_url"""
@@ -23,8 +30,12 @@ def apply_manual_updates(input_record: dict) -> dict:
     match input_record:
         case {"starting_urls": "https://www.dantes.mil/"}:
             output_record = input_record | {"name": "DOD DANTES", "job_id": "dod-dantes"}
-        case {"starting_urls": "https://www.cmts.gov/downloads/"}:
-            output_record = input_record | {"starting_urls": "https://www.cmts.gov/"}
+        case {"starting_urls": "https://www.cfm.va.gov/til/"}:
+            output_record = input_record | {"allowed_domains": "cfm.va.gov/til/"}
+        case {"starting_urls": "https://www.va.gov/accountability/"}:
+            output_record = input_record | {"allowed_domains": "va.gov/accountability/"}
+        case {"starting_urls": "https://www.va.gov/resources/"}:
+            output_record = input_record | {"allowed_domains": "va.gov/resources/"}
         case _:
             output_record = input_record
 
@@ -66,7 +77,7 @@ def convert_plist_to_json(input_file: str, output_file: str, write_full_output: 
             "starting_urls": record["startingUrl"],
         }
         for record in transformed_scrutiny_records
-        if record["scheduleCalendarIntervalMatrix"] > 0
+        if record["scheduleCalendarIntervalMatrix"] > 0 and record["id"] not in FILTER_IDS
     ]
 
     # apply manual fixes

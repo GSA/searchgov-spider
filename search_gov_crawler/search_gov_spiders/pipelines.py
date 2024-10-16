@@ -89,13 +89,15 @@ class SearchGovSpidersPipeline:
 class DeDeuplicatorPipeline:
     """Class for pipeline that removes duplicate items"""
 
-    itemlist = []
+    def __init__(self):
+        self.urls_seen = set()
 
     def process_item(self, item, _spider):
-        """Checks that the file is not at max size.
-        Adds it to the file if less, or creates a new file if too large."""
-        if item in self.itemlist:
-            raise DropItem("already in list")
-        self.itemlist.append(item)
+        """
+        If item has already been seen, drop it otherwise add to
+        """
+        if item["url"] in self.urls_seen:
+            raise DropItem("Item already seen!")
 
+        self.urls_seen.add(item["url"])
         return item
