@@ -9,6 +9,7 @@ description = "The home for the spider that supports search.gov."
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
+    "freezegun==1.5.1",
     "pylint==3.3.1",
     "pytest==8.3.3",
     "scrapy==2.11.2",
@@ -23,13 +24,14 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-[project.scripts]
-hello_world = "search_gov_crawler:hello_world"
-run_test_spider = "search_gov_crawler:run_test_spider"
-run_all_domains = "search_gov_crawler:run_all_domains"
 
 [project.urls]
 Homepage = "https://github.com/GSA/searchgov-spider"
+
+[tool.coverage.report]
+exclude_also = [
+    "if __name__ == .__main__.:",
+    ]
 
 [tool.pylint.'MAIN']
 py-version=3.12
