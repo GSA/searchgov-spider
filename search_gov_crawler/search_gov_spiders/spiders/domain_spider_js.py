@@ -3,8 +3,8 @@ from typing import Optional
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Response, Request
 
-import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
-from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+import search_gov_spiders.helpers.domain_spider as helpers
+from search_gov_spiders.items import SearchGovSpidersItem
 
 
 def should_abort_request(request):
@@ -60,10 +60,18 @@ class DomainSpiderJs(CrawlSpider):
     )
 
     def __init__(
-        self, *args, allowed_domains: Optional[str] = None, start_urls: Optional[str] = None, **kwargs
+        self,
+        *args,
+        allowed_domains: Optional[str] = None,
+        start_urls: Optional[str] = None,
+        **kwargs,
     ) -> None:
-        if any([allowed_domains, start_urls]) and not all([allowed_domains, start_urls]):
-            raise ValueError("Invalid arguments: allowed_domains and start_urls must be used together or not at all.")
+        if any([allowed_domains, start_urls]) and not all(
+            [allowed_domains, start_urls]
+        ):
+            raise ValueError(
+                "Invalid arguments: allowed_domains and start_urls must be used together or not at all."
+            )
 
         super().__init__(*args, **kwargs)
 
@@ -76,9 +84,15 @@ class DomainSpiderJs(CrawlSpider):
         self.allowed_domain_paths = (
             allowed_domains.split(",")
             if allowed_domains
-            else helpers.default_allowed_domains(handle_javascript=False, remove_paths=False)
+            else helpers.default_allowed_domains(
+                handle_javascript=False, remove_paths=False
+            )
         )
-        self.start_urls = start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=True)
+        self.start_urls = (
+            start_urls.split(",")
+            if start_urls
+            else helpers.default_starting_urls(handle_javascript=True)
+        )
 
     def parse_item(self, response: Response):
         """

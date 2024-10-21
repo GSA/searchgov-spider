@@ -69,6 +69,7 @@ DOWNLOADER_MIDDLEWARES = {
 EXTENSIONS = {
     "search_gov_spiders.extensions.json_logging.JsonLogging": -1,
     "scrapy.extensions.closespider.CloseSpider": 500,
+    "spidermon.contrib.scrapy.extensions.Spidermon": 600,
 }
 
 CLOSESPIDER_TIMEOUT_NO_ITEM = 50
@@ -111,3 +112,5 @@ DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
+
+SPIDERMON_ENABLED = True
