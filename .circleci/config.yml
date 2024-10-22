@@ -4,6 +4,7 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/python:3.12
+    environment:
     steps:
       - checkout
       - run: python --version > python_version
