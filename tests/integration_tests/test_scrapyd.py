@@ -28,7 +28,7 @@ class TestScrapyd:
     @pytest.fixture(scope="class", name="scrapyd_process")
     def fixture_scrapyd_process(self, scrapyd_cwd):
         with subprocess.Popen(["scrapyd"], cwd=scrapyd_cwd) as scrapyd_process:
-            time.sleep(1)
+            time.sleep(5)
             yield scrapyd_process
             scrapyd_process.kill()
             Path(scrapyd_cwd / "twistd.pid").unlink(missing_ok=True)
