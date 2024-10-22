@@ -12,7 +12,7 @@ dependencies = [
     "freezegun==1.5.1",
     "pylint==3.3.1",
     "pytest==8.3.3",
-    "pytest-console-scripts"==1.4.1,
+    "pytest-console-scripts==1.4.1",
     "scrapy==2.11.2",
     "scrapy-playwright==0.0.41",
     "scrapyd==1.5.0",
