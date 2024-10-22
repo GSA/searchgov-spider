@@ -166,8 +166,8 @@ Make sure to run `pip install -r requirements.txt` and `playwright install` befo
 
 3. Start logparser
 
-        $ python -m search_gov_cralwer.search_gov_logparser
+        $ python -m search_gov_logparser
 
 4. Start scrapydweb
 
-        $ python -m search_gov_cralwer.search_scrapydweb
+        $ python -m search_gov_scrapydweb
