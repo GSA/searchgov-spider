@@ -25,7 +25,7 @@ class TestScrapyd:
 
     @pytest.fixture(scope="class", name="scrapyd_cwd")
     def fixture_scrapyd_cwd(self) -> Path:
-        return Path(__file__).parent.parent.parent / "search_gov_crawler"
+        return Path(Path(__file__).parent.parent.parent / "search_gov_crawler").resolve()
 
     @pytest.fixture(scope="class", name="scrapyd_env")
     def fixture_scrapyd_env(self) -> dict:
