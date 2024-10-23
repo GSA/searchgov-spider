@@ -24,7 +24,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            python -m pytest tests --ignore=tests/integration_tests/
+            python -m pytest tests
 
 workflows:
   version: 2
