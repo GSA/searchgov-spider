@@ -2,8 +2,19 @@ import datetime
 from spidermon import Monitor, MonitorSuite, monitors
 from spidermon.contrib.monitors.mixins.stats import StatsMonitorMixin
 
-@monitors.name('Item count Monitor')
+# SPIDERMON_UNWANTED_HTTP_CODES = "SPIDERMON_UNWANTED_HTTP_CODES"
+# SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = "SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT"
+# SPIDERMON_MAX_EXECUTION_TIME = "SPIDERMON_MAX_EXECUTION_TIME"
+# SPIDERMON_ITEM_COUNT_INCREASE = "SPIDERMON_ITEM_COUNT_INCREASE"
+
+@monitors.name('Item count monitor')
 class ItemCountMonitor(Monitor):
+    """Check if spider extracted the minimum number of items.
+
+    You can configure it using ``SPIDERMON_MIN_ITEMS`` setting.
+    There's **NO** default value for this setting, if you try to use this
+    monitor without setting it, it'll raise a ``NotConfigured`` exception.
+    """
 
     @monitors.name('Minimum number of items')
     def test_minimum_number_of_items(self):
@@ -17,8 +28,59 @@ class ItemCountMonitor(Monitor):
             item_extracted >= minimum_threshold, msg=msg
         )
 
-@monitors.name('Unwanted HTTP codes')
+@monitors.name('Unwanted HTTP codes monitor')
 class UnwantedHTTPCodesMonitor(Monitor):
+    """Check for maximum number of unwanted HTTP codes.
+    You can configure it using ``SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT`` setting
+    or ``SPIDERMON_UNWANTED_HTTP_CODES`` setting
+
+    This monitor fails if during the spider execution, we receive
+    more than the number of ``SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT``
+    setting for at least one of the HTTP Status Codes in the list defined in
+    ``SPIDERMON_UNWANTED_HTTP_CODES`` setting.
+
+    Default values are:
+
+    .. highlight:: python
+    .. code-block:: python
+
+        SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = 10
+        SPIDERMON_UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
+
+    ``SPIDERMON_UNWANTED_HTTP_CODES`` can also be a dictionary with the HTTP Status Code
+    as key and the maximum number of accepted responses with that code.
+
+    With the following setting, the monitor will fail if more than 100 responses are
+    404 errors or at least one 500 error:
+
+    .. highlight:: python
+    .. code-block:: python
+
+        SPIDERMON_UNWANTED_HTTP_CODES = {
+            400: 100,
+            500: 0,
+        }
+
+    Furthermore, instead of being a numeric value, the code accepts a dictionary which can
+    contain any of two keys: ``max_count`` and ``max_percentage``. The former refers to an
+    absolute value and works the same way as setting an integer value. The latter refers
+    to a max_percentage of the total number of requests the spider made. If both are set, the
+    monitor will fail if any of the conditions are met. If none are set, it will default to
+    ``DEFAULT_UNWANTED_HTTP_CODES_MAX_COUNT```.
+
+    With the following setting, the monitor will fail if it has at least one 500 error or
+    if there are more than ``min(100, 0.5 * total requests)`` 400 responses.
+
+    .. highlight:: python
+    .. code-block:: python
+
+        SPIDERMON_UNWANTED_HTTP_CODES = {
+            400: {"max_count": 100, "max_percentage": 0.5},
+            500: 0,
+        }
+
+    """
+        
     UNWANTED_HTTP_CODES_MAX_COUNT = 1
     UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
 
@@ -84,8 +146,15 @@ class UnwantedHTTPCodesMonitor(Monitor):
             )
             self.assertTrue(count <= max_errors, msg=msg)
 
-@monitors.name("Periodic Item Count Increase Monitor")
+@monitors.name("Periodic item count increase monitor")
 class PeriodicItemCountMonitor(Monitor):
+    """Check for increase in item count.
+
+    You can configure the threshold for increase using
+    ``SPIDERMON_ITEM_COUNT_INCREASE`` as a project setting or spider attribute.
+    Use int value to check for x new items every check or float value to check
+    in percentage increase of items.
+    """
 
     @monitors.name('Check SPIDERMON_ITEM_COUNT_INCREASE number of items returned in SPIDERMON_TIME_INTERVAL seconds')
     def test_number_of_items_in_interval(self):
@@ -99,8 +168,13 @@ class PeriodicItemCountMonitor(Monitor):
             item_extracted >= minimum_threshold, msg=msg
         )
 
-@monitors.name("Periodic Execution Time Monitor")
+@monitors.name("Periodic execution time monitor")
 class PeriodicExecutionTimeMonitor(Monitor, StatsMonitorMixin):
+    """Check for runtime exceeding a target maximum runtime.
+
+    You can configure the maximum runtime (in seconds) using
+    ``SPIDERMON_MAX_EXECUTION_TIME`` as a project setting or spider attribute."""
+        
     # max_execution_time is how long we want it to be running max whereas SPIDERMON_TIME_INTERVAL in settings.py is how often we check that it's running
     @monitors.name("Maximum execution time reached")
     def test_execution_time(self):
