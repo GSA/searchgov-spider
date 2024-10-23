@@ -1,12 +1,26 @@
 import datetime
+import json
+import copy
 from spidermon import Monitor, MonitorSuite, monitors
 from spidermon.contrib.monitors.mixins.stats import StatsMonitorMixin
 
-# SPIDERMON_UNWANTED_HTTP_CODES = "SPIDERMON_UNWANTED_HTTP_CODES"
-# SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = "SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT"
+SPIDERMON_UNWANTED_HTTP_CODES = "SPIDERMON_UNWANTED_HTTP_CODES"
+SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = "SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT"
 SPIDERMON_MAX_EXECUTION_TIME = "SPIDERMON_MAX_EXECUTION_TIME"
 SPIDERMON_ITEM_COUNT_INCREASE = "SPIDERMON_ITEM_COUNT_INCREASE"
 SPIDERMON_MIN_ITEMS = "SPIDERMON_MIN_ITEMS"
+
+def getdictorlist(crawler, name, default=None):
+    value = crawler.settings.get(name, default)
+    if value is None:
+        return {}
+    if isinstance(value, str):
+        try:
+            return json.loads(value, object_pairs_hook=OrderedDict)
+        except ValueError:
+            return value.split(",")
+    return copy.deepcopy(value)
+
 
 @monitors.name('Item count monitor')
 class ItemCountMonitor(Monitor):
@@ -84,14 +98,23 @@ class UnwantedHTTPCodesMonitor(Monitor):
 
     """
         
-    UNWANTED_HTTP_CODES_MAX_COUNT = 1
-    UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
+    DEFAULT_UNWANTED_HTTP_CODES_MAX_COUNT = 10
+    DEFAULT_UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
+    
 
     @monitors.name("Should not hit the limit of unwanted http status")
     def test_check_unwanted_http_codes(self):
-        unwanted_http_codes = self.UNWANTED_HTTP_CODES
+        crawler = self.data.get("crawler")
+        unwanted_http_codes = getdictorlist(
+            crawler,
+            SPIDERMON_UNWANTED_HTTP_CODES,
+            self.DEFAULT_UNWANTED_HTTP_CODES,
+        )
 
-        errors_max_count = self.UNWANTED_HTTP_CODES_MAX_COUNT
+        errors_max_count = crawler.settings.getint(
+            SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT,
+            self.DEFAULT_UNWANTED_HTTP_CODES_MAX_COUNT,
+        )
 
         if not isinstance(unwanted_http_codes, dict):
             unwanted_http_codes = {
@@ -111,7 +134,7 @@ class UnwantedHTTPCodesMonitor(Monitor):
 
                 # if the user passed an empty dict, use the default count
                 if not absolute_max_errors and not percentual_max_errors:
-                    max_errors = self.UNWANTED_HTTP_CODES_MAX_COUNT
+                    max_errors = self.DEFAULT_UNWANTED_HTTP_CODES_MAX_COUNT
 
                 else:
                     # calculate the max errors based on percentage
