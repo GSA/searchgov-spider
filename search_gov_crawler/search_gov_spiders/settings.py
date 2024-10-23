@@ -121,15 +121,7 @@ SPIDERMON_MAX_EXECUTION_TIME = 1
 SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = 1
 SPIDERMON_UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
 
-#these are needed for the basic monitor suite ('spidermon.contrib.scrapy.monitors.SpiderCloseMonitorSuite') 
-# SPIDERMON_MAX_ITEM_VALIDATION_ERRORS = 10
-# SPIDERMON_MAX_ERRORS = 10
-# SPIDERMON_MAX_WARNINGS = 10
-# SPIDERMON_ADD_FIELD_COVERAGE = True
-# SPIDERMON_MAX_DOWNLOADER_EXCEPTIONS = 10
-
 SPIDERMON_SPIDER_CLOSE_MONITORS = (
-    # 'spidermon.contrib.scrapy.monitors.SpiderCloseMonitorSuite',
     'search_gov_spiders.monitors.SpiderCloseMonitorSuite',
 )
 
