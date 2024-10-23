@@ -45,11 +45,15 @@ class TestScrapyd:
     def fixture_scrapyd_client(self, scrapyd_process) -> ScrapydClient:  # pylint: disable=unused-argument
         return ScrapydClient()
 
-    def test_scrapyd_list_projects(self, scrapyd_client):
-        assert scrapyd_client.projects() == ["search_gov_spiders", "default"]
+    @pytest.fixture(scope="class", name="scrapyd_project", params=["default", "search_gov_spiders"])
+    def fixture_scrapyd_project(self, request):
+        return request.param
 
-    def test_scrapyd_list_spiders(self, scrapyd_client):
-        assert scrapyd_client.spiders(project="default") == ["domain_spider", "domain_spider_js"]
+    def test_scrapyd_list_projects(self, scrapyd_client, scrapyd_project):
+        assert scrapyd_project in scrapyd_client.projects()
+
+    def test_scrapyd_list_spiders(self, scrapyd_client, scrapyd_project):
+        assert scrapyd_client.spiders(project=scrapyd_project) == ["domain_spider", "domain_spider_js"]
 
     @pytest.fixture(scope="class", name="temp_egg_file")
     def fixture_temp_egg_file(self, temp_egg_dir):
