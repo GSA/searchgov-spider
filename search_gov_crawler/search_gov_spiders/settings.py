@@ -114,23 +114,22 @@ DOWNLOAD_HANDLERS = {
 }
 
 SPIDERMON_ENABLED = True
-# SPIDERMON_ITEM_COUNT_INCREASE = 5
 SPIDERMON_MIN_ITEMS = 1000
+SPIDERMON_TIME_INTERVAL = 5 #time is in seconds 
+
+#these are needed for the basic monitor suite ('spidermon.contrib.scrapy.monitors.SpiderCloseMonitorSuite') 
+# SPIDERMON_ITEM_COUNT_INCREASE = 5
 # SPIDERMON_MAX_ITEM_VALIDATION_ERRORS = 10
 # SPIDERMON_MAX_ERRORS = 10
 # SPIDERMON_MAX_WARNINGS = 10
 # SPIDERMON_ADD_FIELD_COVERAGE = True
 # SPIDERMON_MAX_DOWNLOADER_EXCEPTIONS = 10
-SPIDERMON_TIME_INTERVAL = 1
 
-# SPIDERMON_SPIDER_OPEN_MONITORS = (
-#     'search_gov_spiders.monitors.SpiderOpenMonitorSuite',
-# )
 SPIDERMON_SPIDER_CLOSE_MONITORS = (
     # 'spidermon.contrib.scrapy.monitors.SpiderCloseMonitorSuite',
     'search_gov_spiders.monitors.SpiderCloseMonitorSuite',
 )
 
 SPIDERMON_PERIODIC_MONITORS = {
-    'search_gov_spiders.monitors.PeriodicMonitorSuite': SPIDERMON_TIME_INTERVAL,  # time in seconds
+    'search_gov_spiders.monitors.PeriodicMonitorSuite': SPIDERMON_TIME_INTERVAL, 
 }
