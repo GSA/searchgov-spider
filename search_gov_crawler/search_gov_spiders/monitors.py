@@ -15,8 +15,29 @@ class ItemCountMonitor(Monitor):
             item_extracted >= minimum_threshold, msg=msg
         )
 
+# @monitors.name('Periodic time count monitor')
+# class PeriodicItemCountMonitor(Monitor):
+
+#     @monitors.name('Minimum number of items')
+#     def test_minimum_number_of_items_per_x(self):
+#         item_extracted = getattr(
+#             self.data.stats, 'item_scraped_count', 0)
+#         minimum_threshold = 10
+
+#         msg = 'Extracted less than {} items'.format(
+#             minimum_threshold)
+#         self.assertTrue(
+#             item_extracted >= minimum_threshold, msg=msg
+#         )
+
 class SpiderCloseMonitorSuite(MonitorSuite):
 
     monitors = [
-        ItemCountMonitor,
+        ItemCountMonitor, 
     ]
+
+# class SpiderOpenMonitorSuite(MonitorSuite):
+
+#     monitors = [
+#         PeriodicItemCountMonitor, 
+#     ]

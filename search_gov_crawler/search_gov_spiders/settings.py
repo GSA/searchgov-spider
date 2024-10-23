@@ -114,6 +114,16 @@ DOWNLOAD_HANDLERS = {
 }
 
 SPIDERMON_ENABLED = True
+SPIDERMON_ITEM_COUNT_INCREASE = 5
+SPIDERMON_MIN_ITEMS = 10
+SPIDERMON_MAX_ITEM_VALIDATION_ERRORS = 10
+SPIDERMON_MAX_ERRORS = 10
+SPIDERMON_MAX_WARNINGS = 10
+SPIDERMON_ADD_FIELD_COVERAGE = True
+SPIDERMON_MAX_DOWNLOADER_EXCEPTIONS = 10
+# SPIDERMON_SPIDER_OPEN_MONITORS = (
+#     'search_gov_spiders.monitors.SpiderOpenMonitorSuite',
+# )
 SPIDERMON_SPIDER_CLOSE_MONITORS = (
-    'search_gov_spiders.monitors.SpiderCloseMonitorSuite',
+    'spidermon.contrib.scrapy.monitors.SpiderCloseMonitorSuite',
 )
