@@ -114,3 +114,6 @@ DOWNLOAD_HANDLERS = {
 }
 
 SPIDERMON_ENABLED = True
+SPIDERMON_SPIDER_CLOSE_MONITORS = (
+    'search_gov_spiders.monitors.SpiderCloseMonitorSuite',
+)

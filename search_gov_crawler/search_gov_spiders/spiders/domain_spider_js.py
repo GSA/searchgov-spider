@@ -3,8 +3,8 @@ from typing import Optional
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Response, Request
 
-import search_gov_spiders.helpers.domain_spider as helpers
-from search_gov_spiders.items import SearchGovSpidersItem
+import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
 def should_abort_request(request):
