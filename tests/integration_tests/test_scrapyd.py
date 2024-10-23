@@ -25,12 +25,14 @@ class TestScrapyd:
 
     @pytest.fixture(scope="class", name="scrapyd_cwd")
     def fixture_scrapyd_cwd(self) -> Path:
+        print(f"CWD - {Path(Path(__file__).parent.parent.parent / "search_gov_crawler").resolve()}")
         return Path(Path(__file__).parent.parent.parent / "search_gov_crawler").resolve()
 
     @pytest.fixture(scope="class", name="scrapyd_env")
     def fixture_scrapyd_env(self) -> dict:
         scrapyd_env = os.environ.copy()
         scrapyd_env["PYTHONPATH"] = str(Path(__file__).parent.parent.parent.resolve())
+        print(f"ENV - {str(Path(__file__).parent.parent.parent.resolve())}")
         return scrapyd_env
 
     @pytest.fixture(scope="class", name="scrapyd_process")
