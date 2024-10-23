@@ -40,6 +40,7 @@ class TestScrapyd:
     def fixture_scrapyd_process(self, scrapyd_cwd, scrapyd_env):
         with subprocess.Popen(["scrapyd"], cwd=scrapyd_cwd, env=scrapyd_env) as scrapyd_process:
             time.sleep(1)
+            print(subprocess.getoutput("ps aux | grep scrapyd"))
             yield scrapyd_process
             scrapyd_process.kill()
             Path(scrapyd_cwd / "twistd.pid").unlink(missing_ok=True)
