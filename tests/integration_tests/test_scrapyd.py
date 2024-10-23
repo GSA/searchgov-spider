@@ -25,6 +25,7 @@ class TestScrapyd:
 
     @pytest.fixture(scope="class", name="scrapyd_cwd")
     def fixture_scrapyd_cwd(self) -> Path:
+        print(f"ROOT - {Path(__file__)}")
         print(f"CWD - {Path(Path(__file__).parent.parent.parent / "search_gov_crawler").resolve()}")
         return Path(Path(__file__).parent.parent.parent / "search_gov_crawler").resolve()
 

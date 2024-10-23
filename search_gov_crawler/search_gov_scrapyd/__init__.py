@@ -35,7 +35,6 @@ class DisabledUIRoot(website.Root):
 
     def __init__(self, config, app):
         super().__init__(config, app)
-        print(self.listEntities())
         self.delEntity(b"")
         self.delEntity(b"jobs")
         self.delEntity(b"items")
