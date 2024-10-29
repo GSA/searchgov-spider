@@ -3,6 +3,9 @@ import json
 import copy
 from spidermon import Monitor, MonitorSuite, monitors
 from spidermon.contrib.monitors.mixins.stats import StatsMonitorMixin
+from spidermon.contrib.actions.reports.files import CreateFileReport
+from spidermon.contrib.actions.email.smtp import SendSmtpEmail
+
 
 SPIDERMON_UNWANTED_HTTP_CODES = "SPIDERMON_UNWANTED_HTTP_CODES"
 SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = "SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT"
@@ -231,7 +234,15 @@ class SpiderCloseMonitorSuite(MonitorSuite):
         ItemCountMonitor, 
     ]
 
+    monitors_finished_actions = [
+        CreateFileReport
+    ]
+
 class PeriodicMonitorSuite(MonitorSuite):
     monitors = [
         UnwantedHTTPCodesMonitor, PeriodicItemCountMonitor, PeriodicExecutionTimeMonitor
+    ]
+
+    monitors_finished_actions = [
+        CreateFileReport
     ]
