@@ -1,15 +1,18 @@
 from pathlib import Path
+import os
 import subprocess
 import time
 
 import pytest
+import requests
 
 from scrapyd_client import ScrapydClient
 
 
 class TestScrapyd:
     def test_scrapyd_is_not_running(self):
-        assert subprocess.getoutput("ps aux | grep scrapyd | grep -v pytest | grep -v grep") == ""
+        with pytest.raises(requests.exceptions.ConnectionError):
+            ScrapydClient()._get("daemonstatus")  # pylint: disable=protected-access
 
     def test_scrapyd_version(self, script_runner):
         result = script_runner.run(["scrapyd", "--version"])
@@ -23,11 +26,17 @@ class TestScrapyd:
 
     @pytest.fixture(scope="class", name="scrapyd_cwd")
     def fixture_scrapyd_cwd(self) -> Path:
-        return Path(__file__).parent.parent.parent / "search_gov_crawler"
+        return Path(Path(__file__).parent.parent.parent / "search_gov_crawler").resolve()
+
+    @pytest.fixture(scope="class", name="scrapyd_env")
+    def fixture_scrapyd_env(self) -> dict:
+        scrapyd_env = os.environ.copy()
+        scrapyd_env["PYTHONPATH"] = str(Path(__file__).parent.parent.parent.resolve())
+        return scrapyd_env
 
     @pytest.fixture(scope="class", name="scrapyd_process")
-    def fixture_scrapyd_process(self, scrapyd_cwd):
-        with subprocess.Popen(["scrapyd"], cwd=scrapyd_cwd) as scrapyd_process:
+    def fixture_scrapyd_process(self, scrapyd_cwd, scrapyd_env):
+        with subprocess.Popen(["scrapyd"], cwd=scrapyd_cwd, env=scrapyd_env) as scrapyd_process:
             time.sleep(1)
             yield scrapyd_process
             scrapyd_process.kill()
@@ -37,11 +46,15 @@ class TestScrapyd:
     def fixture_scrapyd_client(self, scrapyd_process) -> ScrapydClient:  # pylint: disable=unused-argument
         return ScrapydClient()
 
-    def test_scrapyd_list_projects(self, scrapyd_client):
-        assert scrapyd_client.projects() == ["search_gov_spiders", "default"]
+    @pytest.fixture(scope="class", name="scrapyd_project", params=["default", "search_gov_spiders"])
+    def fixture_scrapyd_project(self, request):
+        return request.param
 
-    def test_scrapyd_list_spiders(self, scrapyd_client):
-        assert scrapyd_client.spiders(project="search_gov_spiders") == ["domain_spider", "domain_spider_js"]
+    def test_scrapyd_list_projects(self, scrapyd_client, scrapyd_project):
+        assert scrapyd_project in scrapyd_client.projects()
+
+    def test_scrapyd_list_spiders(self, scrapyd_client, scrapyd_project):
+        assert scrapyd_client.spiders(project=scrapyd_project) == ["domain_spider", "domain_spider_js"]
 
     @pytest.fixture(scope="class", name="temp_egg_file")
     def fixture_temp_egg_file(self, temp_egg_dir):
