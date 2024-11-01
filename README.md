@@ -123,7 +123,7 @@ Make sure to run `pip install -r requirements.txt` and `playwright install` befo
             # deploy production
             scrapyd-deploy production
 
-4. For an interface to view jobs (pending, running, finished) and logs, access http://localhost:6800/. However, to actually manipulate the spiders deployed to the Scrapyd server, you'll need to use the [Scrapyd JSON API](https://scrapyd.readthedocs.io/en/latest/api.html).
+4. For an interface to view jobs (pending, running, finished) and logs, access http://localhost:6800/. However, to actually manipulate the spiders deployed to the Scrapyd server, you'll need to use the [*Scrapyd JSON API*](https://scrapyd.readthedocs.io/en/latest/api.html).
 
     Some most-used commands:
 
@@ -136,19 +136,29 @@ Make sure to run `pip install -r requirements.txt` and `playwright install` befo
 
 ## Adding new spiders
 
-1.  Navigate to anywhere within the [*Scrapy project root *](search_gov_crawler) directory and run this command:
+1.  Navigate to anywhere within the [*Scrapy project root*](search_gov_crawler) directory and run this command:
 
         $ scrapy genspider -t crawl <spider_name> "<spider_starting_domain>"
 
 2. Open the `/search_gov_spiders/search_gov_spiders/spiders/boilerplate.py` file and replace the lines of the generated spider with the lines of the boilerplate spider as dictated in the boilerplate file.
 
-3. Modify the `rules` in the new spider as needed. Here's the [Scrapy rules documentation](https://docs.scrapy.org/en/latest/topics/spiders.html#crawling-rules) for the specifics.
+3. Modify the `rules` in the new spider as needed. Here's the [*Scrapy rules documentation*](https://docs.scrapy.org/en/latest/topics/spiders.html#crawling-rules) for the specifics.
 
 4. To update the Scrapyd server with the new spider, run:
 
         $ scrapyd-deploy <default or endpoint_name>
 
         ## Running Against All Listed Search.gov Domains
+
+## Running scrapy scheduler
+This process allows for scrapy to be run directly using an in-memory scheduler.  The schedule is based on the initial schedule setup in the [*utility files readme*](search_gov_crawler/search_gov_spiders/utility_files/README.md#job-schedule-calendar).  The process will run until killed.
+
+0. Source virtual environment and update dependencies.
+
+1. Start scheduler
+
+        $ python search_gov_crawler/scrapy_scheduler.py
+
 
 ## Running Scrapydweb UI
 
