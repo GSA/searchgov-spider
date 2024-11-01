@@ -5,7 +5,7 @@ from spidermon import Monitor, MonitorSuite, monitors
 from spidermon.contrib.monitors.mixins.stats import StatsMonitorMixin
 from spidermon.contrib.actions.reports.files import CreateFileReport
 from spidermon.contrib.actions.email.smtp import SendSmtpEmail
-
+# from search_gov_spiders.actions import MyCustomEmailAction
 
 SPIDERMON_UNWANTED_HTTP_CODES = "SPIDERMON_UNWANTED_HTTP_CODES"
 SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = "SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT"
@@ -244,5 +244,5 @@ class PeriodicMonitorSuite(MonitorSuite):
     ]
 
     monitors_finished_actions = [
-        CreateFileReport
+        CreateFileReport,SendSmtpEmail
     ]
