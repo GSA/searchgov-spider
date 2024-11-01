@@ -12,3 +12,4 @@ scrapyd_api==0.0.4
 scrapydweb @ git+https://github.com/GSA/searchgov-scrapydweb
 spidermon>=1.22.0
 premailer>=3.10.0
+python-dotenv>=1.0.1

@@ -235,7 +235,7 @@ class SpiderCloseMonitorSuite(MonitorSuite):
     ]
 
     monitors_finished_actions = [
-        CreateFileReport
+        CreateFileReport,SendSmtpEmail
     ]
 
 class PeriodicMonitorSuite(MonitorSuite):

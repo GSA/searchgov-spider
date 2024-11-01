@@ -8,6 +8,9 @@
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Settings for json logging
 LOG_ENABLED = False
@@ -117,32 +120,33 @@ DOWNLOAD_HANDLERS = {
 
 SPIDERMON_ENABLED = True
 SPIDERMON_MIN_ITEMS = 1000
-SPIDERMON_TIME_INTERVAL = 5 #time is in seconds 
+SPIDERMON_TIME_INTERVAL = 5  # time is in seconds
 SPIDERMON_ITEM_COUNT_INCREASE = 5
 SPIDERMON_MAX_EXECUTION_TIME = 1
 SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = 1
 SPIDERMON_UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
-SPIDERMON_REPORT_TEMPLATE = 'reports/email/monitors/result.jinja'
-SPIDERMON_REPORT_CONTEXT = {
-    'report_title': 'Spidermon File Report'
-}
+SPIDERMON_REPORT_TEMPLATE = "reports/email/monitors/result.jinja"
+SPIDERMON_REPORT_CONTEXT = {"report_title": "Spidermon File Report"}
 
 now = datetime.now()
 date_time = now.today().isoformat()
 
-
-SPIDERMON_REPORT_FILENAME = f'{date_time}_spidermon_file_report.html'
-# SPIDERMON_EMAIL_SENDER = ""
-# SPIDERMON_EMAIL_TO = ""
-# SPIDERMON_EMAIL_SUBJECT="Spidermon report"
-# SPIDERMON_SMTP_HOST=""
-# SPIDERMON_SMTP_USER=""
-# SPIDERMON_SMTP_PASSWORD=""
+print(os.environ.get('SPIDERMON_EMAIL_TO'))
+SPIDERMON_REPORT_FILENAME = f"{date_time}_spidermon_file_report.html"
+SPIDERMON_EMAIL_SUBJECT = "Spidermon report"
+SPIDERMON_EMAIL_SENDER = os.environ.get('SPIDERMON_EMAIL_SENDER')
+SPIDERMON_EMAIL_TO = os.environ.get('SPIDERMON_EMAIL_TO')
+SPIDERMON_SMTP_HOST = os.environ.get('SPIDERMON_SMTP_HOST')
+SPIDERMON_SMTP_PORT = os.environ.get('SPIDERMON_SMTP_PORT')
+SPIDERMON_SMTP_USER = os.environ.get('SPIDERMON_SMTP_USER')
+SPIDERMON_SMTP_PASSWORD =  os.environ.get('SPIDERMON_SMTP_PASSWORD')
+SPIDERMON_SMTP_ENFORCE_SSL = False
+SPIDERMON_SMTP_ENFORCE_TLS = True
 
 SPIDERMON_SPIDER_CLOSE_MONITORS = (
-    'search_gov_spiders.monitors.SpiderCloseMonitorSuite',
+    "search_gov_spiders.monitors.SpiderCloseMonitorSuite",
 )
 
-SPIDERMON_PERIODIC_MONITORS = {
-    'search_gov_spiders.monitors.PeriodicMonitorSuite': SPIDERMON_TIME_INTERVAL, 
-}
+# SPIDERMON_PERIODIC_MONITORS = {
+#     'search_gov_spiders.monitors.PeriodicMonitorSuite': SPIDERMON_TIME_INTERVAL,
+# }
