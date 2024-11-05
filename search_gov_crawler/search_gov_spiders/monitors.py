@@ -1,6 +1,7 @@
 import datetime
 import json
 import copy
+from pathlib import Path
 from spidermon import Monitor, MonitorSuite, monitors
 from spidermon.contrib.monitors.mixins.stats import StatsMonitorMixin
 from spidermon.contrib.actions.reports.files import CreateFileReport
@@ -24,6 +25,8 @@ def getdictorlist(crawler, name, default=None):
             return value.split(",")
     return copy.deepcopy(value)
 
+class CreateCustomFileReport(CreateFileReport):
+    template_paths = [Path(__file__).parent / "reports"]
 
 @monitors.name('Item count monitor')
 class ItemCountMonitor(Monitor):
@@ -234,8 +237,8 @@ class SpiderCloseMonitorSuite(MonitorSuite):
         ItemCountMonitor, 
     ]
 
-    monitors_finished_actions = [
-        CreateFileReport,SendSmtpEmail
+    monitors_failed_actions = [
+        CreateCustomFileReport
     ]
 
 class PeriodicMonitorSuite(MonitorSuite):
@@ -243,6 +246,6 @@ class PeriodicMonitorSuite(MonitorSuite):
         UnwantedHTTPCodesMonitor, PeriodicItemCountMonitor, PeriodicExecutionTimeMonitor
     ]
 
-    monitors_finished_actions = [
-        CreateFileReport,SendSmtpEmail
+    monitors_failed_actions = [
+        CreateCustomFileReport
     ]

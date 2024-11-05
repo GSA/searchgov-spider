@@ -125,7 +125,7 @@ SPIDERMON_ITEM_COUNT_INCREASE = 5
 SPIDERMON_MAX_EXECUTION_TIME = 1
 SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = 1
 SPIDERMON_UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
-SPIDERMON_REPORT_TEMPLATE = "reports/email/monitors/result.jinja"
+SPIDERMON_REPORT_TEMPLATE = "results.jinja"
 SPIDERMON_REPORT_CONTEXT = {"report_title": "Spidermon File Report"}
 
 now = datetime.now()
@@ -143,9 +143,9 @@ SPIDERMON_SMTP_PASSWORD =  os.environ.get('SPIDERMON_SMTP_PASSWORD')
 SPIDERMON_SMTP_ENFORCE_SSL = False
 SPIDERMON_SMTP_ENFORCE_TLS = True
 
-# SPIDERMON_SPIDER_CLOSE_MONITORS = (
-#     "search_gov_spiders.monitors.SpiderCloseMonitorSuite",
-# )
+SPIDERMON_SPIDER_CLOSE_MONITORS = (
+    "search_gov_spiders.monitors.SpiderCloseMonitorSuite",
+)
 
 SPIDERMON_PERIODIC_MONITORS = {
     'search_gov_spiders.monitors.PeriodicMonitorSuite': SPIDERMON_TIME_INTERVAL,
