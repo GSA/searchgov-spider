@@ -1,6 +1,7 @@
 import datetime
 import json
 import copy
+import os
 from pathlib import Path
 from spidermon import Monitor, MonitorSuite, monitors
 from spidermon.contrib.monitors.mixins.stats import StatsMonitorMixin
@@ -27,6 +28,11 @@ def getdictorlist(crawler, name, default=None):
 
 class CreateCustomFileReport(CreateFileReport):
     template_paths = [Path(__file__).parent / "reports"]
+
+class CreateCustomEmailReport(SendSmtpEmail):
+    # template_paths = [Path(__file__).parent / "reports"]
+    dirname= os.path.dirname(__file__)
+    body_html_template = os.path.join(dirname, 'reports', 'results.jinja')
 
 @monitors.name('Item count monitor')
 class ItemCountMonitor(Monitor):
@@ -238,7 +244,7 @@ class SpiderCloseMonitorSuite(MonitorSuite):
     ]
 
     monitors_failed_actions = [
-        CreateCustomFileReport
+        CreateCustomFileReport, SendSmtpEmail
     ]
 
 class PeriodicMonitorSuite(MonitorSuite):
@@ -247,5 +253,5 @@ class PeriodicMonitorSuite(MonitorSuite):
     ]
 
     monitors_failed_actions = [
-        CreateCustomFileReport
+        CreateCustomEmailReport
     ]
