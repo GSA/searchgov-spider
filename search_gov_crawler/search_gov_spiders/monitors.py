@@ -253,5 +253,5 @@ class PeriodicMonitorSuite(MonitorSuite):
     ]
 
     monitors_failed_actions = [
-        CreateCustomEmailReport
+        CreateCustomFileReport, CreateCustomEmailReport
     ]
