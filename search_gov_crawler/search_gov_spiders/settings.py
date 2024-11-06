@@ -7,10 +7,8 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-from datetime import datetime
 import os
-from dotenv import load_dotenv
-load_dotenv()
+from datetime import datetime
 
 # Settings for json logging
 LOG_ENABLED = False
@@ -118,6 +116,9 @@ DOWNLOAD_HANDLERS = {
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 
+now = datetime.now()
+date_time = now.today().isoformat()
+
 SPIDERMON_ENABLED = True
 SPIDERMON_MIN_ITEMS = 1000
 SPIDERMON_TIME_INTERVAL = 5  # time is in seconds
@@ -127,11 +128,6 @@ SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = 1
 SPIDERMON_UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
 SPIDERMON_REPORT_TEMPLATE = "results.jinja"
 SPIDERMON_REPORT_CONTEXT = {"report_title": "Spidermon File Report"}
-
-now = datetime.now()
-date_time = now.today().isoformat()
-
-print(os.environ.get('SPIDERMON_EMAIL_TO'))
 SPIDERMON_REPORT_FILENAME = f"{date_time}_spidermon_file_report.html"
 SPIDERMON_EMAIL_SUBJECT = "Spidermon report"
 SPIDERMON_EMAIL_SENDER = os.environ.get('SPIDERMON_EMAIL_SENDER')

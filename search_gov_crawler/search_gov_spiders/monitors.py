@@ -7,7 +7,6 @@ from spidermon import Monitor, MonitorSuite, monitors
 from spidermon.contrib.monitors.mixins.stats import StatsMonitorMixin
 from spidermon.contrib.actions.reports.files import CreateFileReport
 from spidermon.contrib.actions.email.smtp import SendSmtpEmail
-# from search_gov_spiders.actions import MyCustomEmailAction
 
 SPIDERMON_UNWANTED_HTTP_CODES = "SPIDERMON_UNWANTED_HTTP_CODES"
 SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = "SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT"
@@ -27,12 +26,11 @@ def getdictorlist(crawler, name, default=None):
     return copy.deepcopy(value)
 
 class CreateCustomFileReport(CreateFileReport):
-    template_paths = [Path(__file__).parent / "reports"]
+    template_paths = [Path(__file__).parent / "actions"]
 
 class CreateCustomEmailReport(SendSmtpEmail):
-    # template_paths = [Path(__file__).parent / "reports"]
     dirname= os.path.dirname(__file__)
-    body_html_template = os.path.join(dirname, 'reports', 'results.jinja')
+    body_html_template = os.path.join(dirname, 'actions', 'results.jinja')
 
 @monitors.name('Item count monitor')
 class ItemCountMonitor(Monitor):
