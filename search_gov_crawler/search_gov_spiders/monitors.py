@@ -235,19 +235,9 @@ class PeriodicExecutionTimeMonitor(Monitor, StatsMonitorMixin):
         self.assertLess(duration.total_seconds(), max_execution_time, msg=msg)
 
 
-class SpiderCloseMonitorSuite(MonitorSuite):
-
-    monitors = [
-        ItemCountMonitor, 
-    ]
-
-    monitors_failed_actions = [
-        CreateCustomFileReport, SendSmtpEmail
-    ]
-
 class PeriodicMonitorSuite(MonitorSuite):
     monitors = [
-        UnwantedHTTPCodesMonitor, PeriodicItemCountMonitor, PeriodicExecutionTimeMonitor
+        ItemCountMonitor, UnwantedHTTPCodesMonitor, PeriodicItemCountMonitor, PeriodicExecutionTimeMonitor
     ]
 
     monitors_failed_actions = [

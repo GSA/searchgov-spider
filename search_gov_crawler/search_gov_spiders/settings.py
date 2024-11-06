@@ -139,10 +139,6 @@ SPIDERMON_SMTP_PASSWORD =  os.environ.get('SPIDERMON_SMTP_PASSWORD')
 SPIDERMON_SMTP_ENFORCE_SSL = False
 SPIDERMON_SMTP_ENFORCE_TLS = True
 
-SPIDERMON_SPIDER_CLOSE_MONITORS = (
-    "search_gov_spiders.monitors.SpiderCloseMonitorSuite",
-)
-
 SPIDERMON_PERIODIC_MONITORS = {
     'search_gov_spiders.monitors.PeriodicMonitorSuite': SPIDERMON_TIME_INTERVAL,
 }
