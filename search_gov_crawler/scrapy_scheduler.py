@@ -87,9 +87,11 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     apscheduler_jobs = transform_crawl_sites(crawl_sites)
 
     # Initalize scheduler
+    max_workers = min(32, (os.cpu_count() or 1) + 4)  # default from concurrent.futures
+
     scheduler = BlockingScheduler(
         jobstores={"memory": MemoryJobStore()},
-        executors={"default": ThreadPoolExecutor(max_workers=10)},
+        executors={"default": ThreadPoolExecutor(max_workers)},
         job_defaults={"coalesce": False, "max_instances": 1},
         timezone="UTC",
     )
