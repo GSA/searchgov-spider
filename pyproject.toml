@@ -14,7 +14,7 @@ dependencies = [
     "pytest==8.3.3",
     "pytest-console-scripts==1.4.1",
     "scrapy==2.11.2",
-    "scrapy-playwright==0.0.41",
+    "scrapy-playwright==0.0.42",
     "scrapyd==1.5.0",
     "scrapyd-client==2.0.0",
 ]
