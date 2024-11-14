@@ -14,15 +14,11 @@ SPIDERMON_MIN_ITEMS = "SPIDERMON_MIN_ITEMS"
 class CreateCustomFileReport(CreateFileReport):
     template_paths = [Path(__file__).parent / "actions"]
 
-class CreateCustomEmailReport(SendSmtpEmail):
-    dirname= os.path.dirname(__file__)
-    body_html_template = os.path.join(dirname, 'actions', 'results.jinja')
-
 class PeriodicMonitorSuite(MonitorSuite):
     monitors = [
         ItemCountMonitor, UnwantedHTTPCodesMonitor, PeriodicItemCountMonitor, PeriodicExecutionTimeMonitor
     ]
 
     monitors_failed_actions = [
-        CreateCustomFileReport, CreateCustomEmailReport
+        CreateCustomFileReport, SendSmtpEmail
     ]
