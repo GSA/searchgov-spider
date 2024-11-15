@@ -8,7 +8,6 @@
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 import os
-from pathlib import Path
 from datetime import datetime
 
 # Settings for json logging
@@ -122,7 +121,7 @@ date_time = now.today().isoformat()
 dirname= os.path.dirname(__file__)
 body_html_template = os.path.join(dirname, 'actions', 'results.jinja')
 
-SPIDERMON_ENABLED = os.environ.get('SPIDERMON_ENABLED')
+SPIDERMON_ENABLED = os.environ.get('SPIDERMON_ENABLED', 'False')
 SPIDERMON_MIN_ITEMS = 1000
 SPIDERMON_TIME_INTERVAL = 1  # time is in seconds
 SPIDERMON_ITEM_COUNT_INCREASE = 100

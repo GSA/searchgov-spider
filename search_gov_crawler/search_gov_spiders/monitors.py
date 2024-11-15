@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 from spidermon import MonitorSuite
 from spidermon.contrib.actions.email.smtp import SendSmtpEmail
