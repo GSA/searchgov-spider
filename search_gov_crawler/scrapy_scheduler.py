@@ -1,15 +1,11 @@
-import argparse
 import json
 import logging
 import subprocess
-import time
 import os
-from datetime import datetime, UTC, timedelta
 from pathlib import Path
 
 from apscheduler.executors.pool import ThreadPoolExecutor
 from apscheduler.jobstores.memory import MemoryJobStore
-from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 from pythonjsonlogger.json import JsonFormatter
@@ -21,7 +17,6 @@ logging.basicConfig(level=logging.INFO)
 log = logging.getLogger()
 log.handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 
-BENCHMARK_RUN = bool(os.environ.get("BENCHMARK_RUN", "False").lower() == "true")
 CRAWL_SITES_FILE = Path(__file__).parent / "search_gov_spiders" / "utility_files" / "crawl-sites.json"
 
 
@@ -109,55 +104,5 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     scheduler.start()
 
 
-def benchmark_scrapy(allowed_domains: str, starting_urls: str, handle_javascript: bool, runtime_offset_seconds: int):
-    """Function to allow for benchmarking jobs"""
-
-    # Initalize scheduler
-    max_workers = min(32, (os.cpu_count() or 1) + 4)  # default from concurrent.futures
-
-    scheduler = BackgroundScheduler(
-        jobstores={"memory": MemoryJobStore()},
-        executors={"default": ThreadPoolExecutor(max_workers)},
-        job_defaults={"coalesce": False, "max_instances": 1},
-        timezone="UTC",
-    )
-
-    job_name = f"benchmark - {starting_urls}"
-
-    apscheduler_job = {
-        "func": run_scrapy_crawl,
-        "id": job_name.lower().replace(" ", "-").replace("---", "-"),
-        "name": job_name,
-        "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=runtime_offset_seconds),
-        "args": [
-            "domain_spider" if not handle_javascript else "domain_spider_js",
-            allowed_domains,
-            starting_urls,
-        ],
-    }
-    scheduler.add_job(**apscheduler_job, jobstore="memory")
-
-    scheduler.start()
-    time.sleep(runtime_offset_seconds + 2)
-    scheduler.shutdown()  # wait until all jobs are finished
-
-
 if __name__ == "__main__":
-    if not BENCHMARK_RUN:
-        start_scrapy_scheduler(input_file=CRAWL_SITES_FILE)
-    else:
-        parser = argparse.ArgumentParser(description="Run a scrapy schedule or benchmark based on input.")
-        parser.add_argument("--allowed_domains", type=str, help="domains allowed to crawl", required=True)
-        parser.add_argument("--starting_urls", type=str, help="url used to start crawl", required=True)
-        parser.add_argument("--handle_js", action=argparse.BooleanOptionalAction, help="Flag to enable javascript")
-        parser.add_argument("--runtime_offset", type=int, default=5, help="Number of seconds to offset job start")
-        args = parser.parse_args()
-
-        log.info("***RUNNING BENCHMARK TEST***")
-        benchmark_args = {
-            "allowed_domains": args.allowed_domains,
-            "starting_urls": args.starting_urls,
-            "handle_javascript": args.handle_js,
-            "runtime_offset_seconds": args.runtime_offset,
-        }
-        benchmark_scrapy(**benchmark_args)
+    start_scrapy_scheduler(input_file=CRAWL_SITES_FILE)
