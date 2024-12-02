@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Kill all spider services (if running)
+echo "Running app_stop.sh"
+sudo chmod +x ./cicd-scripts/app_stop.sh
+source ./cicd-scripts/app_stop.sh
+
 # CICD scripts can only runas 'search' user on AWS
 if [ "$(whoami)" = "search" ]; then
   echo "Executing cicd scripts as 'search' user"
@@ -8,7 +13,19 @@ else
   exit 1
 fi
 
+# Start AWS CloudWatch agent
+sudo chmod +x ./cicd-scripts/helpers/check_cloudwatch.sh
+source ./cicd-scripts/helpers/check_cloudwatch.sh
+
+# Start AWS CodeDeploy agent
+sudo chmod +x ./cicd-scripts/helpers/check_codedeploy.sh
+source ./cicd-scripts/helpers/check_codedeploy.sh
+
+# PUBLIC
 SPIDER_PYTHON_VERSION=3.12
+
+# PRIVATE
+_CURRENT_BUILD_DIR=${PWD}
 
 # Update and upgrade the system without prompting for confirmation
 sudo apt-get update -y
@@ -42,6 +59,9 @@ install_python() {
     sudo ./configure --enable-optimizations
     sudo make altinstall
 
+    # Return to the build directory
+    cd $_CURRENT_BUILD_DIR
+
     echo "Python ${SPIDER_PYTHON_VERSION} has been installed."
 }
 
@@ -52,6 +72,9 @@ else
     echo "Python ${SPIDER_PYTHON_VERSION} is not installed. Installing Python ${SPIDER_PYTHON_VERSION}..."
     install_python
 fi
+
+# Set PYTHONPATH env
+source ./cicd-scripts/helpers/update_pythonpath.sh
 
 # Use venv with Python 3.12
 sudo /usr/local/bin/python${SPIDER_PYTHON_VERSION} -m pip install --upgrade pip
