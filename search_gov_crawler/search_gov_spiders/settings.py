@@ -33,8 +33,8 @@ SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # For optimum performance, you should pick a concurrency where
 # CPU usage is at 80-90%.
-CONCURRENT_REQUESTS = 100
-CONCURRENT_REQUESTS_PER_DOMAIN = 100
+CONCURRENT_REQUESTS = 1
+CONCURRENT_REQUESTS_PER_DOMAIN = 1
 COOKIES_ENABLED = False
 REACTOR_THREADPOOL_MAXSIZE = 20
 RETRY_ENABLED = False
@@ -50,7 +50,7 @@ SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 0
+DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 
 
@@ -118,14 +118,14 @@ DOWNLOAD_HANDLERS = {
 
 now = datetime.now()
 date_time = now.today().isoformat()
-dirname= os.path.dirname(__file__)
-body_html_template = os.path.join(dirname, 'actions', 'results.jinja')
+dirname = os.path.dirname(__file__)
+body_html_template = os.path.join(dirname, "actions", "results.jinja")
 
-SPIDERMON_ENABLED = os.environ.get('SPIDERMON_ENABLED', 'False')
+SPIDERMON_ENABLED = os.environ.get("SPIDERMON_ENABLED", "False")
 SPIDERMON_MIN_ITEMS = 1000
 SPIDERMON_TIME_INTERVAL = 1  # time is in seconds
 SPIDERMON_ITEM_COUNT_INCREASE = 100
-SPIDERMON_MAX_EXECUTION_TIME = 86400 
+SPIDERMON_MAX_EXECUTION_TIME = 86400
 SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = 10
 SPIDERMON_UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
 SPIDERMON_REPORT_TEMPLATE = "results.jinja"
@@ -133,15 +133,15 @@ SPIDERMON_BODY_HTML_TEMPLATE = body_html_template
 SPIDERMON_REPORT_CONTEXT = {"report_title": "Spidermon File Report"}
 SPIDERMON_REPORT_FILENAME = f"{date_time}_spidermon_file_report.html"
 SPIDERMON_EMAIL_SUBJECT = "Spidermon report"
-SPIDERMON_EMAIL_SENDER = os.environ.get('SPIDERMON_EMAIL_SENDER')
-SPIDERMON_EMAIL_TO = os.environ.get('SPIDERMON_EMAIL_TO')
-SPIDERMON_SMTP_HOST = os.environ.get('SPIDERMON_SMTP_HOST')
-SPIDERMON_SMTP_PORT = os.environ.get('SPIDERMON_SMTP_PORT')
-SPIDERMON_SMTP_USER = os.environ.get('SPIDERMON_SMTP_USER')
-SPIDERMON_SMTP_PASSWORD =  os.environ.get('SPIDERMON_SMTP_PASSWORD')
+SPIDERMON_EMAIL_SENDER = os.environ.get("SPIDERMON_EMAIL_SENDER")
+SPIDERMON_EMAIL_TO = os.environ.get("SPIDERMON_EMAIL_TO")
+SPIDERMON_SMTP_HOST = os.environ.get("SPIDERMON_SMTP_HOST")
+SPIDERMON_SMTP_PORT = os.environ.get("SPIDERMON_SMTP_PORT")
+SPIDERMON_SMTP_USER = os.environ.get("SPIDERMON_SMTP_USER")
+SPIDERMON_SMTP_PASSWORD = os.environ.get("SPIDERMON_SMTP_PASSWORD")
 SPIDERMON_SMTP_ENFORCE_SSL = False
 SPIDERMON_SMTP_ENFORCE_TLS = True
 
 SPIDERMON_PERIODIC_MONITORS = {
-    'search_gov_spiders.monitors.PeriodicMonitorSuite': SPIDERMON_TIME_INTERVAL,
+    "search_gov_spiders.monitors.PeriodicMonitorSuite": SPIDERMON_TIME_INTERVAL,
 }
