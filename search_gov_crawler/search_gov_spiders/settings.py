@@ -33,8 +33,8 @@ SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # For optimum performance, you should pick a concurrency where
 # CPU usage is at 80-90%.
-CONCURRENT_REQUESTS = 1
-CONCURRENT_REQUESTS_PER_DOMAIN = 1
+CONCURRENT_REQUESTS = 100
+CONCURRENT_REQUESTS_PER_DOMAIN = 100
 COOKIES_ENABLED = False
 REACTOR_THREADPOOL_MAXSIZE = 20
 RETRY_ENABLED = False
@@ -50,7 +50,7 @@ SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 0
 # The download delay setting will honor only one of:
 
 
