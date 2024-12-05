@@ -1,3 +1,23 @@
+"""
+Allow benchmarking and testing of spider.  Run this script in one of two ways:
+- For a single non-js domain:
+  - Run `python benchmark.py -d example.com -u 'https://www.example.com'`
+
+- For multiple domains, specify a json file as input:
+  - Run `python benchmark.py -f ./example_input_file.json
+  - Input file should be a json array of objects such as
+    [
+      {
+        "allowed_domains": "example.com",
+        "starting_urls": "https://www.example.com"
+        "handle_javascript": false,
+        "runtime_offset_seconds", 5
+      }
+    ]
+
+- Run `python benchmark.py -h` or review code below for more details on arguments
+"""
+
 import argparse
 import json
 import logging
@@ -60,13 +80,19 @@ def benchmark_from_file(input_file: Path):
         raise FileNotFoundError(f"Input file {input_file} does not exist!")
 
     crawl_sites = json.loads(input_file.read_text(encoding="UTF-8"))
-    max_offset = 0
+    min_offset = 5
 
     scheduler = init_scheduler()
     for crawl_site in crawl_sites:
         apscheduler_job = create_apscheduler_job(**crawl_site)
-        scheduler.add_job(**apscheduler_job, jobstore="memory")
-        max_offset = max(max_offset, crawl_site["runtime_offset_seconds"])
+        scheduler.add_job(
+            **apscheduler_job,
+            jobstore="memory",
+            misfire_grace_time=None,
+            max_instances=1,
+            coalesce=True,
+        )
+        max_offset = min(min_offset, crawl_site["runtime_offset_seconds"])
 
     scheduler.start()
     time.sleep(max_offset + 2)
