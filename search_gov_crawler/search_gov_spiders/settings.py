@@ -98,13 +98,6 @@ HTTPCACHE_DIR = "httpcache"
 # Set settings whose default value is deprecated to a future-proof value
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-FEED_EXPORT_ENCODING = "utf-8"
-
-FEEDS = {
-    "scrapy_urls/%(name)s/%(name)s_%(time)s.txt": {
-        "format": "csv",
-    }
-}
 
 # Playwright Settings
 PLAYWRIGHT_BROWSER_TYPE = "chromium"
