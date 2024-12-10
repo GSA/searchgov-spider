@@ -94,13 +94,20 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
         temp_dir.joinpath("output").mkdir(exist_ok=True)
 
         def mock_init(pipeline_cls, *_args, temp_dir=temp_dir, **_kwargs):
-            pipeline_cls.current_file_size = 0
+            # pipeline_cls.current_file_size = 0
+            # pipeline_cls.file_number = 1
+            # pipeline_cls.parent_file_path = temp_dir
+            # pipeline_cls.base_path_name = str(pipeline_cls.parent_file_path / "output/all-links.csv")
+            # pipeline_cls.short_file = open(pipeline_cls.base_path_name, "w", encoding="utf-8")
+            # pipeline_cls.max_file_size = 3900
+            # pipeline_cls.paginate = True
+
+            pipeline_cls.api_url = None
             pipeline_cls.file_number = 1
             pipeline_cls.parent_file_path = temp_dir
-            pipeline_cls.base_path_name = str(pipeline_cls.parent_file_path / "output/all-links.csv")
-            pipeline_cls.short_file = open(pipeline_cls.base_path_name, "w", encoding="utf-8")
-            pipeline_cls.max_file_size = 3900
-            pipeline_cls.paginate = True
+            pipeline_cls.base_file_name = temp_dir / "output" / "all-links.csv"
+            pipeline_cls.file_path = pipeline_cls.base_file_name
+            pipeline_cls.current_file = open(pipeline_cls.file_path, "w", encoding="utf-8")
 
         monkeypatch.setattr(
             "search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.__init__", mock_init

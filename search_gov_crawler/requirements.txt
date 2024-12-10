@@ -2,6 +2,7 @@ freezegun==1.5.1
 pylint==3.3.1
 pytest==8.3.3
 pytest-console-scripts==1.4.1
+pytest-mock==3.14.0
 
 # Install from github due to unmaintained project using pypi https://github.com/nhairs/python-json-logger/issues/1
 python-json-logger @ https://github.com/nhairs/python-json-logger/releases/download/v3.1.0/python_json_logger-3.1.0-py3-none-any.whl
@@ -11,4 +12,3 @@ scrapyd==1.5.0
 scrapyd-client==2.0.0
 scrapydweb @ git+https://github.com/GSA/searchgov-scrapydweb
 spidermon [monitoring] == 1.22.0
-
