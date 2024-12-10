@@ -128,4 +128,5 @@ new_cron="@reboot at now + 1 min -f $(pwd)/cicd-scripts/app_start.sh"
 # Add the new cron job to the crontab if it's not already present
 (crontab -l | grep -v "$new_cron" ; echo "$new_cron") | crontab -
 
+
 echo "Cron job added: $new_cron"
