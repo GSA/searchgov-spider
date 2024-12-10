@@ -122,6 +122,7 @@ def benchmark_from_args(allowed_domains: str, starting_urls: str, handle_javascr
     )
 
     apscheduler_job_kwargs = {
+        "name": "benchmark",
         "allowed_domains": allowed_domains,
         "starting_urls": starting_urls,
         "handle_javascript": handle_javascript,
