@@ -74,10 +74,6 @@ class DomainSpiderJs(CrawlSpider):
             },
             priority="spider",
         )
-        settings.set("CLOSESPIDER_TIMEOUT_NO_ITEM", 50, priority="spider")
-        extensions_settings = settings.getdict("EXTENSIONS")
-        extensions_settings["scrapy.extensions.closespider.CloseSpider"] = 500
-        settings.set("EXTENSIONS", extensions_settings, priority="spider")
 
     def __init__(
         self, *args, allowed_domains: Optional[str] = None, start_urls: Optional[str] = None, **kwargs
