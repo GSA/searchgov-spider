@@ -4,9 +4,9 @@ See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 """
 
 import os
-import requests
 from pathlib import Path
 
+import requests
 from scrapy.exceptions import DropItem
 
 
@@ -35,7 +35,7 @@ class SearchGovSpidersPipeline:
         """Process item either by writing to file or by posting to API."""
 
         line = item.get("url", "") + "\n"
-        line_size = len(line.encode('utf-8'))
+        line_size = len(line.encode("utf-8"))
 
         # If API URL is set, batch URLs and send a POST request when max size is reached
         if self.api_url:
@@ -51,7 +51,7 @@ class SearchGovSpidersPipeline:
         return item
 
     def _is_batch_too_large(self, new_entry_size):
-        current_batch_size = sum(len(url.encode('utf-8')) for url in self.urls_batch)
+        current_batch_size = sum(len(url.encode("utf-8")) for url in self.urls_batch)
         return (current_batch_size + new_entry_size) > self.MAX_FILE_SIZE_BYTES
 
     def _is_file_too_large(self, new_entry_size):
@@ -79,12 +79,13 @@ class SearchGovSpidersPipeline:
             finally:
                 self.urls_batch.clear()
 
-    def close_spider(self, _spider):
+    def close_spider(self, spider):
         """Close the file or send remaining URLs if needed when the spider finishes."""
         if not self.api_url and self.current_file:
             self.current_file.close()
         elif self.api_url:
-            self._post_urls()  # Send any remaining URLs on spider close
+            self._post_urls(spider)  # Send any remaining URLs on spider close
+
 
 class DeDeuplicatorPipeline:
     """Class for pipeline that removes duplicate items"""
