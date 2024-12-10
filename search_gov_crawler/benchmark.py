@@ -5,13 +5,13 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
 
 - For multiple domains, specify a json file as input:
   - Run `python benchmark.py -f ./example_input_file.json
-  - Input file should be a json array of objects such as
+  - Input file should be a json array of objects in the same format as our crawl-sites.json file:
     [
       {
+        "name": "Example",
         "allowed_domains": "example.com",
         "starting_urls": "https://www.example.com"
-        "handle_javascript": false,
-        "runtime_offset_seconds", 5
+        "handle_javascript": false
       }
     ]
 
@@ -41,9 +41,13 @@ log.handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 
 
 def init_scheduler() -> BackgroundScheduler:
-    """Create and return instance of scheduler"""
+    """
+    Create and return instance of scheduler.  Set `max_workers`, i.e. the maximum number of spider
+    processes this scheduler will spawn at one time to either the value of an environment variable
+    or the default value from pythons concurrent.futures ThreadPoolExecutor.
+    """
 
-    max_workers = min(32, (os.cpu_count() or 1) + 4)  # default from concurrent.futures
+    max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", min(32, (os.cpu_count() or 1) + 4)))
 
     return BackgroundScheduler(
         jobstores={"memory": MemoryJobStore()},
@@ -54,11 +58,11 @@ def init_scheduler() -> BackgroundScheduler:
 
 
 def create_apscheduler_job(
-    allowed_domains: str, starting_urls: str, handle_javascript: bool, runtime_offset_seconds: int
+    name: str, allowed_domains: str, starting_urls: str, handle_javascript: bool, runtime_offset_seconds: int
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
-    job_name = f"benchmark - {starting_urls}"
+    job_name = f"benchmark - {name}"
 
     return {
         "func": scrapy_scheduler.run_scrapy_crawl,
@@ -73,18 +77,26 @@ def create_apscheduler_job(
     }
 
 
-def benchmark_from_file(input_file: Path):
-    """Run a benchmark process using input from a file"""
+def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
+    """
+    Run a benchmark process using input from a file.
+
+    The maximum number of jobs allowed to run at once is set by the scheduler but here we control
+    how jobs not yet running behave.  The `max_instance` arg ensures only a single job with a given
+    id can run at one time. The `misfire_grace_time` and `coalesce` args, ensure that jobs are
+    automatically run as soon as possible even if they have missed their scheduled time because of
+    other constraints, such as too many other concurrent jobs, and that if they have missed multiple
+    runs, they are only run once.
+    """
 
     if not input_file.exists():
         raise FileNotFoundError(f"Input file {input_file} does not exist!")
 
     crawl_sites = json.loads(input_file.read_text(encoding="UTF-8"))
-    min_offset = 5
 
     scheduler = init_scheduler()
     for crawl_site in crawl_sites:
-        apscheduler_job = create_apscheduler_job(**crawl_site)
+        apscheduler_job = create_apscheduler_job(runtime_offset_seconds=runtime_offset_seconds, **crawl_site)
         scheduler.add_job(
             **apscheduler_job,
             jobstore="memory",
@@ -92,11 +104,10 @@ def benchmark_from_file(input_file: Path):
             max_instances=1,
             coalesce=True,
         )
-        max_offset = min(min_offset, crawl_site["runtime_offset_seconds"])
 
     scheduler.start()
-    time.sleep(max_offset + 2)
-    scheduler.shutdown()  # wait until all jobs are finished
+    time.sleep(runtime_offset_seconds + 2)
+    scheduler.shutdown()  # this will wait until all jobs are finished
 
 
 def benchmark_from_args(allowed_domains: str, starting_urls: str, handle_javascript: bool, runtime_offset_seconds: int):
@@ -148,4 +159,4 @@ if __name__ == "__main__":
         }
         benchmark_from_args(**benchmark_args)
     else:
-        benchmark_from_file(input_file=Path(args.input_file))
+        benchmark_from_file(input_file=Path(args.input_file), runtime_offset_seconds=args.runtime_offset)
