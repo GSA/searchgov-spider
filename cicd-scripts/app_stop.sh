@@ -2,7 +2,9 @@
 
 # Clear all cache
 echo "Purge all pip cache..."
-sudo pip cache purge
+# We can't do `$pip cache purge`, this does the samething:
+sudo rm -r ~/.cache/pip
+sudo rm -rf /root/.cache/pip
 
 # Kill scrapy schedular (if running):
 echo "Stopping scrapy_scheduler.py (if running)"

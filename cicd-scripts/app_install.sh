@@ -13,6 +13,11 @@ else
   exit 1
 fi
 
+# Get missing packages
+sudo apt-get install lzma
+sudo apt-get install liblzma-dev
+yes | sudo apt-get install libbz2-dev
+
 # Start AWS CloudWatch agent
 sudo chmod +x ./cicd-scripts/helpers/check_cloudwatch.sh
 source ./cicd-scripts/helpers/check_cloudwatch.sh
@@ -88,8 +93,9 @@ source ./venv/bin/activate
 
 # Install all spider dependencies
 echo "Installing dependencies..."
-pip install --upgrade pip
-sudo pip install --upgrade --force-reinstall -r ./search_gov_crawler/requirements.txt
+sudo pip install --force-reinstall -r ./search_gov_crawler/requirements.txt
+sudo pip install pytest-playwright playwright -U
+playwright install
 
 echo "Dependencies installed."
 

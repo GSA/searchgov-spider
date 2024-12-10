@@ -42,15 +42,6 @@ echo "Killing any existing scrapyd and scrapydweb services"
 sudo pkill -f "scrapydweb" 2>/dev/null
 sudo pkill -f "scrapyd" 2>/dev/null
 
-# Check search-gov /urls endpoint
-echo "Checking search-gov /urls api..."
-if check_url "$SPIDER_URLS_API"; then
-    echo "The /urls api is up and running at endpoint: $SPIDER_URLS_API"
-else
-    echo "Error: /urls failed failed at endpoint: $SPIDER_URLS_API"
-    exit 1
-fi
-
 echo "Running searchgov-spider application..."
 
 # Start scrapyd
