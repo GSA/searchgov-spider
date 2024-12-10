@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import pytest
 
@@ -42,8 +43,9 @@ def fixture_pipeline_with_api(mocker) -> SearchGovSpidersPipeline:
     return SearchGovSpidersPipeline()
 
 
-def test_write_to_file(pipeline_no_api, mock_open, sample_item, sample_spider):
+def test_write_to_file(pipeline_no_api, mock_open, sample_item, sample_spider, mocker):
     """Test that URLs are written to files when SPIDER_URLS_API is not set."""
+    mocker.patch.object(SearchGovSpidersPipeline, "_is_file_too_large", return_value=False)
     pipeline_no_api.process_item(sample_item, sample_spider)
 
     # Ensure file is opened and written to
