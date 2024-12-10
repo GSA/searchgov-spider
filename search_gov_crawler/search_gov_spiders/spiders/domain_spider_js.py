@@ -1,7 +1,7 @@
 from typing import Optional
 
-from scrapy.spiders import CrawlSpider, Rule
 from scrapy.http import Response, Request
+from scrapy.spiders import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
@@ -49,7 +49,6 @@ class DomainSpiderJs(CrawlSpider):
     """
 
     name: str = "domain_spider_js"
-    custom_settings: dict = {"PLAYWRIGHT_ABORT_REQUEST": should_abort_request}
     rules = (
         Rule(
             link_extractor=helpers.domain_spider_link_extractor,
@@ -58,6 +57,23 @@ class DomainSpiderJs(CrawlSpider):
             process_request="set_playwright_usage",
         ),
     )
+
+    @classmethod
+    def update_settings(cls, settings):
+        """Moved settings update to this classmethod due to complexity."""
+
+        super().update_settings(settings)
+        settings.set("PLAYWRIGHT_ABORT_REQUEST", should_abort_request, priority="spider")
+        settings.set("PLAYWRIGHT_BROWSER_TYPE", "chromium", priority="spider")
+        settings.set("PLAYWRIGHT_LAUNCH_OPTIONS", {"headless": True}, priority="spider")
+        settings.set(
+            "DOWNLOAD_HANDLERS",
+            {
+                "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+                "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+            },
+            priority="spider",
+        )
 
     def __init__(
         self, *args, allowed_domains: Optional[str] = None, start_urls: Optional[str] = None, **kwargs

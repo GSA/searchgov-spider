@@ -11,13 +11,17 @@ from scrapy.signals import spider_opened
 LOG_FMT = "%(asctime)%(name)%(levelname)%(message)"
 
 
-def search_gov_default(obj) -> str | None:
-    """Function to help serialize scrapy objects"""
+def search_gov_default(obj) -> dict | None:
+    """Function to help serialize scrapy objects in logs"""
     if isinstance(obj, Spider):
-        return obj.name
+        return {
+            "name": obj.name,
+            "allowed_domains": getattr(obj, "allowed_domains", None),
+            "start_urls": obj.start_urls,
+        }
 
     if isinstance(obj, Crawler):
-        return str(obj.settings.get("BOT_NAME", "Unknown"))
+        return {"name": str(obj.settings.get("BOT_NAME", "Unknown"))}
 
     return None
 
