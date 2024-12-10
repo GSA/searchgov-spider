@@ -18,12 +18,19 @@ from search_gov_crawler.search_gov_spiders.extensions.json_logging import (
 
 class SpiderForTest(Spider):
     def __repr__(self):
-        return self.name
+        return str(
+            {"allowed_domains": getattr(self, "allowed_domains"), "name": self.name, "start_urls": self.start_urls}
+        )
 
 
 HANDLER_TEST_CASES = [
     ("This is a test message!!", "This is a test message!!", None, None),
-    (SpiderForTest(name="handler_test"), "handler_test", SpiderForTest(name="handler_test"), "handler_test"),
+    (
+        SpiderForTest(name="handler_test", allowed_domains="example.com", start_urls="https://www.example.com"),
+        str({"allowed_domains": "example.com", "name": "handler_test", "start_urls": "https://www.example.com"}),
+        SpiderForTest(name="handler_test", allowed_domains="example.com", start_urls="https://www.example.com"),
+        {"allowed_domains": "example.com", "name": "handler_test", "start_urls": "https://www.example.com"},
+    ),
 ]
 
 

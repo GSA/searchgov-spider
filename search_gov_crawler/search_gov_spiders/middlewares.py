@@ -25,8 +25,8 @@ class MiddlewareBase:
         crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
         return s
 
-    def spider_opened(self, spider):
-        spider.logger.info(f"Spider opened: {spider.name}")
+    def spider_opened(self, spider):  # pylint: disable=unused-argument
+        ...
 
 
 class SearchGovSpidersSpiderMiddleware(MiddlewareBase):
