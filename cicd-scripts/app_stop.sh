@@ -42,7 +42,7 @@ ps -ef | grep nohup | grep -v grep | awk '{print $2}'
 remove_cron_entry() {
     if [ -z "$1" ]; then
         echo "Error: No cron entry provided."
-        exit 1
+        return
     fi
 
     CRON_ENTRY="$1"

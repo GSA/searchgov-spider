@@ -61,11 +61,11 @@ if check_url "$SCRAPYD_URL"; then
         echo "The scrapydweb service is running at $SCRAPYDWEB_URL"
     else
         echo "Error: scrapydweb failed at $SCRAPYDWEB_URL."
-        exit 1
+        return
     fi
 else
     echo "Error: scrapyd failed at $SCRAPYD_URL."
-    exit 1
+    return
 fi
 
 # Display the last few lines of logs
@@ -74,4 +74,3 @@ tail -n 10 /var/log/scrapyd.log
 
 echo -e "\n-- Last 10 lines of scrapydweb.log:\n"
 tail -n 10 /var/log/scrapydweb.log
-exit 0

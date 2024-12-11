@@ -7,19 +7,20 @@ PROCESS_ID=$(pgrep -f "scrapy_scheduler.py")
 # Check if the process exists
 if [ -z "$PROCESS_ID" ]; then
   echo "No running process found for scrapy_scheduler.py."
-  exit 0
+  return
 fi
 
 # Kill the process
 echo "Killing process with PID: $PROCESS_ID"
 kill "$PROCESS_ID"
 
+# Pause to allow the process to terminate
 sleep 3
 
 # Verify if the process was killed
-if [ $? -eq 0 ]; then
+if ! kill -0 "$PROCESS_ID" 2>/dev/null; then
   echo "Process scrapy_scheduler.py (PID: $PROCESS_ID) has been terminated."
 else
   echo "Failed to terminate the process. Please check manually."
-  exit 1
+  return
 fi

@@ -10,7 +10,7 @@ if [ "$(whoami)" = "search" ]; then
   echo "Executing cicd scripts as 'search' user"
 else
   echo "This script must be executed as 'search' user"
-  exit 1
+  return
 fi
 
 # Get missing packages
