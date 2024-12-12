@@ -10,49 +10,43 @@
 import os
 from datetime import datetime
 
-# Settings for json logging
+# Settings for logging and json logging
 LOG_ENABLED = False
 JSON_LOGGING_ENABLED = True
+LOG_LEVEL = "INFO"
 
 BOT_NAME = "search_gov_spiders"
-
 SPIDER_MODULES = ["search_gov_spiders.spiders"]
 NEWSPIDER_MODULE = "search_gov_spiders.spiders"
 
-# Crawl responsibly by identifying yourself
-# (and your website) on the user-agent
+# Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = "usasearch"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-LOG_LEVEL = "INFO"
+# Disable telnet console since we don't use it
+TELNETCONSOLE_ENABLED = False
 
-# settings for broad crawling
-SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
-# Configure maximum concurrent requests performed by Scrapy (default: 16)
-# For optimum performance, you should pick a concurrency where
-# CPU usage is at 80-90%.
-CONCURRENT_REQUESTS = 100
-CONCURRENT_REQUESTS_PER_DOMAIN = 100
 COOKIES_ENABLED = False
 REACTOR_THREADPOOL_MAXSIZE = 20
 RETRY_ENABLED = False
 DOWNLOAD_TIMEOUT = 15
+
+# Enforce slow crawling
+CONCURRENT_REQUESTS = 1
+CONCURRENT_REQUESTS_PER_DOMAIN = 1
+DOWNLOAD_DELAY = 1
+
+# settings for broad crawling
+SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # set to True for BFO
 AJAXCRAWL_ENABLED = True
+
 # crawl in BFO order rather than DFO
 DEPTH_PRIORITY = 1
 SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
 SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
-
-
-# Configure a delay for requests for the same website (default: 0)
-# See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
-# See also autothrottle settings and docs
-DOWNLOAD_DELAY = 0
-# The download delay setting will honor only one of:
-
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -71,11 +65,8 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
     "search_gov_spiders.extensions.json_logging.JsonLogging": -1,
-    "scrapy.extensions.closespider.CloseSpider": 500,
     "spidermon.contrib.scrapy.extensions.Spidermon": 600,
 }
-
-CLOSESPIDER_TIMEOUT_NO_ITEM = 50
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
@@ -87,8 +78,7 @@ ITEM_PIPELINES = {
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 AUTOTHROTTLE_ENABLED = False
-# The maximum download delay to be set in case of high latencies
-AUTOTHROTTLE_MAX_DELAY = 5
+
 
 # Enable and configure HTTP caching (disabled by default)
 # HTTPCACHE_ENABLED must be set to false for scrapy playwright to run
@@ -106,26 +96,17 @@ FEEDS = {
     }
 }
 
-# Playwright Settings
-PLAYWRIGHT_BROWSER_TYPE = "chromium"
-
-PLAYWRIGHT_LAUNCH_OPTIONS = {"headless": True}
-
-DOWNLOAD_HANDLERS = {
-    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-}
-
+# SPIDERMON SETTINGS
 now = datetime.now()
 date_time = now.today().isoformat()
-dirname= os.path.dirname(__file__)
-body_html_template = os.path.join(dirname, 'actions', 'results.jinja')
+dirname = os.path.dirname(__file__)
+body_html_template = os.path.join(dirname, "actions", "results.jinja")
 
-SPIDERMON_ENABLED = os.environ.get('SPIDERMON_ENABLED', 'False')
+SPIDERMON_ENABLED = os.environ.get("SPIDERMON_ENABLED", "False")
 SPIDERMON_MIN_ITEMS = 1000
 SPIDERMON_TIME_INTERVAL = 1  # time is in seconds
 SPIDERMON_ITEM_COUNT_INCREASE = 100
-SPIDERMON_MAX_EXECUTION_TIME = 86400 
+SPIDERMON_MAX_EXECUTION_TIME = 86400
 SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = 10
 SPIDERMON_UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
 SPIDERMON_REPORT_TEMPLATE = "results.jinja"
@@ -133,15 +114,15 @@ SPIDERMON_BODY_HTML_TEMPLATE = body_html_template
 SPIDERMON_REPORT_CONTEXT = {"report_title": "Spidermon File Report"}
 SPIDERMON_REPORT_FILENAME = f"{date_time}_spidermon_file_report.html"
 SPIDERMON_EMAIL_SUBJECT = "Spidermon report"
-SPIDERMON_EMAIL_SENDER = os.environ.get('SPIDERMON_EMAIL_SENDER')
-SPIDERMON_EMAIL_TO = os.environ.get('SPIDERMON_EMAIL_TO')
-SPIDERMON_SMTP_HOST = os.environ.get('SPIDERMON_SMTP_HOST')
-SPIDERMON_SMTP_PORT = os.environ.get('SPIDERMON_SMTP_PORT')
-SPIDERMON_SMTP_USER = os.environ.get('SPIDERMON_SMTP_USER')
-SPIDERMON_SMTP_PASSWORD =  os.environ.get('SPIDERMON_SMTP_PASSWORD')
+SPIDERMON_EMAIL_SENDER = os.environ.get("SPIDERMON_EMAIL_SENDER")
+SPIDERMON_EMAIL_TO = os.environ.get("SPIDERMON_EMAIL_TO")
+SPIDERMON_SMTP_HOST = os.environ.get("SPIDERMON_SMTP_HOST")
+SPIDERMON_SMTP_PORT = os.environ.get("SPIDERMON_SMTP_PORT")
+SPIDERMON_SMTP_USER = os.environ.get("SPIDERMON_SMTP_USER")
+SPIDERMON_SMTP_PASSWORD = os.environ.get("SPIDERMON_SMTP_PASSWORD")
 SPIDERMON_SMTP_ENFORCE_SSL = False
 SPIDERMON_SMTP_ENFORCE_TLS = True
 
 SPIDERMON_PERIODIC_MONITORS = {
-    'search_gov_spiders.monitors.PeriodicMonitorSuite': SPIDERMON_TIME_INTERVAL,
+    "search_gov_spiders.monitors.PeriodicMonitorSuite": SPIDERMON_TIME_INTERVAL,
 }
