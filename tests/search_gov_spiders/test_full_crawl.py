@@ -2,7 +2,6 @@ import json
 import tempfile
 import sys
 from pathlib import Path
-import threading
 
 import pytest
 
@@ -102,7 +101,6 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
             pipeline_cls.short_file = open(pipeline_cls.base_path_name, "w", encoding="utf-8")
             pipeline_cls.max_file_size = 3900
             pipeline_cls.paginate = True
-            pipeline_cls.lock = threading.Lock()
 
         monkeypatch.setattr(
             "search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.__init__", mock_init

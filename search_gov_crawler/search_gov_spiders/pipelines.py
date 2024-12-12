@@ -6,7 +6,6 @@ See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 import os
 from pathlib import Path
 from scrapy.exceptions import DropItem
-import fcntl
 
 class SearchGovSpidersPipeline:
     """
@@ -26,7 +25,6 @@ class SearchGovSpidersPipeline:
     def process_item(self, item, _spider):
         """Checks that the file is not at max size.
         Adds it to the file if less, or creates a new file if too large."""
-        fcntl.flock(self.short_file.fileno(), fcntl.LOCK_EX)
         line = item["url"]
         self.current_file_size += 1
         file_stats = os.stat(self.base_path_name)
@@ -42,7 +40,6 @@ class SearchGovSpidersPipeline:
         self.short_file.write(line)
         self.short_file.write("\n")
         self.current_file_size = self.current_file_size + len(line)
-        fcntl.flock(self.short_file.fileno(), fcntl.LOCK_UN)
         return item
 
 
