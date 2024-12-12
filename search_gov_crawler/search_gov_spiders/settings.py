@@ -78,8 +78,7 @@ ITEM_PIPELINES = {
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 AUTOTHROTTLE_ENABLED = False
-# The maximum download delay to be set in case of high latencies
-# AUTOTHROTTLE_MAX_DELAY = 5
+
 
 # Enable and configure HTTP caching (disabled by default)
 # HTTPCACHE_ENABLED must be set to false for scrapy playwright to run
