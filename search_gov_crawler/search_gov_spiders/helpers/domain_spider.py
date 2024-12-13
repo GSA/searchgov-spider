@@ -21,8 +21,8 @@ FILTER_EXTENSIONS = [
     "ppt", "pptx", "pps", "odt", "ods", "odg", "odp",
     # other
     "css", "exe", "bin", "rss", "dmg", "iso", "apk", "js", "xml", "ibooks",
-    "cfm", "ics", "nc", "prj", "sfx", "eventsource", "fetch",
-    "stylesheet", "websocket", "xhr", "font", "manifest",
+    "ics", "nc", "prj", "sfx", "eventsource", "fetch", "stylesheet", "websocket",
+    "xhr", "font", "manifest",
 ]
 # fmt: on
 
@@ -42,6 +42,7 @@ domain_spider_link_extractor = LinkExtractor(
     allow=(),
     deny=LINK_DENY_REGEX_STR,
     deny_extensions=FILTER_EXTENSIONS,
+    tags=("a", "area", "va-link"),  # specified to account for custom link tags
     unique=True,
 )
 
