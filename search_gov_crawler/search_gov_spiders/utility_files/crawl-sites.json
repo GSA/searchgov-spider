@@ -78,12 +78,6 @@
         "starting_urls": "https://coastwatch.noaa.gov/cw/index.html"
     },
     {
-        "name": "NOAA Coastwatch Caribbean",
-        "allowed_domains": "cwcaribbean.aoml.noaa.gov",
-        "handle_javascript": false,
-        "starting_urls": "https://cwcaribbean.aoml.noaa.gov/"
-    },
-    {
         "name": "NOAA CoastWatch East Coast Node",
         "allowed_domains": "eastcoast.coastwatch.noaa.gov",
         "handle_javascript": false,
