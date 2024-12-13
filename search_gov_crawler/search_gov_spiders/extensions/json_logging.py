@@ -2,13 +2,14 @@ import logging
 from typing import Self
 
 from pythonjsonlogger.json import JsonFormatter
-from scrapy.spiders import Spider
 from scrapy.crawler import Crawler
 from scrapy.exceptions import NotConfigured
 from scrapy.signals import spider_opened
-
+from scrapy.spiders import Spider
+from scrapy.utils.project import get_project_settings
 
 LOG_FMT = "%(asctime)%(name)%(levelname)%(message)"
+LOG_LEVEL = get_project_settings().get("LOG_LEVEL") or "INFO"
 
 
 def search_gov_default(obj) -> dict | None:
@@ -32,7 +33,7 @@ class SearchGovSpiderStreamHandler(logging.StreamHandler):
     def __init__(self, *_args, **_kwargs):
         super().__init__(*_args, **_kwargs)
         formatter = JsonFormatter(fmt=LOG_FMT, json_default=search_gov_default)
-        self.setLevel(logging.INFO)
+        self.setLevel(LOG_LEVEL)
         self.setFormatter(formatter)
 
 
@@ -42,17 +43,14 @@ class SearchGovSpiderFileHandler(logging.FileHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         formatter = JsonFormatter(fmt=LOG_FMT, json_default=search_gov_default)
-        self.setLevel(logging.INFO)
+        self.setLevel(LOG_LEVEL)
         self.setFormatter(formatter)
 
     @classmethod
     def from_hanlder(cls, handler: logging.FileHandler) -> "SearchGovSpiderFileHandler":
         """Create a json file handler based on values used by an existing FileHandler"""
 
-        if handler.baseFilename == "/dev/null":
-            new_filename = handler.baseFilename
-        else:
-            new_filename = f"{handler.baseFilename}.json"
+        new_filename = handler.baseFilename if handler.baseFilename == "/dev/null" else f"{handler.baseFilename}.json"
 
         return cls(
             filename=new_filename,
@@ -77,7 +75,7 @@ class JsonLogging:
 
         if not self.file_hanlder_enabled:
             root_logger = logging.getLogger()
-            root_logger.setLevel(logging.INFO)
+            root_logger.setLevel(LOG_LEVEL)
 
             file_handlers = [handler for handler in root_logger.handlers if isinstance(handler, logging.FileHandler)]
 
