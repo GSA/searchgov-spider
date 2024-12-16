@@ -48,8 +48,8 @@ class SearchGovSpidersPipeline:
         return item
     
     def _write_to_file(self, line):
-        updatd_file_size = self._get_file_size(line)
-        if self.paginate and updatd_file_size > self.max_file_size:
+        updated_file_size = self._get_file_size(line)
+        if self.paginate and updated_file_size > self.MAX_FILE_SIZE_BYTES:
            self._create_new_file()
         self.short_file.write(line)
         self.short_file.write("\n")
@@ -88,7 +88,7 @@ class SearchGovSpidersPipeline:
 
     def close_spider(self, spider):
         """Close the file or send remaining URLs if needed when the spider finishes."""
-        if not self.api_url and self.current_file:
+        if not self.api_url and self.short_file:
             self.short_file.close()
         elif self.api_url:
             self._post_urls(spider)  # Send any remaining URLs on spider close
