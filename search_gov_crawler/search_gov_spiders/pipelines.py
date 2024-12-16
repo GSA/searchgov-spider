@@ -2,7 +2,7 @@
 Don't forget to add your pipeline to the ITEM_PIPELINES setting
 See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 """
-
+import requests
 import os
 from pathlib import Path
 from scrapy.exceptions import DropItem
@@ -41,7 +41,21 @@ class SearchGovSpidersPipeline:
         self.short_file.write("\n")
         self.current_file_size = self.current_file_size + len(line)
         return item
+    
+    def _is_batch_too_large(self, new_entry_size):
+        pass
 
+    def _is_file_too_large(self, new_entry_size):
+        pass
+
+    def _rotate_file(self):
+        pass
+
+    def _post_urls(self, spider):
+        pass
+
+    def close_spider(self, spider):
+        pass
 
 class DeDeuplicatorPipeline:
     """Class for pipeline that removes duplicate items"""
