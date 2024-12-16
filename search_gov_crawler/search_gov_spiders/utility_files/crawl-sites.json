@@ -102,12 +102,6 @@
         "starting_urls": "https://www.goes-r.gov"
     },
     {
-        "name": "NRCS WCC portal",
-        "allowed_domains": "nrcs.usda.gov",
-        "handle_javascript": false,
-        "starting_urls": "https://www.nrcs.usda.gov/wps/portal/wcc/home/"
-    },
-    {
         "name": "TREAS - FinCEN",
         "allowed_domains": "fincen.gov",
         "handle_javascript": false,
