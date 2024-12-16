@@ -35,37 +35,44 @@ class SearchGovSpidersPipeline:
 
         line = item["url"]
         line_size = len(line.encode("utf-8"))
+        
         # If API URL is set, batch URLs and send a POST request when max size is reached
         if self.api_url:
             self.urls_batch.append(item.get("url", ""))
             if self._is_batch_too_large(line_size):
                 self._post_urls(spider)
+        # Otherwise, write to file
         else:
-            self.current_file_size += 1
-            file_stats = os.stat(self.base_path_name)
-            self.current_file_size += file_stats.st_size
-            next_file_size = self.current_file_size + len(line)
-            if self.paginate and next_file_size > self.max_file_size:
-                self.short_file.close()
-                new_name = str(self.parent_file_path / f"output/all-links-p{os.getpid()}-{self.file_number}.csv")
-                os.rename(self.base_path_name, new_name)
-                self.file_number = self.file_number + 1
-                self.short_file = open(self.base_path_name, "w", encoding="utf-8")
-                self.current_file_size = 0
-            self.short_file.write(line)
-            self.short_file.write("\n")
-            self.current_file_size = self.current_file_size + len(line)
+            self._write_to_file(line)
+            
         return item
+    
+    def _write_to_file(self, line):
+        updatd_file_size = self._get_file_size(line)
+        if self.paginate and updatd_file_size > self.max_file_size:
+           self._create_new_file()
+        self.short_file.write(line)
+        self.short_file.write("\n")
+        self.current_file_size = self.current_file_size + len(line)
+
+    def _get_file_size(self, line):
+        self.current_file_size += 1
+        file_stats = os.stat(self.base_path_name)
+        self.current_file_size += file_stats.st_size
+        next_file_size = self.current_file_size + len(line)
+        return next_file_size
+
+    def _create_new_file(self):
+        self.short_file.close()
+        new_name = str(self.parent_file_path / f"output/all-links-p{os.getpid()}-{self.file_number}.csv")
+        os.rename(self.base_path_name, new_name)
+        self.file_number = self.file_number + 1
+        self.short_file = open(self.base_path_name, "w", encoding="utf-8")
+        self.current_file_size = 0
     
     def _is_batch_too_large(self, new_entry_size):
         current_batch_size = sum(len(url.encode("utf-8")) for url in self.urls_batch)
         return (current_batch_size + new_entry_size) > self.MAX_FILE_SIZE_BYTES
-
-    def _is_file_too_large(self, new_entry_size):
-        pass
-
-    def _rotate_file(self):
-        pass
 
     def _post_urls(self, spider):
         """Send a POST request with the batch of URLs if any exist."""
@@ -82,7 +89,7 @@ class SearchGovSpidersPipeline:
     def close_spider(self, spider):
         """Close the file or send remaining URLs if needed when the spider finishes."""
         if not self.api_url and self.current_file:
-            self.current_file.close()
+            self.short_file.close()
         elif self.api_url:
             self._post_urls(spider)  # Send any remaining URLs on spider close
 
