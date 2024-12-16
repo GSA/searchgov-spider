@@ -1,10 +1,9 @@
 import json
-import tempfile
 import sys
+import tempfile
 from pathlib import Path
 
 import pytest
-
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
@@ -53,25 +52,41 @@ FULL_CRAWL_TEST_CASES = [
     (
         DomainSpider,
         False,
-        {"allowed_domains": "quotes.toscrape.com", "start_urls": "https://quotes.toscrape.com/"},
+        {
+            "allow_query_string": False,
+            "allowed_domains": "quotes.toscrape.com",
+            "start_urls": "https://quotes.toscrape.com/",
+        },
         378,
     ),
     (
         DomainSpider,
         False,
-        {"allowed_domains": "quotes.toscrape.com/tag/", "start_urls": "https://quotes.toscrape.com/"},
+        {
+            "allow_query_string": False,
+            "allowed_domains": "quotes.toscrape.com/tag/",
+            "start_urls": "https://quotes.toscrape.com/",
+        },
         120,
     ),
     (
         DomainSpiderJs,
         True,
-        {"allowed_domains": "quotes.toscrape.com", "start_urls": "https://quotes.toscrape.com/js/"},
+        {
+            "allow_query_string": False,
+            "allowed_domains": "quotes.toscrape.com",
+            "start_urls": "https://quotes.toscrape.com/js/",
+        },
         388,
     ),
     (
         DomainSpiderJs,
         True,
-        {"allowed_domains": "quotes.toscrape.com/js/", "start_urls": "https://quotes.toscrape.com/js/"},
+        {
+            "allow_query_string": False,
+            "allowed_domains": "quotes.toscrape.com/js/",
+            "start_urls": "https://quotes.toscrape.com/js/",
+        },
         10,
     ),
 ]
@@ -89,6 +104,8 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
         },
     )
 
+    max_file_size = 3900  # intentionally kept low to allow for paging of files in small dataset
+
     with tempfile.NamedTemporaryFile(suffix=".json") as output_file:
         temp_dir = Path(str(output_file.name)).parent
         temp_dir.joinpath("output").mkdir(exist_ok=True)
@@ -99,7 +116,7 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
             pipeline_cls.parent_file_path = temp_dir
             pipeline_cls.base_path_name = str(pipeline_cls.parent_file_path / "output/all-links.csv")
             pipeline_cls.short_file = open(pipeline_cls.base_path_name, "w", encoding="utf-8")
-            pipeline_cls.max_file_size = 3900
+            pipeline_cls.max_file_size = max_file_size
             pipeline_cls.paginate = True
 
         monkeypatch.setattr(
@@ -121,4 +138,4 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
         assert len(links) == expected_results
 
         # verify split files exist and are under max file size
-        assert all(split_file.stat().st_size < 3900 for split_file in split_files)
+        assert all(split_file.stat().st_size < max_file_size for split_file in split_files)
