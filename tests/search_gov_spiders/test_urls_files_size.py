@@ -40,7 +40,8 @@ def fixture_pipeline_no_api(mock_open, mocker) -> SearchGovSpidersPipeline:
 def fixture_pipeline_with_api(mocker) -> SearchGovSpidersPipeline:
     """Fixture for pipeline with an API URL set."""
     mocker.patch.dict(os.environ, {"SPIDER_URLS_API": "http://mockapi.com"})
-    mocker.patch("os.getpid", return_value=1234)
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.APP_PID", 1234)
+
     return SearchGovSpidersPipeline()
 
 
