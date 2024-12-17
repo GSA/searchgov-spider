@@ -18,10 +18,10 @@ check_codedeploy() {
 # Ensure the script is added to crontab for execution on reboot
 setup_cron() {
     sudo chmod +x ./cicd-scripts/helpers/check_codedeploy.sh
-    CRON_ENTRY="@reboot /bin/bash $PWD/helpers/check_codedeploy.sh"
+    CRON_ENTRY="@reboot $(pwd)/cicd-scripts/helpers/check_codedeploy.sh"
 
     # Update crontab, ensuring no duplicates
-    (sudo crontab -l 2>/dev/null | grep -v -F "$CRON_ENTRY"; echo "$CRON_ENTRY") | sudo crontab -
+    (crontab -l 2>/dev/null | grep -v -F "check_codedeploy.sh"; echo "$CRON_ENTRY") | crontab -
     echo "Crontab entry added to ensure the script runs on reboot."
 }
 

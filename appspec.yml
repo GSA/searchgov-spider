@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 permissions:
   - object: .
-    mode: 755
+    mode: 777
     acls:
       - "d:u::rwx"
       - "d:g::rwx"

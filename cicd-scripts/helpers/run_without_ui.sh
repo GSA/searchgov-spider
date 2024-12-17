@@ -1,4 +1,8 @@
 #!/bin/bash
-SPIDER_PYTHON_VERSION=3.12
-sudo bash -c "nohup /usr/local/bin/python${SPIDER_PYTHON_VERSION} ./search_gov_crawler/scrapy_scheduler.py > /var/log/scrapy.log 2>&1 &"
+
+# Run the script in the background using the virtual environment
+chmod +x ./search_gov_crawler/scrapy_scheduler.py
+
+sudo nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./search_gov_crawler/scrapy_scheduler.py" > /var/log/scrapy_scheduler.log 2>&1 &
+
 echo "Running no UI vesrion of searchgov-spider..."
