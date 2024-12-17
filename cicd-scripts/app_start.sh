@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "###" $(pwd)
 chmod +x ./cicd-scripts/helpers/ensure_executable.sh
 ./cicd-scripts/helpers/ensure_executable.sh
 
