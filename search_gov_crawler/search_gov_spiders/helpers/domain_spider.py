@@ -8,7 +8,7 @@ from scrapy.linkextractors import LinkExtractor
 # fmt: off
 FILTER_EXTENSIONS = [
     # archives
-    "7z", "7zip", "bz2", "rar", "tar", "tar.gz", "xz", "zip", "gz"
+    "7z", "7zip", "bz2", "rar", "tar", "tar.gz", "xz", "zip", "gz",
     # images
     "mng", "pct", "bmp", "gif", "jpg", "jpeg", "png", "pst", "psp", "image",
     "tif", "tiff", "ai", "drw", "dxf", "eps", "ps", "svg", "cdr", "ico",
@@ -21,8 +21,8 @@ FILTER_EXTENSIONS = [
     "ppt", "pptx", "pps", "odt", "ods", "odg", "odp",
     # other
     "css", "exe", "bin", "rss", "dmg", "iso", "apk", "js", "xml", "ibooks",
-    "ics", "nc", "prj", "sfx", "eventsource", "fetch", "stylesheet", "websocket",
-    "xhr", "font", "manifest",
+    "ics", "nc", "nc4", "prj", "sfx", "eventsource", "fetch", "stylesheet",
+    "websocket", "xhr", "font", "manifest", "hdf",
 ]
 # fmt: on
 
