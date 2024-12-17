@@ -1,5 +1,8 @@
 #!/bin/bash
-echo "###" $(pwd)
+
+# CD into the current script directory (which != $pwd)
+cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
+
 chmod +x ./cicd-scripts/helpers/ensure_executable.sh
 ./cicd-scripts/helpers/ensure_executable.sh
 
