@@ -1,7 +1,7 @@
 import json
 import logging
-import subprocess
 import os
+import subprocess
 from pathlib import Path
 
 from apscheduler.executors.pool import ThreadPoolExecutor
@@ -20,26 +20,25 @@ log.handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 CRAWL_SITES_FILE = Path(__file__).parent / "search_gov_spiders" / "utility_files" / "crawl-sites.json"
 
 
-def run_scrapy_crawl(spider: str, allowed_domains: str, start_urls: str) -> None:
+def run_scrapy_crawl(spider: str, allow_query_string: bool, allowed_domains: str, start_urls: str) -> None:
     """Runs `scrapy crawl` command as a subprocess given the allowed arguments"""
 
     scrapy_env = os.environ.copy()
     scrapy_env["PYTHONPATH"] = str(Path(__file__).parent.parent)
 
     subprocess.run(
-        f"scrapy crawl {spider} -a allowed_domains={allowed_domains} -a start_urls={start_urls}",
+        f"scrapy crawl {spider} -a allow_query_string={allow_query_string} -a allowed_domains={allowed_domains} -a start_urls={start_urls}",
         check=True,
         cwd=Path(__file__).parent,
         env=scrapy_env,
         executable="/bin/bash",
         shell=True,
     )
-    log.info(
-        "Successfully completed scrapy crawl with args spider=%s, allowed_domains=%s, start_urls=%s",
-        spider,
-        allowed_domains,
-        start_urls,
+    msg = (
+        "Successfully completed scrapy crawl with args "
+        "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s"
     )
+    log.info(msg, spider, allow_query_string, allowed_domains, start_urls)
 
 
 def transform_crawl_sites(crawl_sites: list[dict]) -> list[dict]:
@@ -70,6 +69,7 @@ def transform_crawl_sites(crawl_sites: list[dict]) -> list[dict]:
                 ),
                 "args": [
                     "domain_spider" if not crawl_site["handle_javascript"] else "domain_spider_js",
+                    crawl_site["allow_query_string"],
                     crawl_site["allowed_domains"],
                     crawl_site["starting_urls"],
                 ],
