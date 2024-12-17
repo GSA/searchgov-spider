@@ -110,6 +110,7 @@ def test_convert_plist_to_json(monkeypatch):
         assert len(crawl_output_records) == 3
         assert crawl_output_records[0] == {
             "name": "scrape example 1",
+            "allow_query_string": False,
             "allowed_domains": "example.com",
             "handle_javascript": True,
             "starting_urls": "https://www.example.com/1",
