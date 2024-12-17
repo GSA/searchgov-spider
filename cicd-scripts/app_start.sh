@@ -6,7 +6,7 @@ cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
 echo "### $pwd"
 
 chmod +x ./cicd-scripts/helpers/ensure_executable.sh
-./cicd-scripts/helpers/ensure_executable.sh
+source ./cicd-scripts/helpers/ensure_executable.sh
 
 # TODO: Make it part of the local env variable that is set by Ansible
 SPIDER_RUN_WITH_UI=false
