@@ -22,7 +22,7 @@ FILTER_EXTENSIONS = [
     # other
     "css", "exe", "bin", "rss", "dmg", "iso", "apk", "js", "xml", "ibooks",
     "ics", "nc", "nc4", "prj", "sfx", "eventsource", "fetch", "stylesheet",
-    "websocket", "xhr", "font", "manifest", "hdf",
+    "websocket", "xhr", "font", "manifest", "hdf", "geojson",
 ]
 # fmt: on
 
