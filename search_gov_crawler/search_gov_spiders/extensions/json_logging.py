@@ -6,10 +6,8 @@ from scrapy.crawler import Crawler
 from scrapy.exceptions import NotConfigured
 from scrapy.signals import spider_opened
 from scrapy.spiders import Spider
-from scrapy.utils.project import get_project_settings
 
 LOG_FMT = "%(asctime)%(name)%(levelname)%(message)"
-LOG_LEVEL = get_project_settings().get("LOG_LEVEL") or "INFO"
 
 
 def search_gov_default(obj) -> dict | None:
@@ -30,29 +28,30 @@ def search_gov_default(obj) -> dict | None:
 class SearchGovSpiderStreamHandler(logging.StreamHandler):
     """Extension of logging.StreamHandler with our level, fmt, and defaults"""
 
-    def __init__(self, *_args, **_kwargs):
+    def __init__(self, log_level, *_args, **_kwargs):
         super().__init__(*_args, **_kwargs)
         formatter = JsonFormatter(fmt=LOG_FMT, json_default=search_gov_default)
-        self.setLevel(LOG_LEVEL)
+        self.setLevel(log_level)
         self.setFormatter(formatter)
 
 
 class SearchGovSpiderFileHandler(logging.FileHandler):
     """Extension of logging.File with our level, fmt, and defaults"""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, log_level, *args, **kwargs):
         super().__init__(*args, **kwargs)
         formatter = JsonFormatter(fmt=LOG_FMT, json_default=search_gov_default)
-        self.setLevel(LOG_LEVEL)
+        self.setLevel(log_level)
         self.setFormatter(formatter)
 
     @classmethod
-    def from_hanlder(cls, handler: logging.FileHandler) -> "SearchGovSpiderFileHandler":
+    def from_hanlder(cls, handler: logging.FileHandler, log_level: str) -> "SearchGovSpiderFileHandler":
         """Create a json file handler based on values used by an existing FileHandler"""
 
         new_filename = handler.baseFilename if handler.baseFilename == "/dev/null" else f"{handler.baseFilename}.json"
 
         return cls(
+            log_level=log_level,
             filename=new_filename,
             mode=handler.mode,
             encoding=handler.encoding,
@@ -65,9 +64,11 @@ class JsonLogging:
     """Scrapy extension that injects JSON logging into a spider run."""
 
     file_hanlder_enabled: bool
+    log_level: str
 
-    def __init__(self):
+    def __init__(self, log_level):
         self.file_hanlder_enabled = False
+        self.log_level = log_level
         self._add_json_handlers()
 
     def _add_json_handlers(self) -> None:
@@ -75,28 +76,30 @@ class JsonLogging:
 
         if not self.file_hanlder_enabled:
             root_logger = logging.getLogger()
-            root_logger.setLevel(LOG_LEVEL)
+            root_logger.setLevel(self.log_level)
 
             file_handlers = [handler for handler in root_logger.handlers if isinstance(handler, logging.FileHandler)]
 
             for file_handler in file_handlers:
-                root_logger.addHandler(SearchGovSpiderFileHandler.from_hanlder(file_handler))
+                root_logger.addHandler(
+                    SearchGovSpiderFileHandler.from_hanlder(handler=file_handler, log_level=self.log_level)
+                )
                 self.file_hanlder_enabled = True
 
             if not any(
                 handler for handler in root_logger.handlers if isinstance(handler, SearchGovSpiderStreamHandler)
             ):
-                root_logger.addHandler(SearchGovSpiderStreamHandler())
+                root_logger.addHandler(SearchGovSpiderStreamHandler(log_level=self.log_level))
 
     @classmethod
-    def from_crawler(cls, crawler) -> Self:
+    def from_crawler(cls, crawler: Crawler) -> Self:
         """
         Required extension method that checks for configuration and connects extension methons to signals
         """
         if not crawler.settings.getbool("JSON_LOGGING_ENABLED"):
             raise NotConfigured("JsonLogging Extension is listed in Extension but is not enabled.")
 
-        ext = cls()
+        ext = cls(log_level=crawler.settings.get("LOG_LEVEL", "INFO"))
         crawler.signals.connect(ext.spider_opened, signal=spider_opened)
         return ext
 
