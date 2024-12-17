@@ -1,10 +1,9 @@
 import os
-from pathlib import Path
 
 import pytest
-
 from scrapy import Spider
 from scrapy.utils.test import get_crawler
+
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.search_gov_spiders.pipelines import SearchGovSpidersPipeline
 
@@ -33,7 +32,7 @@ def fixture_mock_open(mocker):
 @pytest.fixture(name="pipeline_no_api")
 def fixture_pipeline_no_api(mock_open, mocker) -> SearchGovSpidersPipeline:
     mocker.patch.dict(os.environ, {})
-    mocker.patch('os.getpid', return_value=1234)
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.APP_PID", 1234)
     return SearchGovSpidersPipeline()
 
 
@@ -41,16 +40,18 @@ def fixture_pipeline_no_api(mock_open, mocker) -> SearchGovSpidersPipeline:
 def fixture_pipeline_with_api(mocker) -> SearchGovSpidersPipeline:
     """Fixture for pipeline with an API URL set."""
     mocker.patch.dict(os.environ, {"SPIDER_URLS_API": "http://mockapi.com"})
-    mocker.patch('os.getpid', return_value=1234)
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.APP_PID", 1234)
+
     return SearchGovSpidersPipeline()
 
 
 def test_write_to_file(pipeline_no_api, mock_open, sample_item, sample_spider, mocker):
     """Test that URLs are written to files when SPIDER_URLS_API is not set."""
+    mocker.patch.object(SearchGovSpidersPipeline, "_file_size", return_value=100)
     pipeline_no_api.process_item(sample_item, sample_spider)
 
     # Ensure file is opened and written to
-    mock_open.assert_called_once_with(pipeline_no_api.base_file_name, "w", encoding="utf-8")
+    mock_open.assert_called_once_with(pipeline_no_api.file_path, "a", encoding="utf-8")
     mock_open().write.assert_any_call(sample_item["url"] + "\n")
 
 
@@ -64,7 +65,11 @@ def test_post_to_api(pipeline_with_api, sample_item, sample_spider, mocker):
     assert sample_item["url"] in pipeline_with_api.urls_batch
 
     # Simulate max size to force post
-    mocker.patch.object(SearchGovSpidersPipeline, "_is_batch_too_large", return_value=True)
+    mocker.patch.object(
+        SearchGovSpidersPipeline,
+        "_batch_size",
+        return_value=SearchGovSpidersPipeline.MAX_FILE_SIZE_BYTES,
+    )
     pipeline_with_api.process_item(sample_item, sample_spider)
 
     # Ensure POST request was made
@@ -74,15 +79,17 @@ def test_post_to_api(pipeline_with_api, sample_item, sample_spider, mocker):
 def test_rotate_file(pipeline_no_api, mock_open, sample_item, mocker):
     """Test that file rotation occurs when max size is exceeded."""
     mock_rename = mocker.patch("os.rename")
-
+    mocker.patch.object(
+        SearchGovSpidersPipeline,
+        "_file_size",
+        return_value=SearchGovSpidersPipeline.MAX_FILE_SIZE_BYTES,
+    )
     pipeline_no_api.process_item(sample_item, None)
 
     # Check if the file was rotated
-    mock_open.assert_called_with(pipeline_no_api.base_file_name, "a", encoding="utf-8")
+    mock_open.assert_called_with(pipeline_no_api.file_path, "a", encoding="utf-8")
     mock_open().close.assert_called()
-    mock_rename.assert_called_once_with(
-        pipeline_no_api.file_path, pipeline_no_api.parent_file_path / "output/all-links-1.csv"
-    )
+    mock_rename.assert_called_once()
 
 
 def test_post_urls_on_spider_close(pipeline_with_api, sample_spider, mocker):
