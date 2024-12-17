@@ -33,6 +33,7 @@ def fixture_mock_open(mocker):
 @pytest.fixture(name="pipeline_no_api")
 def fixture_pipeline_no_api(mock_open, mocker) -> SearchGovSpidersPipeline:
     mocker.patch.dict(os.environ, {})
+    mocker.patch('os.getpid', return_value=1234)
     return SearchGovSpidersPipeline()
 
 
@@ -40,12 +41,12 @@ def fixture_pipeline_no_api(mock_open, mocker) -> SearchGovSpidersPipeline:
 def fixture_pipeline_with_api(mocker) -> SearchGovSpidersPipeline:
     """Fixture for pipeline with an API URL set."""
     mocker.patch.dict(os.environ, {"SPIDER_URLS_API": "http://mockapi.com"})
+    mocker.patch('os.getpid', return_value=1234)
     return SearchGovSpidersPipeline()
 
 
 def test_write_to_file(pipeline_no_api, mock_open, sample_item, sample_spider, mocker):
     """Test that URLs are written to files when SPIDER_URLS_API is not set."""
-    mocker.patch.object(SearchGovSpidersPipeline, "_is_file_too_large", return_value=False)
     pipeline_no_api.process_item(sample_item, sample_spider)
 
     # Ensure file is opened and written to
@@ -74,11 +75,10 @@ def test_rotate_file(pipeline_no_api, mock_open, sample_item, mocker):
     """Test that file rotation occurs when max size is exceeded."""
     mock_rename = mocker.patch("os.rename")
 
-    mocker.patch.object(SearchGovSpidersPipeline, "_is_file_too_large", return_value=True)
     pipeline_no_api.process_item(sample_item, None)
 
     # Check if the file was rotated
-    mock_open.assert_called_with(pipeline_no_api.base_file_name, "w", encoding="utf-8")
+    mock_open.assert_called_with(pipeline_no_api.base_file_name, "a", encoding="utf-8")
     mock_open().close.assert_called()
     mock_rename.assert_called_once_with(
         pipeline_no_api.file_path, pipeline_no_api.parent_file_path / "output/all-links-1.csv"

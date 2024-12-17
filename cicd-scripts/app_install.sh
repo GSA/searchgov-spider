@@ -36,6 +36,7 @@ install_python() {
     cd /usr/src
     wget -q https://www.python.org/ftp/python/${SPIDER_PYTHON_VERSION}.0/Python-${SPIDER_PYTHON_VERSION}.0.tgz
     tar xzf Python-${SPIDER_PYTHON_VERSION}.0.tgz
+    sudo chown -R $(whoami) ./Python-${SPIDER_PYTHON_VERSION}.0
     cd Python-${SPIDER_PYTHON_VERSION}.0
     ./configure --enable-optimizations
     make
