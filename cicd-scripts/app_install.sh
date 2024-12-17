@@ -34,11 +34,13 @@ install_system_dependencies() {
 install_python() {
     echo "Installing Python ${SPIDER_PYTHON_VERSION}..."
     cd /usr/src
-    sudo wget -q https://www.python.org/ftp/python/${SPIDER_PYTHON_VERSION}.0/Python-${SPIDER_PYTHON_VERSION}.0.tgz
-    sudo tar xzf Python-${SPIDER_PYTHON_VERSION}.0.tgz
+    wget -q https://www.python.org/ftp/python/${SPIDER_PYTHON_VERSION}.0/Python-${SPIDER_PYTHON_VERSION}.0.tgz
+    tar xzf Python-${SPIDER_PYTHON_VERSION}.0.tgz
     cd Python-${SPIDER_PYTHON_VERSION}.0
-    sudo ./configure --enable-optimizations
-    sudo make altinstall
+    ./configure --enable-optimizations
+    make
+    make install
+    make altinstall
     cd "$_CURRENT_BUILD_DIR"
     echo "Python ${SPIDER_PYTHON_VERSION} installed successfully."
 }
@@ -78,8 +80,8 @@ install_dependencies() {
 # Configure permissions
 configure_permissions() {
     echo "Configuring file permissions..."
-    sudo chmod -R 777 .
-    sudo chown -R "$(whoami)" .
+    chmod -R 777 .
+    chown -R "$(whoami)" .
     sudo setfacl -Rdm g:dgsearch:rwx .
 }
 

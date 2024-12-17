@@ -17,7 +17,7 @@ check_cloudwatch() {
 
 # Ensure the script is added to crontab for execution on reboot
 setup_cron() {
-    sudo chmod +x ./cicd-scripts/helpers/check_cloudwatch.sh
+    chmod +x ./cicd-scripts/helpers/check_cloudwatch.sh
     CRON_ENTRY="@reboot $(pwd)/cicd-scripts/helpers/check_cloudwatch.sh"
 
     # Update crontab, ensuring no duplicates
