@@ -1,5 +1,12 @@
 #!/bin/bash
+# Define the current directory
+# CURRENT_DIR=$(pwd)
+ls -a
+# echo "Your current directory is $CURRENT_DIR"
+
 cd search_gov_crawler
 ls
+which python
+echo $PYTHONPATH
 python -c "print('Hello World')"
-python -c 'scrapy crawl domain_spider -a allowed_domains="quotes.toscrape.com/tag/" -a start_urls="https://quotes.toscrape.com"'
+python benchmark.py -f ./test_parallel_domain.json
