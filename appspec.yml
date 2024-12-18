@@ -1,0 +1,25 @@
+version: 0.0
+os: linux
+permissions:
+  - object: .
+    mode: 777
+    acls:
+      - "d:u::rwx"
+      - "d:g::rwx"
+      - "d:o::rwx"
+    owner: search
+    type:
+      - directory
+hooks:
+  AfterInstall:
+    - location: cicd-scripts/app_install.sh
+      timeout: 600
+      runas: search
+  ApplicationStart:
+    - location: cicd-scripts/app_start.sh
+      timeout: 300
+      runas: search
+  ApplicationStop:
+    - location: cicd-scripts/app_stop.sh
+      timeout: 300
+      runas: search
