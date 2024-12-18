@@ -10,5 +10,4 @@ scrapy-playwright==0.0.42
 scrapyd==1.5.0
 scrapyd-client==2.0.0
 scrapydweb @ git+https://github.com/GSA/searchgov-scrapydweb
-spidermon [monitoring] == 1.22.0
 spidermon[monitoring]==1.22.0
