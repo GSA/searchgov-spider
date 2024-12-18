@@ -1,6 +1,4 @@
-from typing import Optional
-
-from scrapy.http import Response, Request
+from scrapy.http import Request, Response
 from scrapy.spiders import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
@@ -10,9 +8,7 @@ from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 def should_abort_request(request):
     """Helper function to tell playwright if it should process requests based on resource type"""
 
-    if request.resource_type in helpers.FILTER_EXTENSIONS:
-        return True
-    return False
+    return request.resource_type in helpers.FILTER_EXTENSIONS
 
 
 class DomainSpiderJs(CrawlSpider):
@@ -20,13 +16,15 @@ class DomainSpiderJs(CrawlSpider):
     Main spider for crawling and retrieving URLs using a headless browser to hanlde javascript.
     Will grab single values for url and domain or use multiple comma-separated inputs.
     If nothing is passed, it will crawl using the default list of domains and urls.  Supports path
-    filtering of domains by extending the built-in OffsiteMiddleware.
+    filtering of domains by extending the built-in OffsiteMiddleware.  Has the ability to allow URLs
+    with query string parameters if desired.
 
     Playwright javascript handling is enabled and resource intensive, only use if needed.  For crawls
     that don't require html, use `domain_spider`.
 
     To use the CLI for crawling domain/site follow the pattern below.  The desired domains and urls can
-    be either single values or comma separated lists.
+    be either single values or comma separated lists. An optional allow_query_string parameter can also
+    be passed. The default is false.
 
     `scrapy crawl domain_spider -a allowed_domains=<desired_domains> -a start_urls=<desired_urls>`
 
@@ -38,6 +36,10 @@ class DomainSpiderJs(CrawlSpider):
     - `allowed_domains="test-3.example.com"`
     - `start_urls="http://test-3.example.com/"`
 
+    - `allow_query_string=true`
+    - `allowed_domains="test-4.example.com"`
+    - `start_urls="http://test-4.example.com/"`
+
     CLI Usage
     - ```scrapy crawl domain_spider_js```
     - ```scrapy crawl domain_spider_js \
@@ -46,6 +48,10 @@ class DomainSpiderJs(CrawlSpider):
     - ```scrapy crawl domain_spider \
              -a allowed_domains=test-3.example.com \
              -a start_urls=http://test-3.example.com/```
+    - ```scrapy crawl domain_spider \
+             -a allow_query_string=true \
+             -a allowed_domains=test-4.example.com \
+             -a start_urls=http://test-4.example.com/```
     """
 
     name: str = "domain_spider_js"
@@ -76,12 +82,19 @@ class DomainSpiderJs(CrawlSpider):
         )
 
     def __init__(
-        self, *args, allowed_domains: Optional[str] = None, start_urls: Optional[str] = None, **kwargs
+        self,
+        *args,
+        allow_query_string: bool = False,
+        allowed_domains: str | None = None,
+        start_urls: str | None = None,
+        **kwargs,
     ) -> None:
         if any([allowed_domains, start_urls]) and not all([allowed_domains, start_urls]):
             raise ValueError("Invalid arguments: allowed_domains and start_urls must be used together or not at all.")
 
         super().__init__(*args, **kwargs)
+
+        self.allow_query_string = allow_query_string
 
         self.allowed_domains = (
             helpers.split_allowed_domains(allowed_domains)

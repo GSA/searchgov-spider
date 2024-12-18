@@ -10,6 +10,8 @@ FILTER_IDS = (
     "20220616-073159",  # NOAA CoastWatch Central Pacific
     "20220411-163415",  # US Committee on the Marine Transportation System
     "20220712-164738",  # NASA James Webb Space Telescope
+    "20190619-065717",  # NRCS WCC portal
+    "20220615-165843",  # "NOAA Coastwatch Caribbean
 )
 
 
@@ -36,6 +38,8 @@ def apply_manual_updates(input_record: dict) -> dict:
             output_record = input_record | {"allowed_domains": "va.gov/accountability/"}
         case {"starting_urls": "https://www.va.gov/resources/"}:
             output_record = input_record | {"allowed_domains": "va.gov/resources/"}
+        case {"starting_urls": "https://www.herc.research.va.gov/"}:
+            output_record = input_record | {"allow_query_string": True, "name": "VA HERC Research"}
         case _:
             output_record = input_record
 
@@ -71,6 +75,7 @@ def convert_plist_to_json(input_file: str, output_file: str, write_full_output: 
     search_gov_records = [
         {
             "name": str(record["name"]).lstrip("_"),
+            "allow_query_string": False,
             "allowed_domains": create_allowed_domain(record["startingUrl"]),
             "handle_javascript": record["runJS"],
             "starting_urls": record["startingUrl"],

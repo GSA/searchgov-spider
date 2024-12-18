@@ -1,8 +1,9 @@
 import subprocess
 
-from apscheduler.triggers.cron import CronTrigger
 from apscheduler.schedulers.blocking import BlockingScheduler
-from search_gov_crawler.scrapy_scheduler import run_scrapy_crawl, transform_crawl_sites, start_scrapy_scheduler
+from apscheduler.triggers.cron import CronTrigger
+
+from search_gov_crawler.scrapy_scheduler import run_scrapy_crawl, start_scrapy_scheduler, transform_crawl_sites
 
 
 def test_run_scrapy_crawl(caplog, monkeypatch):
@@ -11,10 +12,10 @@ def test_run_scrapy_crawl(caplog, monkeypatch):
 
     monkeypatch.setattr(subprocess, "run", mock_run)
     with caplog.at_level("INFO"):
-        run_scrapy_crawl("test_spider", "test-domain.example.com", "http://starting-url.example.com/")
+        run_scrapy_crawl("test_spider", False, "test-domain.example.com", "http://starting-url.example.com/")
 
     assert (
-        "Successfully completed scrapy crawl with args spider=test_spider, "
+        "Successfully completed scrapy crawl with args spider=test_spider, allow_query_string=False, "
         "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/"
     ) in caplog.messages
 
@@ -88,25 +89,25 @@ def test_transform_crawl_sites(crawl_sites_test_file_json):
             "func": run_scrapy_crawl,
             "id": "quotes-1",
             "name": "Quotes 1",
-            "args": ["domain_spider", "quotes.toscrape.com", "https://quotes.toscrape.com/"],
+            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/"],
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-2",
             "name": "Quotes 2",
-            "args": ["domain_spider_js", "quotes.toscrape.com", "https://quotes.toscrape.com/js/"],
+            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js/"],
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-3",
             "name": "Quotes 3",
-            "args": ["domain_spider_js", "quotes.toscrape.com", "https://quotes.toscrape.com/js-delayed/"],
+            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js-delayed/"],
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-4",
             "name": "Quotes 4",
-            "args": ["domain_spider", "quotes.toscrape.com/tag/", "https://quotes.toscrape.com/"],
+            "args": ["domain_spider", False, "quotes.toscrape.com/tag/", "https://quotes.toscrape.com/"],
         },
     ]
 

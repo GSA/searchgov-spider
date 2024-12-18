@@ -77,7 +77,7 @@ def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warni
 def test_spider_downloader_middleware():
     # pylint: disable=protected-access
     crawler = get_crawler(Spider)
-    spider = crawler._create_spider(name="test", allowed_domains="example.com")
+    spider = crawler._create_spider(name="test", allow_query_string=False, allowed_domains="example.com")
     mw = SearchGovSpidersDownloaderMiddleware.from_crawler(crawler)
 
     mw.spider_opened(spider)
@@ -85,3 +85,15 @@ def test_spider_downloader_middleware():
 
     with pytest.raises(IgnoreRequest):
         mw.process_request(request=request, spider=spider)
+
+
+def test_spider_downloader_middleware_allow_query_string():
+    # pylint: disable=protected-access
+    crawler = get_crawler(Spider)
+    spider = crawler._create_spider(name="test", allow_query_string=True, allowed_domains="example.com")
+    mw = SearchGovSpidersDownloaderMiddleware.from_crawler(crawler)
+
+    mw.spider_opened(spider)
+    request = Request("http://www.example.com/test?parm=value")
+
+    assert mw.process_request(request=request, spider=spider) is None

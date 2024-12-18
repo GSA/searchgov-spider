@@ -13,7 +13,7 @@ from datetime import datetime
 # Settings for logging and json logging
 LOG_ENABLED = False
 JSON_LOGGING_ENABLED = True
-LOG_LEVEL = "INFO"
+LOG_LEVEL = os.environ.get("SCRAPY_LOG_LEVEL", "INFO")
 
 BOT_NAME = "search_gov_spiders"
 SPIDER_MODULES = ["search_gov_spiders.spiders"]

@@ -8,7 +8,7 @@ from scrapy.linkextractors import LinkExtractor
 # fmt: off
 FILTER_EXTENSIONS = [
     # archives
-    "7z", "7zip", "bz2", "rar", "tar", "tar.gz", "xz", "zip", "gz"
+    "7z", "7zip", "bz2", "rar", "tar", "tar.gz", "xz", "zip", "gz",
     # images
     "mng", "pct", "bmp", "gif", "jpg", "jpeg", "png", "pst", "psp", "image",
     "tif", "tiff", "ai", "drw", "dxf", "eps", "ps", "svg", "cdr", "ico",
@@ -21,8 +21,8 @@ FILTER_EXTENSIONS = [
     "ppt", "pptx", "pps", "odt", "ods", "odg", "odp",
     # other
     "css", "exe", "bin", "rss", "dmg", "iso", "apk", "js", "xml", "ibooks",
-    "cfm", "ics", "nc", "prj", "sfx", "eventsource", "fetch",
-    "stylesheet", "websocket", "xhr", "font", "manifest",
+    "ics", "nc", "nc4", "prj", "sfx", "eventsource", "fetch", "stylesheet",
+    "websocket", "xhr", "font", "manifest", "hdf", "geojson",
 ]
 # fmt: on
 
@@ -42,6 +42,7 @@ domain_spider_link_extractor = LinkExtractor(
     allow=(),
     deny=LINK_DENY_REGEX_STR,
     deny_extensions=FILTER_EXTENSIONS,
+    tags=("a", "area", "va-link"),  # specified to account for custom link tags
     unique=True,
 )
 

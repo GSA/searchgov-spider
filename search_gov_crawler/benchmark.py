@@ -21,10 +21,10 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
 import argparse
 import json
 import logging
-import time
 import os
 import sys
-from datetime import datetime, UTC, timedelta
+import time
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 from apscheduler.executors.pool import ThreadPoolExecutor
@@ -32,8 +32,8 @@ from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.schedulers.background import BackgroundScheduler
 from pythonjsonlogger.json import JsonFormatter
 
-from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler import scrapy_scheduler
+from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger()
@@ -58,7 +58,12 @@ def init_scheduler() -> BackgroundScheduler:
 
 
 def create_apscheduler_job(
-    name: str, allowed_domains: str, starting_urls: str, handle_javascript: bool, runtime_offset_seconds: int
+    name: str,
+    allow_query_string: bool,
+    allowed_domains: str,
+    starting_urls: str,
+    handle_javascript: bool,
+    runtime_offset_seconds: int,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
@@ -71,6 +76,7 @@ def create_apscheduler_job(
         "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=runtime_offset_seconds),
         "args": [
             "domain_spider" if not handle_javascript else "domain_spider_js",
+            allow_query_string,
             allowed_domains,
             starting_urls,
         ],
@@ -110,19 +116,24 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
     scheduler.shutdown()  # this will wait until all jobs are finished
 
 
-def benchmark_from_args(allowed_domains: str, starting_urls: str, handle_javascript: bool, runtime_offset_seconds: int):
+def benchmark_from_args(
+    allow_query_string: bool,
+    allowed_domains: str,
+    starting_urls: str,
+    handle_javascript: bool,
+    runtime_offset_seconds: int,
+):
     """Run an individual benchmarking job based on args"""
 
-    log.info(
-        "Starting benchmark from args! allowed_domains=%s starting_urls=%s handle_javascript=%s runtime_offset_seconds=%s",
-        allowed_domains,
-        starting_urls,
-        handle_javascript,
-        runtime_offset_seconds,
+    msg = (
+        "Starting benchmark from args! "
+        "allow_query_string=%s allowed_domains=%s starting_urls=%s handle_javascript=%s runtime_offset_seconds=%s"
     )
+    log.info(msg, allow_query_string, allowed_domains, starting_urls, handle_javascript, runtime_offset_seconds)
 
     apscheduler_job_kwargs = {
         "name": "benchmark",
+        "allow_query_string": allow_query_string,
         "allowed_domains": allowed_domains,
         "starting_urls": starting_urls,
         "handle_javascript": handle_javascript,
@@ -146,13 +157,25 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--allowed_domains", type=str, help="domains allowed to crawl", required=no_input_arg)
     parser.add_argument("-u", "--starting_urls", type=str, help="url used to start crawl", required=no_input_arg)
     parser.add_argument(
-        "-js", "--handle_js", action=argparse.BooleanOptionalAction, default=False, help="Flag to enable javascript"
+        "-js",
+        "--handle_js",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Flag to enable javascript",
+    )
+    parser.add_argument(
+        "-qs",
+        "--allow_query_string",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Flag to enable capturing URLs with query strings",
     )
     parser.add_argument("-t", "--runtime_offset", type=int, default=5, help="Number of seconds to offset job start")
     args = parser.parse_args()
 
     if no_input_arg:
         benchmark_args = {
+            "allow_query_string": args.allow_query_string,
             "allowed_domains": args.allowed_domains,
             "starting_urls": args.starting_urls,
             "handle_javascript": args.handle_js,

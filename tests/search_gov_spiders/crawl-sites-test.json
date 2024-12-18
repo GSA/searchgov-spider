@@ -1,24 +1,28 @@
 [
     {
         "name": "Quotes 1",
+        "allow_query_string": false,
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": false,
         "starting_urls": "https://quotes.toscrape.com/"
     },
     {
         "name": "Quotes 2",
+        "allow_query_string": false,
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "starting_urls": "https://quotes.toscrape.com/js/"
     },
     {
         "name": "Quotes 3",
+        "allow_query_string": false,
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "starting_urls": "https://quotes.toscrape.com/js-delayed/"
     },
     {
         "name": "Quotes 4",
+        "allow_query_string": false,
         "allowed_domains": "quotes.toscrape.com/tag/",
         "handle_javascript": false,
         "starting_urls": "https://quotes.toscrape.com/"
