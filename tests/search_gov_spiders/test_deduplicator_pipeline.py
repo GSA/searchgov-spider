@@ -1,12 +1,13 @@
 import os
 import pytest
+from contextlib import suppress
 from unittest.mock import MagicMock, patch
 from scrapy.exceptions import DropItem
 from search_gov_crawler.search_gov_spiders.pipelines import (
     SearchGovSpidersPipeline,
     DeDeuplicatorPipeline,
 )
-
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 # ---------------------------
 # Fixtures
 # ---------------------------
@@ -115,3 +116,31 @@ def test_deduplicator_pipeline_clean_state():
     # Second pipeline should also process the same item as it has a clean state
     result = pipeline2.process_item(item, None)
     assert result == item
+
+@pytest.mark.parametrize(
+    ("items", "urls_seen_length"),
+    [
+        (
+            [
+                SearchGovSpidersItem(url="https://www.example.com/1"),
+                SearchGovSpidersItem(url="https://www.example.com/2"),
+            ],
+            2,
+        ),
+        (
+            [
+                SearchGovSpidersItem(url="https://www.example.com/1"),
+                SearchGovSpidersItem(url="https://www.example.com/1"),
+            ],
+            1,
+        ),
+    ],
+)
+def test_deduplicator_pipeline(items, urls_seen_length):
+    pl = DeDeuplicatorPipeline()
+
+    with suppress(DropItem):
+        for item in items:
+            pl.process_item(item, None)
+
+    assert len(pl.urls_seen) == urls_seen_length
