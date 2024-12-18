@@ -1,5 +1,5 @@
 applications:
-- name: spider-trial
+- name: spider-sandbox
   buildpacks:
     - python_buildpack
   no-route: true
