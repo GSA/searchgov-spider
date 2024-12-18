@@ -15,6 +15,7 @@ def search_gov_default(obj) -> dict | None:
     if isinstance(obj, Spider):
         return {
             "name": obj.name,
+            "allow_query_string": getattr(obj, "allow_query_string", None),
             "allowed_domains": getattr(obj, "allowed_domains", None),
             "start_urls": obj.start_urls,
         }

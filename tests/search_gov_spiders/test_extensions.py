@@ -10,26 +10,53 @@ from scrapy.spiders import Spider
 from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import (
-    SearchGovSpiderStreamHandler,
-    SearchGovSpiderFileHandler,
     JsonLogging,
+    SearchGovSpiderFileHandler,
+    SearchGovSpiderStreamHandler,
 )
 
 
 class SpiderForTest(Spider):
     def __repr__(self):
         return str(
-            {"allowed_domains": getattr(self, "allowed_domains"), "name": self.name, "start_urls": self.start_urls}
+            {
+                "allow_query_string": getattr(self, "allow_query_string", None),
+                "allowed_domains": getattr(self, "allowed_domains", None),
+                "name": self.name,
+                "start_urls": self.start_urls,
+            },
         )
 
 
 HANDLER_TEST_CASES = [
     ("This is a test message!!", "This is a test message!!", None, None),
     (
-        SpiderForTest(name="handler_test", allowed_domains="example.com", start_urls="https://www.example.com"),
-        str({"allowed_domains": "example.com", "name": "handler_test", "start_urls": "https://www.example.com"}),
-        SpiderForTest(name="handler_test", allowed_domains="example.com", start_urls="https://www.example.com"),
-        {"allowed_domains": "example.com", "name": "handler_test", "start_urls": "https://www.example.com"},
+        SpiderForTest(
+            name="handler_test",
+            allow_query_string=False,
+            allowed_domains="example.com",
+            start_urls="https://www.example.com",
+        ),
+        str(
+            {
+                "allow_query_string": False,
+                "allowed_domains": "example.com",
+                "name": "handler_test",
+                "start_urls": "https://www.example.com",
+            },
+        ),
+        SpiderForTest(
+            name="handler_test",
+            allow_query_string=True,
+            allowed_domains="example.com",
+            start_urls="https://www.example.com",
+        ),
+        {
+            "allow_query_string": True,
+            "allowed_domains": "example.com",
+            "name": "handler_test",
+            "start_urls": "https://www.example.com",
+        },
     ),
 ]
 
