@@ -1,8 +1,1 @@
-echo "THIS IS FROM THE PROFILE"
-echo "path: $PATH"
-export PATH="/home/vcap/deps/0/bin/python:$PATH" 
-echo "path: $PATH"
-echo "pythonpath: $PYTHONPATH"
 export PYTHONPATH="/app:$PYTHONPATH/bin/python" 
-echo "pythonpath: $PYTHONPATH"
-echo "END FROM THE PROFILE"

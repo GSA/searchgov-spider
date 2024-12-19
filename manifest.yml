@@ -5,3 +5,4 @@ applications:
   no-route: true
   health-check-type: process
   command: "./startcommand.sh"
+  
