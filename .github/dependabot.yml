@@ -16,4 +16,4 @@ updates:
         patterns:
           - "freezegun"
           - "pylint"
-          - "pytest"
+          - "pytest*"

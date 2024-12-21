@@ -2,45 +2,98 @@
 Don't forget to add your pipeline to the ITEM_PIPELINES setting
 See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 """
-
 import os
 from pathlib import Path
+import requests
 from scrapy.exceptions import DropItem
+
 
 class SearchGovSpidersPipeline:
     """
-    Class for pipeline that takes items and adds them
-    to output file with a max size of 3.9MB
+    Pipeline that writes items to files (rotated at ~3.9MB) or sends batched POST requests
+    to SPIDER_URLS_API if the environment variable is set.
     """
 
-    def __init__(self, *_args, **_kwargs):
-        self.current_file_size = 0
-        self.file_number = 1
-        self.parent_file_path = Path(__file__).parent.parent.resolve()
-        self.base_path_name = str(self.parent_file_path / f"output/all-links-p{os.getpid()}.csv")
-        self.short_file = open(self.base_path_name, "a", encoding="utf-8")
-        self.max_file_size = 39000000 #3.9MB max
-        self.paginate = True
+    MAX_FILE_SIZE_BYTES = int(3.9 * 1024 * 1024)  # 3.9MB in bytes
+    APP_PID = os.getpid()
 
-    def process_item(self, item, _spider):
-        """Checks that the file is not at max size.
-        Adds it to the file if less, or creates a new file if too large."""
-        line = item["url"]
-        self.current_file_size += 1
-        file_stats = os.stat(self.base_path_name)
-        self.current_file_size += file_stats.st_size
-        next_file_size = self.current_file_size + len(line)
-        if self.paginate and next_file_size > self.max_file_size:
-            self.short_file.close()
-            new_name = str(self.parent_file_path / f"output/all-links-p{os.getpid()}-{self.file_number}.csv")
-            os.rename(self.base_path_name, new_name)
-            self.file_number = self.file_number + 1
-            self.short_file = open(self.base_path_name, "w", encoding="utf-8")
-            self.current_file_size = 0
-        self.short_file.write(line)
-        self.short_file.write("\n")
-        self.current_file_size = self.current_file_size + len(line)
+    def __init__(self):
+        self.api_url = os.environ.get("SPIDER_URLS_API")
+        self.urls_batch = []
+        self.file_number = 1
+        self.file_path = None
+        self.current_file = None
+
+        if not self.api_url:
+            output_dir = Path(__file__).parent.parent / "output"
+            output_dir.mkdir(parents=True, exist_ok=True)
+            base_filename = f"all-links-p{self.APP_PID}"
+            self.file_path = output_dir / f"{base_filename}.csv"
+            self.current_file = open(self.file_path, "a", encoding="utf-8")
+
+    def process_item(self, item, spider):
+        """Handle each item by writing to file or batching URLs for an API POST."""
+        url = item.get("url", "")
+        if not url:
+            raise DropItem("Missing URL in item")
+
+        if self.api_url:
+            self._process_api_item(url, spider)
+        else:
+            self._process_file_item(url)
+
         return item
+
+    def _process_api_item(self, url, spider):
+        """Batch URLs for API and send POST if size limit is reached."""
+        self.urls_batch.append(url)
+        if self._batch_size() >= self.MAX_FILE_SIZE_BYTES:
+            self._send_post_request(spider)
+
+    def _process_file_item(self, url):
+        """Write URL to file and rotate the file if size exceeds the limit."""
+        self.current_file.write(f"{url}\n")
+        if self._file_size() >= self.MAX_FILE_SIZE_BYTES:
+            self._rotate_file()
+
+    def _batch_size(self):
+        """Calculate total size of the batched URLs."""
+        return sum(len(url.encode("utf-8")) for url in self.urls_batch)
+
+    def _file_size(self):
+        """Get the current file size."""
+        self.current_file.flush()  # Ensure the OS writes buffered data to disk
+        return self.file_path.stat().st_size
+
+    def _rotate_file(self):
+        """Close the current file, rename it, and open a new one."""
+        self.current_file.close()
+        rotated_file = self.file_path.with_name(f"{self.file_path.stem}-{self.file_number}.csv")
+        os.rename(self.file_path, rotated_file)
+        self.current_file = open(self.file_path, "a", encoding="utf-8")
+        self.file_number += 1
+
+    def _send_post_request(self, spider):
+        """Send a POST request with the batched URLs."""
+        if not self.urls_batch:
+            return
+
+        try:
+            response = requests.post(self.api_url, json={"urls": self.urls_batch})
+            response.raise_for_status()
+            spider.logger.info(f"Successfully posted {len(self.urls_batch)} URLs to {self.api_url}")
+        except requests.RequestException as e:
+            spider.logger.error(f"Failed to send URLs to {self.api_url}: {e}")
+            raise DropItem(f"POST request failed: {e}")
+        finally:
+            self.urls_batch.clear()
+
+    def close_spider(self, spider):
+        """Finalize operations: close files or send remaining batched URLs."""
+        if self.api_url:
+            self._send_post_request(spider)
+        elif self.current_file:
+            self.current_file.close()
 
 
 class DeDeuplicatorPipeline:

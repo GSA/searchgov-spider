@@ -75,7 +75,7 @@ Make sure to run `pip install -r requirements.txt` and `playwright install` befo
 1. Navigate to the [*spiders*](search_gov_crawler/search_gov_spiders/spiders) directory
 2. Enter one of two following commands:
 
-    * This command will output the yielded URLs in the destination (relative to the [*spiders*](search_gov_crawler/search_gov_spiders/spiders) directory) and file format specified in the “FEEDS” variable of the [*settings.py*](search_gov_crawler/search_gov_spiders/settings.py) file:
+    * This command will output the yielded URLs in the destination (relative to the [*spiders*](search_gov_crawler/search_gov_spiders/spiders) directory) and file format specified in the `search_gov_crawler/search_gov_spiders/pipelines.py`:
 
           $ scrapy runspider <spider_file.py>
 

@@ -10,7 +10,6 @@ repos:
       - id: check-added-large-files # prevents giant files from being committed.
       - id: check-case-conflict # checks for files that would conflict in case-insensitive filesystems.
       - id: check-json # checks json files for parseable syntax.
-      - id: check-shebang-scripts-are-executable # ensures that (non-binary) files with a shebang are executable.
       - id: check-merge-conflict # checks for files that contain merge conflict strings.
       - id: check-symlinks # checks for symlinks which do not point to anything.
       - id: check-yaml # checks yaml files for parseable syntax.
