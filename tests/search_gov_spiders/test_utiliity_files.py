@@ -1,8 +1,8 @@
 import json
 import plistlib
-import tempfile
 import sqlite3
 import subprocess
+import tempfile
 from collections import namedtuple
 from datetime import datetime
 from pathlib import Path
@@ -17,12 +17,12 @@ from search_gov_crawler.search_gov_spiders.utility_files.import_plist import (
     create_allowed_domain,
 )
 from search_gov_crawler.search_gov_spiders.utility_files.init_schedule import (
+    SpiderSchedule,
+    SpiderScheduleSlot,
     get_data_path,
     init_schedule,
     transform_crawl_sites,
     truncate_table,
-    SpiderSchedule,
-    SpiderScheduleSlot,
 )
 
 ALLOWED_DOMAIN_TEST_CASES = [
@@ -110,6 +110,7 @@ def test_convert_plist_to_json(monkeypatch):
         assert len(crawl_output_records) == 3
         assert crawl_output_records[0] == {
             "name": "scrape example 1",
+            "allow_query_string": False,
             "allowed_domains": "example.com",
             "handle_javascript": True,
             "starting_urls": "https://www.example.com/1",
