@@ -145,6 +145,8 @@ MANUAL_UPDATE_TEST_CASES = [
     ("https://www.cfm.va.gov/til/", "allowed_domains", "cfm.va.gov/til/"),
     ("https://www.va.gov/accountability/", "allowed_domains", "va.gov/accountability/"),
     ("https://www.va.gov/resources/", "allowed_domains", "va.gov/resources/"),
+    ("https://www.herc.research.va.gov/", "allow_query_string", True),
+    ("https://www.herc.research.va.gov/", "name", "VA HERC Research"),
 ]
 
 
