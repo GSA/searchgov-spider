@@ -49,6 +49,7 @@ def init_scheduler() -> BackgroundScheduler:
     """
 
     max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", min(32, (os.cpu_count() or 1) + 4)))
+    log.info("Max workers for schedule set to %s", max_workers)
 
     return BackgroundScheduler(
         jobstores={"memory": MemoryJobStore()},
@@ -100,6 +101,8 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
         msg = f"Input file {input_file} does not exist!"
         raise FileNotFoundError(msg)
 
+    msg = "Starting benchmark from file! input_file=%s runtime_offset_seconds=%s"
+    log.info(msg, input_file.name, runtime_offset_seconds)
     crawl_sites = CrawlSites.from_file(file=input_file)
 
     scheduler = init_scheduler()
