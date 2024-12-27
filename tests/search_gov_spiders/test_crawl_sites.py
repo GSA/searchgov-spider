@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 
 from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSite, CrawlSites
@@ -100,3 +102,17 @@ def test_valid_crawl_sites_scheduled(base_crawl_site_args):
 def test_invalid_crawl_sites_duplicates(base_crawl_site_args):
     with pytest.raises(TypeError, match="The combination of allowed_domain and starting_urls must be unique in file!"):
         CrawlSites([CrawlSite(**base_crawl_site_args), CrawlSite(**base_crawl_site_args)])
+
+
+def test_crawl_sites_file_is_valid():
+    """
+    Read in the actual crawl-sites.json file and instantiate as a CrawlSites class.  This will run all built-in
+    validations and hopefully let you know if the file is invalid prior to attempting to run it in the scheduler.
+    Additionally, we are assuming that there is at least one scheduled job in the file.
+    """
+    crawl_sites_file = (
+        Path(__file__).parent.parent.parent / "search_gov_crawler/search_gov_spiders/utility_files/crawl-sites.json"
+    )
+
+    cs = CrawlSites.from_file(file=crawl_sites_file)
+    assert len(list(cs.scheduled())) > 0
