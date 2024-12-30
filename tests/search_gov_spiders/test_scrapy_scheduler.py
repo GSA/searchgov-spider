@@ -20,69 +20,22 @@ def test_run_scrapy_crawl(caplog, monkeypatch):
     ) in caplog.messages
 
 
-def test_transform_crawl_sites(crawl_sites_test_file_json):
-    transformed_crawl_sites = transform_crawl_sites(crawl_sites_test_file_json)
+def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
+    transformed_crawl_sites = transform_crawl_sites(crawl_sites_test_file_dataclass)
 
     # CronTrigger class does not implement __eq__
     triggers = [str(site.pop("trigger")) for site in transformed_crawl_sites]
-    assert triggers == [
-        str(
+    for trigger in triggers:
+        assert trigger == str(
             CronTrigger(
-                year="*",
                 month="*",
                 day="*",
-                week="*",
-                day_of_week="mon",
-                hour="03",
-                minute="30",
-                second=0,
+                day_of_week="*",
+                hour="*",
+                minute="0,15,30,45",
                 timezone="UTC",
-                jitter=0,
-            )
-        ),
-        str(
-            CronTrigger(
-                year="*",
-                month="*",
-                day="*",
-                week="*",
-                day_of_week="mon",
-                hour="05",
-                minute="30",
-                second=0,
-                timezone="UTC",
-                jitter=0,
-            )
-        ),
-        str(
-            CronTrigger(
-                year="*",
-                month="*",
-                day="*",
-                week="*",
-                day_of_week="mon",
-                hour="07",
-                minute="30",
-                second=0,
-                timezone="UTC",
-                jitter=0,
             ),
-        ),
-        str(
-            CronTrigger(
-                year="*",
-                month="*",
-                day="*",
-                week="*",
-                day_of_week="mon",
-                hour="09",
-                minute="30",
-                second=0,
-                timezone="UTC",
-                jitter=0,
-            ),
-        ),
-    ]
+        )
 
     assert transformed_crawl_sites == [
         {
@@ -118,5 +71,5 @@ def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file):
     with caplog.at_level("INFO"):
         start_scrapy_scheduler(input_file=crawl_sites_test_file)
 
-    assert len(caplog.messages) == 4
+    assert len(caplog.messages) == 5
     assert "Adding job tentatively -- it will be properly scheduled when the scheduler starts" in caplog.messages

@@ -1,33 +1,42 @@
 import os
-import pytest
 from contextlib import suppress
 from unittest.mock import MagicMock, patch
+
+import pytest
 from scrapy.exceptions import DropItem
-from search_gov_crawler.search_gov_spiders.pipelines import (
-    SearchGovSpidersPipeline,
-    DeDeuplicatorPipeline,
-)
+
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+from search_gov_crawler.search_gov_spiders.pipelines import (
+    DeDeuplicatorPipeline,
+    SearchGovSpidersPipeline,
+)
+
 # ---------------------------
 # Fixtures
 # ---------------------------
+
 
 @pytest.fixture
 def sample_item():
     """Fixture for a valid sample item."""
     return {"url": "http://example.com"}
 
+
 @pytest.fixture
 def invalid_item():
     """Fixture for an invalid item with no URL."""
     return {}
 
+
 @pytest.fixture
 def sample_spider():
     """Fixture for a mock spider with a logger."""
+
     class SpiderMock:
         logger = MagicMock()
+
     return SpiderMock()
+
 
 @pytest.fixture
 def pipeline_no_api():
@@ -35,20 +44,17 @@ def pipeline_no_api():
     with patch.dict(os.environ, {}, clear=True):
         return SearchGovSpidersPipeline()
 
-@pytest.fixture
-def pipeline_with_api():
-    """Fixture for SearchGovSpidersPipeline with SPIDER_URLS_API set."""
-    with patch.dict(os.environ, {"SPIDER_URLS_API": "http://mockapi.com"}):
-        return SearchGovSpidersPipeline()
 
 @pytest.fixture
 def deduplicator_pipeline():
     """Fixture for DeDeuplicatorPipeline with clean state."""
     return DeDeuplicatorPipeline()
 
+
 # ---------------------------
 # Tests for SearchGovSpidersPipeline
 # ---------------------------
+
 
 def test_missing_url_in_item(pipeline_no_api, sample_spider, invalid_item):
     """
@@ -57,9 +63,11 @@ def test_missing_url_in_item(pipeline_no_api, sample_spider, invalid_item):
     with pytest.raises(DropItem, match="Missing URL in item"):
         pipeline_no_api.process_item(invalid_item, sample_spider)
 
+
 # ---------------------------
 # Tests for DeDeuplicatorPipeline
 # ---------------------------
+
 
 @pytest.mark.parametrize(
     "item",
@@ -116,6 +124,7 @@ def test_deduplicator_pipeline_clean_state():
     # Second pipeline should also process the same item as it has a clean state
     result = pipeline2.process_item(item, None)
     assert result == item
+
 
 @pytest.mark.parametrize(
     ("items", "urls_seen_length"),

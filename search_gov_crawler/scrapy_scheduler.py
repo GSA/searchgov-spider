@@ -11,11 +11,11 @@ from apscheduler.triggers.cron import CronTrigger
 from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
-from search_gov_crawler.search_gov_spiders.utility_files.init_schedule import SpiderSchedule
+from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
 
-logging.basicConfig(level=logging.INFO)
-log = logging.getLogger()
-log.handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
+logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
 CRAWL_SITES_FILE = Path(__file__).parent / "search_gov_spiders" / "utility_files" / "crawl-sites.json"
 
@@ -41,39 +41,29 @@ def run_scrapy_crawl(spider: str, allow_query_string: bool, allowed_domains: str
     log.info(msg, spider, allow_query_string, allowed_domains, start_urls)
 
 
-def transform_crawl_sites(crawl_sites: list[dict]) -> list[dict]:
-    """Transform crawl sites records into a format that can be used to"""
+def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
+    """
+    Transform crawl sites records into a format that can be used to create apscheduler jobs.  Only
+    scheduler jobs that have a value for the `schedule` field.
+    """
 
     transformed_crawl_sites = []
-    schedule = SpiderSchedule()
 
-    for crawl_site in crawl_sites:
-        job_name = str(crawl_site["name"])
-        schedule_slot = schedule.get_next_slot()
+    for crawl_site in crawl_sites.scheduled():
+        job_name = crawl_site.name
         transformed_crawl_sites.append(
             {
                 "func": run_scrapy_crawl,
                 "id": job_name.lower().replace(" ", "-").replace("---", "-"),
                 "name": job_name,
-                "trigger": CronTrigger(
-                    year="*",
-                    month="*",
-                    day="*",
-                    week="*",
-                    day_of_week=schedule_slot.day,
-                    hour=schedule_slot.hour,
-                    minute=schedule_slot.minute,
-                    second=0,
-                    timezone="UTC",
-                    jitter=0,
-                ),
+                "trigger": CronTrigger.from_crontab(expr=crawl_site.schedule, timezone="UTC"),
                 "args": [
-                    "domain_spider" if not crawl_site["handle_javascript"] else "domain_spider_js",
-                    crawl_site["allow_query_string"],
-                    crawl_site["allowed_domains"],
-                    crawl_site["starting_urls"],
+                    "domain_spider" if not crawl_site.handle_javascript else "domain_spider_js",
+                    crawl_site.allow_query_string,
+                    crawl_site.allowed_domains,
+                    crawl_site.starting_urls,
                 ],
-            }
+            },
         )
 
     return transformed_crawl_sites
@@ -83,11 +73,13 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     """Initializes schedule from input file, schedules jobs and runs scheduler"""
 
     # Load and transform crawl sites
-    crawl_sites = json.loads(input_file.read_text(encoding="UTF-8"))
+    crawl_sites = CrawlSites.from_file(file=input_file)
     apscheduler_jobs = transform_crawl_sites(crawl_sites)
 
-    # Initalize scheduler
-    max_workers = min(32, (os.cpu_count() or 1) + 4)  # default from concurrent.futures
+    # Initalize scheduler - 'min(32, (os.cpu_count() or 1) + 4)' is default from concurrent.futures
+    # but set to default of 5 to ensure consistent numbers between environments and for schedule
+    max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", "5"))
+    log.info("Max workers for schedule set to %s", max_workers)
 
     scheduler = BlockingScheduler(
         jobstores={"memory": MemoryJobStore()},

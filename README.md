@@ -10,7 +10,9 @@ The home for the spider that supports search.gov.
   * [Running Against A Specific Domain](#running-against-a-specific-domain)
 * [Setup and Use](#setup-and-use)
   * [Option 1: command-line](#option-1-straight-from-command-line)
-  * [Option 2: server](#option-2-deploying-on-server-scrapyd)
+  * [Option 2: benchmark](#option-2-benchmark-command-line)
+  * [Option 3: custom scheduler](#option-3-custom-scheduler)
+  * [Option 4: scrapyd](#option-2-deploying-on-server-scrapyd)
 * [Adding New Spiders](#adding-new-spiders)
 * [Running Scrapydweb UI](#running-scrapydweb-ui)
 
@@ -84,18 +86,32 @@ Make sure to run `pip install -r requirements.txt` and `playwright install` befo
 
           $ scrapy runspider <spider_file.py>  -o <filepath_to_output_folder/spider_output_filename.csv>
 
-### Option 2: deploying on server (Scrapyd)
-1. First, install Scrapyd and scrapyd-client (library that helps eggify and deploy the Scrapy project to the Scrapyd server):
+### Option 2: benchmark command line
+The benchmark script is primarily intended for use in timing and testing scrapy runs.  There are two ways to run.  In either case its
+likes you want to redirect your ouput to a log file using something like `<benchmark command> >scrapy.log 2>&1`
+1. To run a single domain (specifying starting URL `-u` and allowed domain `-d`):
 
-    *       $ pip install scrapyd
-    *       $ pip install git+https://github.com/scrapy/scrapyd-client.git
+          $ python search_gov_spiders/benchmark.py -u https://www.example.com -d example.com
 
-2. Next, navigate to the [*scrapyd_files*](search_gov_crawler/scrapyd_files) directory and start the server :
+2. To run multiple spiders simultaneously, provide a json file in the format of the [*crawl-sites.json file*](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites.json) as an argument:
+
+          $ python search_gov_spiders/benchmark.py -f </path/to/crawl-sites-like-file.json>
+
+There are other options available.  Run `python search_gov_spiders/benchmark.py -h` for more info.
+
+### Option 3: custom scheduler
+1. To run jobs on a schedule, as defined in the [*crawl-sites.json file*](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites.json)
+
+          $ python search_gov_spiders/scrapy_scheduler.py
+
+### Option 4: deploying on server (Scrapyd)
+1. Navigate to the [*Scrapy project root directory*](search_gov_crawler) and start the server.
 
         $ scrapyd
+
     * Note: the directory where you start the server is arbitrary. It's simply where the logs and Scrapy project FEED destination (relative to the server directory) will be.
 
-3. Navigate to the [*Scrapy project root directory*](search_gov_crawler) and run this command to eggify the Scrapy project and deploy it to the Scrapyd server:
+2. Run this command to eggify the Scrapy project and deploy it to the Scrapyd server:
 
         $ scrapyd-deploy default
 
@@ -123,7 +139,7 @@ Make sure to run `pip install -r requirements.txt` and `playwright install` befo
             # deploy production
             scrapyd-deploy production
 
-4. For an interface to view jobs (pending, running, finished) and logs, access http://localhost:6800/. However, to actually manipulate the spiders deployed to the Scrapyd server, you'll need to use the [*Scrapyd JSON API*](https://scrapyd.readthedocs.io/en/latest/api.html).
+3. For an interface to view jobs (pending, running, finished) and logs, access http://localhost:6800/. However, to actually manipulate the spiders deployed to the Scrapyd server, you'll need to use the [*Scrapyd JSON API*](https://scrapyd.readthedocs.io/en/latest/api.html).
 
     Some most-used commands:
 

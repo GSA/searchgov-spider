@@ -1,7 +1,7 @@
 import argparse
 import json
 import plistlib
-from datetime import datetime, date
+from datetime import date, datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -78,6 +78,7 @@ def convert_plist_to_json(input_file: str, output_file: str, write_full_output: 
             "allow_query_string": False,
             "allowed_domains": create_allowed_domain(record["startingUrl"]),
             "handle_javascript": record["runJS"],
+            "schedule": None,
             "starting_urls": record["startingUrl"],
         }
         for record in transformed_scrutiny_records
@@ -89,6 +90,7 @@ def convert_plist_to_json(input_file: str, output_file: str, write_full_output: 
     search_gov_json_file = Path(__file__).parent / output_file
     with search_gov_json_file.open("w", encoding="UTF-8") as output:
         json.dump(final_search_gov_records, output, indent=4)
+        output.write("\n")
 
 
 if __name__ == "__main__":
