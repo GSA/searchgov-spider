@@ -77,7 +77,8 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     apscheduler_jobs = transform_crawl_sites(crawl_sites)
 
     # Initalize scheduler - 'min(32, (os.cpu_count() or 1) + 4)' is default from concurrent.futures
-    max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", min(32, (os.cpu_count() or 1) + 4)))
+    # but set to default of 5 to ensure consistent numbers between environments and for schedule
+    max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", "5"))
     log.info("Max workers for schedule set to %s", max_workers)
 
     scheduler = BlockingScheduler(
