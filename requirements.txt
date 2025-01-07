@@ -1,0 +1,2 @@
+# support cloud.gov deployment without duplicating requirements file
+-r search_gov_crawler/requirements.txt
