@@ -10,10 +10,13 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
       {
         "name": "Example",
         "allowed_domains": "example.com",
+        "allow_query_string": false,
+        "handle_javascript": false,
+        "schedule": null,
         "starting_urls": "https://www.example.com"
-        "handle_javascript": false
       }
     ]
+  - Values in schedule are ignored for benchmark runs.
 
 - Run `python benchmark.py -h` or review code below for more details on arguments
 """

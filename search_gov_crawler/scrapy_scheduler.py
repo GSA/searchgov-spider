@@ -1,4 +1,12 @@
-import json
+"""
+Starts scrapy scheduler.  Takes job details from the crawl-sites.json file referenced below as CRAWL_SITES_FILE.
+Schedule is fully contained in-memory but current cron expression is stored in the input file so that on each
+deploy the schedule can pickup where it left off.
+
+Use the env var SCRAPY_MAX_WORKERS to control how many jobs can run at once.  If the max number of jobs are running
+when other jobs are supposed to run, those jobs will queue until one or more of the running jobs finishes.
+"""
+
 import logging
 import os
 import subprocess
