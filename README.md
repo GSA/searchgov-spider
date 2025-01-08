@@ -100,9 +100,7 @@ likes you want to redirect your ouput to a log file using something like `<bench
 There are other options available.  Run `python search_gov_spiders/benchmark.py -h` for more info.
 
 ### Option 3: custom scheduler
-1. To run jobs on a schedule, as defined in the [*crawl-sites.json file*](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites.json)
-
-          $ python search_gov_spiders/scrapy_scheduler.py
+1. See the [*Running Scrapy Scheduler*](#running-scrapy-scheduler) section below.
 
 ### Option 4: deploying on server (Scrapyd)
 1. Navigate to the [*Scrapy project root directory*](search_gov_crawler) and start the server.
@@ -167,7 +165,23 @@ There are other options available.  Run `python search_gov_spiders/benchmark.py 
         ## Running Against All Listed Search.gov Domains
 
 ## Running scrapy scheduler
-This process allows for scrapy to be run directly using an in-memory scheduler.  The schedule is based on the initial schedule setup in the [*utility files readme*](search_gov_crawler/search_gov_spiders/utility_files/README.md#job-schedule-calendar).  The process will run until killed.
+This process allows for scrapy to be run directly using an in-memory scheduler.  The schedule is based on the initial schedule setup in the [*crawl-sites.json file*](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites.json).  The process will run until killed.
+
+The json input file must be in a format similar what is below.  There are validations in place when the file is read and in tests that should help
+prevent this file from getting into an invalid state.
+
+```json
+[
+    {
+        "name": "Example",
+        "allowed_domains": "example.com",
+        "allow_query_string": false,
+        "handle_javascript": false,
+        "schedule": "30 08 * * MON",
+        "starting_urls": "https://www.example.com"
+    }
+]
+```
 
 0. Source virtual environment and update dependencies.
 
