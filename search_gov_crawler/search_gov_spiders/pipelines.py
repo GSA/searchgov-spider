@@ -14,8 +14,7 @@ class SearchGovSpidersPipeline:
     to SPIDER_URLS_API if the environment variable is set.
     """
 
-    MAX_FILE_SIZE_BYTES = int(1024 * 1024)  # 1MB in bytes
-    BATCH_SIZE = 100  # Maximum number of URLs before sending a batch request
+    MAX_FILE_SIZE_BYTES = int(3.9 * 1024 * 1024)  # 3.9MB in bytes
     APP_PID = os.getpid()
 
     def __init__(self):
@@ -46,9 +45,9 @@ class SearchGovSpidersPipeline:
         return item
 
     def _process_api_item(self, url, spider):
-        """Batch URLs for API and send POST if size or count limit is reached."""
+        """Batch URLs for API and send POST if size limit is reached."""
         self.urls_batch.append(url)
-        if len(self.urls_batch) >= self.BATCH_SIZE or self._batch_size() >= self.MAX_FILE_SIZE_BYTES:
+        if self._batch_size() >= self.MAX_FILE_SIZE_BYTES:
             self._send_post_request(spider)
 
     def _process_file_item(self, url):
