@@ -10,16 +10,18 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
       {
         "name": "Example",
         "allowed_domains": "example.com",
+        "allow_query_string": false,
+        "handle_javascript": false,
+        "schedule": null,
         "starting_urls": "https://www.example.com"
-        "handle_javascript": false
       }
     ]
+  - Values in schedule are ignored for benchmark runs.
 
 - Run `python benchmark.py -h` or review code below for more details on arguments
 """
 
 import argparse
-import json
 import logging
 import os
 import sys
@@ -34,10 +36,12 @@ from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler import scrapy_scheduler
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
+from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
 
-logging.basicConfig(level=logging.INFO)
-log = logging.getLogger()
-log.handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
+logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+
+log = logging.getLogger("search_gov_crawler.benchmark")
 
 
 def init_scheduler() -> BackgroundScheduler:
@@ -48,6 +52,7 @@ def init_scheduler() -> BackgroundScheduler:
     """
 
     max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", min(32, (os.cpu_count() or 1) + 4)))
+    log.info("Max workers for schedule set to %s", max_workers)
 
     return BackgroundScheduler(
         jobstores={"memory": MemoryJobStore()},
@@ -96,13 +101,19 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
     """
 
     if not input_file.exists():
-        raise FileNotFoundError(f"Input file {input_file} does not exist!")
+        msg = f"Input file {input_file} does not exist!"
+        raise FileNotFoundError(msg)
 
-    crawl_sites = json.loads(input_file.read_text(encoding="UTF-8"))
+    msg = "Starting benchmark from file! input_file=%s runtime_offset_seconds=%s"
+    log.info(msg, input_file.name, runtime_offset_seconds)
+    crawl_sites = CrawlSites.from_file(file=input_file)
 
     scheduler = init_scheduler()
     for crawl_site in crawl_sites:
-        apscheduler_job = create_apscheduler_job(runtime_offset_seconds=runtime_offset_seconds, **crawl_site)
+        apscheduler_job = create_apscheduler_job(
+            runtime_offset_seconds=runtime_offset_seconds,
+            **crawl_site.to_dict(exclude=("schedule",)),
+        )
         scheduler.add_job(
             **apscheduler_job,
             jobstore="memory",

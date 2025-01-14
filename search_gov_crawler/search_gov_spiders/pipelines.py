@@ -2,19 +2,24 @@
 Don't forget to add your pipeline to the ITEM_PIPELINES setting
 See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 """
+
 import os
 from pathlib import Path
+
 import requests
 from scrapy.exceptions import DropItem
+from scrapy.spiders import Spider
+
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
 class SearchGovSpidersPipeline:
     """
-    Pipeline that writes items to files (rotated at ~3.9MB) or sends batched POST requests
-    to SPIDER_URLS_API if the environment variable is set.
+    Pipeline that writes items to files for manual upload, or sends batched POST
+    requests (both rotated at ~100KB) to SPIDER_URLS_API if the environment variable is set.
     """
 
-    MAX_FILE_SIZE_BYTES = int(3.9 * 1024 * 1024)  # 3.9MB in bytes
+    MAX_URL_BATCH_SIZE_BYTES = int(100 * 1024)  # 100KB in bytes
     APP_PID = os.getpid()
 
     def __init__(self):
@@ -31,7 +36,7 @@ class SearchGovSpidersPipeline:
             self.file_path = output_dir / f"{base_filename}.csv"
             self.current_file = open(self.file_path, "a", encoding="utf-8")
 
-    def process_item(self, item, spider):
+    def process_item(self, item: SearchGovSpidersItem, spider: Spider) -> SearchGovSpidersItem:
         """Handle each item by writing to file or batching URLs for an API POST."""
         url = item.get("url", "")
         if not url:
@@ -44,28 +49,28 @@ class SearchGovSpidersPipeline:
 
         return item
 
-    def _process_api_item(self, url, spider):
+    def _process_api_item(self, url: str, spider: Spider) -> None:
         """Batch URLs for API and send POST if size limit is reached."""
         self.urls_batch.append(url)
-        if self._batch_size() >= self.MAX_FILE_SIZE_BYTES:
+        if self._batch_size() >= self.MAX_URL_BATCH_SIZE_BYTES:
             self._send_post_request(spider)
 
-    def _process_file_item(self, url):
+    def _process_file_item(self, url: str) -> None:
         """Write URL to file and rotate the file if size exceeds the limit."""
         self.current_file.write(f"{url}\n")
-        if self._file_size() >= self.MAX_FILE_SIZE_BYTES:
+        if self._file_size() >= self.MAX_URL_BATCH_SIZE_BYTES:
             self._rotate_file()
 
-    def _batch_size(self):
+    def _batch_size(self) -> int:
         """Calculate total size of the batched URLs."""
         return sum(len(url.encode("utf-8")) for url in self.urls_batch)
 
-    def _file_size(self):
+    def _file_size(self) -> int:
         """Get the current file size."""
         self.current_file.flush()  # Ensure the OS writes buffered data to disk
         return self.file_path.stat().st_size
 
-    def _rotate_file(self):
+    def _rotate_file(self) -> None:
         """Close the current file, rename it, and open a new one."""
         self.current_file.close()
         rotated_file = self.file_path.with_name(f"{self.file_path.stem}-{self.file_number}.csv")
@@ -73,7 +78,7 @@ class SearchGovSpidersPipeline:
         self.current_file = open(self.file_path, "a", encoding="utf-8")
         self.file_number += 1
 
-    def _send_post_request(self, spider):
+    def _send_post_request(self, spider: Spider) -> None:
         """Send a POST request with the batched URLs."""
         if not self.urls_batch:
             return
@@ -88,7 +93,7 @@ class SearchGovSpidersPipeline:
         finally:
             self.urls_batch.clear()
 
-    def close_spider(self, spider):
+    def close_spider(self, spider: Spider) -> None:
         """Finalize operations: close files or send remaining batched URLs."""
         if self.api_url:
             self._send_post_request(spider)
