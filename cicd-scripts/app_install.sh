@@ -34,14 +34,14 @@ install_system_dependencies() {
 install_python() {
     echo "Installing Python ${SPIDER_PYTHON_VERSION}..."
     cd /usr/src
-    wget -q https://www.python.org/ftp/python/${SPIDER_PYTHON_VERSION}.0/Python-${SPIDER_PYTHON_VERSION}.0.tgz
-    tar xzf Python-${SPIDER_PYTHON_VERSION}.0.tgz
+    sudo wget -q https://www.python.org/ftp/python/${SPIDER_PYTHON_VERSION}.0/Python-${SPIDER_PYTHON_VERSION}.0.tgz
+    sudo tar xzf Python-${SPIDER_PYTHON_VERSION}.0.tgz
     sudo chown -R $(whoami) ./Python-${SPIDER_PYTHON_VERSION}.0
     cd Python-${SPIDER_PYTHON_VERSION}.0
     ./configure --enable-optimizations
-    make
-    make install
-    make altinstall
+    sudo make
+    sudo make install
+    sudo make altinstall
     cd "$_CURRENT_BUILD_DIR"
     echo "Python ${SPIDER_PYTHON_VERSION} installed successfully."
 }
