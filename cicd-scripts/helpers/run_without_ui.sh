@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run the script in the background using the virtual environment
-chmod +x ./search_gov_crawler/scrapy_scheduler.py
+sudo chmod +x ./search_gov_crawler/scrapy_scheduler.py
 
 sudo touch /var/log/scrapy_scheduler.log
 sudo chown -R $(whoami) /var/log/scrapy_scheduler.log

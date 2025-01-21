@@ -3,7 +3,7 @@
 # CD into the current script directory (which != $pwd)
 cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
 
-chmod +x ./cicd-scripts/helpers/ensure_executable.sh
+sudo chmod +x ./cicd-scripts/helpers/ensure_executable.sh
 source ./cicd-scripts/helpers/ensure_executable.sh
 
 ### VARIABLES ###
@@ -75,14 +75,15 @@ install_dependencies() {
     echo "Installing Playwright..."
     python -m pip install --upgrade pytest-playwright playwright
     playwright install --with-deps
+    playwright install chrome
     deactivate
 }
 
 # Configure permissions
 configure_permissions() {
     echo "Configuring file permissions..."
-    chmod -R 777 .
-    chown -R "$(whoami)" .
+    sudo chmod -R 777 .
+    sudo chown -R "$(whoami)" .
     sudo setfacl -Rdm g:dgsearch:rwx .
 }
 
