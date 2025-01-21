@@ -3,7 +3,7 @@
 # CD into the current script directory (which != $pwd)
 cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
 
-chmod +x ./cicd-scripts/helpers/ensure_executable.sh
+sudo chmod +x ./cicd-scripts/helpers/ensure_executable.sh
 source ./cicd-scripts/helpers/ensure_executable.sh
 
 ### FUNCTIONS ###
@@ -56,7 +56,7 @@ display_remaining_scrapy_processes() {
 # Force kill any remaining scrapy background jobs
 kill_remaining_scrapy_jobs() {
     echo "Force killing remaining scrapy background jobs..."
-    if ps aux | grep -ie [s]crapy | awk '{print $2}' | xargs kill -9; then
+    if ps aux | grep -ie [s]crapy | awk '{print $2}' | xargs kill -SIGINT; then
         echo "Remaining scrapy jobs killed."
     else
         echo "No remaining scrapy jobs to kill."
@@ -66,7 +66,7 @@ kill_remaining_scrapy_jobs() {
 # Remove nohup jobs (python scripts)
 remove_nohup_jobs() {
     echo "Removing nohup jobs (python)..."
-    ps -ef | grep nohup | grep -v grep | awk '{print $2}' | xargs kill -9
+    pgrep -f "nohup.*python" | xargs --no-run-if-empty kill -SIGINT
 }
 
 # Remove cron job entries referencing the given string

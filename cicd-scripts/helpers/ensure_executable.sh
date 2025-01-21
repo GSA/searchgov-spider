@@ -5,7 +5,8 @@ ensure_executable() {
   local script="$1"
 
   if [ -f "$script" ]; then
-    chmod +x "$script"
+    sudo chmod +x "$script"
+    sudo chown -R $(whoami) "$script"
     echo "$script is now executable."
     source "$script"
   else
