@@ -33,6 +33,9 @@ REACTOR_THREADPOOL_MAXSIZE = 20
 RETRY_ENABLED = False
 DOWNLOAD_TIMEOUT = 15
 
+# Close spider if no URLs found in period
+CLOSESPIDER_TIMEOUT_NO_ITEM = 60 * 60 * 24  # 24 hours in seconds
+
 # Enforce slow crawling
 CONCURRENT_REQUESTS = 1
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
@@ -65,6 +68,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
     "search_gov_spiders.extensions.json_logging.JsonLogging": -1,
+    "scrapy.extensions.closespider.CloseSpider": 100,
     "spidermon.contrib.scrapy.extensions.Spidermon": 600,
 }
 
