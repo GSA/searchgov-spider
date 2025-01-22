@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 # CD into the current script directory (which != $pwd)
 cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
@@ -73,7 +73,6 @@ install_dependencies() {
     echo "Installing dependencies..."
     python -m pip install --upgrade -r ./search_gov_crawler/requirements.txt
     echo "Installing Playwright..."
-    #python -m pip install --upgrade pytest-playwright playwright
     playwright install --with-deps
     playwright install chrome --force
     deactivate

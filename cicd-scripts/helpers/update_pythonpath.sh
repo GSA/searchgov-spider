@@ -24,8 +24,6 @@ else
 fi
 
 # Apply changes for the current session
-ensure_executable 
-source $BASHRC_FILE "$BASHRC_FILE"
-export PYTHONPATH=":${CURRENT_DIR}"
+source $BASHRC_FILE
 
 echo "PYTHONPATH changes applied: $PYTHONPATH"

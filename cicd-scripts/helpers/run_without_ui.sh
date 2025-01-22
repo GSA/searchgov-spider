@@ -9,3 +9,5 @@ sudo chown -R $(whoami) /var/log/scrapy_scheduler.log
 nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./search_gov_crawler/scrapy_scheduler.py" | tee -a /var/log/scrapy_scheduler.log &
 
 echo "Running no UI vesrion of searchgov-spider..."
+
+exit 0
