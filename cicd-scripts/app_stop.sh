@@ -3,7 +3,6 @@
 # CD into the current script directory (which != $pwd)
 cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
 
-sudo chmod +x ./cicd-scripts/helpers/ensure_executable.sh
 source ./cicd-scripts/helpers/ensure_executable.sh
 
 ### FUNCTIONS ###
@@ -19,7 +18,7 @@ remove_venv() {
 # Purge pip cache
 purge_pip_cache() {
     echo "Purging pip cache..."
-    rm -rf ~/.cache/pip /root/.cache/pip
+    rm -rf ~/.cache/pip
 }
 
 # Stop scrapy scheduler if running
@@ -56,7 +55,10 @@ display_remaining_scrapy_processes() {
 # Force kill any remaining scrapy background jobs
 kill_remaining_scrapy_jobs() {
     echo "Force killing remaining scrapy background jobs..."
-    if ps aux | grep -ie [s]crapy | awk '{print $2}' | xargs kill -SIGINT; then
+
+    local SCRAPY_PIDS=$(ps aux | grep -ie [s]crapy | awk '{print $2}')
+    if [ -n "$SCRAPY_PIDS" ]; then
+        echo $SCRAPY_PIDS | xargs kill -SIGINT
         echo "Remaining scrapy jobs killed."
     else
         echo "No remaining scrapy jobs to kill."
