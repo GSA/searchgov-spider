@@ -18,6 +18,7 @@ fi
 # Ensure the script exists, is executable, and run it
 ensure_executable "$SCRIPT"
 
+# check that scheduler is running before exit, it not raise error
 if [[ -n $(pgrep -f "scrapy_scheduler.py") ]]; then
     echo "App start completed successfully."
 else

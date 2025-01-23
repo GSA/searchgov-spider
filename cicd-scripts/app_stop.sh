@@ -69,6 +69,7 @@ kill_remaining_scrapy_jobs() {
 remove_nohup_jobs() {
     echo "Removing nohup jobs (python)..."
     pgrep -f "nohup.*python" | xargs --no-run-if-empty kill -SIGINT
+    pgrep -f "scrapy_scheduler" | xargs --no-run-if-empty kill -SIGINT
 }
 
 # Remove cron job entries referencing the given string
