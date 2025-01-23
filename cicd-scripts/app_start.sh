@@ -1,4 +1,4 @@
-#!/bin/bash -i
+#!/bin/bash
 
 # CD into the current script directory (which != $pwd)
 cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
@@ -18,4 +18,9 @@ fi
 # Ensure the script exists, is executable, and run it
 ensure_executable "$SCRIPT"
 
-echo "App start completed successfully."
+if [[ -n $(pgrep -f "scrapy_scheduler.py") ]]; then
+    echo "App start completed successfully."
+else
+    echo "ERROR: Could not start scrapy_scheduler.py. See log file for details."
+    exit 1
+fi
