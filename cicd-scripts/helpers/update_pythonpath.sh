@@ -20,7 +20,7 @@ if grep -q "^export PYTHONPATH=" "$PROFILE"; then
     echo "Updated PYTHONPATH to include the current directory: $CURRENT_DIR"
 else
     # Add a new export PYTHONPATH line to .profile
-    echo "export PYTHONPATH=${CURRENT_DIR}\"" >> "$PROFILE"
+    echo "export PYTHONPATH=${CURRENT_DIR}" >> "$PROFILE"
     echo "Added new PYTHONPATH to .profile including the current directory: $CURRENT_DIR"
 fi
 
