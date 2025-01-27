@@ -57,7 +57,7 @@ def init_scheduler() -> BackgroundScheduler:
     return BackgroundScheduler(
         jobstores={"memory": MemoryJobStore()},
         executors={"default": ThreadPoolExecutor(max_workers)},
-        job_defaults={"coalesce": False, "max_instances": 1},
+        job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": True},
         timezone="UTC",
     )
 
@@ -114,13 +114,7 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
             runtime_offset_seconds=runtime_offset_seconds,
             **crawl_site.to_dict(exclude=("schedule",)),
         )
-        scheduler.add_job(
-            **apscheduler_job,
-            jobstore="memory",
-            misfire_grace_time=None,
-            max_instances=1,
-            coalesce=True,
-        )
+        scheduler.add_job(**apscheduler_job, jobstore="memory")
 
     scheduler.start()
     time.sleep(runtime_offset_seconds + 2)
