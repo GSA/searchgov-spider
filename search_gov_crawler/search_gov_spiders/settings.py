@@ -68,7 +68,6 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
     "search_gov_spiders.extensions.json_logging.JsonLogging": -1,
-    "scrapy.extensions.closespider.CloseSpider": 100,
     "spidermon.contrib.scrapy.extensions.Spidermon": 600,
 }
 
