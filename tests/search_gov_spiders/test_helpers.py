@@ -16,7 +16,7 @@ def test_is_valid_content_type(content_type_header, result):
 
 
 def test_get_crawl_sites_default():
-    assert len(helpers.get_crawl_sites()) == 41
+    assert len(helpers.get_crawl_sites()) == 40
 
 
 def test_get_crawl_sites_test_file(crawl_sites_test_file):

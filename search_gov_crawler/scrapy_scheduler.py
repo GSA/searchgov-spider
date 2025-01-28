@@ -92,7 +92,7 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     scheduler = BlockingScheduler(
         jobstores={"memory": MemoryJobStore()},
         executors={"default": ThreadPoolExecutor(max_workers)},
-        job_defaults={"coalesce": False, "max_instances": 1},
+        job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": None},
         timezone="UTC",
     )
 

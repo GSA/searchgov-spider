@@ -48,14 +48,6 @@
         "starting_urls": "https://www.accessdata.fda.gov/CMS_IA/default.html"
     },
     {
-        "name": "HHS ASPR Drive",
-        "allow_query_string": false,
-        "allowed_domains": "drive.hhs.gov",
-        "handle_javascript": false,
-        "schedule": "30 09 * * MON",
-        "starting_urls": "https://drive.hhs.gov/"
-    },
-    {
         "name": "Navy All Hands Magazine",
         "allow_query_string": false,
         "allowed_domains": "allhands.navy.mil",
