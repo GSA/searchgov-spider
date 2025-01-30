@@ -5,7 +5,7 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
 
 - For multiple domains, specify a json file as input:
   - Run `python benchmark.py -f ./example_input_file.json
-  - Input file should be a json array of objects in the same format as our crawl-sites.json file:
+  - Input file should be a json array of objects in the same format as our crawl-sites-sample.json file:
     [
       {
         "name": "Example",

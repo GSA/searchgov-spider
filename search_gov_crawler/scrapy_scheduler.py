@@ -1,5 +1,5 @@
 """
-Starts scrapy scheduler.  Takes job details from the crawl-sites.json file referenced below as CRAWL_SITES_FILE.
+Starts scrapy scheduler.  Takes job details from the crawl-sites-production.json file referenced below as CRAWL_SITES_FILE.
 Schedule is fully contained in-memory but current cron expression is stored in the input file so that on each
 deploy the schedule can pickup where it left off.
 
@@ -25,7 +25,7 @@ logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
-CRAWL_SITES_FILE =  Path(__file__).parent / "search_gov_spiders" / "utility_files" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME" ,"crawl-sites.json")
+CRAWL_SITES_FILE =  Path(__file__).parent / "search_gov_spiders" / "utility_files" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME" ,"crawl-sites-production.json")
 
 
 def run_scrapy_crawl(spider: str, allow_query_string: bool, allowed_domains: str, start_urls: str) -> None:
