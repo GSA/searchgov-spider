@@ -93,7 +93,7 @@ likes you want to redirect your ouput to a log file using something like `<bench
 
           $ python search_gov_spiders/benchmark.py -u https://www.example.com -d example.com
 
-2. To run multiple spiders simultaneously, provide a json file in the format of the [*crawl-sites.json file*](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites.json) as an argument:
+2. To run multiple spiders simultaneously, provide a json file in the format of the [*crawl-sites-sample.json file*](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-sample.json) as an argument:
 
           $ python search_gov_spiders/benchmark.py -f </path/to/crawl-sites-like-file.json>
 
@@ -165,7 +165,7 @@ There are other options available.  Run `python search_gov_spiders/benchmark.py 
         ## Running Against All Listed Search.gov Domains
 
 ## Running scrapy scheduler
-This process allows for scrapy to be run directly using an in-memory scheduler.  The schedule is based on the initial schedule setup in the [*crawl-sites.json file*](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites.json).  The process will run until killed.
+This process allows for scrapy to be run directly using an in-memory scheduler.  The schedule is based on the initial schedule setup in the [*crawl-sites-sample.json file*](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-sample.json).  The process will run until killed.
 
 The json input file must be in a format similar what is below.  There are validations in place when the file is read and in tests that should help
 prevent this file from getting into an invalid state.
