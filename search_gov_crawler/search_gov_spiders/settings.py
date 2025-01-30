@@ -46,6 +46,9 @@ SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # set to True for BFO
 AJAXCRAWL_ENABLED = True
 
+# setting for how deep we want to go 
+DEPTH_LIMIT = os.environ.get("SPIDER_DEPTH_LIMIT", "3")
+#  
 # crawl in BFO order rather than DFO
 DEPTH_PRIORITY = 1
 SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
