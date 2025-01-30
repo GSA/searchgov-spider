@@ -35,6 +35,7 @@ def fixture_mock_scrapy_settings(monkeypatch):
     settings.set("HTTPCACHE_DBM_MODULE", "dbm.dumb")
     settings.set("HTTPCACHE_DIR", Path(__file__).parent.joinpath("scrapy_httpcache"))
     settings.set("HTTPCACHE_STORAGE", "scrapy.extensions.httpcache.DbmCacheStorage")
+    settings.set("DEPTH_LIMIT", 0)
 
     # Ensures cache does not change, set to False if you need to update or replace cache files
     settings.set("HTTPCACHE_IGNORE_MISSING", True)
