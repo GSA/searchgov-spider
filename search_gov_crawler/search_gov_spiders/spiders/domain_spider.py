@@ -91,4 +91,4 @@ class DomainSpider(CrawlSpider):
         """
 
         if helpers.is_valid_content_type(response.headers.get("content-type", None)):
-            yield SearchGovSpidersItem(url=response.url)
+            yield SearchGovSpidersItem(url=response.url, html_content=response.body.decode("utf-8"))

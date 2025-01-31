@@ -78,6 +78,12 @@ install_dependencies() {
     deactivate
 }
 
+# Install NLTK (for text)
+install_nltk() {
+    source "$VENV_DIR/bin/activate"
+    python ./search_gov_crawler/elasticsearch/install_nltk.py
+}
+
 # Configure permissions
 configure_permissions() {
     echo "Configuring file permissions..."
@@ -127,6 +133,9 @@ setup_virtualenv
 
 # Install dependencies
 install_dependencies
+
+# Install nltk
+install_nltk
 
 # Start AWS agents
 start_agents
