@@ -11,3 +11,8 @@ scrapyd==1.5.0
 scrapyd-client==2.0.0
 scrapydweb @ git+https://github.com/GSA/searchgov-scrapydweb
 spidermon[monitoring]==1.23.0
+
+newspaper4k
+lxml_html_clean
+typing_extensions
+elasticsearch

@@ -12,6 +12,9 @@ from scrapy.spiders import Spider
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
+from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+
+SPIDER_INDEX_TO_ELASTICSEARCH = os.environ.get("SPIDER_INDEX_TO_ELASTICSEARCH", True)
 
 class SearchGovSpidersPipeline:
     """
@@ -28,6 +31,7 @@ class SearchGovSpidersPipeline:
         self.file_number = 1
         self.file_path = None
         self.current_file = None
+        self.es = SearchGovElasticsearch()
 
         if not self.api_url:
             output_dir = Path(__file__).parent.parent / "output"
@@ -38,14 +42,19 @@ class SearchGovSpidersPipeline:
 
     def process_item(self, item: SearchGovSpidersItem, spider: Spider) -> SearchGovSpidersItem:
         """Handle each item by writing to file or batching URLs for an API POST."""
-        url = item.get("url", "")
-        if not url:
-            raise DropItem("Missing URL in item")
+        url = item.get("url", None)
+        html_content = item.get("html_content", None)
 
-        if self.api_url:
-            self._process_api_item(url, spider)
+        if not url or not html_content:
+            raise DropItem("Missing URL or HTML in item")
+        
+        if SPIDER_INDEX_TO_ELASTICSEARCH:
+            self.es.add_to_batch(html_content=html_content, url=url, domain_name=spider.name, spider=spider)
         else:
-            self._process_file_item(url)
+            if self.api_url:
+                self._process_api_item(url, spider)
+            else:
+                self._process_file_item(url)
 
         return item
 
