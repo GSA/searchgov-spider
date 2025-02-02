@@ -55,6 +55,11 @@ check_python() {
     fi
 }
 
+# Fetch environment variables from parameter store
+fetch_env_vars() {
+  ensure_executable "./cicd-scripts/helpers/fetch_env_vars.sh"
+
+
 # Set environment paths
 update_pythonpath() {
   ensure_executable "./cicd-scripts/helpers/update_pythonpath.sh"
@@ -115,6 +120,9 @@ install_system_dependencies
 
 # Check and install Python if missing
 check_python
+
+# fetch and export env vars
+fetch_env_vars
 
 # Set environment paths
 update_pythonpath
