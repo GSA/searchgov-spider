@@ -96,7 +96,7 @@ def convert_plist_to_json(input_file: str, output_file: str, write_full_output: 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process plist files from scrutiny.")
     parser.add_argument("--input_file", type=str, help="path to input file")
-    parser.add_argument("--output_file", type=str, default="crawl-sites.json", help="name of file")
+    parser.add_argument("--output_file", type=str, default="crawl-sites-production.json", help="name of file")
     parser.add_argument("--full_output", help="Also output the full json file", action="store_true")
     args = parser.parse_args()
 

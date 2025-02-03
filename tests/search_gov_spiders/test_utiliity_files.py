@@ -100,10 +100,10 @@ def test_convert_plist_to_json(monkeypatch):
 
         with monkeypatch.context() as m:
             m.setattr(Path, "read_text", mock_read_text)
-            convert_plist_to_json(input_file="input_file.plist", output_file="crawl-sites.json", write_full_output=True)
+            convert_plist_to_json(input_file="input_file.plist", output_file="crawl-sites-sample.json", write_full_output=True)
 
         crawl_output_records = json.loads(
-            Path(temp_dir).joinpath("crawl-sites.json").resolve().read_text(encoding="UTF")
+            Path(temp_dir).joinpath("crawl-sites-sample.json").resolve().read_text(encoding="UTF")
         )
         full_output_records = json.loads(Path(temp_dir).joinpath("input_file.json").resolve().read_text(encoding="UTF"))
 
@@ -137,7 +137,7 @@ def test_convert_plist_to_json_missing_input_file(monkeypatch):
     monkeypatch.setattr(Path, "resolve", mock_resolve)
 
     with pytest.raises(FileNotFoundError, match="Input file this-is-a-missing-file-path.txt does not exist!"):
-        convert_plist_to_json(input_file=non_existant_file, output_file="crawl-sites.json", write_full_output=True)
+        convert_plist_to_json(input_file=non_existant_file, output_file="crawl-sites-sample.json", write_full_output=True)
 
 
 MANUAL_UPDATE_TEST_CASES = [
