@@ -11,10 +11,10 @@ from scrapy.exceptions import DropItem
 from scrapy.spiders import Spider
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
-
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 
-SPIDER_INDEX_TO_ELASTICSEARCH = os.environ.get("SPIDER_INDEX_TO_ELASTICSEARCH", True)
+SPIDER_INDEX_TO_ELASTICSEARCH = bool(os.environ.get("SPIDER_INDEX_TO_ELASTICSEARCH", False) == "true")
 
 class SearchGovSpidersPipeline:
     """
@@ -33,7 +33,12 @@ class SearchGovSpidersPipeline:
         self.current_file = None
         self.es = SearchGovElasticsearch()
 
-        if not self.api_url:
+        if SPIDER_INDEX_TO_ELASTICSEARCH:
+            helpers.ALLOWED_CONTENT_TYPE = [
+                "text/html",
+            ]
+
+        if not self.api_url and not SPIDER_INDEX_TO_ELASTICSEARCH:
             output_dir = Path(__file__).parent.parent / "output"
             output_dir.mkdir(parents=True, exist_ok=True)
             base_filename = f"all-links-p{self.APP_PID}"
@@ -49,7 +54,10 @@ class SearchGovSpidersPipeline:
             raise DropItem("Missing URL or HTML in item")
         
         if SPIDER_INDEX_TO_ELASTICSEARCH:
-            self.es.add_to_batch(html_content=html_content, url=url, domain_name=spider.name, spider=spider)
+            try:
+                self.es.add_to_batch(html_content=html_content, url=url, domain_name=spider.name)
+            except Exception as e:
+                spider.logger.error(str(e))
         else:
             if self.api_url:
                 self._process_api_item(url, spider)
@@ -104,10 +112,16 @@ class SearchGovSpidersPipeline:
 
     def close_spider(self, spider: Spider) -> None:
         """Finalize operations: close files or send remaining batched URLs."""
-        if self.api_url:
-            self._send_post_request(spider)
-        elif self.current_file:
-            self.current_file.close()
+        if SPIDER_INDEX_TO_ELASTICSEARCH:
+            try:
+                self.es.batch_upload()
+            except Exception as e:
+                spider.logger.error(str(e))
+        else:
+            if self.api_url:
+                self._send_post_request(spider)
+            elif self.current_file:
+                self.current_file.close()
 
 
 class DeDeuplicatorPipeline:
