@@ -24,10 +24,10 @@ class SearchGovElasticsearch:
         self._current_batch = []
         self._batch_size = batch_size
         self._es_client = None
-        self._env_es_hosts = os.environ.get("ELASTICSEARCH_HOSTS", "")
-        self._env_es_index = os.environ.get("ELASTICSEARCH_INDEX", "")
-        self._env_es_username = os.environ.get("ELASTICSEARCH_USERNAME", "")
-        self._env_es_password = os.environ.get("ELASTICSEARCH_PASSWORD", "")
+        self._env_es_hosts = os.environ.get("ES_HOSTS", "")
+        self._env_es_index = os.environ.get("ES_INDEX", "")
+        self._env_es_username = os.environ.get("ES_USER", "")
+        self._env_es_password = os.environ.get("ES_PASSWORD", "")
         self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor
 
     def add_to_batch(self, html_content: str, url: str, domain_name: str):
@@ -76,6 +76,7 @@ class SearchGovElasticsearch:
         if not self._es_client:
             self._es_client = Elasticsearch(
                 hosts=self._parse_es_urls(self._env_es_hosts),
+                verify_certs=False,
                 http_auth=(self._env_es_username, self._env_es_password)
             )
             self._create_index_if_not_exists()
