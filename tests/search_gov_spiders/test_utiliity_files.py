@@ -114,6 +114,7 @@ def test_convert_plist_to_json(monkeypatch):
             "allowed_domains": "example.com",
             "handle_javascript": True,
             "schedule": None,
+            "output_target":"endpoint",
             "starting_urls": "https://www.example.com/1",
         }
         assert len(full_output_records) == 5
