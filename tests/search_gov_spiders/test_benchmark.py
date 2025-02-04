@@ -54,8 +54,7 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
             spider_arg,
             test_args["allow_query_string"],
             test_args["allowed_domains"],
-            test_args["starting_urls"],
-            test_args["output_target"]
+            test_args["starting_urls"]
         ],
     }
 

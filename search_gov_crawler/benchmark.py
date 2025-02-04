@@ -86,7 +86,6 @@ def create_apscheduler_job(
             allow_query_string,
             allowed_domains,
             starting_urls,
-            output_target,
         ],
     }
 
