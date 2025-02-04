@@ -5,6 +5,7 @@
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": false,
         "schedule": "0,15,30,45 * * * *",
+        "output_target": "endpoint",
         "starting_urls": "https://quotes.toscrape.com/"
     },
     {
@@ -13,6 +14,7 @@
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
+        "output_target": "endpoint",
         "starting_urls": "https://quotes.toscrape.com/js/"
     },
     {
@@ -21,6 +23,7 @@
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
+        "output_target": "endpoint",
         "starting_urls": "https://quotes.toscrape.com/js-delayed/"
     },
     {
@@ -29,6 +32,7 @@
         "allowed_domains": "quotes.toscrape.com/tag/",
         "handle_javascript": false,
         "schedule": "0,15,30,45 * * * *",
+        "output_target": "endpoint",
         "starting_urls": "https://quotes.toscrape.com/"
     }
 ]
