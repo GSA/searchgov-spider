@@ -25,16 +25,17 @@ class SearchGovElasticsearch:
         self._batch_size = batch_size
         self._es_client = None
         self._env_es_hosts = os.environ.get("ES_HOSTS", "")
-        self._env_es_index = os.environ.get("ES_INDEX", "")
+        self._env_es_index_name = os.environ.get("SPIDER_ES_INDEX_NAME", "")
+        self._env_es_index_alias = os.environ.get("SPIDER_ES_INDEX_ALIAS", "")
         self._env_es_username = os.environ.get("ES_USER", "")
         self._env_es_password = os.environ.get("ES_PASSWORD", "")
         self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor
 
-    def add_to_batch(self, html_content: str, url: str, domain_name: str):
+    def add_to_batch(self, html_content: str, url: str):
         """
         Add a document to the batch for Elasticsearch upload.
         """
-        doc = convert_html(html_content=html_content, url=url, domain_name=domain_name)
+        doc = convert_html(html_content=html_content, url=url)
         if doc:
             self._current_batch.append(doc)
 
@@ -86,7 +87,7 @@ class SearchGovElasticsearch:
         """
         Creates an index in Elasticsearch if it does not exist.
         """
-        index_name = self._env_es_index
+        index_name = self._env_es_index_name
         try:
             es_client = self._get_client()
             if not es_client.indices.exists(index=index_name):
@@ -98,7 +99,7 @@ class SearchGovElasticsearch:
                         }
                     },
                     "aliases": {
-                        "production-i14y-documents-searchgov": {}
+                        self._env_es_index_alias: {}
                     }
                 }
                 es_client.indices.create(index=index_name, body=index_settings)
@@ -114,7 +115,7 @@ class SearchGovElasticsearch:
         """
         return [
             {
-                "_index": self._env_es_index,
+                "_index": self._env_es_index_name,
                 "_id": doc.pop("_id", None),
                 "_source": doc
             }

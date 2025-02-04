@@ -1,9 +1,12 @@
 import os
 import hashlib
 import newspaper
+import tldextract
 from datetime import datetime, timezone
 from urllib.parse import urlparse
-from typing import Union
+
+import search_gov_crawler.search_gov_spiders.helpers.content as content
+
 
 ALLOWED_LANGUAGE_CODE = {
     lang: True for lang in [
@@ -14,29 +17,18 @@ ALLOWED_LANGUAGE_CODE = {
     ]
 }
 
-def safe_decode_str(str_value: Union[str, bytes], default_val: str = "") -> str:
-    """Safely decodes a string or bytes into UTF-8."""
-    try:
-        if isinstance(str_value, str):
-            return str_value.encode("utf-8").decode("utf-8")
-        elif isinstance(str_value, bytes):
-            return str_value.decode("utf-8")
-    except Exception:
-        return default_val
-    return default_val
-
-def convert_html(html_content: str, url: str, domain_name: str):
+def convert_html(html_content: str, url: str):
     """Extracts and processes article content from HTML using newspaper3k."""
     article = newspaper.Article(url=url)
     article.download(input_html=html_content)
     article.parse()
     article.nlp()
 
-    title = safe_decode_str(article.title or article.meta_site_name, "")
-    description = safe_decode_str(article.meta_description or article.summary, "")
-    content = safe_decode_str(article.text or description, "")
+    title = article.title or article.meta_site_name or None
+    description = article.meta_description or article.summary or None
+    main_content = article.text or description or None
 
-    if not content:
+    if not main_content:
         return None
 
     time_now_str = current_utc_iso()
@@ -51,7 +43,7 @@ def convert_html(html_content: str, url: str, domain_name: str):
         "audience": None,
         "changed": None,
         "click_count": None,
-        "content_type": None,
+        "content_type": "article",
         "created_at": time_now_str,
         "created": None,
         "_id": sha_id,
@@ -68,12 +60,12 @@ def convert_html(html_content: str, url: str, domain_name: str):
         "updated_at": time_now_str,
         "updated": article.publish_date,
         f"title{valid_language}": title,
-        f"description{valid_language}": description,
-        f"content{valid_language}": content,
+        f"description{valid_language}": content.sanitize_text(description),
+        f"content{valid_language}": content.sanitize_text(main_content),
         "basename": basename,
         "extension": extension or None,
         "url_path": get_url_path(url),
-        "domain_name": domain_name
+        "domain_name": get_domain_name(url)
     }
 
     return i14y_doc
@@ -94,3 +86,10 @@ def current_utc_iso() -> str:
 def generate_url_sha256(url: str) -> str:
     """Generates a SHA-256 hash for a given URL."""
     return hashlib.sha256(url.encode()).hexdigest()
+
+def get_domain_name(url: str) -> str:
+    """Get domain 'domain_name' field value"""
+    parsed_url = urlparse(url)
+    extracted = tldextract.extract(parsed_url.netloc)
+    subdomain = f"{extracted.subdomain}." if extracted.subdomain else ""
+    return f"{subdomain}{extracted.domain}.{extracted.suffix}"

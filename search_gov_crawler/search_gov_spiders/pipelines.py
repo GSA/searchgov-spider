@@ -50,12 +50,12 @@ class SearchGovSpidersPipeline:
         url = item.get("url", None)
         html_content = item.get("html_content", None)
 
-        if not url or not html_content:
+        if not url or (SPIDER_INDEX_TO_ELASTICSEARCH and not html_content):
             raise DropItem("Missing URL or HTML in item")
         
         if SPIDER_INDEX_TO_ELASTICSEARCH:
             try:
-                self.es.add_to_batch(html_content=html_content, url=url, domain_name=spider.name)
+                self.es.add_to_batch(html_content=html_content, url=url)
             except Exception as e:
                 spider.logger.error(str(e))
         else:

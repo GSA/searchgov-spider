@@ -2,6 +2,7 @@ from scrapy.http import Response
 from scrapy.spiders import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
+import search_gov_crawler.search_gov_spiders.helpers.encoding as encoding
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
@@ -91,4 +92,5 @@ class DomainSpider(CrawlSpider):
         """
 
         if helpers.is_valid_content_type(response.headers.get("content-type", None)):
-            yield SearchGovSpidersItem(url=response.url, html_content=response.body.decode("utf-8"))
+            html_content = encoding.decode_http_response(response_bytes=response.body, url=response.url)
+            yield SearchGovSpidersItem(url=response.url, html_content=html_content)
