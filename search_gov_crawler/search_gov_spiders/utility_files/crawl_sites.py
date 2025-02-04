@@ -43,9 +43,9 @@ class CrawlSite:
                 raise TypeError(msg)
         
         # validate output_target values
-        valid_output_targets = ("endpoint", "elastic")
+        valid_output_targets = {"endpoint", "elastic"}
         if self.output_target not in valid_output_targets:
-            msg = f"Invalid output_target value {self.output_target}!  Must be one of {valid_output_targets}"
+            msg = f"Invalid output_target value {self.output_target}! Must be one of {valid_output_targets}"
             raise TypeError(msg)
 
     def to_dict(self, *, exclude: tuple = ()) -> dict:
