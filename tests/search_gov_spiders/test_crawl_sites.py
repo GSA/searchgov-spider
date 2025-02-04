@@ -72,6 +72,19 @@ def test_invalid_crawl_site_wrong_type(base_crawl_site_args, field, new_value, e
     with pytest.raises(TypeError, match=match):
         CrawlSite(**test_args)
 
+@pytest.mark.parametrize(
+    ("field", "new_value", "expected_type"),
+    [
+        ("output_target", "index", {"endpoint", "elastic"}),
+    ],
+)
+def test_invalid_crawl_site_output_target(base_crawl_site_args, field, new_value, expected_type):
+    test_args = base_crawl_site_args | {field: new_value}
+
+    match = f"Invalid output_target value {new_value}! Must be one of {expected_type}"
+    with pytest.raises(TypeError, match=match):
+        CrawlSite(**test_args)
+
 
 def test_valid_crawl_sites(base_crawl_site_args):
     cs = CrawlSites([CrawlSite(**base_crawl_site_args)])
