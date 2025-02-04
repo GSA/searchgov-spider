@@ -67,7 +67,7 @@ To initialize the above schedule in scrapydweb follow these instructions:
 * Run scrapyd, logparser, and scrapydweb using directions in main [README](/README.md#running-scrapydweb-ui) file.
 * Apply schedule to database by running the init script
         $ cd search_gov_crawler/search_gov_spiders/utility_files
-        $ python init_schedule.py --input_file=./crawl-sites.json
+        $ python init_schedule.py --input_file=./crawl-sites-production.json
 * If there are any issues finding the database files, you may need to set the DATA_PATH environment variable.  If you have not set DATA_PATH as an environment variable or in scrapydweb config, it will be set to `<venv-path>/lib/python3.12/site-packages/scrapydweb/data/database`
 * Refresh scrapydweb Timer Tasks page
 * All tasks will initially be in an inactive state.  To reactivate:
