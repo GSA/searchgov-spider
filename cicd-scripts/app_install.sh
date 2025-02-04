@@ -7,7 +7,6 @@ sudo chmod +x ./cicd-scripts/helpers/ensure_executable.sh
 source ./cicd-scripts/helpers/ensure_executable.sh
 
 ### VARIABLES ###
-SPIDER_PYTHON_VERSION=3.12
 _CURRENT_BUILD_DIR=${PWD}
 VENV_DIR=./venv
 
@@ -115,14 +114,14 @@ start_agents() {
 # Stop running services
 stop_services
 
+# fetch and export env vars
+fetch_env_vars
+
 # Install system dependencies
 install_system_dependencies
 
 # Check and install Python if missing
 check_python
-
-# fetch and export env vars
-fetch_env_vars
 
 # Set environment paths
 update_pythonpath
