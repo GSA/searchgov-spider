@@ -13,6 +13,7 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
         "allow_query_string": false,
         "handle_javascript": false,
         "schedule": null,
+        "output_target": "endpoint",
         "starting_urls": "https://www.example.com"
       }
     ]
@@ -68,6 +69,7 @@ def create_apscheduler_job(
     allowed_domains: str,
     starting_urls: str,
     handle_javascript: bool,
+    output_target: str,
     runtime_offset_seconds: int,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
@@ -84,6 +86,7 @@ def create_apscheduler_job(
             allow_query_string,
             allowed_domains,
             starting_urls,
+            output_target,
         ],
     }
 
@@ -126,6 +129,7 @@ def benchmark_from_args(
     allowed_domains: str,
     starting_urls: str,
     handle_javascript: bool,
+    output_target: str,
     runtime_offset_seconds: int,
 ):
     """Run an individual benchmarking job based on args"""
@@ -142,6 +146,7 @@ def benchmark_from_args(
         "allowed_domains": allowed_domains,
         "starting_urls": starting_urls,
         "handle_javascript": handle_javascript,
+        "output_target": output_target,
         "runtime_offset_seconds": runtime_offset_seconds,
     }
 
