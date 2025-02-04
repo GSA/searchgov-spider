@@ -79,8 +79,7 @@ def test_invalid_crawl_site_wrong_type(base_crawl_site_args, field, new_value, e
     ],
 )
 def test_invalid_crawl_site_output_target(base_crawl_site_args, field, new_value, expected_type):
-    test_args = base_crawl_site_args | {"schedule": "* * * * *"}
-    test_args[field] = new_value
+    test_args = base_crawl_site_args | {field: new_value}
 
     match = f"Invalid output_target value {new_value}! Must be one of {expected_type}"
     with pytest.raises(TypeError, match=match):
