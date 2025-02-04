@@ -57,7 +57,7 @@ check_python() {
 # Fetch environment variables from parameter store
 fetch_env_vars() {
   ensure_executable "./cicd-scripts/helpers/fetch_env_vars.sh"
-
+}
 
 # Set environment paths
 update_pythonpath() {
