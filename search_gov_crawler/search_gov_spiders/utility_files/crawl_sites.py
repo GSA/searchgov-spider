@@ -17,6 +17,7 @@ class CrawlSite:
     allowed_domains: str
     handle_javascript: bool
     starting_urls: str
+    output_target: str
     schedule: str | None = None
 
     def __post_init__(self):
