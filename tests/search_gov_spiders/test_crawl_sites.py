@@ -12,6 +12,7 @@ def fixture_base_crawl_site_args() -> dict:
         "allow_query_string": True,
         "allowed_domains": "example.com",
         "handle_javascript": False,
+        "output_target": "endpoint",
         "starting_urls": "https://www.example.com",
     }
 
