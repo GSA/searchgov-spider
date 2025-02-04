@@ -121,6 +121,7 @@ def transform_crawl_sites(crawl_sites: list[dict]) -> list[dict]:
                         "allowed_domains": crawl_site["allowed_domains"],
                         "setting": [],
                         "start_urls": crawl_site["starting_urls"],
+                        "output_target": crawl_site["output_target"],
                     }
                 ).replace("'", '"'),
                 "selected_nodes": "[1]",
