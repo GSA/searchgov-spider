@@ -12,6 +12,7 @@ def fixture_base_crawl_site_args() -> dict:
         "allow_query_string": True,
         "allowed_domains": "example.com",
         "handle_javascript": False,
+        "output_target": "endpoint",
         "starting_urls": "https://www.example.com",
     }
 
@@ -68,6 +69,19 @@ def test_invalid_crawl_site_wrong_type(base_crawl_site_args, field, new_value, e
     test_args[field] = new_value
 
     match = f"Invalid type! Field {field} with value {new_value} must be type {expected_type}"
+    with pytest.raises(TypeError, match=match):
+        CrawlSite(**test_args)
+
+@pytest.mark.parametrize(
+    ("field", "new_value", "expected_type"),
+    [
+        ("output_target", "index", {"endpoint", "elastic"}),
+    ],
+)
+def test_invalid_crawl_site_output_target(base_crawl_site_args, field, new_value, expected_type):
+    test_args = base_crawl_site_args | {field: new_value}
+
+    match = f"Invalid output_target value {new_value}! Must be one of {expected_type}"
     with pytest.raises(TypeError, match=match):
         CrawlSite(**test_args)
 
