@@ -16,6 +16,11 @@ jobs:
             python -m venv venv
             . venv/bin/activate
             pip install -r ./search_gov_crawler/requirements.txt
+      - run:
+          name: Install NLTK resources
+          command: |
+            . venv/bin/activate
+            python ./search_gov_crawler/elasticsearch/install_nltk.py
       - save_cache:
           paths:
             - ./venv
