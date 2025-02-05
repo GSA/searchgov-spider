@@ -92,5 +92,5 @@ class DomainSpider(CrawlSpider):
         """
 
         if helpers.is_valid_content_type(response.headers.get("content-type", None)):
-            html_content = encoding.decode_http_response(response_bytes=response.body, url=response.url)
+            html_content = encoding.decode_http_response(response_bytes=response.body)
             yield SearchGovSpidersItem(url=response.url, html_content=html_content)

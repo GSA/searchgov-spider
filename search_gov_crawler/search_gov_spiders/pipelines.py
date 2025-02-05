@@ -33,11 +33,6 @@ class SearchGovSpidersPipeline:
         self.current_file = None
         self.es = SearchGovElasticsearch()
 
-        if SPIDER_INDEX_TO_ELASTICSEARCH:
-            helpers.ALLOWED_CONTENT_TYPE = [
-                "text/html",
-            ]
-
         if not self.api_url and not SPIDER_INDEX_TO_ELASTICSEARCH:
             output_dir = Path(__file__).parent.parent / "output"
             output_dir.mkdir(parents=True, exist_ok=True)

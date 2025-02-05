@@ -1,10 +1,18 @@
 from collections import namedtuple
 
 import pytest
+import os
+from unittest.mock import patch
 
 from search_gov_crawler.search_gov_spiders.helpers import domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import should_abort_request
 
+@pytest.fixture(autouse=True)
+def mock_env_vars():
+    with patch.dict(os.environ, {
+        "SPIDER_INDEX_TO_ELASTICSEARCH": "0",
+    }):
+        yield
 
 @pytest.mark.parametrize(
     ("content_type_header", "result"),
@@ -12,6 +20,7 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import shoul
     ids=["good", "regex", "bad"],
 )
 def test_is_valid_content_type(content_type_header, result):
+    helpers._use_content_type = helpers.ALLOWED_CONTENT_TYPE
     assert helpers.is_valid_content_type(content_type_header) is result
 
 

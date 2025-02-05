@@ -107,7 +107,7 @@ class SearchGovElasticsearch:
             else:
                 log.info(f"Index '{index_name}' already exists.")
         except Exception as e:
-            log.error(f"Error creating/checking index: {str(e)}", exc_info=True)
+            log.error(f"Error creating/checking index: {str(e)}")
 
     def _create_actions(self, docs: List[Dict[Any, Any]]) -> List[Dict[str, Any]]:
         """
@@ -131,6 +131,6 @@ class SearchGovElasticsearch:
                 actions = self._create_actions(docs)
                 helpers.bulk(self._get_client(), actions)
             except Exception as e:
-                log.error(f"Error in bulk upload: {str(e)}", exc_info=True)
+                log.error(f"Error in bulk upload: {str(e)}")
 
         await loop.run_in_executor(self._executor, _bulk_upload)

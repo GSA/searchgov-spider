@@ -1,6 +1,6 @@
 export ES_HOSTS="http://localhost:9200"
 export SPIDER_ES_INDEX_NAME="i14y-documents-spider"
 export SPIDER_ES_INDEX_ALIAS="i14y-documents"
-export ES_USER=""
-export ES_PASSWORD=""
+export ES_USER="username"
+export ES_PASSWORD="password"
 export SPIDER_INDEX_TO_ELASTICSEARCH="true"

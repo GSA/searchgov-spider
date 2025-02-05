@@ -23,7 +23,7 @@ def detect_encoding(data: bytes) -> str | None:
     
     return encoding if encoding else None
 
-def decode_http_response(response_bytes: bytes, url: str) -> str:
+def decode_http_response(response_bytes: bytes) -> str:
     """Decode an HTTP response, using the detected encoding or the response's default encoding."""
     detected_encoding = detect_encoding(response_bytes)
     

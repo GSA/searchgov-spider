@@ -12,31 +12,24 @@ def remove_control_chars(text: str) -> str:
     """Remove non-printable and invalid XML characters from the text."""
     return "".join(map(filter_printable_chars, text))
 
-def clean_line(line: str, preserve_whitespace: bool = False) -> Optional[str]:
+def clean_line(line: str) -> Optional[str]:
     """Sanitize a line by removing HTML space entities, non-printable characters, and trimming spaces."""
     replacements = {"&#13;": "\r", "&#10;": "\n", "&nbsp;": "\u00A0"}
     for old, new in replacements.items():
         line = line.replace(old, new)
     
     sanitized_line = remove_control_chars(line)
-    
-    if not preserve_whitespace:
-        sanitized_line = trim_whitespace(NON_PUNCTUATION_NEWLINES.sub(" ", sanitized_line))
-        
-        if not sanitized_line.strip():  # Remove empty lines
-            return None
-    
-    return sanitized_line
+    sanitized_line = trim_whitespace(NON_PUNCTUATION_NEWLINES.sub(" ", sanitized_line))
+    return sanitized_line.strip() or ""
 
-def sanitize_text(text: str, preserve_whitespace: bool = False) -> Optional[str]:
+def sanitize_text(text: str) -> Optional[str]:
     """Sanitize an entire text block by processing each line while preserving or trimming spaces."""
-
     if not text:
         return None
     clean_text = text
     try:
         clean_text = "\n".join(
-            filter(None, (clean_line(line, preserve_whitespace) for line in text.splitlines()))
+            filter(None, (clean_line(line) for line in text.splitlines()))
         ).replace("\u2424", "")
     except AttributeError:
         pass
