@@ -60,7 +60,7 @@ class SearchGovElasticsearch:
             hosts.append({"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme})
         return hosts
     
-    def _get_client(self):
+    def _get_client(self, spider: Spider):
         """
         Lazily initializes the Elasticsearch client.
         """
@@ -68,9 +68,9 @@ class SearchGovElasticsearch:
             self._es_client = Elasticsearch(
                 hosts=self._parse_es_urls(self._env_es_hosts),
                 verify_certs=False,
-                http_auth=(self._env_es_username, self._env_es_password)
+                basic_auth=(self._env_es_username, self._env_es_password)
             )
-            self._create_index_if_not_exists()
+            self._create_index_if_not_exists(spider)
         return self._es_client
 
     def _create_index_if_not_exists(self, spider: Spider):
@@ -79,7 +79,7 @@ class SearchGovElasticsearch:
         """
         index_name = self._env_es_index_name
         try:
-            es_client = self._get_client()
+            es_client = self._get_client(spider)
             if not es_client.indices.exists(index=index_name):
                 index_settings = {
                     "settings": {
@@ -119,7 +119,7 @@ class SearchGovElasticsearch:
         def _bulk_upload():
             try:
                 actions = self._create_actions(docs)
-                helpers.bulk(self._get_client(), actions)
+                helpers.bulk(self._get_client(spider), actions)
             except Exception as e:
                 spider.logger.error(f"Error in bulk upload: {str(e)}")
 
