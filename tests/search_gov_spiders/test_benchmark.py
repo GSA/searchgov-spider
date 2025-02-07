@@ -41,7 +41,7 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
         "allowed_domains": "example.com",
         "starting_urls": "https://www.example.com",
         "handle_javascript": handle_javascript,
-        "output_target": "endpoint",
+        "output_target": "csv",
         "runtime_offset_seconds": 5,
     }
 
@@ -54,7 +54,8 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
             spider_arg,
             test_args["allow_query_string"],
             test_args["allowed_domains"],
-            test_args["starting_urls"]
+            test_args["starting_urls"],
+            test_args["output_target"],
         ],
     }
 
@@ -81,7 +82,7 @@ def test_benchmark_from_args(caplog, monkeypatch):
         "allowed_domains": "unit-test.example.com",
         "starting_urls": "https://unit-test.example.com",
         "handle_javascript": False,
-        "output_target": "endpoint",
+        "output_target": "csv",
         "runtime_offset_seconds": 0,
     }
     with caplog.at_level("INFO"):
@@ -90,7 +91,7 @@ def test_benchmark_from_args(caplog, monkeypatch):
     expected_log_msg = (
         "Starting benchmark from args! "
         "allow_query_string=True allowed_domains=unit-test.example.com starting_urls=https://unit-test.example.com "
-        "handle_javascript=False runtime_offset_seconds=0"
+        "handle_javascript=False output_target=csv runtime_offset_seconds=0"
     )
     assert expected_log_msg in caplog.messages
 

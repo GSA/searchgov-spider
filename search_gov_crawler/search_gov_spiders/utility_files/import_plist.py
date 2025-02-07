@@ -79,7 +79,7 @@ def convert_plist_to_json(input_file: str, output_file: str, write_full_output: 
             "allowed_domains": create_allowed_domain(record["startingUrl"]),
             "handle_javascript": record["runJS"],
             "schedule": None,
-            "output_target":"endpoint",
+            "output_target": "csv",
             "starting_urls": record["startingUrl"],
         }
         for record in transformed_scrutiny_records

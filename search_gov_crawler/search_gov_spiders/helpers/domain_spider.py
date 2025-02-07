@@ -42,11 +42,13 @@ ES_ALLOWED_CONTENT_TYPE = [
     "text/html",
 ]
 
+ALLOWED_CONTENT_TYPE_OUTPUT_MAP = {
+    "csv": ALLOWED_CONTENT_TYPE,
+    "endpoint": ALLOWED_CONTENT_TYPE,
+    "elasticsearch": ES_ALLOWED_CONTENT_TYPE,
+}
+
 LINK_DENY_REGEX_STR = ["calendar", "location-contact", "DTMO-Site-Map/FileId/"]
-
-SPIDER_INDEX_TO_ELASTICSEARCH = bool(os.environ.get("SPIDER_INDEX_TO_ELASTICSEARCH") == "true")
-
-_use_content_type = ES_ALLOWED_CONTENT_TYPE if SPIDER_INDEX_TO_ELASTICSEARCH else ALLOWED_CONTENT_TYPE
 
 domain_spider_link_extractor = LinkExtractor(
     allow=(),
@@ -71,10 +73,10 @@ def split_allowed_domains(allowed_domains: str) -> list[str]:
     return host_only_domains
 
 
-def is_valid_content_type(content_type_header: Any) -> bool:
+def is_valid_content_type(content_type_header: Any, output_target: str) -> bool:
     """Check that content type header is in list of allowed values"""
     content_type_header = str(content_type_header)
-    for type_regex in _use_content_type:
+    for type_regex in ALLOWED_CONTENT_TYPE_OUTPUT_MAP[output_target]:
         if re.search(type_regex, content_type_header):
             return True
     return False

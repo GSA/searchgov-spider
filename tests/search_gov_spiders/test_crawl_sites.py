@@ -12,7 +12,7 @@ def fixture_base_crawl_site_args() -> dict:
         "allow_query_string": True,
         "allowed_domains": "example.com",
         "handle_javascript": False,
-        "output_target": "endpoint",
+        "output_target": "csv",
         "starting_urls": "https://www.example.com",
     }
 
@@ -75,7 +75,7 @@ def test_invalid_crawl_site_wrong_type(base_crawl_site_args, field, new_value, e
 @pytest.mark.parametrize(
     ("field", "new_value", "expected_type"),
     [
-        ("output_target", "index", {"endpoint", "elastic"}),
+        ("output_target", "index", {"endpoint", "elasticsearch", "csv"}),
     ],
 )
 def test_invalid_crawl_site_output_target(base_crawl_site_args, field, new_value, expected_type):

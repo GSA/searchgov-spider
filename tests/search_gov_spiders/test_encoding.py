@@ -1,12 +1,9 @@
-from search_gov_crawler.search_gov_spiders.helpers.encoding import decode_http_response, detect_encoding, is_utf8_encoded
-
-def test_is_utf8_encoded():
-    assert is_utf8_encoded(b"This is UTF-8") is True
-    assert is_utf8_encoded(b"") is True # Empty string is valid UTF-8
+from search_gov_crawler.search_gov_spiders.helpers.encoding import decode_http_response, detect_encoding
 
 def test_detect_encoding():
-    assert detect_encoding(b"This is UTF-8") == "utf-8"
-    assert detect_encoding(b"") == "utf-8"
+    some_str_bytes = "This is UTF-8".encode("utf-8")
+    assert detect_encoding(some_str_bytes) == "ASCII" # subset of utf-8
+    assert detect_encoding(b"") == None
 
 def test_decode_http_response_utf8():
     response_bytes = b"This is a UTF-8 string"

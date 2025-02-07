@@ -11,6 +11,7 @@ import logging
 import os
 import subprocess
 from pathlib import Path
+from dotenv import load_dotenv
 
 from apscheduler.executors.pool import ThreadPoolExecutor
 from apscheduler.jobstores.memory import MemoryJobStore
@@ -21,6 +22,8 @@ from pythonjsonlogger.json import JsonFormatter
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
 
+load_dotenv()
+
 logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
@@ -28,14 +31,14 @@ log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 CRAWL_SITES_FILE =  Path(__file__).parent / "search_gov_spiders" / "utility_files" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME" ,"crawl-sites-production.json")
 
 
-def run_scrapy_crawl(spider: str, allow_query_string: bool, allowed_domains: str, start_urls: str) -> None:
+def run_scrapy_crawl(spider: str, allow_query_string: bool, allowed_domains: str, start_urls: str, output_target: str) -> None:
     """Runs `scrapy crawl` command as a subprocess given the allowed arguments"""
 
     scrapy_env = os.environ.copy()
     scrapy_env["PYTHONPATH"] = str(Path(__file__).parent.parent)
 
     subprocess.run(
-        f"scrapy crawl {spider} -a allow_query_string={allow_query_string} -a allowed_domains={allowed_domains} -a start_urls={start_urls}",
+        f"scrapy crawl {spider} -a allow_query_string={allow_query_string} -a allowed_domains={allowed_domains} -a start_urls={start_urls} -a output_target={output_target}",
         check=True,
         cwd=Path(__file__).parent,
         env=scrapy_env,
@@ -44,9 +47,9 @@ def run_scrapy_crawl(spider: str, allow_query_string: bool, allowed_domains: str
     )
     msg = (
         "Successfully completed scrapy crawl with args "
-        "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s"
+        "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s, output_target=%s"
     )
-    log.info(msg, spider, allow_query_string, allowed_domains, start_urls)
+    log.info(msg, spider, allow_query_string, allowed_domains, start_urls, output_target)
 
 
 def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
@@ -70,6 +73,7 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
                     crawl_site.allow_query_string,
                     crawl_site.allowed_domains,
                     crawl_site.starting_urls,
+                    crawl_site.output_target,
                 ],
             },
         )

@@ -88,8 +88,8 @@ def generate_url_sha256(url: str) -> str:
     return hashlib.sha256(url.encode()).hexdigest()
 
 def get_domain_name(url: str) -> str:
-    """Get domain 'domain_name' field value"""
-    parsed_url = urlparse(url)
-    extracted = tldextract.extract(parsed_url.netloc)
-    subdomain = f"{extracted.subdomain}." if extracted.subdomain else ""
-    return f"{subdomain}{extracted.domain}.{extracted.suffix}"
+    """Extracts the domain from a URL, removing www and ensuring consistency."""
+    parsed = urlparse(url if url.startswith(('http://', 'https://')) else f'https://{url}')
+    extracted = tldextract.extract(parsed.netloc)
+    domain = f"{extracted.subdomain}.{extracted.domain}.{extracted.suffix}".lstrip('.').replace("www.", "")
+    return domain

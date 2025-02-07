@@ -114,7 +114,7 @@ def test_convert_plist_to_json(monkeypatch):
             "allowed_domains": "example.com",
             "handle_javascript": True,
             "schedule": None,
-            "output_target":"endpoint",
+            "output_target":"csv",
             "starting_urls": "https://www.example.com/1",
         }
         assert len(full_output_records) == 5
@@ -258,7 +258,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_json):
             "version": "default: the latest version",
             "spider": "domain_spider",
             "jobid": "quotes-1",
-            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/", "output_target": "endpoint"}',
+            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/", "output_target": "csv"}',
             "selected_nodes": "[1]",
             "year": "*",
             "month": "*",
@@ -286,7 +286,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_json):
             "version": "default: the latest version",
             "spider": "domain_spider_js",
             "jobid": "quotes-2",
-            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/js/", "output_target": "endpoint"}',
+            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/js/", "output_target": "csv"}',
             "selected_nodes": "[1]",
             "year": "*",
             "month": "*",

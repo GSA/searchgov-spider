@@ -12,11 +12,11 @@ def test_run_scrapy_crawl(caplog, monkeypatch):
 
     monkeypatch.setattr(subprocess, "run", mock_run)
     with caplog.at_level("INFO"):
-        run_scrapy_crawl("test_spider", False, "test-domain.example.com", "http://starting-url.example.com/")
+        run_scrapy_crawl("test_spider", False, "test-domain.example.com", "http://starting-url.example.com/", "csv")
 
     assert (
         "Successfully completed scrapy crawl with args spider=test_spider, allow_query_string=False, "
-        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/"
+        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/, output_target=csv"
     ) in caplog.messages
 
 
@@ -42,25 +42,25 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
             "func": run_scrapy_crawl,
             "id": "quotes-1",
             "name": "Quotes 1",
-            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/"],
+            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/", "csv"],
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-2",
             "name": "Quotes 2",
-            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js/"],
+            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js/", "csv"],
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-3",
             "name": "Quotes 3",
-            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js-delayed/"],
+            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js-delayed/", "endpoint"],
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-4",
             "name": "Quotes 4",
-            "args": ["domain_spider", False, "quotes.toscrape.com/tag/", "https://quotes.toscrape.com/"],
+            "args": ["domain_spider", False, "quotes.toscrape.com/tag/", "https://quotes.toscrape.com/", "endpoint"],
         },
     ]
 

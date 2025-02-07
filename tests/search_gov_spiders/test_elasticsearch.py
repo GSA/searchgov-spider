@@ -19,6 +19,15 @@ html_content = """
     </html>
 """
 
+@pytest.fixture
+def sample_spider():
+    """Fixture for a mock spider with a logger."""
+
+    class SpiderMock:
+        logger = MagicMock()
+
+    return SpiderMock()
+
 # Mock environment variables
 @pytest.fixture(autouse=True)
 def mock_env_vars():
@@ -59,14 +68,14 @@ def mock_asyncio_loop():
 
 # Test add_to_batch (Corrected)
 @pytest.mark.asyncio(loop_scope="module")
-async def test_add_to_batch(mock_convert_html):
+async def test_add_to_batch(mock_convert_html, sample_spider):
     es_uploader = SearchGovElasticsearch(batch_size=2)
     mock_convert_html.return_value = {"_id": "1", "title": "Test Document"}
 
-    es_uploader.add_to_batch(html_content, "http://example.com/1")
+    es_uploader.add_to_batch(html_content, "http://example.com/1", sample_spider)
     assert len(es_uploader._current_batch) == 1
 
-    es_uploader.add_to_batch(html_content, "http://example.com/2")
+    es_uploader.add_to_batch(html_content, "http://example.com/2", sample_spider)
     assert len(es_uploader._current_batch) == 0
 
 # # Test batch_upload
@@ -81,11 +90,11 @@ async def test_batch_upload(mock_convert_html, mock_asyncio_loop):
 
     mock_asyncio_loop.ensure_future.assert_called_once()
 
-def test_batch_upload_empty(mock_asyncio_loop):
+def test_batch_upload_empty(mock_asyncio_loop, sample_spider):
     es_uploader = SearchGovElasticsearch(batch_size=2)
     es_uploader._current_batch = []
 
-    es_uploader.batch_upload()
+    es_uploader.batch_upload(sample_spider)
     mock_asyncio_loop.ensure_future.assert_not_called()  # Ensure it is not called when the batch is empty
 
 # Test _batch_elasticsearch_upload
@@ -99,13 +108,12 @@ async def test__batch_elasticsearch_upload(mock_convert_html, mock_es_client, mo
     mock_es_client.indices.create.assert_called_once()
     mock_es_client.bulk.assert_called_once()
 
-def test_add_to_batch_no_doc(mock_convert_html, caplog):
+def test_add_to_batch_no_doc(mock_convert_html, caplog, sample_spider):
     es_uploader = SearchGovElasticsearch(batch_size=2)
     mock_convert_html.return_value = None
 
-    es_uploader.add_to_batch("<html></html>", "http://example.com/1")
+    es_uploader.add_to_batch("<html></html>", "http://example.com/1", sample_spider)
     assert len(es_uploader._current_batch) == 0
-    assert "Did not create i14y document for URL: http://example.com/1" in caplog.text
 
 def test__parse_es_urls_invalid_url():
     es_uploader = SearchGovElasticsearch()

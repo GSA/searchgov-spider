@@ -12,9 +12,6 @@ from scrapy.spiders import Spider
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
-import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
-
-SPIDER_INDEX_TO_ELASTICSEARCH = bool(os.environ.get("SPIDER_INDEX_TO_ELASTICSEARCH", False) == "true")
 
 class SearchGovSpidersPipeline:
     """
@@ -31,35 +28,48 @@ class SearchGovSpidersPipeline:
         self.file_number = 1
         self.file_path = None
         self.current_file = None
-        self.es = SearchGovElasticsearch()
-
-        if not self.api_url and not SPIDER_INDEX_TO_ELASTICSEARCH:
-            output_dir = Path(__file__).parent.parent / "output"
-            output_dir.mkdir(parents=True, exist_ok=True)
-            base_filename = f"all-links-p{self.APP_PID}"
-            self.file_path = output_dir / f"{base_filename}.csv"
-            self.current_file = open(self.file_path, "a", encoding="utf-8")
+        self.file_open = False
+        self._es = None
 
     def process_item(self, item: SearchGovSpidersItem, spider: Spider) -> SearchGovSpidersItem:
         """Handle each item by writing to file or batching URLs for an API POST."""
         url = item.get("url", None)
-        html_content = item.get("html_content", None)
+        output_target= item.get("output_target", None)
 
-        if not url or (SPIDER_INDEX_TO_ELASTICSEARCH and not html_content):
-            raise DropItem("Missing URL or HTML in item")
+        if output_target not in ["endpoint", "elasticsearch", "csv"]:
+            raise DropItem(f"Not a valid output_target: {output_target}")
+
+        if not url:
+            raise DropItem("Missing URL in item")
         
-        if SPIDER_INDEX_TO_ELASTICSEARCH:
-            try:
-                self.es.add_to_batch(html_content=html_content, url=url)
-            except Exception as e:
-                spider.logger.error(str(e))
-        else:
-            if self.api_url:
-                self._process_api_item(url, spider)
-            else:
-                self._process_file_item(url)
+        if output_target == "elasticsearch":
+            self._process_es_item(item, spider)
+        elif output_target == "endpoint":
+            if not self.api_url:
+                raise DropItem("Item 'endpoint' not resolved, env.SPIDER_URLS_API is not set")
+            self._process_api_item(url, spider)
+        else: # csv
+            self._process_file_item(url)
 
         return item
+    
+    def _get_elasticsearch_client(self) -> SearchGovElasticsearch:
+        if self._es:
+            return self._es
+        self._es = SearchGovElasticsearch()
+        return self._es
+    
+    def _process_es_item(self, item: SearchGovSpidersItem, spider: Spider):
+        url = item.get("url", None)
+        html_content = item.get("html_content", None)
+
+        if not html_content:
+            spider.logger.error(f"Missing 'html_content' for url: {url}")
+            raise DropItem("Missing URL or HTML in item")
+        try:
+            self._get_elasticsearch_client().add_to_batch(html_content=html_content, url=url, spider=spider)
+        except Exception as e:
+            raise DropItem(f"Item 'elasticsearch' add_to_batch() failed: {str(e)}")
 
     def _process_api_item(self, url: str, spider: Spider) -> None:
         """Batch URLs for API and send POST if size limit is reached."""
@@ -69,6 +79,15 @@ class SearchGovSpidersPipeline:
 
     def _process_file_item(self, url: str) -> None:
         """Write URL to file and rotate the file if size exceeds the limit."""
+
+        if not self.file_open:
+            self.file_open = True
+            output_dir = Path(__file__).parent.parent / "output"
+            output_dir.mkdir(parents=True, exist_ok=True)
+            base_filename = f"all-links-p{self.APP_PID}"
+            self.file_path = output_dir / f"{base_filename}.csv"
+            self.current_file = open(self.file_path, "a", encoding="utf-8")
+
         self.current_file.write(f"{url}\n")
         if self._file_size() >= self.MAX_URL_BATCH_SIZE_BYTES:
             self._rotate_file()
@@ -92,9 +111,6 @@ class SearchGovSpidersPipeline:
 
     def _send_post_request(self, spider: Spider) -> None:
         """Send a POST request with the batched URLs."""
-        if not self.urls_batch:
-            return
-
         try:
             response = requests.post(self.api_url, json={"urls": self.urls_batch})
             response.raise_for_status()
@@ -107,16 +123,18 @@ class SearchGovSpidersPipeline:
 
     def close_spider(self, spider: Spider) -> None:
         """Finalize operations: close files or send remaining batched URLs."""
-        if SPIDER_INDEX_TO_ELASTICSEARCH:
-            try:
-                self.es.batch_upload()
-            except Exception as e:
-                spider.logger.error(str(e))
-        else:
-            if self.api_url:
-                self._send_post_request(spider)
-            elif self.current_file:
-                self.current_file.close()
+
+        try:
+            if self._es:
+                self._get_elasticsearch_client().batch_upload(spider)
+        except Exception as e:
+            spider.logger.error(str(e))
+        
+        if len(self.urls_batch):
+            self._send_post_request(spider)
+        
+        if self.current_file:
+            self.current_file.close()
 
 
 class DeDeuplicatorPipeline:

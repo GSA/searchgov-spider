@@ -1,23 +1,13 @@
 import os
 import asyncio
-import logging
+from scrapy.spiders import Spider
 from elasticsearch import helpers
 from concurrent.futures import ThreadPoolExecutor
 from typing import List, Dict, Any
 from elasticsearch import Elasticsearch
-from pythonjsonlogger.json import JsonFormatter
 from urllib.parse import urlparse
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.elasticsearch.convert_html_i14y import convert_html
-
-# Setup Logging
-logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
-log = logging.getLogger("search_gov_crawler.es_batch_upload")
-
-if not log.handlers:
-    handler = logging.StreamHandler()
-    handler.setFormatter(JsonFormatter(fmt=LOG_FMT))
-    log.addHandler(handler)
 
 class SearchGovElasticsearch:
     def __init__(self, batch_size: int = 50):
@@ -31,7 +21,7 @@ class SearchGovElasticsearch:
         self._env_es_password = os.environ.get("ES_PASSWORD", "")
         self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor
 
-    def add_to_batch(self, html_content: str, url: str):
+    def add_to_batch(self, html_content: str, url: str, spider: Spider):
         """
         Add a document to the batch for Elasticsearch upload.
         """
@@ -40,11 +30,11 @@ class SearchGovElasticsearch:
             self._current_batch.append(doc)
 
             if len(self._current_batch) >= self._batch_size:
-                self.batch_upload()
+                self.batch_upload(spider)
         else:
-            log.warning(f"Did not create i14y document for URL: {url}")
+            spider.logger.warning(f"Did not create i14y document for URL: {url}")
     
-    def batch_upload(self):
+    def batch_upload(self, spider: Spider):
         """
         Initiates batch upload using asyncio.
         """
@@ -55,7 +45,7 @@ class SearchGovElasticsearch:
         self._current_batch = []
 
         loop = asyncio.get_running_loop() if asyncio.get_event_loop().is_running() else asyncio.new_event_loop()
-        asyncio.ensure_future(self._batch_elasticsearch_upload(current_batch_copy, loop))
+        asyncio.ensure_future(self._batch_elasticsearch_upload(current_batch_copy, loop, spider))
 
     def _parse_es_urls(self, url_string: str) -> List[Dict[str, Any]]:
         """
@@ -83,7 +73,7 @@ class SearchGovElasticsearch:
             self._create_index_if_not_exists()
         return self._es_client
 
-    def _create_index_if_not_exists(self):
+    def _create_index_if_not_exists(self, spider: Spider):
         """
         Creates an index in Elasticsearch if it does not exist.
         """
@@ -103,11 +93,11 @@ class SearchGovElasticsearch:
                     }
                 }
                 es_client.indices.create(index=index_name, body=index_settings)
-                log.info(f"Index '{index_name}' created successfully.")
+                spider.logger.info(f"Index '{index_name}' created successfully.")
             else:
-                log.info(f"Index '{index_name}' already exists.")
+                spider.logger.info(f"Index '{index_name}' already exists.")
         except Exception as e:
-            log.error(f"Error creating/checking index: {str(e)}")
+            spider.logger.error(f"Error creating/checking index: {str(e)}")
 
     def _create_actions(self, docs: List[Dict[Any, Any]]) -> List[Dict[str, Any]]:
         """
@@ -122,7 +112,7 @@ class SearchGovElasticsearch:
             for doc in docs
         ]
 
-    async def _batch_elasticsearch_upload(self, docs: List[Dict[Any, Any]], loop):
+    async def _batch_elasticsearch_upload(self, docs: List[Dict[Any, Any]], loop, spider: Spider):
         """
         Perform bulk upload asynchronously using ThreadPoolExecutor.
         """
@@ -131,6 +121,6 @@ class SearchGovElasticsearch:
                 actions = self._create_actions(docs)
                 helpers.bulk(self._get_client(), actions)
             except Exception as e:
-                log.error(f"Error in bulk upload: {str(e)}")
+                spider.logger.error(f"Error in bulk upload: {str(e)}")
 
         await loop.run_in_executor(self._executor, _bulk_upload)
