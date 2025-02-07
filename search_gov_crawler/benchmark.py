@@ -13,7 +13,7 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
         "allow_query_string": false,
         "handle_javascript": false,
         "schedule": null,
-        "output_target": "endpoint",
+        "output_target": "csv",
         "starting_urls": "https://www.example.com"
       }
     ]
@@ -29,6 +29,7 @@ import sys
 import time
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from dotenv import load_dotenv
 
 from apscheduler.executors.pool import ThreadPoolExecutor
 from apscheduler.jobstores.memory import MemoryJobStore
@@ -38,6 +39,8 @@ from pythonjsonlogger.json import JsonFormatter
 from search_gov_crawler import scrapy_scheduler
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
+
+load_dotenv()
 
 logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
@@ -86,6 +89,7 @@ def create_apscheduler_job(
             allow_query_string,
             allowed_domains,
             starting_urls,
+            output_target,
         ],
     }
 
@@ -135,9 +139,9 @@ def benchmark_from_args(
 
     msg = (
         "Starting benchmark from args! "
-        "allow_query_string=%s allowed_domains=%s starting_urls=%s handle_javascript=%s runtime_offset_seconds=%s"
+        "allow_query_string=%s allowed_domains=%s starting_urls=%s handle_javascript=%s output_target=%s runtime_offset_seconds=%s"
     )
-    log.info(msg, allow_query_string, allowed_domains, starting_urls, handle_javascript, runtime_offset_seconds)
+    log.info(msg, allow_query_string, allowed_domains, starting_urls, handle_javascript, output_target, runtime_offset_seconds)
 
     apscheduler_job_kwargs = {
         "name": "benchmark",
@@ -179,6 +183,13 @@ if __name__ == "__main__":
         default=False,
         help="Flag to enable capturing URLs with query strings",
     )
+    parser.add_argument(
+        "-o",
+        "--output_target",
+        type=str,
+        default="csv",
+        help="Point the output of the crawls to a backend",
+    )
     parser.add_argument("-t", "--runtime_offset", type=int, default=5, help="Number of seconds to offset job start")
     args = parser.parse_args()
 
@@ -188,6 +199,7 @@ if __name__ == "__main__":
             "allowed_domains": args.allowed_domains,
             "starting_urls": args.starting_urls,
             "handle_javascript": args.handle_js,
+            "output_target": args.output_target,
             "runtime_offset_seconds": args.runtime_offset,
         }
         benchmark_from_args(**benchmark_args)

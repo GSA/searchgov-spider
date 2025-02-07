@@ -60,6 +60,7 @@ def test_missing_url_in_item(pipeline_no_api, sample_spider, invalid_item):
     """
     Verify DropItem exception is raised when an item has no URL.
     """
+    invalid_item["output_target"] = "csv"
     with pytest.raises(DropItem, match="Missing URL in item"):
         pipeline_no_api.process_item(invalid_item, sample_spider)
 

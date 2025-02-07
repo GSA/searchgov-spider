@@ -5,7 +5,7 @@
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": false,
         "schedule": "0,15,30,45 * * * *",
-        "output_target": "endpoint",
+        "output_target": "csv",
         "starting_urls": "https://quotes.toscrape.com/"
     },
     {
@@ -14,7 +14,7 @@
         "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
-        "output_target": "endpoint",
+        "output_target": "csv",
         "starting_urls": "https://quotes.toscrape.com/js/"
     },
     {

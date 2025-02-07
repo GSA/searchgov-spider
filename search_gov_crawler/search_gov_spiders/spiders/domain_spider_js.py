@@ -2,6 +2,7 @@ from scrapy.http import Request, Response
 from scrapy.spiders import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
+import search_gov_crawler.search_gov_spiders.helpers.encoding as encoding
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
@@ -87,6 +88,7 @@ class DomainSpiderJs(CrawlSpider):
         allow_query_string: bool = False,
         allowed_domains: str | None = None,
         start_urls: str | None = None,
+        output_target: str | None = None,
         **kwargs,
     ) -> None:
         if any([allowed_domains, start_urls]) and not all([allowed_domains, start_urls]):
@@ -108,7 +110,7 @@ class DomainSpiderJs(CrawlSpider):
             else helpers.default_allowed_domains(handle_javascript=False, remove_paths=False)
         )
         self.start_urls = start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=True)
-
+        self.output_target = output_target
     def parse_item(self, response: Response):
         """
         This method is called by spiders to gather the url.  Placed in the spider to assist with
@@ -119,8 +121,9 @@ class DomainSpiderJs(CrawlSpider):
         @scrapes url
         """
 
-        if helpers.is_valid_content_type(response.headers.get("content-type", None)):
-            yield SearchGovSpidersItem(url=response.url)
+        if helpers.is_valid_content_type(response.headers.get("content-type", None), output_target=self.output_target):
+            html_content = encoding.decode_http_response(response_bytes=response.body)
+            yield SearchGovSpidersItem(url=response.url, html_content=html_content, output_target=self.output_target)
 
     def set_playwright_usage(self, request: Request, _response: Response) -> Request:
         """Set meta tags for playwright to run"""

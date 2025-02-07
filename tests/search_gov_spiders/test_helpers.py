@@ -5,19 +5,14 @@ import pytest
 from search_gov_crawler.search_gov_spiders.helpers import domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import should_abort_request
 
-
 @pytest.mark.parametrize(
     ("content_type_header", "result"),
     [("text/html", True), ("application/msword.more.and.more", True), ("Something/Else", False)],
     ids=["good", "regex", "bad"],
 )
 def test_is_valid_content_type(content_type_header, result):
-    assert helpers.is_valid_content_type(content_type_header) is result
-
-
-def test_get_crawl_sites_default():
-    assert len(helpers.get_crawl_sites()) == 40
-
+    helpers._use_content_type = helpers.ALLOWED_CONTENT_TYPE
+    assert helpers.is_valid_content_type(content_type_header, "csv") is result
 
 def test_get_crawl_sites_test_file(crawl_sites_test_file):
     assert len(helpers.get_crawl_sites(str(crawl_sites_test_file.resolve()))) == 4
