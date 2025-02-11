@@ -28,10 +28,17 @@ logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
-CRAWL_SITES_FILE =  Path(__file__).parent / "search_gov_spiders" / "utility_files" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME" ,"crawl-sites-production.json")
+CRAWL_SITES_FILE = (
+    Path(__file__).parent
+    / "search_gov_spiders"
+    / "utility_files"
+    / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+)
 
 
-def run_scrapy_crawl(spider: str, allow_query_string: bool, allowed_domains: str, start_urls: str, output_target: str) -> None:
+def run_scrapy_crawl(
+    spider: str, allow_query_string: bool, allowed_domains: str, start_urls: str, output_target: str
+) -> None:
     """Runs `scrapy crawl` command as a subprocess given the allowed arguments"""
 
     scrapy_env = os.environ.copy()
@@ -81,6 +88,26 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
     return transformed_crawl_sites
 
 
+def init_scheduler() -> BlockingScheduler:
+    """
+    Create and return instance of scheduler.  Set `max_workers`, i.e. the maximum number of spider
+    processes this scheduler will spawn at one time to either the value of an environment variable
+    or the default value from pythons concurrent.futures ThreadPoolExecutor.
+    """
+
+    # Initalize scheduler - 'min(32, (os.cpu_count() or 1) + 4)' is default from concurrent.futures
+    # but set to default of 5 to ensure consistent numbers between environments and for schedule
+    max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", "5"))
+    log.info("Max workers for schedule set to %s", max_workers)
+
+    return BlockingScheduler(
+        jobstores={"memory": MemoryJobStore()},
+        executors={"default": ThreadPoolExecutor(max_workers)},
+        job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": None},
+        timezone="UTC",
+    )
+
+
 def start_scrapy_scheduler(input_file: Path) -> None:
     """Initializes schedule from input file, schedules jobs and runs scheduler"""
     if isinstance(input_file, str):
@@ -89,19 +116,8 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     crawl_sites = CrawlSites.from_file(file=input_file)
     apscheduler_jobs = transform_crawl_sites(crawl_sites)
 
-    # Initalize scheduler - 'min(32, (os.cpu_count() or 1) + 4)' is default from concurrent.futures
-    # but set to default of 5 to ensure consistent numbers between environments and for schedule
-    max_workers = int(os.environ.get("SCRAPY_MAX_WORKERS", "5"))
-    log.info("Max workers for schedule set to %s", max_workers)
-
-    scheduler = BlockingScheduler(
-        jobstores={"memory": MemoryJobStore()},
-        executors={"default": ThreadPoolExecutor(max_workers)},
-        job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": None},
-        timezone="UTC",
-    )
-
     # Schedule Jobs
+    scheduler = init_scheduler()
     for apscheduler_job in apscheduler_jobs:
         scheduler.add_job(**apscheduler_job, jobstore="memory")
 

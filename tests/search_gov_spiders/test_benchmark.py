@@ -3,9 +3,7 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
-
 import pytest
-from apscheduler.schedulers.blocking import BlockingScheduler
 from freezegun import freeze_time
 
 from search_gov_crawler import scrapy_scheduler
@@ -27,8 +25,14 @@ def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
     monkeypatch.setattr(os, "cpu_count", lambda: 10)
 
     with caplog.at_level("INFO"):
-        init_scheduler()
+        scheduler = init_scheduler()
 
+    # ensure config does not change without a failure here
+    assert scheduler._job_defaults == {
+        "misfire_grace_time": None,
+        "coalesce": True,
+        "max_instances": 1,
+    }
     assert f"Max workers for schedule set to {expected_val}" in caplog.messages
 
 
