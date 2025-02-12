@@ -1,4 +1,5 @@
 from search_gov_crawler.elasticsearch import convert_html_i14y as conversion
+from search_gov_crawler.search_gov_spiders.helpers import content
 
 def test_convert_html_valid_article():
     html_content = """
@@ -97,3 +98,21 @@ def test_convert_html_with_publish_date():
     result = conversion.convert_html(html_content, url)
     assert result is not None
     assert result["updated"] is not None # newspaper4k may or may not parse date from meta; this checks for any value.
+
+def test_convert_html_languages():
+    html_content = """
+        <html lang="zh">
+            <head>
+                <title>Some Title</title>
+                <meta name="description" content="这是一个测试描述">
+                <meta name="lang" content="zh">
+            </head>
+        </html>
+    """
+    url = "https://example.cn/article"
+    
+    result = conversion.convert_html(html_content, url)
+
+    assert result is not None
+    assert result["title_zh"] == "Some Title"
+    assert result["description_zh"] == content.sanitize_text("这是一个测试描述")
