@@ -15,7 +15,7 @@ updates:
           - "elasticsearch"
           - "lxml_html_clean"
           - "typing_extensions"
-          - "newspaper4k"
+          - "newspaper4k*"
           - "cchardet"
           - "tldextract"
           - "python-dotenv"
