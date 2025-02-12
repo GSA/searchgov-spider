@@ -1,9 +1,16 @@
+import os
 import subprocess
 
+import pytest
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-from search_gov_crawler.scrapy_scheduler import run_scrapy_crawl, start_scrapy_scheduler, transform_crawl_sites
+from search_gov_crawler.scrapy_scheduler import (
+    init_scheduler,
+    run_scrapy_crawl,
+    start_scrapy_scheduler,
+    transform_crawl_sites,
+)
 
 
 def test_run_scrapy_crawl(caplog, monkeypatch):
@@ -54,7 +61,13 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
             "func": run_scrapy_crawl,
             "id": "quotes-3",
             "name": "Quotes 3",
-            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js-delayed/", "endpoint"],
+            "args": [
+                "domain_spider_js",
+                False,
+                "quotes.toscrape.com",
+                "https://quotes.toscrape.com/js-delayed/",
+                "endpoint",
+            ],
         },
         {
             "func": run_scrapy_crawl,
@@ -63,6 +76,27 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
             "args": ["domain_spider", False, "quotes.toscrape.com/tag/", "https://quotes.toscrape.com/", "endpoint"],
         },
     ]
+
+
+@pytest.mark.parametrize(("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)])
+def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
+    if scrapy_max_workers:
+        monkeypatch.setenv("SCRAPY_MAX_WORKERS", scrapy_max_workers)
+    else:
+        monkeypatch.delenv("SCRAPY_MAX_WORKERS", raising=False)
+
+    monkeypatch.setattr(os, "cpu_count", lambda: 10)
+
+    with caplog.at_level("INFO"):
+        scheduler = init_scheduler()
+
+    # ensure config does not change without a failure here
+    assert scheduler._job_defaults == {
+        "misfire_grace_time": None,
+        "coalesce": True,
+        "max_instances": 1,
+    }
+    assert f"Max workers for schedule set to {expected_val}" in caplog.messages
 
 
 def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file):

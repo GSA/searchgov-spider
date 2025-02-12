@@ -61,7 +61,7 @@ def init_scheduler() -> BackgroundScheduler:
     return BackgroundScheduler(
         jobstores={"memory": MemoryJobStore()},
         executors={"default": ThreadPoolExecutor(max_workers)},
-        job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": True},
+        job_defaults={"coalesce": True, "max_instances": 1, "misfire_grace_time": None},
         timezone="UTC",
     )
 
@@ -141,7 +141,15 @@ def benchmark_from_args(
         "Starting benchmark from args! "
         "allow_query_string=%s allowed_domains=%s starting_urls=%s handle_javascript=%s output_target=%s runtime_offset_seconds=%s"
     )
-    log.info(msg, allow_query_string, allowed_domains, starting_urls, handle_javascript, output_target, runtime_offset_seconds)
+    log.info(
+        msg,
+        allow_query_string,
+        allowed_domains,
+        starting_urls,
+        handle_javascript,
+        output_target,
+        runtime_offset_seconds,
+    )
 
     apscheduler_job_kwargs = {
         "name": "benchmark",
