@@ -3,28 +3,34 @@
 # Define the current directory
 CURRENT_DIR=$(pwd)
 
-# Define the .bashrc file location
-BASHRC_FILE="$HOME/.bashrc"
+# Define the .profile file location.  The .profile is used here because it is sourced
+# for non-interactive shells, which is what the codedeploy agent uses to run things.
+PROFILE=$HOME/.profile
 
-# Check if .bashrc contains an export PYTHONPATH line
-if grep -q "^export PYTHONPATH=" "$BASHRC_FILE"; then
+# Check if .profile contains an export PYTHONPATH line
+if grep -q "^export PYTHONPATH=" "$PROFILE"; then
     # Extract the existing PYTHONPATH line
-    PYTHONPATH_LINE=$(grep "^export PYTHONPATH=" "$BASHRC_FILE")
+    PYTHONPATH_LINE=$(grep "^export PYTHONPATH=" "$PROFILE")
 
     # Construct the updated PYTHONPATH line
-    UPDATED_LINE="export PYTHONPATH=\"$\PYTHONPATH:${CURRENT_DIR}\""
+    UPDATED_LINE="export PYTHONPATH=${CURRENT_DIR}"
 
-    # Update the .bashrc file
-    sed -i "s|^export PYTHONPATH=.*|$UPDATED_LINE|" "$BASHRC_FILE"
+    # Update the .profile file
+    sed -i "s|^export PYTHONPATH=.*|$UPDATED_LINE|" "$PROFILE"
     echo "Updated PYTHONPATH to include the current directory: $CURRENT_DIR"
 else
-    # Add a new export PYTHONPATH line to .bashrc
-    echo "export PYTHONPATH=\"$\PYTHONPATH:${CURRENT_DIR}\"" >> "$BASHRC_FILE"
-    echo "Added new PYTHONPATH to .bashrc including the current directory: $CURRENT_DIR"
+    # Add a new export PYTHONPATH line to .profile
+    echo "export PYTHONPATH=${CURRENT_DIR}" >> "$PROFILE"
+    echo "Added new PYTHONPATH to .profile including the current directory: $CURRENT_DIR"
 fi
 
 # Apply changes for the current session
-export PYTHONPATH=":${CURRENT_DIR}"
+source $PROFILE
 
-echo "PYTHONPATH changes applied:"
-echo $PYTHONPATH
+# Check that PYTHONPATH has been applied
+if [ -n $PYTHONPATH ]; then
+    echo "PYTHONPATH changes applied: $PYTHONPATH"
+else
+    echo "ERROR: Could not apply PYTHONPATH changes"
+    exit 2
+fi

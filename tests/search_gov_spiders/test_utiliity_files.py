@@ -100,10 +100,10 @@ def test_convert_plist_to_json(monkeypatch):
 
         with monkeypatch.context() as m:
             m.setattr(Path, "read_text", mock_read_text)
-            convert_plist_to_json(input_file="input_file.plist", output_file="crawl-sites.json", write_full_output=True)
+            convert_plist_to_json(input_file="input_file.plist", output_file="crawl-sites-sample.json", write_full_output=True)
 
         crawl_output_records = json.loads(
-            Path(temp_dir).joinpath("crawl-sites.json").resolve().read_text(encoding="UTF")
+            Path(temp_dir).joinpath("crawl-sites-sample.json").resolve().read_text(encoding="UTF")
         )
         full_output_records = json.loads(Path(temp_dir).joinpath("input_file.json").resolve().read_text(encoding="UTF"))
 
@@ -113,6 +113,8 @@ def test_convert_plist_to_json(monkeypatch):
             "allow_query_string": False,
             "allowed_domains": "example.com",
             "handle_javascript": True,
+            "schedule": None,
+            "output_target":"csv",
             "starting_urls": "https://www.example.com/1",
         }
         assert len(full_output_records) == 5
@@ -136,7 +138,7 @@ def test_convert_plist_to_json_missing_input_file(monkeypatch):
     monkeypatch.setattr(Path, "resolve", mock_resolve)
 
     with pytest.raises(FileNotFoundError, match="Input file this-is-a-missing-file-path.txt does not exist!"):
-        convert_plist_to_json(input_file=non_existant_file, output_file="crawl-sites.json", write_full_output=True)
+        convert_plist_to_json(input_file=non_existant_file, output_file="crawl-sites-sample.json", write_full_output=True)
 
 
 MANUAL_UPDATE_TEST_CASES = [
@@ -144,6 +146,8 @@ MANUAL_UPDATE_TEST_CASES = [
     ("https://www.cfm.va.gov/til/", "allowed_domains", "cfm.va.gov/til/"),
     ("https://www.va.gov/accountability/", "allowed_domains", "va.gov/accountability/"),
     ("https://www.va.gov/resources/", "allowed_domains", "va.gov/resources/"),
+    ("https://www.herc.research.va.gov/", "allow_query_string", True),
+    ("https://www.herc.research.va.gov/", "name", "VA HERC Research"),
 ]
 
 
@@ -254,7 +258,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_json):
             "version": "default: the latest version",
             "spider": "domain_spider",
             "jobid": "quotes-1",
-            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/"}',
+            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/", "output_target": "csv"}',
             "selected_nodes": "[1]",
             "year": "*",
             "month": "*",
@@ -282,7 +286,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_json):
             "version": "default: the latest version",
             "spider": "domain_spider_js",
             "jobid": "quotes-2",
-            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/js/"}',
+            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/js/", "output_target": "csv"}',
             "selected_nodes": "[1]",
             "year": "*",
             "month": "*",
@@ -310,7 +314,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_json):
             "version": "default: the latest version",
             "spider": "domain_spider_js",
             "jobid": "quotes-3",
-            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/js-delayed/"}',
+            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com", "setting": [], "start_urls": "https://quotes.toscrape.com/js-delayed/", "output_target": "endpoint"}',
             "selected_nodes": "[1]",
             "year": "*",
             "month": "*",
@@ -338,7 +342,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_json):
             "version": "default: the latest version",
             "spider": "domain_spider",
             "jobid": "quotes-4",
-            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com/tag/", "setting": [], "start_urls": "https://quotes.toscrape.com/"}',
+            "settings_arguments": '{"allowed_domains": "quotes.toscrape.com/tag/", "setting": [], "start_urls": "https://quotes.toscrape.com/", "output_target": "endpoint"}',
             "selected_nodes": "[1]",
             "year": "*",
             "month": "*",

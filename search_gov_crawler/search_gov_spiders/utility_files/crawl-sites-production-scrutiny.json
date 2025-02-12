@@ -4,6 +4,8 @@
         "allow_query_string": false,
         "allowed_domains": "armymwr.com",
         "handle_javascript": false,
+        "schedule": "30 08 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.armymwr.com/"
     },
     {
@@ -11,6 +13,8 @@
         "allow_query_string": false,
         "allowed_domains": "travel.dod.mil",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.travel.dod.mil/"
     },
     {
@@ -18,6 +22,8 @@
         "allow_query_string": false,
         "allowed_domains": "ais.usvisa-info.com",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://ais.usvisa-info.com/"
     },
     {
@@ -25,6 +31,8 @@
         "allow_query_string": false,
         "allowed_domains": "toolkit.climate.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://toolkit.climate.gov"
     },
     {
@@ -32,6 +40,8 @@
         "allow_query_string": false,
         "allowed_domains": "oha.ed.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://oha.ed.gov"
     },
     {
@@ -39,20 +49,17 @@
         "allow_query_string": false,
         "allowed_domains": "accessdata.fda.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.accessdata.fda.gov/CMS_IA/default.html"
-    },
-    {
-        "name": "HHS ASPR Drive",
-        "allow_query_string": false,
-        "allowed_domains": "drive.hhs.gov",
-        "handle_javascript": false,
-        "starting_urls": "https://drive.hhs.gov/"
     },
     {
         "name": "Navy All Hands Magazine",
         "allow_query_string": false,
         "allowed_domains": "allhands.navy.mil",
         "handle_javascript": true,
+        "schedule": "00 06 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://allhands.navy.mil/"
     },
     {
@@ -60,6 +67,8 @@
         "allow_query_string": false,
         "allowed_domains": "mynavyhr.navy.mil",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.mynavyhr.navy.mil/"
     },
     {
@@ -67,6 +76,8 @@
         "allow_query_string": false,
         "allowed_domains": "diversity.nih.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://diversity.nih.gov/"
     },
     {
@@ -74,6 +85,8 @@
         "allow_query_string": false,
         "allowed_domains": "lrp.nih.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.lrp.nih.gov/"
     },
     {
@@ -81,6 +94,8 @@
         "allow_query_string": false,
         "allowed_domains": "orwh.od.nih.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://orwh.od.nih.gov/"
     },
     {
@@ -88,6 +103,8 @@
         "allow_query_string": false,
         "allowed_domains": "coastwatch.noaa.gov",
         "handle_javascript": false,
+        "schedule": "30 08 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://coastwatch.noaa.gov/cw/index.html"
     },
     {
@@ -95,6 +112,8 @@
         "allow_query_string": false,
         "allowed_domains": "eastcoast.coastwatch.noaa.gov",
         "handle_javascript": false,
+        "schedule": "30 08 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://eastcoast.coastwatch.noaa.gov/"
     },
     {
@@ -102,6 +121,8 @@
         "allow_query_string": false,
         "allowed_domains": "coastwatch.glerl.noaa.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://coastwatch.glerl.noaa.gov/"
     },
     {
@@ -109,6 +130,8 @@
         "allow_query_string": false,
         "allowed_domains": "coastwatch.pfeg.noaa.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://coastwatch.pfeg.noaa.gov/"
     },
     {
@@ -116,6 +139,8 @@
         "allow_query_string": false,
         "allowed_domains": "goes-r.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.goes-r.gov"
     },
     {
@@ -123,6 +148,8 @@
         "allow_query_string": false,
         "allowed_domains": "fincen.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.fincen.gov/"
     },
     {
@@ -130,6 +157,8 @@
         "allow_query_string": false,
         "allowed_domains": "cacb.uscourts.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.cacb.uscourts.gov"
     },
     {
@@ -137,6 +166,8 @@
         "allow_query_string": false,
         "allowed_domains": "are.uscourts.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.are.uscourts.gov/"
     },
     {
@@ -144,6 +175,8 @@
         "allow_query_string": false,
         "allowed_domains": "caep.uscourts.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.caep.uscourts.gov/"
     },
     {
@@ -151,6 +184,8 @@
         "allow_query_string": false,
         "allowed_domains": "jpml.uscourts.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.jpml.uscourts.gov"
     },
     {
@@ -158,6 +193,8 @@
         "allow_query_string": false,
         "allowed_domains": "msnd.uscourts.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.msnd.uscourts.gov/"
     },
     {
@@ -165,6 +202,8 @@
         "allow_query_string": false,
         "allowed_domains": "mssd.uscourts.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.mssd.uscourts.gov/"
     },
     {
@@ -172,6 +211,8 @@
         "allow_query_string": false,
         "allowed_domains": "ncwba.uscourts.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.ncwba.uscourts.gov/"
     },
     {
@@ -179,6 +220,8 @@
         "allow_query_string": false,
         "allowed_domains": "pawd.uscourts.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.pawd.uscourts.gov/"
     },
     {
@@ -186,6 +229,8 @@
         "allow_query_string": false,
         "allowed_domains": "utb.uscourts.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.utb.uscourts.gov/"
     },
     {
@@ -193,6 +238,8 @@
         "allow_query_string": false,
         "allowed_domains": "fpacbc.usda.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.fpacbc.usda.gov/index.html"
     },
     {
@@ -200,6 +247,8 @@
         "allow_query_string": false,
         "allowed_domains": "help.nfc.usda.gov",
         "handle_javascript": true,
+        "schedule": "30 07 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://help.nfc.usda.gov/"
     },
     {
@@ -207,6 +256,8 @@
         "allow_query_string": false,
         "allowed_domains": "accesstocare.va.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.accesstocare.va.gov"
     },
     {
@@ -214,6 +265,8 @@
         "allow_query_string": false,
         "allowed_domains": "benefits.va.gov",
         "handle_javascript": false,
+        "schedule": "30 08 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://benefits.va.gov/benefits/"
     },
     {
@@ -221,6 +274,8 @@
         "allow_query_string": false,
         "allowed_domains": "cfm.va.gov/til/",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.cfm.va.gov/til/"
     },
     {
@@ -228,6 +283,8 @@
         "allow_query_string": false,
         "allowed_domains": "cider.research.va.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.cider.research.va.gov"
     },
     {
@@ -235,6 +292,8 @@
         "allow_query_string": true,
         "allowed_domains": "herc.research.va.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.herc.research.va.gov/"
     },
     {
@@ -242,6 +301,8 @@
         "allow_query_string": false,
         "allowed_domains": "hsrd.research.va.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.hsrd.research.va.gov/"
     },
     {
@@ -249,13 +310,17 @@
         "allow_query_string": false,
         "allowed_domains": "myhealth.va.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.myhealth.va.gov"
     },
     {
-        "name": "VA Offica of Accountability and Whistleblower Protection",
+        "name": "VA Office of Accountability and Whistleblower Protection",
         "allow_query_string": false,
         "allowed_domains": "va.gov/accountability/",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.va.gov/accountability/"
     },
     {
@@ -263,6 +328,8 @@
         "allow_query_string": false,
         "allowed_domains": "queri.research.va.gov",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.queri.research.va.gov/"
     },
     {
@@ -270,6 +337,8 @@
         "allow_query_string": false,
         "allowed_domains": "research.va.gov",
         "handle_javascript": false,
+        "schedule": "30 08 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.research.va.gov/"
     },
     {
@@ -277,6 +346,8 @@
         "allow_query_string": false,
         "allowed_domains": "va.gov/resources/",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.va.gov/resources/"
     },
     {
@@ -284,6 +355,8 @@
         "allow_query_string": false,
         "allowed_domains": "dantes.mil",
         "handle_javascript": false,
+        "schedule": "30 09 * * MON",
+        "output_target": "endpoint",
         "starting_urls": "https://www.dantes.mil/"
     }
 ]

@@ -1,9 +1,16 @@
+import os
 import subprocess
 
+import pytest
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-from search_gov_crawler.scrapy_scheduler import run_scrapy_crawl, start_scrapy_scheduler, transform_crawl_sites
+from search_gov_crawler.scrapy_scheduler import (
+    init_scheduler,
+    run_scrapy_crawl,
+    start_scrapy_scheduler,
+    transform_crawl_sites,
+)
 
 
 def test_run_scrapy_crawl(caplog, monkeypatch):
@@ -12,104 +19,84 @@ def test_run_scrapy_crawl(caplog, monkeypatch):
 
     monkeypatch.setattr(subprocess, "run", mock_run)
     with caplog.at_level("INFO"):
-        run_scrapy_crawl("test_spider", False, "test-domain.example.com", "http://starting-url.example.com/")
+        run_scrapy_crawl("test_spider", False, "test-domain.example.com", "http://starting-url.example.com/", "csv")
 
     assert (
         "Successfully completed scrapy crawl with args spider=test_spider, allow_query_string=False, "
-        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/"
+        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/, output_target=csv"
     ) in caplog.messages
 
 
-def test_transform_crawl_sites(crawl_sites_test_file_json):
-    transformed_crawl_sites = transform_crawl_sites(crawl_sites_test_file_json)
+def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
+    transformed_crawl_sites = transform_crawl_sites(crawl_sites_test_file_dataclass)
 
     # CronTrigger class does not implement __eq__
     triggers = [str(site.pop("trigger")) for site in transformed_crawl_sites]
-    assert triggers == [
-        str(
+    for trigger in triggers:
+        assert trigger == str(
             CronTrigger(
-                year="*",
                 month="*",
                 day="*",
-                week="*",
-                day_of_week="mon",
-                hour="03",
-                minute="30",
-                second=0,
+                day_of_week="*",
+                hour="*",
+                minute="0,15,30,45",
                 timezone="UTC",
-                jitter=0,
-            )
-        ),
-        str(
-            CronTrigger(
-                year="*",
-                month="*",
-                day="*",
-                week="*",
-                day_of_week="mon",
-                hour="05",
-                minute="30",
-                second=0,
-                timezone="UTC",
-                jitter=0,
-            )
-        ),
-        str(
-            CronTrigger(
-                year="*",
-                month="*",
-                day="*",
-                week="*",
-                day_of_week="mon",
-                hour="07",
-                minute="30",
-                second=0,
-                timezone="UTC",
-                jitter=0,
             ),
-        ),
-        str(
-            CronTrigger(
-                year="*",
-                month="*",
-                day="*",
-                week="*",
-                day_of_week="mon",
-                hour="09",
-                minute="30",
-                second=0,
-                timezone="UTC",
-                jitter=0,
-            ),
-        ),
-    ]
+        )
 
     assert transformed_crawl_sites == [
         {
             "func": run_scrapy_crawl,
             "id": "quotes-1",
             "name": "Quotes 1",
-            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/"],
+            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/", "csv"],
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-2",
             "name": "Quotes 2",
-            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js/"],
+            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js/", "csv"],
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-3",
             "name": "Quotes 3",
-            "args": ["domain_spider_js", False, "quotes.toscrape.com", "https://quotes.toscrape.com/js-delayed/"],
+            "args": [
+                "domain_spider_js",
+                False,
+                "quotes.toscrape.com",
+                "https://quotes.toscrape.com/js-delayed/",
+                "endpoint",
+            ],
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-4",
             "name": "Quotes 4",
-            "args": ["domain_spider", False, "quotes.toscrape.com/tag/", "https://quotes.toscrape.com/"],
+            "args": ["domain_spider", False, "quotes.toscrape.com/tag/", "https://quotes.toscrape.com/", "endpoint"],
         },
     ]
+
+
+@pytest.mark.parametrize(("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)])
+def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
+    if scrapy_max_workers:
+        monkeypatch.setenv("SCRAPY_MAX_WORKERS", scrapy_max_workers)
+    else:
+        monkeypatch.delenv("SCRAPY_MAX_WORKERS", raising=False)
+
+    monkeypatch.setattr(os, "cpu_count", lambda: 10)
+
+    with caplog.at_level("INFO"):
+        scheduler = init_scheduler()
+
+    # ensure config does not change without a failure here
+    assert scheduler._job_defaults == {
+        "misfire_grace_time": None,
+        "coalesce": True,
+        "max_instances": 1,
+    }
+    assert f"Max workers for schedule set to {expected_val}" in caplog.messages
 
 
 def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file):
@@ -118,5 +105,5 @@ def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file):
     with caplog.at_level("INFO"):
         start_scrapy_scheduler(input_file=crawl_sites_test_file)
 
-    assert len(caplog.messages) == 4
+    assert len(caplog.messages) == 5
     assert "Adding job tentatively -- it will be properly scheduled when the scheduler starts" in caplog.messages

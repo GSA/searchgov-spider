@@ -17,6 +17,7 @@ def get_results(spider, content: str):
 
     response = Response(url=TEST_URL, request=request, headers={"content-type": content})
 
+    spider.output_target = "csv"
     spider.allowed_domains = ["example.com"]
     return next(spider.parse_item(response), None)
 

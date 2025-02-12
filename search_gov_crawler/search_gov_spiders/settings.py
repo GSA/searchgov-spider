@@ -33,6 +33,9 @@ REACTOR_THREADPOOL_MAXSIZE = 20
 RETRY_ENABLED = False
 DOWNLOAD_TIMEOUT = 15
 
+# Close spider if no URLs found in period
+CLOSESPIDER_TIMEOUT_NO_ITEM = 60 * 60 * 24  # 24 hours in seconds
+
 # Enforce slow crawling
 CONCURRENT_REQUESTS = 1
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
@@ -43,6 +46,9 @@ SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # set to True for BFO
 AJAXCRAWL_ENABLED = True
 
+# setting for how deep we want to go 
+DEPTH_LIMIT = os.environ.get("SPIDER_DEPTH_LIMIT", "3")
+#  
 # crawl in BFO order rather than DFO
 DEPTH_PRIORITY = 1
 SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
