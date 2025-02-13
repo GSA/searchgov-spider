@@ -13,7 +13,7 @@ permissions:
 hooks:
   AfterInstall:
     - location: cicd-scripts/app_install.sh
-      timeout: 600
+      timeout: 3600
       runas: search
   ApplicationStart:
     - location: cicd-scripts/app_start.sh
