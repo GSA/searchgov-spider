@@ -14,6 +14,10 @@ from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 
 def safe_del(item, key: str):
+    """
+    This method prevents any exception errors if item does not have the key or is null.
+    This is just in case, since the item should always have the keys we delete
+    """
     try:
         del item[key]
     except Exception as _:
