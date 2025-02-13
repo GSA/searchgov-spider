@@ -57,6 +57,7 @@ class DomainSpider(CrawlSpider):
         allowed_domains: str | None = None,
         start_urls: str | None = None,
         output_target: str | None = None,
+        domain_name: str | None = None,
         **kwargs,
     ) -> None:
         if any([allowed_domains, start_urls]) and not all([allowed_domains, start_urls]):
@@ -67,6 +68,8 @@ class DomainSpider(CrawlSpider):
         self.allow_query_string = allow_query_string
 
         self.output_target = output_target
+        
+        self.domain_name = domain_name
 
         self.allowed_domains = (
             helpers.split_allowed_domains(allowed_domains)
@@ -96,4 +99,4 @@ class DomainSpider(CrawlSpider):
 
         if helpers.is_valid_content_type(response.headers.get("content-type", None), output_target=self.output_target):
             html_content = encoding.decode_http_response(response_bytes=response.body)
-            yield SearchGovSpidersItem(url=response.url, html_content=html_content, output_target=self.output_target)
+            yield SearchGovSpidersItem(url=response.url, html_content=html_content, output_target=self.output_target, domain_name=self.domain_name)

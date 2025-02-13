@@ -366,7 +366,8 @@
         "handle_javascript": false,
         "schedule": "01 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.atf.gov/"
+        "starting_urls": "https://www.atf.gov/",
+        "domain_name": "www.atf.gov"
     },
     {
         "name": "modules.BWEB affiliate: blm.gov",
@@ -375,7 +376,8 @@
         "handle_javascript": false,
         "schedule": "02 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.blm.gov/"
+        "starting_urls": "https://www.blm.gov/",
+        "domain_name": "www.blm.gov"
     },
     {
         "name": "modules.BWEB affiliate: dfas.mil",
@@ -384,7 +386,8 @@
         "handle_javascript": false,
         "schedule": "03 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.dfas.mil/"
+        "starting_urls": "https://www.dfas.mil/",
+        "domain_name": "www.dfas.mil"
     },
     {
         "name": "modules.BWEB affiliate: defense.gov",
@@ -393,7 +396,8 @@
         "handle_javascript": false,
         "schedule": "04 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.defense.gov/"
+        "starting_urls": "https://www.defense.gov/",
+        "domain_name": "www.defense.gov"
     },
     {
         "name": "modules.BWEB affiliate: media.defense.gov",
@@ -402,7 +406,8 @@
         "handle_javascript": false,
         "schedule": "05 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://media.defense.gov/"
+        "starting_urls": "https://media.defense.gov/",
+        "domain_name": "media.defense.gov"
     },
     {
         "name": "modules.BWEB affiliate: dod.defense.gov",
@@ -411,7 +416,8 @@
         "handle_javascript": false,
         "schedule": "06 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dod.defense.gov/"
+        "starting_urls": "https://dod.defense.gov/",
+        "domain_name": "dod.defense.gov"
     },
     {
         "name": "modules.BWEB affiliate: bts.gov",
@@ -420,7 +426,8 @@
         "handle_javascript": false,
         "schedule": "07 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.bts.gov/"
+        "starting_urls": "https://www.bts.gov/",
+        "domain_name": "www.bts.gov"
     },
     {
         "name": "modules.BWEB affiliate: rosap.ntl.bts.gov",
@@ -429,7 +436,8 @@
         "handle_javascript": false,
         "schedule": "08 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://rosap.ntl.bts.gov/"
+        "starting_urls": "https://rosap.ntl.bts.gov/",
+        "domain_name": "rosap.ntl.bts.gov"
     },
     {
         "name": "modules.BWEB affiliate: highways.dot.gov",
@@ -438,7 +446,8 @@
         "handle_javascript": false,
         "schedule": "09 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://highways.dot.gov/"
+        "starting_urls": "https://highways.dot.gov/",
+        "domain_name": "highways.dot.gov"
     },
     {
         "name": "modules.BWEB affiliate: fhwa.dot.gov",
@@ -447,7 +456,8 @@
         "handle_javascript": false,
         "schedule": "10 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fhwa.dot.gov/"
+        "starting_urls": "https://www.fhwa.dot.gov/",
+        "domain_name": "www.fhwa.dot.gov"
     },
     {
         "name": "modules.BWEB affiliate: mutcd.fhwa.dot.gov",
@@ -456,7 +466,8 @@
         "handle_javascript": false,
         "schedule": "11 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://mutcd.fhwa.dot.gov/"
+        "starting_urls": "https://mutcd.fhwa.dot.gov/",
+        "domain_name": "mutcd.fhwa.dot.gov"
     },
     {
         "name": "modules.BWEB affiliate: ed.gov",
@@ -465,7 +476,8 @@
         "handle_javascript": false,
         "schedule": "13 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ed.gov/"
+        "starting_urls": "https://www.ed.gov/",
+        "domain_name": "www.ed.gov"
     },
     {
         "name": "modules.BWEB affiliate: energystar.gov",
@@ -474,7 +486,8 @@
         "handle_javascript": false,
         "schedule": "14 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.energystar.gov/"
+        "starting_urls": "https://www.energystar.gov/",
+        "domain_name": "www.energystar.gov"
     },
     {
         "name": "modules.BWEB affiliate: cancer.gov",
@@ -483,7 +496,8 @@
         "handle_javascript": false,
         "schedule": "15 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.cancer.gov/"
+        "starting_urls": "https://www.cancer.gov/",
+        "domain_name": "www.cancer.gov"
     },
     {
         "name": "modules.BWEB affiliate: niddk.nih.gov",
@@ -492,7 +506,8 @@
         "handle_javascript": false,
         "schedule": "16 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.niddk.nih.gov/"
+        "starting_urls": "https://www.niddk.nih.gov/",
+        "domain_name": "www.niddk.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nih.gov",
@@ -501,7 +516,8 @@
         "handle_javascript": false,
         "schedule": "17 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nih.gov/"
+        "starting_urls": "https://www.nih.gov/",
+        "domain_name": "www.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nia.nih.gov",
@@ -510,7 +526,8 @@
         "handle_javascript": false,
         "schedule": "18 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nia.nih.gov/"
+        "starting_urls": "https://www.nia.nih.gov/",
+        "domain_name": "www.nia.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nimh.nih.gov",
@@ -519,7 +536,8 @@
         "handle_javascript": false,
         "schedule": "19 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nimh.nih.gov/"
+        "starting_urls": "https://www.nimh.nih.gov/",
+        "domain_name": "www.nimh.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: newsinhealth.nih.gov",
@@ -528,7 +546,8 @@
         "handle_javascript": false,
         "schedule": "20 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://newsinhealth.nih.gov/"
+        "starting_urls": "https://newsinhealth.nih.gov/",
+        "domain_name": "newsinhealth.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: rarediseases.info.nih.gov",
@@ -537,7 +556,8 @@
         "handle_javascript": false,
         "schedule": "21 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://rarediseases.info.nih.gov/"
+        "starting_urls": "https://rarediseases.info.nih.gov/",
+        "domain_name": "rarediseases.info.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nccih.nih.gov",
@@ -546,7 +566,8 @@
         "handle_javascript": false,
         "schedule": "22 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nccih.nih.gov/"
+        "starting_urls": "https://www.nccih.nih.gov/",
+        "domain_name": "www.nccih.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: ods.od.nih.gov",
@@ -555,7 +576,8 @@
         "handle_javascript": false,
         "schedule": "23 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ods.od.nih.gov/"
+        "starting_urls": "https://ods.od.nih.gov/",
+        "domain_name": "ods.od.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: niaid.nih.gov",
@@ -564,7 +586,8 @@
         "handle_javascript": false,
         "schedule": "24 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.niaid.nih.gov/"
+        "starting_urls": "https://www.niaid.nih.gov/",
+        "domain_name": "www.niaid.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nhlbi.nih.gov",
@@ -573,7 +596,8 @@
         "handle_javascript": false,
         "schedule": "27 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nhlbi.nih.gov/"
+        "starting_urls": "https://www.nhlbi.nih.gov/",
+        "domain_name": "www.nhlbi.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: dailymed.nlm.nih.gov",
@@ -582,7 +606,8 @@
         "handle_javascript": false,
         "schedule": "28 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dailymed.nlm.nih.gov/"
+        "starting_urls": "https://dailymed.nlm.nih.gov/",
+        "domain_name": "dailymed.nlm.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: grants.nih.gov",
@@ -591,7 +616,8 @@
         "handle_javascript": false,
         "schedule": "29 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://grants.nih.gov/"
+        "starting_urls": "https://grants.nih.gov/",
+        "domain_name": "grants.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: genome.gov",
@@ -600,7 +626,8 @@
         "handle_javascript": false,
         "schedule": "32 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.genome.gov/"
+        "starting_urls": "https://www.genome.gov/",
+        "domain_name": "www.genome.gov"
     },
     {
         "name": "modules.BWEB affiliate: ninds.nih.gov",
@@ -609,7 +636,8 @@
         "handle_javascript": false,
         "schedule": "35 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ninds.nih.gov/"
+        "starting_urls": "https://www.ninds.nih.gov/",
+        "domain_name": "www.ninds.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nida.nih.gov",
@@ -618,7 +646,8 @@
         "handle_javascript": false,
         "schedule": "36 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://nida.nih.gov/"
+        "starting_urls": "https://nida.nih.gov/",
+        "domain_name": "nida.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: pubmed.ncbi.nlm.nih.gov",
@@ -627,7 +656,8 @@
         "handle_javascript": false,
         "schedule": "37 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://pubmed.ncbi.nlm.nih.gov/"
+        "starting_urls": "https://pubmed.ncbi.nlm.nih.gov/",
+        "domain_name": "pubmed.ncbi.nlm.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: hr.nih.gov",
@@ -636,7 +666,8 @@
         "handle_javascript": false,
         "schedule": "38 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://hr.nih.gov/"
+        "starting_urls": "https://hr.nih.gov/",
+        "domain_name": "hr.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nichd.nih.gov",
@@ -645,7 +676,8 @@
         "handle_javascript": false,
         "schedule": "41 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nichd.nih.gov/"
+        "starting_urls": "https://www.nichd.nih.gov/",
+        "domain_name": "www.nichd.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: pmc.ncbi.nlm.nih.gov",
@@ -654,7 +686,8 @@
         "handle_javascript": false,
         "schedule": "42 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://pmc.ncbi.nlm.nih.gov/"
+        "starting_urls": "https://pmc.ncbi.nlm.nih.gov/",
+        "domain_name": "pmc.ncbi.nlm.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: niams.nih.gov",
@@ -663,7 +696,8 @@
         "handle_javascript": false,
         "schedule": "44 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.niams.nih.gov/"
+        "starting_urls": "https://www.niams.nih.gov/",
+        "domain_name": "www.niams.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: ors.od.nih.gov",
@@ -672,7 +706,8 @@
         "handle_javascript": false,
         "schedule": "47 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ors.od.nih.gov/"
+        "starting_urls": "https://ors.od.nih.gov/",
+        "domain_name": "ors.od.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nlm.nih.gov",
@@ -681,7 +716,8 @@
         "handle_javascript": false,
         "schedule": "48 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nlm.nih.gov/"
+        "starting_urls": "https://www.nlm.nih.gov/",
+        "domain_name": "www.nlm.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: ehp.niehs.nih.gov",
@@ -690,7 +726,8 @@
         "handle_javascript": false,
         "schedule": "49 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ehp.niehs.nih.gov/"
+        "starting_urls": "https://ehp.niehs.nih.gov/",
+        "domain_name": "ehp.niehs.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: niehs.nih.gov",
@@ -699,7 +736,8 @@
         "handle_javascript": false,
         "schedule": "50 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.niehs.nih.gov/"
+        "starting_urls": "https://www.niehs.nih.gov/",
+        "domain_name": "www.niehs.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: dsld.od.nih.gov",
@@ -708,7 +746,8 @@
         "handle_javascript": false,
         "schedule": "51 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dsld.od.nih.gov/"
+        "starting_urls": "https://dsld.od.nih.gov/",
+        "domain_name": "dsld.od.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: ccr.cancer.gov",
@@ -717,7 +756,8 @@
         "handle_javascript": false,
         "schedule": "52 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ccr.cancer.gov/"
+        "starting_urls": "https://ccr.cancer.gov/",
+        "domain_name": "ccr.cancer.gov"
     },
     {
         "name": "modules.BWEB affiliate: cc.nih.gov",
@@ -726,7 +766,8 @@
         "handle_javascript": false,
         "schedule": "53 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.cc.nih.gov/"
+        "starting_urls": "https://www.cc.nih.gov/",
+        "domain_name": "www.cc.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nei.nih.gov",
@@ -735,7 +776,8 @@
         "handle_javascript": false,
         "schedule": "54 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nei.nih.gov/"
+        "starting_urls": "https://www.nei.nih.gov/",
+        "domain_name": "www.nei.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: edi.nih.gov",
@@ -744,7 +786,8 @@
         "handle_javascript": false,
         "schedule": "55 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.edi.nih.gov/"
+        "starting_urls": "https://www.edi.nih.gov/",
+        "domain_name": "www.edi.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: meshb.nlm.nih.gov",
@@ -753,7 +796,8 @@
         "handle_javascript": false,
         "schedule": "56 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://meshb.nlm.nih.gov/"
+        "starting_urls": "https://meshb.nlm.nih.gov/",
+        "domain_name": "meshb.nlm.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: niaaa.nih.gov",
@@ -762,7 +806,8 @@
         "handle_javascript": false,
         "schedule": "57 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.niaaa.nih.gov/"
+        "starting_urls": "https://www.niaaa.nih.gov/",
+        "domain_name": "www.niaaa.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nimhd.nih.gov",
@@ -771,7 +816,8 @@
         "handle_javascript": false,
         "schedule": "58 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nimhd.nih.gov/"
+        "starting_urls": "https://www.nimhd.nih.gov/",
+        "domain_name": "www.nimhd.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: hivinfo.nih.gov",
@@ -780,7 +826,8 @@
         "handle_javascript": false,
         "schedule": "59 00 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://hivinfo.nih.gov/"
+        "starting_urls": "https://hivinfo.nih.gov/",
+        "domain_name": "hivinfo.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: vsearch.nlm.nih.gov",
@@ -789,7 +836,8 @@
         "handle_javascript": false,
         "schedule": "00 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://vsearch.nlm.nih.gov/"
+        "starting_urls": "https://vsearch.nlm.nih.gov/",
+        "domain_name": "vsearch.nlm.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: gsrs.ncats.nih.gov",
@@ -798,7 +846,8 @@
         "handle_javascript": false,
         "schedule": "01 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://gsrs.ncats.nih.gov/"
+        "starting_urls": "https://gsrs.ncats.nih.gov/",
+        "domain_name": "gsrs.ncats.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: nsf.gov",
@@ -807,7 +856,8 @@
         "handle_javascript": false,
         "schedule": "02 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nsf.gov/"
+        "starting_urls": "https://www.nsf.gov/",
+        "domain_name": "www.nsf.gov"
     },
     {
         "name": "modules.BWEB affiliate: new.nsf.gov",
@@ -816,7 +866,8 @@
         "handle_javascript": false,
         "schedule": "03 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://new.nsf.gov/"
+        "starting_urls": "https://new.nsf.gov/",
+        "domain_name": "new.nsf.gov"
     },
     {
         "name": "modules.BWEB affiliate: weather.gov",
@@ -825,7 +876,8 @@
         "handle_javascript": false,
         "schedule": "04 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.weather.gov/"
+        "starting_urls": "https://www.weather.gov/",
+        "domain_name": "www.weather.gov"
     },
     {
         "name": "modules.BWEB affiliate: forecast.weather.gov",
@@ -834,7 +886,8 @@
         "handle_javascript": false,
         "schedule": "05 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://forecast.weather.gov/"
+        "starting_urls": "https://forecast.weather.gov/",
+        "domain_name": "forecast.weather.gov"
     },
     {
         "name": "modules.BWEB affiliate: climate.gov",
@@ -843,7 +896,8 @@
         "handle_javascript": false,
         "schedule": "06 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.climate.gov/"
+        "starting_urls": "https://www.climate.gov/",
+        "domain_name": "www.climate.gov"
     },
     {
         "name": "modules.BWEB affiliate: wpc.ncep.noaa.gov",
@@ -852,7 +906,8 @@
         "handle_javascript": false,
         "schedule": "07 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.wpc.ncep.noaa.gov/"
+        "starting_urls": "https://www.wpc.ncep.noaa.gov/",
+        "domain_name": "www.wpc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: usa.gov",
@@ -861,7 +916,8 @@
         "handle_javascript": false,
         "schedule": "08 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.usa.gov/"
+        "starting_urls": "https://www.usa.gov/",
+        "domain_name": "www.usa.gov"
     },
     {
         "name": "modules.BWEB affiliate: irs.gov",
@@ -870,7 +926,8 @@
         "handle_javascript": false,
         "schedule": "09 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.irs.gov/"
+        "starting_urls": "https://www.irs.gov/",
+        "domain_name": "www.irs.gov"
     },
     {
         "name": "modules.BWEB affiliate: constitution.congress.gov",
@@ -879,7 +936,8 @@
         "handle_javascript": false,
         "schedule": "10 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://constitution.congress.gov/"
+        "starting_urls": "https://constitution.congress.gov/",
+        "domain_name": "constitution.congress.gov"
     },
     {
         "name": "modules.BWEB affiliate: whitehouse.gov",
@@ -888,7 +946,8 @@
         "handle_javascript": false,
         "schedule": "11 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.whitehouse.gov/"
+        "starting_urls": "https://www.whitehouse.gov/",
+        "domain_name": "www.whitehouse.gov"
     },
     {
         "name": "modules.BWEB affiliate: ssa.gov",
@@ -897,7 +956,8 @@
         "handle_javascript": false,
         "schedule": "12 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ssa.gov/"
+        "starting_urls": "https://www.ssa.gov/",
+        "domain_name": "www.ssa.gov"
     },
     {
         "name": "modules.BWEB affiliate: archives.gov",
@@ -906,7 +966,8 @@
         "handle_javascript": false,
         "schedule": "13 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.archives.gov/"
+        "starting_urls": "https://www.archives.gov/",
+        "domain_name": "www.archives.gov"
     },
     {
         "name": "modules.BWEB affiliate: travel.state.gov",
@@ -915,7 +976,8 @@
         "handle_javascript": false,
         "schedule": "14 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://travel.state.gov/"
+        "starting_urls": "https://travel.state.gov/",
+        "domain_name": "travel.state.gov"
     },
     {
         "name": "modules.BWEB affiliate: uscis.gov",
@@ -924,7 +986,8 @@
         "handle_javascript": false,
         "schedule": "15 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.uscis.gov/"
+        "starting_urls": "https://www.uscis.gov/",
+        "domain_name": "www.uscis.gov"
     },
     {
         "name": "modules.BWEB affiliate: opm.gov",
@@ -933,7 +996,8 @@
         "handle_javascript": false,
         "schedule": "16 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.opm.gov/"
+        "starting_urls": "https://www.opm.gov/",
+        "domain_name": "www.opm.gov"
     },
     {
         "name": "modules.BWEB affiliate: justice.gov",
@@ -942,7 +1006,8 @@
         "handle_javascript": false,
         "schedule": "17 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.justice.gov/"
+        "starting_urls": "https://www.justice.gov/",
+        "domain_name": "www.justice.gov"
     },
     {
         "name": "modules.BWEB affiliate: usajobs.gov",
@@ -951,7 +1016,8 @@
         "handle_javascript": false,
         "schedule": "19 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.usajobs.gov/"
+        "starting_urls": "https://www.usajobs.gov/",
+        "domain_name": "www.usajobs.gov"
     },
     {
         "name": "modules.BWEB affiliate: bidenwhitehouse.archives.gov",
@@ -960,7 +1026,18 @@
         "handle_javascript": false,
         "schedule": "20 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://bidenwhitehouse.archives.gov/"
+        "starting_urls": "https://bidenwhitehouse.archives.gov/",
+        "domain_name": "bidenwhitehouse.archives.gov"
+    },
+    {
+        "name": "modules.BWEB affiliate: va.gov",
+        "allow_query_string": false,
+        "allowed_domains": "va.gov",
+        "handle_javascript": false,
+        "schedule": "21 01 * * FRI",
+        "output_target": "elasticsearch",
+        "starting_urls": "https://www.va.gov/",
+        "domain_name": "www.va.gov"
     },
     {
         "name": "modules.BWEB affiliate: cdc.gov",
@@ -969,7 +1046,8 @@
         "handle_javascript": false,
         "schedule": "22 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.cdc.gov/"
+        "starting_urls": "https://www.cdc.gov/",
+        "domain_name": "www.cdc.gov"
     },
     {
         "name": "modules.BWEB affiliate: state.gov",
@@ -978,7 +1056,8 @@
         "handle_javascript": false,
         "schedule": "23 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.state.gov/"
+        "starting_urls": "https://www.state.gov/",
+        "domain_name": "www.state.gov"
     },
     {
         "name": "modules.BWEB affiliate: nps.gov",
@@ -987,7 +1066,8 @@
         "handle_javascript": false,
         "schedule": "24 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nps.gov/"
+        "starting_urls": "https://www.nps.gov/",
+        "domain_name": "www.nps.gov"
     },
     {
         "name": "modules.BWEB affiliate: eforms.state.gov",
@@ -996,7 +1076,8 @@
         "handle_javascript": false,
         "schedule": "25 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://eforms.state.gov/"
+        "starting_urls": "https://eforms.state.gov/",
+        "domain_name": "eforms.state.gov"
     },
     {
         "name": "modules.BWEB affiliate: federalregister.gov",
@@ -1005,7 +1086,8 @@
         "handle_javascript": false,
         "schedule": "26 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.federalregister.gov/"
+        "starting_urls": "https://www.federalregister.gov/",
+        "domain_name": "www.federalregister.gov"
     },
     {
         "name": "modules.BWEB affiliate: hud.gov",
@@ -1014,7 +1096,8 @@
         "handle_javascript": false,
         "schedule": "27 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.hud.gov/"
+        "starting_urls": "https://www.hud.gov/",
+        "domain_name": "www.hud.gov"
     },
     {
         "name": "modules.BWEB affiliate: dol.gov",
@@ -1023,7 +1106,8 @@
         "handle_javascript": false,
         "schedule": "28 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.dol.gov/"
+        "starting_urls": "https://www.dol.gov/",
+        "domain_name": "www.dol.gov"
     },
     {
         "name": "modules.BWEB affiliate: cbp.gov",
@@ -1032,7 +1116,8 @@
         "handle_javascript": false,
         "schedule": "29 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.cbp.gov/"
+        "starting_urls": "https://www.cbp.gov/",
+        "domain_name": "www.cbp.gov"
     },
     {
         "name": "modules.BWEB affiliate: hhs.gov",
@@ -1041,7 +1126,8 @@
         "handle_javascript": false,
         "schedule": "31 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.hhs.gov/"
+        "starting_urls": "https://www.hhs.gov/",
+        "domain_name": "www.hhs.gov"
     },
     {
         "name": "modules.BWEB affiliate: congress.gov",
@@ -1050,7 +1136,8 @@
         "handle_javascript": false,
         "schedule": "32 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.congress.gov/"
+        "starting_urls": "https://www.congress.gov/",
+        "domain_name": "www.congress.gov"
     },
     {
         "name": "modules.BWEB affiliate: home.treasury.gov",
@@ -1059,7 +1146,8 @@
         "handle_javascript": false,
         "schedule": "33 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://home.treasury.gov/"
+        "starting_urls": "https://home.treasury.gov/",
+        "domain_name": "home.treasury.gov"
     },
     {
         "name": "modules.BWEB affiliate: consumerfinance.gov",
@@ -1068,7 +1156,8 @@
         "handle_javascript": false,
         "schedule": "34 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.consumerfinance.gov/"
+        "starting_urls": "https://www.consumerfinance.gov/",
+        "domain_name": "www.consumerfinance.gov"
     },
     {
         "name": "modules.BWEB affiliate: sec.gov",
@@ -1077,7 +1166,8 @@
         "handle_javascript": false,
         "schedule": "35 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.sec.gov/"
+        "starting_urls": "https://www.sec.gov/",
+        "domain_name": "www.sec.gov"
     },
     {
         "name": "modules.BWEB affiliate: treasury.gov",
@@ -1086,7 +1176,8 @@
         "handle_javascript": false,
         "schedule": "36 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.treasury.gov/"
+        "starting_urls": "https://www.treasury.gov/",
+        "domain_name": "www.treasury.gov"
     },
     {
         "name": "modules.BWEB affiliate: cia.gov",
@@ -1095,7 +1186,8 @@
         "handle_javascript": false,
         "schedule": "37 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.cia.gov/"
+        "starting_urls": "https://www.cia.gov/",
+        "domain_name": "www.cia.gov"
     },
     {
         "name": "modules.BWEB affiliate: consumer.ftc.gov",
@@ -1104,7 +1196,8 @@
         "handle_javascript": false,
         "schedule": "38 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://consumer.ftc.gov/"
+        "starting_urls": "https://consumer.ftc.gov/",
+        "domain_name": "consumer.ftc.gov"
     },
     {
         "name": "modules.BWEB affiliate: loc.gov",
@@ -1113,7 +1206,8 @@
         "handle_javascript": false,
         "schedule": "39 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.loc.gov/"
+        "starting_urls": "https://www.loc.gov/",
+        "domain_name": "www.loc.gov"
     },
     {
         "name": "modules.BWEB affiliate: chcoc.gov",
@@ -1122,7 +1216,8 @@
         "handle_javascript": false,
         "schedule": "41 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.chcoc.gov/"
+        "starting_urls": "https://www.chcoc.gov/",
+        "domain_name": "www.chcoc.gov"
     },
     {
         "name": "modules.BWEB affiliate: census.gov",
@@ -1131,7 +1226,8 @@
         "handle_javascript": false,
         "schedule": "42 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.census.gov/"
+        "starting_urls": "https://www.census.gov/",
+        "domain_name": "www.census.gov"
     },
     {
         "name": "modules.BWEB affiliate: senate.gov",
@@ -1140,7 +1236,8 @@
         "handle_javascript": false,
         "schedule": "43 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.senate.gov/"
+        "starting_urls": "https://www.senate.gov/",
+        "domain_name": "www.senate.gov"
     },
     {
         "name": "modules.BWEB affiliate: govinfo.gov",
@@ -1149,7 +1246,8 @@
         "handle_javascript": false,
         "schedule": "44 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.govinfo.gov/"
+        "starting_urls": "https://www.govinfo.gov/",
+        "domain_name": "www.govinfo.gov"
     },
     {
         "name": "modules.BWEB affiliate: ncbi.nlm.nih.gov",
@@ -1158,7 +1256,8 @@
         "handle_javascript": false,
         "schedule": "46 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ncbi.nlm.nih.gov/"
+        "starting_urls": "https://www.ncbi.nlm.nih.gov/",
+        "domain_name": "www.ncbi.nlm.nih.gov"
     },
     {
         "name": "modules.BWEB affiliate: crsreports.congress.gov",
@@ -1167,7 +1266,8 @@
         "handle_javascript": false,
         "schedule": "47 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://crsreports.congress.gov/"
+        "starting_urls": "https://crsreports.congress.gov/",
+        "domain_name": "crsreports.congress.gov"
     },
     {
         "name": "modules.BWEB affiliate: uscode.house.gov",
@@ -1176,7 +1276,8 @@
         "handle_javascript": false,
         "schedule": "48 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://uscode.house.gov/"
+        "starting_urls": "https://uscode.house.gov/",
+        "domain_name": "uscode.house.gov"
     },
     {
         "name": "modules.BWEB affiliate: grants.gov",
@@ -1185,7 +1286,8 @@
         "handle_javascript": false,
         "schedule": "49 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.grants.gov/"
+        "starting_urls": "https://www.grants.gov/",
+        "domain_name": "www.grants.gov"
     },
     {
         "name": "modules.BWEB affiliate: secure.login.gov",
@@ -1194,7 +1296,8 @@
         "handle_javascript": false,
         "schedule": "50 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://secure.login.gov/"
+        "starting_urls": "https://secure.login.gov/",
+        "domain_name": "secure.login.gov"
     },
     {
         "name": "modules.BWEB affiliate: ftc.gov",
@@ -1203,7 +1306,8 @@
         "handle_javascript": false,
         "schedule": "51 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ftc.gov/"
+        "starting_urls": "https://www.ftc.gov/",
+        "domain_name": "www.ftc.gov"
     },
     {
         "name": "modules.BWEB affiliate: gsa.gov",
@@ -1212,7 +1316,8 @@
         "handle_javascript": false,
         "schedule": "52 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.gsa.gov/"
+        "starting_urls": "https://www.gsa.gov/",
+        "domain_name": "www.gsa.gov"
     },
     {
         "name": "modules.BWEB affiliate: bls.gov",
@@ -1221,7 +1326,8 @@
         "handle_javascript": false,
         "schedule": "53 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.bls.gov/"
+        "starting_urls": "https://www.bls.gov/",
+        "domain_name": "www.bls.gov"
     },
     {
         "name": "modules.BWEB affiliate: fbi.gov",
@@ -1230,7 +1336,8 @@
         "handle_javascript": false,
         "schedule": "54 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fbi.gov/"
+        "starting_urls": "https://www.fbi.gov/",
+        "domain_name": "www.fbi.gov"
     },
     {
         "name": "modules.BWEB affiliate: passportstatus.state.gov",
@@ -1239,7 +1346,8 @@
         "handle_javascript": false,
         "schedule": "55 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://passportstatus.state.gov/"
+        "starting_urls": "https://passportstatus.state.gov/",
+        "domain_name": "passportstatus.state.gov"
     },
     {
         "name": "modules.BWEB affiliate: cms.gov",
@@ -1248,7 +1356,8 @@
         "handle_javascript": false,
         "schedule": "56 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.cms.gov/"
+        "starting_urls": "https://www.cms.gov/",
+        "domain_name": "www.cms.gov"
     },
     {
         "name": "modules.BWEB affiliate: dhs.gov",
@@ -1257,7 +1366,8 @@
         "handle_javascript": false,
         "schedule": "57 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.dhs.gov/"
+        "starting_urls": "https://www.dhs.gov/",
+        "domain_name": "www.dhs.gov"
     },
     {
         "name": "modules.BWEB affiliate: smithsonianmag.com",
@@ -1266,7 +1376,8 @@
         "handle_javascript": false,
         "schedule": "58 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.smithsonianmag.com/"
+        "starting_urls": "https://www.smithsonianmag.com/",
+        "domain_name": "www.smithsonianmag.com"
     },
     {
         "name": "modules.BWEB affiliate: www-origin.ssa.gov",
@@ -1275,7 +1386,8 @@
         "handle_javascript": false,
         "schedule": "59 01 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www-origin.ssa.gov/"
+        "starting_urls": "https://www-origin.ssa.gov/",
+        "domain_name": "www-origin.ssa.gov"
     },
     {
         "name": "modules.BWEB affiliate: fema.gov",
@@ -1284,7 +1396,8 @@
         "handle_javascript": false,
         "schedule": "00 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fema.gov/"
+        "starting_urls": "https://www.fema.gov/",
+        "domain_name": "www.fema.gov"
     },
     {
         "name": "modules.BWEB affiliate: medicare.gov",
@@ -1293,7 +1406,8 @@
         "handle_javascript": false,
         "schedule": "01 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.medicare.gov/"
+        "starting_urls": "https://www.medicare.gov/",
+        "domain_name": "www.medicare.gov"
     },
     {
         "name": "modules.BWEB affiliate: voanews.com",
@@ -1302,7 +1416,8 @@
         "handle_javascript": false,
         "schedule": "02 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.voanews.com/"
+        "starting_urls": "https://www.voanews.com/",
+        "domain_name": "www.voanews.com"
     },
     {
         "name": "modules.BWEB affiliate: blog.ssa.gov",
@@ -1311,7 +1426,8 @@
         "handle_javascript": false,
         "schedule": "03 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://blog.ssa.gov/"
+        "starting_urls": "https://blog.ssa.gov/",
+        "domain_name": "blog.ssa.gov"
     },
     {
         "name": "modules.BWEB affiliate: treasurydirect.gov",
@@ -1320,7 +1436,8 @@
         "handle_javascript": false,
         "schedule": "04 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.treasurydirect.gov/"
+        "starting_urls": "https://www.treasurydirect.gov/",
+        "domain_name": "www.treasurydirect.gov"
     },
     {
         "name": "modules.BWEB affiliate: files.eric.ed.gov",
@@ -1329,7 +1446,8 @@
         "handle_javascript": false,
         "schedule": "05 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://files.eric.ed.gov/"
+        "starting_urls": "https://files.eric.ed.gov/",
+        "domain_name": "files.eric.ed.gov"
     },
     {
         "name": "modules.BWEB affiliate: doge.gov",
@@ -1338,7 +1456,8 @@
         "handle_javascript": false,
         "schedule": "06 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.doge.gov/"
+        "starting_urls": "https://www.doge.gov/",
+        "domain_name": "www.doge.gov"
     },
     {
         "name": "modules.BWEB affiliate: tsa.gov",
@@ -1347,7 +1466,8 @@
         "handle_javascript": false,
         "schedule": "07 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.tsa.gov/"
+        "starting_urls": "https://www.tsa.gov/",
+        "domain_name": "www.tsa.gov"
     },
     {
         "name": "modules.BWEB affiliate: fda.gov",
@@ -1356,7 +1476,8 @@
         "handle_javascript": false,
         "schedule": "08 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fda.gov/"
+        "starting_urls": "https://www.fda.gov/",
+        "domain_name": "www.fda.gov"
     },
     {
         "name": "modules.BWEB affiliate: energy.gov",
@@ -1365,7 +1486,8 @@
         "handle_javascript": false,
         "schedule": "09 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.energy.gov/"
+        "starting_urls": "https://www.energy.gov/",
+        "domain_name": "www.energy.gov"
     },
     {
         "name": "modules.BWEB affiliate: pa.gov",
@@ -1374,7 +1496,8 @@
         "handle_javascript": false,
         "schedule": "10 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.pa.gov/"
+        "starting_urls": "https://www.pa.gov/",
+        "domain_name": "www.pa.gov"
     },
     {
         "name": "modules.BWEB affiliate: usgs.gov",
@@ -1383,7 +1506,8 @@
         "handle_javascript": false,
         "schedule": "11 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.usgs.gov/"
+        "starting_urls": "https://www.usgs.gov/",
+        "domain_name": "www.usgs.gov"
     },
     {
         "name": "modules.BWEB affiliate: mass.gov",
@@ -1392,7 +1516,8 @@
         "handle_javascript": false,
         "schedule": "12 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.mass.gov/"
+        "starting_urls": "https://www.mass.gov/",
+        "domain_name": "www.mass.gov"
     },
     {
         "name": "modules.BWEB affiliate: reproductiverights.gov",
@@ -1401,7 +1526,8 @@
         "handle_javascript": false,
         "schedule": "13 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://reproductiverights.gov/"
+        "starting_urls": "https://reproductiverights.gov/",
+        "domain_name": "reproductiverights.gov"
     },
     {
         "name": "modules.BWEB affiliate: epa.gov",
@@ -1410,7 +1536,8 @@
         "handle_javascript": false,
         "schedule": "14 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.epa.gov/"
+        "starting_urls": "https://www.epa.gov/",
+        "domain_name": "www.epa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ice.gov",
@@ -1419,7 +1546,8 @@
         "handle_javascript": false,
         "schedule": "15 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ice.gov/"
+        "starting_urls": "https://www.ice.gov/",
+        "domain_name": "www.ice.gov"
     },
     {
         "name": "modules.BWEB affiliate: patientcare.va.gov",
@@ -1428,7 +1556,8 @@
         "handle_javascript": false,
         "schedule": "16 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.patientcare.va.gov/"
+        "starting_urls": "https://www.patientcare.va.gov/",
+        "domain_name": "www.patientcare.va.gov"
     },
     {
         "name": "modules.BWEB affiliate: obamawhitehouse.archives.gov",
@@ -1437,7 +1566,8 @@
         "handle_javascript": false,
         "schedule": "17 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://obamawhitehouse.archives.gov/"
+        "starting_urls": "https://obamawhitehouse.archives.gov/",
+        "domain_name": "obamawhitehouse.archives.gov"
     },
     {
         "name": "modules.BWEB affiliate: house.gov",
@@ -1446,7 +1576,8 @@
         "handle_javascript": false,
         "schedule": "18 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.house.gov/"
+        "starting_urls": "https://www.house.gov/",
+        "domain_name": "www.house.gov"
     },
     {
         "name": "modules.BWEB affiliate: supremecourt.gov",
@@ -1455,7 +1586,8 @@
         "handle_javascript": false,
         "schedule": "19 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.supremecourt.gov/"
+        "starting_urls": "https://www.supremecourt.gov/",
+        "domain_name": "www.supremecourt.gov"
     },
     {
         "name": "modules.BWEB affiliate: usda.gov",
@@ -1464,7 +1596,8 @@
         "handle_javascript": false,
         "schedule": "20 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.usda.gov/"
+        "starting_urls": "https://www.usda.gov/",
+        "domain_name": "www.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: secure.ssa.gov",
@@ -1473,7 +1606,8 @@
         "handle_javascript": false,
         "schedule": "21 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://secure.ssa.gov/"
+        "starting_urls": "https://secure.ssa.gov/",
+        "domain_name": "secure.ssa.gov"
     },
     {
         "name": "modules.BWEB affiliate: trumpwhitehouse.archives.gov",
@@ -1482,7 +1616,8 @@
         "handle_javascript": false,
         "schedule": "22 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://trumpwhitehouse.archives.gov/"
+        "starting_urls": "https://trumpwhitehouse.archives.gov/",
+        "domain_name": "trumpwhitehouse.archives.gov"
     },
     {
         "name": "modules.BWEB affiliate: sba.gov",
@@ -1491,7 +1626,8 @@
         "handle_javascript": false,
         "schedule": "23 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.sba.gov/"
+        "starting_urls": "https://www.sba.gov/",
+        "domain_name": "www.sba.gov"
     },
     {
         "name": "modules.BWEB affiliate: esta.cbp.dhs.gov",
@@ -1500,7 +1636,8 @@
         "handle_javascript": false,
         "schedule": "24 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://esta.cbp.dhs.gov/"
+        "starting_urls": "https://esta.cbp.dhs.gov/",
+        "domain_name": "esta.cbp.dhs.gov"
     },
     {
         "name": "modules.BWEB affiliate: studentaid.gov",
@@ -1509,7 +1646,18 @@
         "handle_javascript": false,
         "schedule": "25 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://studentaid.gov/"
+        "starting_urls": "https://studentaid.gov/",
+        "domain_name": "studentaid.gov"
+    },
+    {
+        "name": "modules.BWEB affiliate: fincen.gov",
+        "allow_query_string": false,
+        "allowed_domains": "fincen.gov",
+        "handle_javascript": false,
+        "schedule": "26 02 * * FRI",
+        "output_target": "elasticsearch",
+        "starting_urls": "https://www.fincen.gov/",
+        "domain_name": "www.fincen.gov"
     },
     {
         "name": "modules.BWEB affiliate: fns.usda.gov",
@@ -1518,7 +1666,8 @@
         "handle_javascript": false,
         "schedule": "27 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fns.usda.gov/"
+        "starting_urls": "https://www.fns.usda.gov/",
+        "domain_name": "www.fns.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: healthcare.gov",
@@ -1527,7 +1676,8 @@
         "handle_javascript": false,
         "schedule": "28 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.healthcare.gov/"
+        "starting_urls": "https://www.healthcare.gov/",
+        "domain_name": "www.healthcare.gov"
     },
     {
         "name": "modules.BWEB affiliate: usaid.gov",
@@ -1536,7 +1686,8 @@
         "handle_javascript": false,
         "schedule": "29 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.usaid.gov/"
+        "starting_urls": "https://www.usaid.gov/",
+        "domain_name": "www.usaid.gov"
     },
     {
         "name": "modules.BWEB affiliate: ecfr.gov",
@@ -1545,7 +1696,8 @@
         "handle_javascript": false,
         "schedule": "30 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ecfr.gov/"
+        "starting_urls": "https://www.ecfr.gov/",
+        "domain_name": "www.ecfr.gov"
     },
     {
         "name": "modules.BWEB affiliate: nj.gov",
@@ -1554,7 +1706,8 @@
         "handle_javascript": false,
         "schedule": "31 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nj.gov/"
+        "starting_urls": "https://www.nj.gov/",
+        "domain_name": "www.nj.gov"
     },
     {
         "name": "modules.BWEB affiliate: osha.gov",
@@ -1563,7 +1716,8 @@
         "handle_javascript": false,
         "schedule": "32 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.osha.gov/"
+        "starting_urls": "https://www.osha.gov/",
+        "domain_name": "www.osha.gov"
     },
     {
         "name": "modules.BWEB affiliate: eeoc.gov",
@@ -1572,7 +1726,8 @@
         "handle_javascript": false,
         "schedule": "33 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.eeoc.gov/"
+        "starting_urls": "https://www.eeoc.gov/",
+        "domain_name": "www.eeoc.gov"
     },
     {
         "name": "modules.BWEB affiliate: iqconnect.house.gov",
@@ -1581,7 +1736,8 @@
         "handle_javascript": false,
         "schedule": "34 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://iqconnect.house.gov/"
+        "starting_urls": "https://iqconnect.house.gov/",
+        "domain_name": "iqconnect.house.gov"
     },
     {
         "name": "modules.BWEB affiliate: gao.gov",
@@ -1590,7 +1746,8 @@
         "handle_javascript": false,
         "schedule": "36 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.gao.gov/"
+        "starting_urls": "https://www.gao.gov/",
+        "domain_name": "www.gao.gov"
     },
     {
         "name": "modules.BWEB affiliate: guides.loc.gov",
@@ -1599,7 +1756,8 @@
         "handle_javascript": false,
         "schedule": "37 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://guides.loc.gov/"
+        "starting_urls": "https://guides.loc.gov/",
+        "domain_name": "guides.loc.gov"
     },
     {
         "name": "modules.BWEB affiliate: portal.ct.gov",
@@ -1608,7 +1766,8 @@
         "handle_javascript": false,
         "schedule": "38 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://portal.ct.gov/"
+        "starting_urls": "https://portal.ct.gov/",
+        "domain_name": "portal.ct.gov"
     },
     {
         "name": "modules.BWEB affiliate: acf.hhs.gov",
@@ -1617,7 +1776,8 @@
         "handle_javascript": false,
         "schedule": "39 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.acf.hhs.gov/"
+        "starting_urls": "https://www.acf.hhs.gov/",
+        "domain_name": "www.acf.hhs.gov"
     },
     {
         "name": "modules.BWEB affiliate: faa.gov",
@@ -1626,7 +1786,8 @@
         "handle_javascript": false,
         "schedule": "40 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.faa.gov/"
+        "starting_urls": "https://www.faa.gov/",
+        "domain_name": "www.faa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ojp.gov",
@@ -1635,7 +1796,8 @@
         "handle_javascript": false,
         "schedule": "41 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ojp.gov/"
+        "starting_urls": "https://www.ojp.gov/",
+        "domain_name": "www.ojp.gov"
     },
     {
         "name": "modules.BWEB affiliate: in.gov",
@@ -1644,7 +1806,8 @@
         "handle_javascript": false,
         "schedule": "42 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.in.gov/"
+        "starting_urls": "https://www.in.gov/",
+        "domain_name": "www.in.gov"
     },
     {
         "name": "modules.BWEB affiliate: uscourts.gov",
@@ -1653,7 +1816,8 @@
         "handle_javascript": false,
         "schedule": "43 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.uscourts.gov/"
+        "starting_urls": "https://www.uscourts.gov/",
+        "domain_name": "www.uscourts.gov"
     },
     {
         "name": "modules.BWEB affiliate: 2021-2025.state.gov",
@@ -1662,7 +1826,8 @@
         "handle_javascript": false,
         "schedule": "44 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://2021-2025.state.gov/"
+        "starting_urls": "https://2021-2025.state.gov/",
+        "domain_name": "2021-2025.state.gov"
     },
     {
         "name": "modules.BWEB affiliate: nyc.gov",
@@ -1671,7 +1836,8 @@
         "handle_javascript": false,
         "schedule": "45 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nyc.gov/"
+        "starting_urls": "https://www.nyc.gov/",
+        "domain_name": "www.nyc.gov"
     },
     {
         "name": "modules.BWEB affiliate: ceac.state.gov",
@@ -1680,7 +1846,8 @@
         "handle_javascript": false,
         "schedule": "46 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ceac.state.gov/"
+        "starting_urls": "https://ceac.state.gov/",
+        "domain_name": "ceac.state.gov"
     },
     {
         "name": "modules.BWEB affiliate: doi.gov",
@@ -1689,7 +1856,8 @@
         "handle_javascript": false,
         "schedule": "47 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.doi.gov/"
+        "starting_urls": "https://www.doi.gov/",
+        "domain_name": "www.doi.gov"
     },
     {
         "name": "modules.BWEB affiliate: michigan.gov",
@@ -1698,7 +1866,8 @@
         "handle_javascript": false,
         "schedule": "48 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.michigan.gov/"
+        "starting_urls": "https://www.michigan.gov/",
+        "domain_name": "www.michigan.gov"
     },
     {
         "name": "modules.BWEB affiliate: fmcsa.dot.gov",
@@ -1707,7 +1876,8 @@
         "handle_javascript": false,
         "schedule": "49 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fmcsa.dot.gov/"
+        "starting_urls": "https://www.fmcsa.dot.gov/",
+        "domain_name": "www.fmcsa.dot.gov"
     },
     {
         "name": "modules.BWEB affiliate: login.gov",
@@ -1716,7 +1886,8 @@
         "handle_javascript": false,
         "schedule": "50 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://login.gov/"
+        "starting_urls": "https://login.gov/",
+        "domain_name": "login.gov"
     },
     {
         "name": "modules.BWEB affiliate: fcc.gov",
@@ -1725,7 +1896,8 @@
         "handle_javascript": false,
         "schedule": "51 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fcc.gov/"
+        "starting_urls": "https://www.fcc.gov/",
+        "domain_name": "www.fcc.gov"
     },
     {
         "name": "modules.BWEB affiliate: tn.gov",
@@ -1734,7 +1906,8 @@
         "handle_javascript": false,
         "schedule": "52 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.tn.gov/"
+        "starting_urls": "https://www.tn.gov/",
+        "domain_name": "www.tn.gov"
     },
     {
         "name": "modules.BWEB affiliate: army.mil",
@@ -1743,7 +1916,8 @@
         "handle_javascript": false,
         "schedule": "53 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.army.mil/"
+        "starting_urls": "https://www.army.mil/",
+        "domain_name": "www.army.mil"
     },
     {
         "name": "modules.BWEB affiliate: fdic.gov",
@@ -1752,7 +1926,8 @@
         "handle_javascript": false,
         "schedule": "55 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fdic.gov/"
+        "starting_urls": "https://www.fdic.gov/",
+        "domain_name": "www.fdic.gov"
     },
     {
         "name": "modules.BWEB affiliate: medicaid.gov",
@@ -1761,7 +1936,8 @@
         "handle_javascript": false,
         "schedule": "56 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.medicaid.gov/"
+        "starting_urls": "https://www.medicaid.gov/",
+        "domain_name": "www.medicaid.gov"
     },
     {
         "name": "modules.BWEB affiliate: tricare.mil",
@@ -1770,7 +1946,8 @@
         "handle_javascript": false,
         "schedule": "57 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://tricare.mil/"
+        "starting_urls": "https://tricare.mil/",
+        "domain_name": "tricare.mil"
     },
     {
         "name": "modules.BWEB affiliate: rd.usda.gov",
@@ -1779,7 +1956,8 @@
         "handle_javascript": false,
         "schedule": "58 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.rd.usda.gov/"
+        "starting_urls": "https://www.rd.usda.gov/",
+        "domain_name": "www.rd.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: travelalaska.com",
@@ -1788,7 +1966,8 @@
         "handle_javascript": false,
         "schedule": "59 02 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.travelalaska.com/"
+        "starting_urls": "https://www.travelalaska.com/",
+        "domain_name": "www.travelalaska.com"
     },
     {
         "name": "modules.BWEB affiliate: egov.uscis.gov",
@@ -1797,7 +1976,8 @@
         "handle_javascript": false,
         "schedule": "00 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://egov.uscis.gov/"
+        "starting_urls": "https://egov.uscis.gov/",
+        "domain_name": "egov.uscis.gov"
     },
     {
         "name": "modules.BWEB affiliate: historyhub.history.gov",
@@ -1806,7 +1986,8 @@
         "handle_javascript": false,
         "schedule": "01 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://historyhub.history.gov/"
+        "starting_urls": "https://historyhub.history.gov/",
+        "domain_name": "historyhub.history.gov"
     },
     {
         "name": "modules.BWEB affiliate: transportation.gov",
@@ -1815,7 +1996,8 @@
         "handle_javascript": false,
         "schedule": "02 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.transportation.gov/"
+        "starting_urls": "https://www.transportation.gov/",
+        "domain_name": "www.transportation.gov"
     },
     {
         "name": "modules.BWEB affiliate: boiefiling.fincen.gov",
@@ -1824,7 +2006,8 @@
         "handle_javascript": false,
         "schedule": "03 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://boiefiling.fincen.gov/"
+        "starting_urls": "https://boiefiling.fincen.gov/",
+        "domain_name": "boiefiling.fincen.gov"
     },
     {
         "name": "modules.BWEB affiliate: nasa.gov",
@@ -1833,7 +2016,8 @@
         "handle_javascript": false,
         "schedule": "04 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nasa.gov/"
+        "starting_urls": "https://www.nasa.gov/",
+        "domain_name": "www.nasa.gov"
     },
     {
         "name": "modules.BWEB affiliate: hts.usitc.gov",
@@ -1842,7 +2026,8 @@
         "handle_javascript": false,
         "schedule": "05 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://hts.usitc.gov/"
+        "starting_urls": "https://hts.usitc.gov/",
+        "domain_name": "hts.usitc.gov"
     },
     {
         "name": "modules.BWEB affiliate: nces.ed.gov",
@@ -1851,7 +2036,8 @@
         "handle_javascript": false,
         "schedule": "06 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://nces.ed.gov/"
+        "starting_urls": "https://nces.ed.gov/",
+        "domain_name": "nces.ed.gov"
     },
     {
         "name": "modules.BWEB affiliate: bean.house.gov",
@@ -1860,7 +2046,8 @@
         "handle_javascript": false,
         "schedule": "07 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://bean.house.gov/"
+        "starting_urls": "https://bean.house.gov/",
+        "domain_name": "bean.house.gov"
     },
     {
         "name": "modules.BWEB affiliate: clintonwhitehouse4.archives.gov",
@@ -1869,7 +2056,8 @@
         "handle_javascript": false,
         "schedule": "08 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://clintonwhitehouse4.archives.gov/"
+        "starting_urls": "https://clintonwhitehouse4.archives.gov/",
+        "domain_name": "clintonwhitehouse4.archives.gov"
     },
     {
         "name": "modules.BWEB affiliate: bop.gov",
@@ -1878,7 +2066,8 @@
         "handle_javascript": false,
         "schedule": "09 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.bop.gov/"
+        "starting_urls": "https://www.bop.gov/",
+        "domain_name": "www.bop.gov"
     },
     {
         "name": "modules.BWEB affiliate: esd.whs.mil",
@@ -1887,7 +2076,8 @@
         "handle_javascript": false,
         "schedule": "10 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.esd.whs.mil/"
+        "starting_urls": "https://www.esd.whs.mil/",
+        "domain_name": "www.esd.whs.mil"
     },
     {
         "name": "modules.BWEB affiliate: i94.cbp.dhs.gov",
@@ -1896,7 +2086,8 @@
         "handle_javascript": false,
         "schedule": "11 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://i94.cbp.dhs.gov/"
+        "starting_urls": "https://i94.cbp.dhs.gov/",
+        "domain_name": "i94.cbp.dhs.gov"
     },
     {
         "name": "modules.BWEB affiliate: medlineplus.gov",
@@ -1905,7 +2096,8 @@
         "handle_javascript": false,
         "schedule": "12 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://medlineplus.gov/"
+        "starting_urls": "https://medlineplus.gov/",
+        "domain_name": "medlineplus.gov"
     },
     {
         "name": "modules.BWEB affiliate: federalreserve.gov",
@@ -1914,7 +2106,8 @@
         "handle_javascript": false,
         "schedule": "13 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.federalreserve.gov/"
+        "starting_urls": "https://www.federalreserve.gov/",
+        "domain_name": "www.federalreserve.gov"
     },
     {
         "name": "modules.BWEB affiliate: vault.fbi.gov",
@@ -1923,7 +2116,8 @@
         "handle_javascript": false,
         "schedule": "14 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://vault.fbi.gov/"
+        "starting_urls": "https://vault.fbi.gov/",
+        "domain_name": "vault.fbi.gov"
     },
     {
         "name": "modules.BWEB affiliate: fs.usda.gov",
@@ -1932,7 +2126,8 @@
         "handle_javascript": false,
         "schedule": "15 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fs.usda.gov/"
+        "starting_urls": "https://www.fs.usda.gov/",
+        "domain_name": "www.fs.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: oregon.gov",
@@ -1941,7 +2136,8 @@
         "handle_javascript": false,
         "schedule": "16 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.oregon.gov/"
+        "starting_urls": "https://www.oregon.gov/",
+        "domain_name": "www.oregon.gov"
     },
     {
         "name": "modules.BWEB affiliate: apps.irs.gov",
@@ -1950,7 +2146,8 @@
         "handle_javascript": false,
         "schedule": "17 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://apps.irs.gov/"
+        "starting_urls": "https://apps.irs.gov/",
+        "domain_name": "apps.irs.gov"
     },
     {
         "name": "modules.BWEB affiliate: engage.youth.gov",
@@ -1959,7 +2156,8 @@
         "handle_javascript": false,
         "schedule": "18 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://engage.youth.gov/"
+        "starting_urls": "https://engage.youth.gov/",
+        "domain_name": "engage.youth.gov"
     },
     {
         "name": "modules.BWEB affiliate: fec.gov",
@@ -1968,7 +2166,8 @@
         "handle_javascript": false,
         "schedule": "19 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fec.gov/"
+        "starting_urls": "https://www.fec.gov/",
+        "domain_name": "www.fec.gov"
     },
     {
         "name": "modules.BWEB affiliate: home.army.mil",
@@ -1977,7 +2176,8 @@
         "handle_javascript": false,
         "schedule": "20 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://home.army.mil/"
+        "starting_urls": "https://home.army.mil/",
+        "domain_name": "home.army.mil"
     },
     {
         "name": "modules.BWEB affiliate: odphp.health.gov",
@@ -1986,7 +2186,8 @@
         "handle_javascript": false,
         "schedule": "21 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://odphp.health.gov/"
+        "starting_urls": "https://odphp.health.gov/",
+        "domain_name": "odphp.health.gov"
     },
     {
         "name": "modules.BWEB affiliate: bea.gov",
@@ -1995,7 +2196,8 @@
         "handle_javascript": false,
         "schedule": "22 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.bea.gov/"
+        "starting_urls": "https://www.bea.gov/",
+        "domain_name": "www.bea.gov"
     },
     {
         "name": "modules.BWEB affiliate: myplate.gov",
@@ -2004,7 +2206,8 @@
         "handle_javascript": false,
         "schedule": "24 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.myplate.gov/"
+        "starting_urls": "https://www.myplate.gov/",
+        "domain_name": "www.myplate.gov"
     },
     {
         "name": "modules.BWEB affiliate: ams.usda.gov",
@@ -2013,7 +2216,8 @@
         "handle_javascript": false,
         "schedule": "26 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ams.usda.gov/"
+        "starting_urls": "https://www.ams.usda.gov/",
+        "domain_name": "www.ams.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: aphis.usda.gov",
@@ -2022,7 +2226,8 @@
         "handle_javascript": false,
         "schedule": "28 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.aphis.usda.gov/"
+        "starting_urls": "https://www.aphis.usda.gov/",
+        "domain_name": "www.aphis.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: fsis.usda.gov",
@@ -2031,7 +2236,8 @@
         "handle_javascript": false,
         "schedule": "30 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fsis.usda.gov/"
+        "starting_urls": "https://www.fsis.usda.gov/",
+        "domain_name": "www.fsis.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: ers.usda.gov",
@@ -2040,7 +2246,8 @@
         "handle_javascript": false,
         "schedule": "32 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ers.usda.gov/"
+        "starting_urls": "https://www.ers.usda.gov/",
+        "domain_name": "www.ers.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: ars.usda.gov",
@@ -2049,7 +2256,8 @@
         "handle_javascript": false,
         "schedule": "33 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ars.usda.gov/"
+        "starting_urls": "https://www.ars.usda.gov/",
+        "domain_name": "www.ars.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: nrcs.usda.gov",
@@ -2058,7 +2266,8 @@
         "handle_javascript": false,
         "schedule": "34 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nrcs.usda.gov/"
+        "starting_urls": "https://www.nrcs.usda.gov/",
+        "domain_name": "www.nrcs.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: fsa.usda.gov",
@@ -2067,7 +2276,8 @@
         "handle_javascript": false,
         "schedule": "35 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fsa.usda.gov/"
+        "starting_urls": "https://www.fsa.usda.gov/",
+        "domain_name": "www.fsa.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: nass.usda.gov",
@@ -2076,7 +2286,8 @@
         "handle_javascript": false,
         "schedule": "36 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nass.usda.gov/"
+        "starting_urls": "https://www.nass.usda.gov/",
+        "domain_name": "www.nass.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: fas.usda.gov",
@@ -2085,7 +2296,8 @@
         "handle_javascript": false,
         "schedule": "37 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fas.usda.gov/"
+        "starting_urls": "https://www.fas.usda.gov/",
+        "domain_name": "www.fas.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: forms.sc.egov.usda.gov",
@@ -2094,7 +2306,8 @@
         "handle_javascript": false,
         "schedule": "38 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://forms.sc.egov.usda.gov/"
+        "starting_urls": "https://forms.sc.egov.usda.gov/",
+        "domain_name": "forms.sc.egov.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: apps.fas.usda.gov",
@@ -2103,7 +2316,8 @@
         "handle_javascript": false,
         "schedule": "39 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://apps.fas.usda.gov/"
+        "starting_urls": "https://apps.fas.usda.gov/",
+        "domain_name": "apps.fas.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: nal.usda.gov",
@@ -2112,7 +2326,8 @@
         "handle_javascript": false,
         "schedule": "40 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nal.usda.gov/"
+        "starting_urls": "https://www.nal.usda.gov/",
+        "domain_name": "www.nal.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: nifa.usda.gov",
@@ -2121,7 +2336,8 @@
         "handle_javascript": false,
         "schedule": "41 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nifa.usda.gov/"
+        "starting_urls": "https://www.nifa.usda.gov/",
+        "domain_name": "www.nifa.usda.gov"
     },
     {
         "name": "modules.BWEB affiliate: noaa.gov",
@@ -2130,7 +2346,8 @@
         "handle_javascript": false,
         "schedule": "44 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.noaa.gov/"
+        "starting_urls": "https://www.noaa.gov/",
+        "domain_name": "www.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nws.noaa.gov",
@@ -2139,7 +2356,8 @@
         "handle_javascript": false,
         "schedule": "45 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nws.noaa.gov/"
+        "starting_urls": "https://www.nws.noaa.gov/",
+        "domain_name": "www.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ncei.noaa.gov",
@@ -2148,7 +2366,8 @@
         "handle_javascript": false,
         "schedule": "46 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ncei.noaa.gov/"
+        "starting_urls": "https://www.ncei.noaa.gov/",
+        "domain_name": "www.ncei.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: spc.noaa.gov",
@@ -2157,7 +2376,8 @@
         "handle_javascript": false,
         "schedule": "47 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.spc.noaa.gov/"
+        "starting_urls": "https://www.spc.noaa.gov/",
+        "domain_name": "www.spc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: tgftp.nws.noaa.gov",
@@ -2166,7 +2386,8 @@
         "handle_javascript": false,
         "schedule": "49 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://tgftp.nws.noaa.gov/"
+        "starting_urls": "https://tgftp.nws.noaa.gov/",
+        "domain_name": "tgftp.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cpc.ncep.noaa.gov",
@@ -2175,7 +2396,8 @@
         "handle_javascript": false,
         "schedule": "50 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.cpc.ncep.noaa.gov/"
+        "starting_urls": "https://www.cpc.ncep.noaa.gov/",
+        "domain_name": "www.cpc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: swpc.noaa.gov",
@@ -2184,7 +2406,8 @@
         "handle_javascript": false,
         "schedule": "51 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.swpc.noaa.gov/"
+        "starting_urls": "https://www.swpc.noaa.gov/",
+        "domain_name": "www.swpc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: fisheries.noaa.gov",
@@ -2193,7 +2416,8 @@
         "handle_javascript": false,
         "schedule": "52 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fisheries.noaa.gov/"
+        "starting_urls": "https://www.fisheries.noaa.gov/",
+        "domain_name": "www.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ncdc.noaa.gov",
@@ -2202,7 +2426,8 @@
         "handle_javascript": false,
         "schedule": "53 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ncdc.noaa.gov/"
+        "starting_urls": "https://www.ncdc.noaa.gov/",
+        "domain_name": "www.ncdc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oceanservice.noaa.gov",
@@ -2211,7 +2436,8 @@
         "handle_javascript": false,
         "schedule": "54 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oceanservice.noaa.gov/"
+        "starting_urls": "https://oceanservice.noaa.gov/",
+        "domain_name": "oceanservice.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: water.noaa.gov",
@@ -2220,7 +2446,8 @@
         "handle_javascript": false,
         "schedule": "55 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://water.noaa.gov/"
+        "starting_urls": "https://water.noaa.gov/",
+        "domain_name": "water.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ndbc.noaa.gov",
@@ -2229,7 +2456,8 @@
         "handle_javascript": false,
         "schedule": "56 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ndbc.noaa.gov/"
+        "starting_urls": "https://www.ndbc.noaa.gov/",
+        "domain_name": "www.ndbc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nhc.noaa.gov",
@@ -2238,7 +2466,8 @@
         "handle_javascript": false,
         "schedule": "57 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nhc.noaa.gov/"
+        "starting_urls": "https://www.nhc.noaa.gov/",
+        "domain_name": "www.nhc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: star.nesdis.noaa.gov",
@@ -2247,7 +2476,8 @@
         "handle_javascript": false,
         "schedule": "58 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.star.nesdis.noaa.gov/"
+        "starting_urls": "https://www.star.nesdis.noaa.gov/",
+        "domain_name": "www.star.nesdis.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nesdis.noaa.gov",
@@ -2256,7 +2486,8 @@
         "handle_javascript": false,
         "schedule": "59 03 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nesdis.noaa.gov/"
+        "starting_urls": "https://www.nesdis.noaa.gov/",
+        "domain_name": "www.nesdis.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: tidesandcurrents.noaa.gov",
@@ -2265,7 +2496,8 @@
         "handle_javascript": false,
         "schedule": "00 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://tidesandcurrents.noaa.gov/"
+        "starting_urls": "https://tidesandcurrents.noaa.gov/",
+        "domain_name": "tidesandcurrents.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oceanexplorer.noaa.gov",
@@ -2274,7 +2506,8 @@
         "handle_javascript": false,
         "schedule": "01 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oceanexplorer.noaa.gov/"
+        "starting_urls": "https://oceanexplorer.noaa.gov/",
+        "domain_name": "oceanexplorer.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: repository.library.noaa.gov",
@@ -2283,7 +2516,8 @@
         "handle_javascript": false,
         "schedule": "02 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://repository.library.noaa.gov/"
+        "starting_urls": "https://repository.library.noaa.gov/",
+        "domain_name": "repository.library.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: inws.ncep.noaa.gov",
@@ -2292,7 +2526,8 @@
         "handle_javascript": false,
         "schedule": "03 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://inws.ncep.noaa.gov/"
+        "starting_urls": "https://inws.ncep.noaa.gov/",
+        "domain_name": "inws.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nohrsc.noaa.gov",
@@ -2301,7 +2536,8 @@
         "handle_javascript": false,
         "schedule": "04 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nohrsc.noaa.gov/"
+        "starting_urls": "https://www.nohrsc.noaa.gov/",
+        "domain_name": "www.nohrsc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nwrfc.noaa.gov",
@@ -2310,7 +2546,8 @@
         "handle_javascript": false,
         "schedule": "05 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nwrfc.noaa.gov/"
+        "starting_urls": "https://www.nwrfc.noaa.gov/",
+        "domain_name": "www.nwrfc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ngdc.noaa.gov",
@@ -2319,7 +2556,8 @@
         "handle_javascript": false,
         "schedule": "06 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ngdc.noaa.gov/"
+        "starting_urls": "https://www.ngdc.noaa.gov/",
+        "domain_name": "www.ngdc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: gml.noaa.gov",
@@ -2328,7 +2566,8 @@
         "handle_javascript": false,
         "schedule": "07 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://gml.noaa.gov/"
+        "starting_urls": "https://gml.noaa.gov/",
+        "domain_name": "gml.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: coast.noaa.gov",
@@ -2337,7 +2576,8 @@
         "handle_javascript": false,
         "schedule": "08 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://coast.noaa.gov/"
+        "starting_urls": "https://coast.noaa.gov/",
+        "domain_name": "coast.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: psl.noaa.gov",
@@ -2346,7 +2586,8 @@
         "handle_javascript": false,
         "schedule": "09 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://psl.noaa.gov/"
+        "starting_urls": "https://psl.noaa.gov/",
+        "domain_name": "psl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nssl.noaa.gov",
@@ -2355,7 +2596,8 @@
         "handle_javascript": false,
         "schedule": "10 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nssl.noaa.gov/"
+        "starting_urls": "https://www.nssl.noaa.gov/",
+        "domain_name": "www.nssl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: aoml.noaa.gov",
@@ -2364,7 +2606,8 @@
         "handle_javascript": false,
         "schedule": "11 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.aoml.noaa.gov/"
+        "starting_urls": "https://www.aoml.noaa.gov/",
+        "domain_name": "www.aoml.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: glerl.noaa.gov",
@@ -2373,7 +2616,8 @@
         "handle_javascript": false,
         "schedule": "12 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.glerl.noaa.gov/"
+        "starting_urls": "https://www.glerl.noaa.gov/",
+        "domain_name": "www.glerl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: sos.noaa.gov",
@@ -2382,7 +2626,8 @@
         "handle_javascript": false,
         "schedule": "13 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://sos.noaa.gov/"
+        "starting_urls": "https://sos.noaa.gov/",
+        "domain_name": "sos.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cnrfc.noaa.gov",
@@ -2391,7 +2636,8 @@
         "handle_javascript": false,
         "schedule": "14 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.cnrfc.noaa.gov/"
+        "starting_urls": "https://www.cnrfc.noaa.gov/",
+        "domain_name": "www.cnrfc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: pmel.noaa.gov",
@@ -2400,7 +2646,8 @@
         "handle_javascript": false,
         "schedule": "15 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.pmel.noaa.gov/"
+        "starting_urls": "https://www.pmel.noaa.gov/",
+        "domain_name": "www.pmel.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: research.noaa.gov",
@@ -2409,7 +2656,8 @@
         "handle_javascript": false,
         "schedule": "16 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://research.noaa.gov/"
+        "starting_urls": "https://research.noaa.gov/",
+        "domain_name": "research.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ngs.noaa.gov",
@@ -2418,7 +2666,8 @@
         "handle_javascript": false,
         "schedule": "17 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ngs.noaa.gov/"
+        "starting_urls": "https://www.ngs.noaa.gov/",
+        "domain_name": "www.ngs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: hads.ncep.noaa.gov",
@@ -2427,7 +2676,8 @@
         "handle_javascript": false,
         "schedule": "18 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://hads.ncep.noaa.gov/"
+        "starting_urls": "https://hads.ncep.noaa.gov/",
+        "domain_name": "hads.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: sanctuaries.noaa.gov",
@@ -2436,7 +2686,8 @@
         "handle_javascript": false,
         "schedule": "19 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://sanctuaries.noaa.gov/"
+        "starting_urls": "https://sanctuaries.noaa.gov/",
+        "domain_name": "sanctuaries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ready.noaa.gov",
@@ -2445,7 +2696,8 @@
         "handle_javascript": false,
         "schedule": "20 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ready.noaa.gov/"
+        "starting_urls": "https://www.ready.noaa.gov/",
+        "domain_name": "www.ready.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: vlab.noaa.gov",
@@ -2454,7 +2706,8 @@
         "handle_javascript": false,
         "schedule": "21 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://vlab.noaa.gov/"
+        "starting_urls": "https://vlab.noaa.gov/",
+        "domain_name": "vlab.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: goes.noaa.gov",
@@ -2463,7 +2716,8 @@
         "handle_javascript": false,
         "schedule": "22 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.goes.noaa.gov/"
+        "starting_urls": "https://www.goes.noaa.gov/",
+        "domain_name": "www.goes.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: arctic.noaa.gov",
@@ -2472,7 +2726,8 @@
         "handle_javascript": false,
         "schedule": "23 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://arctic.noaa.gov/"
+        "starting_urls": "https://arctic.noaa.gov/",
+        "domain_name": "arctic.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oceantoday.noaa.gov",
@@ -2481,7 +2736,8 @@
         "handle_javascript": false,
         "schedule": "24 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oceantoday.noaa.gov/"
+        "starting_urls": "https://oceantoday.noaa.gov/",
+        "domain_name": "oceantoday.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: coastalscience.noaa.gov",
@@ -2490,7 +2746,8 @@
         "handle_javascript": false,
         "schedule": "25 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://coastalscience.noaa.gov/"
+        "starting_urls": "https://coastalscience.noaa.gov/",
+        "domain_name": "coastalscience.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: charts.noaa.gov",
@@ -2499,7 +2756,8 @@
         "handle_javascript": false,
         "schedule": "26 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.charts.noaa.gov/"
+        "starting_urls": "https://www.charts.noaa.gov/",
+        "domain_name": "www.charts.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cpo.noaa.gov",
@@ -2508,7 +2766,8 @@
         "handle_javascript": false,
         "schedule": "27 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cpo.noaa.gov/"
+        "starting_urls": "https://cpo.noaa.gov/",
+        "domain_name": "cpo.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: library.noaa.gov",
@@ -2517,7 +2776,8 @@
         "handle_javascript": false,
         "schedule": "29 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://library.noaa.gov/"
+        "starting_urls": "https://library.noaa.gov/",
+        "domain_name": "library.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: response.restoration.noaa.gov",
@@ -2526,7 +2786,8 @@
         "handle_javascript": false,
         "schedule": "30 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://response.restoration.noaa.gov/"
+        "starting_urls": "https://response.restoration.noaa.gov/",
+        "domain_name": "response.restoration.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: omao.noaa.gov",
@@ -2535,7 +2796,8 @@
         "handle_javascript": false,
         "schedule": "31 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.omao.noaa.gov/"
+        "starting_urls": "https://www.omao.noaa.gov/",
+        "domain_name": "www.omao.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: hdsc.nws.noaa.gov",
@@ -2544,7 +2806,8 @@
         "handle_javascript": false,
         "schedule": "32 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://hdsc.nws.noaa.gov/"
+        "starting_urls": "https://hdsc.nws.noaa.gov/",
+        "domain_name": "hdsc.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: marinedebris.noaa.gov",
@@ -2553,7 +2816,8 @@
         "handle_javascript": false,
         "schedule": "33 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://marinedebris.noaa.gov/"
+        "starting_urls": "https://marinedebris.noaa.gov/",
+        "domain_name": "marinedebris.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ospo.noaa.gov",
@@ -2562,7 +2826,8 @@
         "handle_javascript": false,
         "schedule": "34 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ospo.noaa.gov/"
+        "starting_urls": "https://www.ospo.noaa.gov/",
+        "domain_name": "www.ospo.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: marinenavigation.noaa.gov",
@@ -2571,7 +2836,8 @@
         "handle_javascript": false,
         "schedule": "35 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://marinenavigation.noaa.gov/"
+        "starting_urls": "https://marinenavigation.noaa.gov/",
+        "domain_name": "marinenavigation.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: st.nmfs.noaa.gov",
@@ -2580,7 +2846,8 @@
         "handle_javascript": false,
         "schedule": "36 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.st.nmfs.noaa.gov/"
+        "starting_urls": "https://www.st.nmfs.noaa.gov/",
+        "domain_name": "www.st.nmfs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin-east-01-drupal-climate.woc.noaa.gov",
@@ -2589,7 +2856,8 @@
         "handle_javascript": false,
         "schedule": "37 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin-east-01-drupal-climate.woc.noaa.gov/"
+        "starting_urls": "https://origin-east-01-drupal-climate.woc.noaa.gov/",
+        "domain_name": "origin-east-01-drupal-climate.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: spo.nmfs.noaa.gov",
@@ -2598,7 +2866,8 @@
         "handle_javascript": false,
         "schedule": "38 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://spo.nmfs.noaa.gov/"
+        "starting_urls": "https://spo.nmfs.noaa.gov/",
+        "domain_name": "spo.nmfs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: data.ngdc.noaa.gov",
@@ -2607,7 +2876,8 @@
         "handle_javascript": false,
         "schedule": "39 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://data.ngdc.noaa.gov/"
+        "starting_urls": "https://data.ngdc.noaa.gov/",
+        "domain_name": "data.ngdc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: geodesy.noaa.gov",
@@ -2616,7 +2886,8 @@
         "handle_javascript": false,
         "schedule": "40 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://geodesy.noaa.gov/"
+        "starting_urls": "https://geodesy.noaa.gov/",
+        "domain_name": "geodesy.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nauticalcharts.noaa.gov",
@@ -2625,7 +2896,8 @@
         "handle_javascript": false,
         "schedule": "41 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://nauticalcharts.noaa.gov/"
+        "starting_urls": "https://nauticalcharts.noaa.gov/",
+        "domain_name": "nauticalcharts.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: storms.ngs.noaa.gov",
@@ -2634,7 +2906,8 @@
         "handle_javascript": false,
         "schedule": "42 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://storms.ngs.noaa.gov/"
+        "starting_urls": "https://storms.ngs.noaa.gov/",
+        "domain_name": "storms.ngs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: coralreefwatch.noaa.gov",
@@ -2643,7 +2916,8 @@
         "handle_javascript": false,
         "schedule": "43 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://coralreefwatch.noaa.gov/"
+        "starting_urls": "https://coralreefwatch.noaa.gov/",
+        "domain_name": "coralreefwatch.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: csl.noaa.gov",
@@ -2652,7 +2926,8 @@
         "handle_javascript": false,
         "schedule": "44 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://csl.noaa.gov/"
+        "starting_urls": "https://csl.noaa.gov/",
+        "domain_name": "csl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: globalocean.noaa.gov",
@@ -2661,7 +2936,8 @@
         "handle_javascript": false,
         "schedule": "45 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://globalocean.noaa.gov/"
+        "starting_urls": "https://globalocean.noaa.gov/",
+        "domain_name": "globalocean.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oceanacidification.noaa.gov",
@@ -2670,7 +2946,8 @@
         "handle_javascript": false,
         "schedule": "46 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oceanacidification.noaa.gov/"
+        "starting_urls": "https://oceanacidification.noaa.gov/",
+        "domain_name": "oceanacidification.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: gfdl.noaa.gov",
@@ -2679,7 +2956,8 @@
         "handle_javascript": false,
         "schedule": "47 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.gfdl.noaa.gov/"
+        "starting_urls": "https://www.gfdl.noaa.gov/",
+        "domain_name": "www.gfdl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: arl.noaa.gov",
@@ -2688,7 +2966,8 @@
         "handle_javascript": false,
         "schedule": "48 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.arl.noaa.gov/"
+        "starting_urls": "https://www.arl.noaa.gov/",
+        "domain_name": "www.arl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: celebrating200years.noaa.gov",
@@ -2697,7 +2976,8 @@
         "handle_javascript": false,
         "schedule": "49 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://celebrating200years.noaa.gov/"
+        "starting_urls": "https://celebrating200years.noaa.gov/",
+        "domain_name": "celebrating200years.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: mag.ncep.noaa.gov",
@@ -2706,7 +2986,8 @@
         "handle_javascript": false,
         "schedule": "50 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://mag.ncep.noaa.gov/"
+        "starting_urls": "https://mag.ncep.noaa.gov/",
+        "domain_name": "mag.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: media.fisheries.noaa.gov",
@@ -2715,7 +2996,8 @@
         "handle_javascript": false,
         "schedule": "51 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://media.fisheries.noaa.gov/"
+        "starting_urls": "https://media.fisheries.noaa.gov/",
+        "domain_name": "media.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: sarsat.noaa.gov",
@@ -2724,7 +3006,8 @@
         "handle_javascript": false,
         "schedule": "52 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.sarsat.noaa.gov/"
+        "starting_urls": "https://www.sarsat.noaa.gov/",
+        "domain_name": "www.sarsat.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: incidentnews.noaa.gov",
@@ -2733,7 +3016,8 @@
         "handle_javascript": false,
         "schedule": "53 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://incidentnews.noaa.gov/"
+        "starting_urls": "https://incidentnews.noaa.gov/",
+        "domain_name": "incidentnews.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: mapservices.weather.noaa.gov",
@@ -2742,7 +3026,8 @@
         "handle_javascript": false,
         "schedule": "54 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://mapservices.weather.noaa.gov/"
+        "starting_urls": "https://mapservices.weather.noaa.gov/",
+        "domain_name": "mapservices.weather.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ssd.noaa.gov",
@@ -2751,7 +3036,8 @@
         "handle_javascript": false,
         "schedule": "55 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ssd.noaa.gov/"
+        "starting_urls": "https://www.ssd.noaa.gov/",
+        "domain_name": "www.ssd.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: seagrant.noaa.gov",
@@ -2760,7 +3046,8 @@
         "handle_javascript": false,
         "schedule": "56 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://seagrant.noaa.gov/"
+        "starting_urls": "https://seagrant.noaa.gov/",
+        "domain_name": "seagrant.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: coris.noaa.gov",
@@ -2769,7 +3056,8 @@
         "handle_javascript": false,
         "schedule": "57 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.coris.noaa.gov/"
+        "starting_urls": "https://www.coris.noaa.gov/",
+        "domain_name": "www.coris.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: tsunami.noaa.gov",
@@ -2778,7 +3066,8 @@
         "handle_javascript": false,
         "schedule": "58 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.tsunami.noaa.gov/"
+        "starting_urls": "https://www.tsunami.noaa.gov/",
+        "domain_name": "www.tsunami.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: boulder.noaa.gov",
@@ -2787,7 +3076,8 @@
         "handle_javascript": false,
         "schedule": "59 04 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.boulder.noaa.gov/"
+        "starting_urls": "https://www.boulder.noaa.gov/",
+        "domain_name": "www.boulder.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nsd.rdc.noaa.gov",
@@ -2796,7 +3086,8 @@
         "handle_javascript": false,
         "schedule": "00 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://nsd.rdc.noaa.gov/"
+        "starting_urls": "https://nsd.rdc.noaa.gov/",
+        "domain_name": "nsd.rdc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oceanwatch.noaa.gov",
@@ -2805,7 +3096,8 @@
         "handle_javascript": false,
         "schedule": "01 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oceanwatch.noaa.gov/"
+        "starting_urls": "https://oceanwatch.noaa.gov/",
+        "domain_name": "oceanwatch.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: rapidrefresh.noaa.gov",
@@ -2814,7 +3106,8 @@
         "handle_javascript": false,
         "schedule": "02 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://rapidrefresh.noaa.gov/"
+        "starting_urls": "https://rapidrefresh.noaa.gov/",
+        "domain_name": "rapidrefresh.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nco.ncep.noaa.gov",
@@ -2823,7 +3116,8 @@
         "handle_javascript": false,
         "schedule": "03 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nco.ncep.noaa.gov/"
+        "starting_urls": "https://www.nco.ncep.noaa.gov/",
+        "domain_name": "www.nco.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: corporateservices.noaa.gov",
@@ -2832,7 +3126,8 @@
         "handle_javascript": false,
         "schedule": "04 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.corporateservices.noaa.gov/"
+        "starting_urls": "https://www.corporateservices.noaa.gov/",
+        "domain_name": "www.corporateservices.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: blog.response.restoration.noaa.gov",
@@ -2841,7 +3136,8 @@
         "handle_javascript": false,
         "schedule": "05 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://blog.response.restoration.noaa.gov/"
+        "starting_urls": "https://blog.response.restoration.noaa.gov/",
+        "domain_name": "blog.response.restoration.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: montereybay.noaa.gov",
@@ -2850,7 +3146,8 @@
         "handle_javascript": false,
         "schedule": "06 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://montereybay.noaa.gov/"
+        "starting_urls": "https://montereybay.noaa.gov/",
+        "domain_name": "montereybay.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: floridakeys.noaa.gov",
@@ -2859,7 +3156,8 @@
         "handle_javascript": false,
         "schedule": "07 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://floridakeys.noaa.gov/"
+        "starting_urls": "https://floridakeys.noaa.gov/",
+        "domain_name": "floridakeys.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: corpscpc.noaa.gov",
@@ -2868,7 +3166,8 @@
         "handle_javascript": false,
         "schedule": "09 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.corpscpc.noaa.gov/"
+        "starting_urls": "https://www.corpscpc.noaa.gov/",
+        "domain_name": "www.corpscpc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cameochemicals.noaa.gov",
@@ -2877,7 +3176,8 @@
         "handle_javascript": false,
         "schedule": "11 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cameochemicals.noaa.gov/"
+        "starting_urls": "https://cameochemicals.noaa.gov/",
+        "domain_name": "cameochemicals.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin.cpc.ncep.noaa.gov",
@@ -2886,7 +3186,8 @@
         "handle_javascript": false,
         "schedule": "12 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin.cpc.ncep.noaa.gov/"
+        "starting_urls": "https://origin.cpc.ncep.noaa.gov/",
+        "domain_name": "origin.cpc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: beaconregistration.noaa.gov",
@@ -2895,7 +3196,8 @@
         "handle_javascript": false,
         "schedule": "13 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://beaconregistration.noaa.gov/"
+        "starting_urls": "https://beaconregistration.noaa.gov/",
+        "domain_name": "beaconregistration.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nctr.pmel.noaa.gov",
@@ -2904,7 +3206,8 @@
         "handle_javascript": false,
         "schedule": "14 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://nctr.pmel.noaa.gov/"
+        "starting_urls": "https://nctr.pmel.noaa.gov/",
+        "domain_name": "nctr.pmel.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: tgftp.ncep.noaa.gov",
@@ -2913,7 +3216,8 @@
         "handle_javascript": false,
         "schedule": "15 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://tgftp.ncep.noaa.gov/"
+        "starting_urls": "https://tgftp.ncep.noaa.gov/",
+        "domain_name": "tgftp.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nnvl.noaa.gov",
@@ -2922,7 +3226,8 @@
         "handle_javascript": false,
         "schedule": "16 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nnvl.noaa.gov/"
+        "starting_urls": "https://www.nnvl.noaa.gov/",
+        "domain_name": "www.nnvl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: darrp.noaa.gov",
@@ -2931,7 +3236,8 @@
         "handle_javascript": false,
         "schedule": "17 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://darrp.noaa.gov/"
+        "starting_urls": "https://darrp.noaa.gov/",
+        "domain_name": "darrp.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ecowatch.noaa.gov",
@@ -2940,7 +3246,8 @@
         "handle_javascript": false,
         "schedule": "18 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ecowatch.noaa.gov/"
+        "starting_urls": "https://ecowatch.noaa.gov/",
+        "domain_name": "ecowatch.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: blog.marinedebris.noaa.gov",
@@ -2949,7 +3256,8 @@
         "handle_javascript": false,
         "schedule": "19 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://blog.marinedebris.noaa.gov/"
+        "starting_urls": "https://blog.marinedebris.noaa.gov/",
+        "domain_name": "blog.marinedebris.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: wrc.noaa.gov",
@@ -2958,7 +3266,8 @@
         "handle_javascript": false,
         "schedule": "20 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.wrc.noaa.gov/"
+        "starting_urls": "https://www.wrc.noaa.gov/",
+        "domain_name": "www.wrc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin.wpc.ncep.noaa.gov",
@@ -2967,7 +3276,8 @@
         "handle_javascript": false,
         "schedule": "23 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin.wpc.ncep.noaa.gov/"
+        "starting_urls": "https://origin.wpc.ncep.noaa.gov/",
+        "domain_name": "origin.wpc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: emc.ncep.noaa.gov",
@@ -2976,7 +3286,8 @@
         "handle_javascript": false,
         "schedule": "24 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.emc.ncep.noaa.gov/"
+        "starting_urls": "https://www.emc.ncep.noaa.gov/",
+        "domain_name": "www.emc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: flowergarden.noaa.gov",
@@ -2985,7 +3296,8 @@
         "handle_javascript": false,
         "schedule": "25 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://flowergarden.noaa.gov/"
+        "starting_urls": "https://flowergarden.noaa.gov/",
+        "domain_name": "flowergarden.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: roc.noaa.gov",
@@ -2994,7 +3306,8 @@
         "handle_javascript": false,
         "schedule": "26 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.roc.noaa.gov/"
+        "starting_urls": "https://www.roc.noaa.gov/",
+        "domain_name": "www.roc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: gsl.noaa.gov",
@@ -3003,7 +3316,8 @@
         "handle_javascript": false,
         "schedule": "27 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://gsl.noaa.gov/"
+        "starting_urls": "https://gsl.noaa.gov/",
+        "domain_name": "gsl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: madis.ncep.noaa.gov",
@@ -3012,7 +3326,8 @@
         "handle_javascript": false,
         "schedule": "28 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://madis.ncep.noaa.gov/"
+        "starting_urls": "https://madis.ncep.noaa.gov/",
+        "domain_name": "madis.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: gc.noaa.gov",
@@ -3021,7 +3336,8 @@
         "handle_javascript": false,
         "schedule": "29 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.gc.noaa.gov/"
+        "starting_urls": "https://www.gc.noaa.gov/",
+        "domain_name": "www.gc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cdn.oceanservice.noaa.gov",
@@ -3030,7 +3346,8 @@
         "handle_javascript": false,
         "schedule": "30 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cdn.oceanservice.noaa.gov/"
+        "starting_urls": "https://cdn.oceanservice.noaa.gov/",
+        "domain_name": "cdn.oceanservice.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: sciencecouncil.noaa.gov",
@@ -3039,7 +3356,8 @@
         "handle_javascript": false,
         "schedule": "31 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://sciencecouncil.noaa.gov/"
+        "starting_urls": "https://sciencecouncil.noaa.gov/",
+        "domain_name": "sciencecouncil.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nodc.noaa.gov",
@@ -3048,7 +3366,8 @@
         "handle_javascript": false,
         "schedule": "32 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nodc.noaa.gov/"
+        "starting_urls": "https://www.nodc.noaa.gov/",
+        "domain_name": "www.nodc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ioos.noaa.gov",
@@ -3057,7 +3376,8 @@
         "handle_javascript": false,
         "schedule": "33 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ioos.noaa.gov/"
+        "starting_urls": "https://ioos.noaa.gov/",
+        "domain_name": "ioos.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: sab.noaa.gov",
@@ -3066,7 +3386,8 @@
         "handle_javascript": false,
         "schedule": "34 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://sab.noaa.gov/"
+        "starting_urls": "https://sab.noaa.gov/",
+        "domain_name": "sab.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: inside.nssl.noaa.gov",
@@ -3075,7 +3396,8 @@
         "handle_javascript": false,
         "schedule": "35 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://inside.nssl.noaa.gov/"
+        "starting_urls": "https://inside.nssl.noaa.gov/",
+        "domain_name": "inside.nssl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: wpc.woc.noaa.gov",
@@ -3084,7 +3406,8 @@
         "handle_javascript": false,
         "schedule": "36 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.wpc.woc.noaa.gov/"
+        "starting_urls": "https://www.wpc.woc.noaa.gov/",
+        "domain_name": "www.wpc.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: apps.gsl.noaa.gov",
@@ -3093,7 +3416,8 @@
         "handle_javascript": false,
         "schedule": "37 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://apps.gsl.noaa.gov/"
+        "starting_urls": "https://apps.gsl.noaa.gov/",
+        "domain_name": "apps.gsl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: goes-r.noaa.gov",
@@ -3102,7 +3426,8 @@
         "handle_javascript": false,
         "schedule": "38 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://goes-r.noaa.gov/"
+        "starting_urls": "https://goes-r.noaa.gov/",
+        "domain_name": "goes-r.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: voices.nmfs.noaa.gov",
@@ -3111,7 +3436,8 @@
         "handle_javascript": false,
         "schedule": "39 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://voices.nmfs.noaa.gov/"
+        "starting_urls": "https://voices.nmfs.noaa.gov/",
+        "domain_name": "voices.nmfs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: swfsc-publications.fisheries.noaa.gov",
@@ -3120,7 +3446,8 @@
         "handle_javascript": false,
         "schedule": "40 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://swfsc-publications.fisheries.noaa.gov/"
+        "starting_urls": "https://swfsc-publications.fisheries.noaa.gov/",
+        "domain_name": "swfsc-publications.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin-climate-toolkit.woc.noaa.gov",
@@ -3129,7 +3456,8 @@
         "handle_javascript": false,
         "schedule": "41 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin-climate-toolkit.woc.noaa.gov/"
+        "starting_urls": "https://origin-climate-toolkit.woc.noaa.gov/",
+        "domain_name": "origin-climate-toolkit.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: maps.coast.noaa.gov",
@@ -3138,7 +3466,8 @@
         "handle_javascript": false,
         "schedule": "42 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://maps.coast.noaa.gov/"
+        "starting_urls": "https://maps.coast.noaa.gov/",
+        "domain_name": "maps.coast.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ntwc.ncep.noaa.gov",
@@ -3147,7 +3476,8 @@
         "handle_javascript": false,
         "schedule": "43 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ntwc.ncep.noaa.gov/"
+        "starting_urls": "https://ntwc.ncep.noaa.gov/",
+        "domain_name": "ntwc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: wpo.noaa.gov",
@@ -3156,7 +3486,8 @@
         "handle_javascript": false,
         "schedule": "45 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://wpo.noaa.gov/"
+        "starting_urls": "https://wpo.noaa.gov/",
+        "domain_name": "wpo.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: webapps.nwfsc.noaa.gov",
@@ -3165,7 +3496,8 @@
         "handle_javascript": false,
         "schedule": "46 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.webapps.nwfsc.noaa.gov/"
+        "starting_urls": "https://www.webapps.nwfsc.noaa.gov/",
+        "domain_name": "www.webapps.nwfsc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: coralreef.noaa.gov",
@@ -3174,7 +3506,8 @@
         "handle_javascript": false,
         "schedule": "47 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://coralreef.noaa.gov/"
+        "starting_urls": "https://coralreef.noaa.gov/",
+        "domain_name": "coralreef.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: noaaonline.noaa.gov",
@@ -3183,7 +3516,8 @@
         "handle_javascript": false,
         "schedule": "48 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://noaaonline.noaa.gov/"
+        "starting_urls": "https://noaaonline.noaa.gov/",
+        "domain_name": "noaaonline.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: noaasis.noaa.gov",
@@ -3192,7 +3526,8 @@
         "handle_javascript": false,
         "schedule": "49 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://noaasis.noaa.gov/"
+        "starting_urls": "https://noaasis.noaa.gov/",
+        "domain_name": "noaasis.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: apps.glerl.noaa.gov",
@@ -3201,7 +3536,8 @@
         "handle_javascript": false,
         "schedule": "50 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://apps.glerl.noaa.gov/"
+        "starting_urls": "https://apps.glerl.noaa.gov/",
+        "domain_name": "apps.glerl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: polar.ncep.noaa.gov",
@@ -3210,7 +3546,8 @@
         "handle_javascript": false,
         "schedule": "51 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://polar.ncep.noaa.gov/"
+        "starting_urls": "https://polar.ncep.noaa.gov/",
+        "domain_name": "polar.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ozonelayer.noaa.gov",
@@ -3219,7 +3556,8 @@
         "handle_javascript": false,
         "schedule": "52 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ozonelayer.noaa.gov/"
+        "starting_urls": "https://www.ozonelayer.noaa.gov/",
+        "domain_name": "www.ozonelayer.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: videos.fisheries.noaa.gov",
@@ -3228,7 +3566,8 @@
         "handle_javascript": false,
         "schedule": "55 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://videos.fisheries.noaa.gov/"
+        "starting_urls": "https://videos.fisheries.noaa.gov/",
+        "domain_name": "videos.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ftp.cpc.ncep.noaa.gov",
@@ -3237,7 +3576,8 @@
         "handle_javascript": false,
         "schedule": "57 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ftp.cpc.ncep.noaa.gov/"
+        "starting_urls": "https://ftp.cpc.ncep.noaa.gov/",
+        "domain_name": "ftp.cpc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: dev-04-drupal-climate.woc.noaa.gov",
@@ -3246,7 +3586,8 @@
         "handle_javascript": false,
         "schedule": "59 05 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dev-04-drupal-climate.woc.noaa.gov/"
+        "starting_urls": "https://dev-04-drupal-climate.woc.noaa.gov/",
+        "domain_name": "dev-04-drupal-climate.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: swpc-drupal.woc.noaa.gov",
@@ -3255,7 +3596,8 @@
         "handle_javascript": false,
         "schedule": "01 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://swpc-drupal.woc.noaa.gov/"
+        "starting_urls": "https://swpc-drupal.woc.noaa.gov/",
+        "domain_name": "swpc-drupal.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: data.noaa.gov",
@@ -3264,7 +3606,8 @@
         "handle_javascript": false,
         "schedule": "02 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://data.noaa.gov/"
+        "starting_urls": "https://data.noaa.gov/",
+        "domain_name": "data.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: tsunami.coast.noaa.gov",
@@ -3273,7 +3616,8 @@
         "handle_javascript": false,
         "schedule": "03 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://tsunami.coast.noaa.gov/"
+        "starting_urls": "https://tsunami.coast.noaa.gov/",
+        "domain_name": "tsunami.coast.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin-east-02-drupal8-noaa.noaa.gov",
@@ -3282,7 +3626,8 @@
         "handle_javascript": false,
         "schedule": "05 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin-east-02-drupal8-noaa.noaa.gov/"
+        "starting_urls": "https://origin-east-02-drupal8-noaa.noaa.gov/",
+        "domain_name": "origin-east-02-drupal8-noaa.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: accession.nodc.noaa.gov",
@@ -3291,7 +3636,8 @@
         "handle_javascript": false,
         "schedule": "06 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://accession.nodc.noaa.gov/"
+        "starting_urls": "https://accession.nodc.noaa.gov/",
+        "domain_name": "accession.nodc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: hmspermits.noaa.gov",
@@ -3300,7 +3646,8 @@
         "handle_javascript": false,
         "schedule": "07 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://hmspermits.noaa.gov/"
+        "starting_urls": "https://hmspermits.noaa.gov/",
+        "domain_name": "hmspermits.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: testbed.swpc.noaa.gov",
@@ -3309,7 +3656,8 @@
         "handle_javascript": false,
         "schedule": "08 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://testbed.swpc.noaa.gov/"
+        "starting_urls": "https://testbed.swpc.noaa.gov/",
+        "domain_name": "testbed.swpc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ftp.nhc.ncep.noaa.gov",
@@ -3318,7 +3666,8 @@
         "handle_javascript": false,
         "schedule": "09 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ftp.nhc.ncep.noaa.gov/"
+        "starting_urls": "https://ftp.nhc.ncep.noaa.gov/",
+        "domain_name": "ftp.nhc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cbrfc.noaa.gov",
@@ -3327,7 +3676,8 @@
         "handle_javascript": false,
         "schedule": "11 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.cbrfc.noaa.gov/"
+        "starting_urls": "https://www.cbrfc.noaa.gov/",
+        "domain_name": "www.cbrfc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: fisheriespermits.noaa.gov",
@@ -3336,7 +3686,8 @@
         "handle_javascript": false,
         "schedule": "13 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://fisheriespermits.noaa.gov/"
+        "starting_urls": "https://fisheriespermits.noaa.gov/",
+        "domain_name": "fisheriespermits.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: madis-data.ncep.noaa.gov",
@@ -3345,7 +3696,8 @@
         "handle_javascript": false,
         "schedule": "14 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://madis-data.ncep.noaa.gov/"
+        "starting_urls": "https://madis-data.ncep.noaa.gov/",
+        "domain_name": "madis-data.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: marineprotectedareas.noaa.gov",
@@ -3354,7 +3706,8 @@
         "handle_javascript": false,
         "schedule": "15 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://marineprotectedareas.noaa.gov/"
+        "starting_urls": "https://marineprotectedareas.noaa.gov/",
+        "domain_name": "marineprotectedareas.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: marinerhiring.noaa.gov",
@@ -3363,7 +3716,8 @@
         "handle_javascript": false,
         "schedule": "16 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://marinerhiring.noaa.gov/"
+        "starting_urls": "https://marinerhiring.noaa.gov/",
+        "domain_name": "marinerhiring.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: partnerservices.nws.noaa.gov",
@@ -3372,7 +3726,8 @@
         "handle_javascript": false,
         "schedule": "17 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://partnerservices.nws.noaa.gov/"
+        "starting_urls": "https://partnerservices.nws.noaa.gov/",
+        "domain_name": "partnerservices.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: greateratlantic.fisheries.noaa.gov",
@@ -3381,7 +3736,8 @@
         "handle_javascript": false,
         "schedule": "18 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.greateratlantic.fisheries.noaa.gov/"
+        "starting_urls": "https://www.greateratlantic.fisheries.noaa.gov/",
+        "domain_name": "www.greateratlantic.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nohrsc.l.noaa.gov",
@@ -3390,7 +3746,8 @@
         "handle_javascript": false,
         "schedule": "20 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.nohrsc.l.noaa.gov/"
+        "starting_urls": "https://www.nohrsc.l.noaa.gov/",
+        "domain_name": "www.nohrsc.l.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: outlook.noaa.gov",
@@ -3399,7 +3756,8 @@
         "handle_javascript": false,
         "schedule": "21 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.outlook.noaa.gov/"
+        "starting_urls": "https://www.outlook.noaa.gov/",
+        "domain_name": "www.outlook.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: library.oarcloud.noaa.gov",
@@ -3408,7 +3766,8 @@
         "handle_javascript": false,
         "schedule": "22 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://library.oarcloud.noaa.gov/"
+        "starting_urls": "https://library.oarcloud.noaa.gov/",
+        "domain_name": "library.oarcloud.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: uat.oceanservice.noaa.gov",
@@ -3417,7 +3776,8 @@
         "handle_javascript": false,
         "schedule": "23 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://uat.oceanservice.noaa.gov/"
+        "starting_urls": "https://uat.oceanservice.noaa.gov/",
+        "domain_name": "uat.oceanservice.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: apps-afsc.fisheries.noaa.gov",
@@ -3426,7 +3786,8 @@
         "handle_javascript": false,
         "schedule": "24 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://apps-afsc.fisheries.noaa.gov/"
+        "starting_urls": "https://apps-afsc.fisheries.noaa.gov/",
+        "domain_name": "apps-afsc.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: buoybay.noaa.gov",
@@ -3435,7 +3796,8 @@
         "handle_javascript": false,
         "schedule": "25 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://buoybay.noaa.gov/"
+        "starting_urls": "https://buoybay.noaa.gov/",
+        "domain_name": "buoybay.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: dev.nesdis.noaa.gov",
@@ -3444,7 +3806,8 @@
         "handle_javascript": false,
         "schedule": "26 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dev.nesdis.noaa.gov/"
+        "starting_urls": "https://dev.nesdis.noaa.gov/",
+        "domain_name": "dev.nesdis.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: hawaiihumpbackwhale.noaa.gov",
@@ -3453,7 +3816,8 @@
         "handle_javascript": false,
         "schedule": "27 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://hawaiihumpbackwhale.noaa.gov/"
+        "starting_urls": "https://hawaiihumpbackwhale.noaa.gov/",
+        "domain_name": "hawaiihumpbackwhale.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin-east-01-www-ospo.woc.noaa.gov",
@@ -3462,7 +3826,8 @@
         "handle_javascript": false,
         "schedule": "28 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin-east-01-www-ospo.woc.noaa.gov/"
+        "starting_urls": "https://origin-east-01-www-ospo.woc.noaa.gov/",
+        "domain_name": "origin-east-01-www-ospo.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: techpartnerships.noaa.gov",
@@ -3471,7 +3836,8 @@
         "handle_javascript": false,
         "schedule": "29 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://techpartnerships.noaa.gov/"
+        "starting_urls": "https://techpartnerships.noaa.gov/",
+        "domain_name": "techpartnerships.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: thunderbay.noaa.gov",
@@ -3480,7 +3846,8 @@
         "handle_javascript": false,
         "schedule": "30 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://thunderbay.noaa.gov/"
+        "starting_urls": "https://thunderbay.noaa.gov/",
+        "domain_name": "thunderbay.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: gulfspillrestoration.noaa.gov",
@@ -3489,7 +3856,8 @@
         "handle_javascript": false,
         "schedule": "31 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.gulfspillrestoration.noaa.gov/"
+        "starting_urls": "https://www.gulfspillrestoration.noaa.gov/",
+        "domain_name": "www.gulfspillrestoration.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cdn.ioos.noaa.gov",
@@ -3498,7 +3866,8 @@
         "handle_javascript": false,
         "schedule": "32 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cdn.ioos.noaa.gov/"
+        "starting_urls": "https://cdn.ioos.noaa.gov/",
+        "domain_name": "cdn.ioos.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: dataintheclassroom.noaa.gov",
@@ -3507,7 +3876,8 @@
         "handle_javascript": false,
         "schedule": "33 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dataintheclassroom.noaa.gov/"
+        "starting_urls": "https://dataintheclassroom.noaa.gov/",
+        "domain_name": "dataintheclassroom.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ftp.nohrsc.noaa.gov",
@@ -3516,7 +3886,8 @@
         "handle_javascript": false,
         "schedule": "34 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ftp.nohrsc.noaa.gov/"
+        "starting_urls": "https://ftp.nohrsc.noaa.gov/",
+        "domain_name": "ftp.nohrsc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: lamp.mdl.nws.noaa.gov",
@@ -3525,7 +3896,8 @@
         "handle_javascript": false,
         "schedule": "35 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://lamp.mdl.nws.noaa.gov/"
+        "starting_urls": "https://lamp.mdl.nws.noaa.gov/",
+        "domain_name": "lamp.mdl.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: radar2pub.ncep.noaa.gov",
@@ -3534,7 +3906,8 @@
         "handle_javascript": false,
         "schedule": "36 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://radar2pub.ncep.noaa.gov/"
+        "starting_urls": "https://radar2pub.ncep.noaa.gov/",
+        "domain_name": "radar2pub.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: shoreline.noaa.gov",
@@ -3543,7 +3916,8 @@
         "handle_javascript": false,
         "schedule": "37 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://shoreline.noaa.gov/"
+        "starting_urls": "https://shoreline.noaa.gov/",
+        "domain_name": "shoreline.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: vos.noaa.gov",
@@ -3552,7 +3926,8 @@
         "handle_javascript": false,
         "schedule": "38 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://vos.noaa.gov/"
+        "starting_urls": "https://vos.noaa.gov/",
+        "domain_name": "vos.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: labtrain.noaa.gov",
@@ -3561,7 +3936,8 @@
         "handle_javascript": false,
         "schedule": "39 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.labtrain.noaa.gov/"
+        "starting_urls": "https://www.labtrain.noaa.gov/",
+        "domain_name": "www.labtrain.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: channelislands.noaa.gov",
@@ -3570,7 +3946,8 @@
         "handle_javascript": false,
         "schedule": "40 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://channelislands.noaa.gov/"
+        "starting_urls": "https://channelislands.noaa.gov/",
+        "domain_name": "channelislands.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: downloads.psl.noaa.gov",
@@ -3579,7 +3956,8 @@
         "handle_javascript": false,
         "schedule": "41 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://downloads.psl.noaa.gov/"
+        "starting_urls": "https://downloads.psl.noaa.gov/",
+        "domain_name": "downloads.psl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: farallones.noaa.gov",
@@ -3588,7 +3966,8 @@
         "handle_javascript": false,
         "schedule": "42 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://farallones.noaa.gov/"
+        "starting_urls": "https://farallones.noaa.gov/",
+        "domain_name": "farallones.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nosc.noaa.gov",
@@ -3597,7 +3976,8 @@
         "handle_javascript": false,
         "schedule": "43 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://nosc.noaa.gov/"
+        "starting_urls": "https://nosc.noaa.gov/",
+        "domain_name": "nosc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ocsdata.ncd.noaa.gov",
@@ -3606,7 +3986,8 @@
         "handle_javascript": false,
         "schedule": "44 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ocsdata.ncd.noaa.gov/"
+        "starting_urls": "https://ocsdata.ncd.noaa.gov/",
+        "domain_name": "ocsdata.ncd.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cdhc.noaa.gov",
@@ -3615,7 +3996,8 @@
         "handle_javascript": false,
         "schedule": "46 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cdhc.noaa.gov/"
+        "starting_urls": "https://cdhc.noaa.gov/",
+        "domain_name": "cdhc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: fisherybulletin.nmfs.noaa.gov",
@@ -3624,7 +4006,8 @@
         "handle_javascript": false,
         "schedule": "47 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://fisherybulletin.nmfs.noaa.gov/"
+        "starting_urls": "https://fisherybulletin.nmfs.noaa.gov/",
+        "domain_name": "fisherybulletin.nmfs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: mobile.tidesandcurrents.noaa.gov",
@@ -3633,7 +4016,8 @@
         "handle_javascript": false,
         "schedule": "48 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://mobile.tidesandcurrents.noaa.gov/"
+        "starting_urls": "https://mobile.tidesandcurrents.noaa.gov/",
+        "domain_name": "mobile.tidesandcurrents.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: olympiccoast.noaa.gov",
@@ -3642,7 +4026,8 @@
         "handle_javascript": false,
         "schedule": "49 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://olympiccoast.noaa.gov/"
+        "starting_urls": "https://olympiccoast.noaa.gov/",
+        "domain_name": "olympiccoast.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: polarwatch.noaa.gov",
@@ -3651,7 +4036,8 @@
         "handle_javascript": false,
         "schedule": "50 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://polarwatch.noaa.gov/"
+        "starting_urls": "https://polarwatch.noaa.gov/",
+        "domain_name": "polarwatch.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: pub-data.diver.orr.noaa.gov",
@@ -3660,7 +4046,8 @@
         "handle_javascript": false,
         "schedule": "51 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://pub-data.diver.orr.noaa.gov/"
+        "starting_urls": "https://pub-data.diver.orr.noaa.gov/",
+        "domain_name": "pub-data.diver.orr.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ci.noaa.gov",
@@ -3669,7 +4056,8 @@
         "handle_javascript": false,
         "schedule": "52 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ci.noaa.gov/"
+        "starting_urls": "https://ci.noaa.gov/",
+        "domain_name": "ci.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: codes.nws.noaa.gov",
@@ -3678,7 +4066,8 @@
         "handle_javascript": false,
         "schedule": "53 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://codes.nws.noaa.gov/"
+        "starting_urls": "https://codes.nws.noaa.gov/",
+        "domain_name": "codes.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: dev-01-www-drupal10-climatetk.woc.noaa.gov",
@@ -3687,7 +4076,8 @@
         "handle_javascript": false,
         "schedule": "54 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dev-01-www-drupal10-climatetk.woc.noaa.gov/"
+        "starting_urls": "https://dev-01-www-drupal10-climatetk.woc.noaa.gov/",
+        "domain_name": "dev-01-www-drupal10-climatetk.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: icoads.noaa.gov",
@@ -3696,7 +4086,8 @@
         "handle_javascript": false,
         "schedule": "55 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://icoads.noaa.gov/"
+        "starting_urls": "https://icoads.noaa.gov/",
+        "domain_name": "icoads.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: monitor.noaa.gov",
@@ -3705,7 +4096,8 @@
         "handle_javascript": false,
         "schedule": "56 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://monitor.noaa.gov/"
+        "starting_urls": "https://monitor.noaa.gov/",
+        "domain_name": "monitor.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ncc.nesdis.noaa.gov",
@@ -3714,7 +4106,8 @@
         "handle_javascript": false,
         "schedule": "57 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ncc.nesdis.noaa.gov/"
+        "starting_urls": "https://ncc.nesdis.noaa.gov/",
+        "domain_name": "ncc.nesdis.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nowcoast.noaa.gov",
@@ -3723,7 +4116,8 @@
         "handle_javascript": false,
         "schedule": "58 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://nowcoast.noaa.gov/"
+        "starting_urls": "https://nowcoast.noaa.gov/",
+        "domain_name": "nowcoast.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: opendap.co-ops.nos.noaa.gov",
@@ -3732,7 +4126,8 @@
         "handle_javascript": false,
         "schedule": "59 06 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://opendap.co-ops.nos.noaa.gov/"
+        "starting_urls": "https://opendap.co-ops.nos.noaa.gov/",
+        "domain_name": "opendap.co-ops.nos.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin.oceanexplorer.noaa.gov",
@@ -3741,7 +4136,8 @@
         "handle_javascript": false,
         "schedule": "00 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin.oceanexplorer.noaa.gov/"
+        "starting_urls": "https://origin.oceanexplorer.noaa.gov/",
+        "domain_name": "origin.oceanexplorer.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: seb.noaa.gov",
@@ -3750,7 +4146,8 @@
         "handle_javascript": false,
         "schedule": "01 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://seb.noaa.gov/"
+        "starting_urls": "https://seb.noaa.gov/",
+        "domain_name": "seb.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: apps-garfo.fisheries.noaa.gov",
@@ -3759,7 +4156,8 @@
         "handle_javascript": false,
         "schedule": "02 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://apps-garfo.fisheries.noaa.gov/"
+        "starting_urls": "https://apps-garfo.fisheries.noaa.gov/",
+        "domain_name": "apps-garfo.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: gulfatlas.noaa.gov",
@@ -3768,7 +4166,8 @@
         "handle_javascript": false,
         "schedule": "04 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://gulfatlas.noaa.gov/"
+        "starting_urls": "https://gulfatlas.noaa.gov/",
+        "domain_name": "gulfatlas.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: intranet.noaa.gov",
@@ -3777,7 +4176,8 @@
         "handle_javascript": false,
         "schedule": "05 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://intranet.noaa.gov/"
+        "starting_urls": "https://intranet.noaa.gov/",
+        "domain_name": "intranet.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: services.dat.noaa.gov",
@@ -3786,7 +4186,8 @@
         "handle_javascript": false,
         "schedule": "06 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://services.dat.noaa.gov/"
+        "starting_urls": "https://services.dat.noaa.gov/",
+        "domain_name": "services.dat.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: integratedecosystemassessment.noaa.gov",
@@ -3795,7 +4196,8 @@
         "handle_javascript": false,
         "schedule": "07 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.integratedecosystemassessment.noaa.gov/"
+        "starting_urls": "https://www.integratedecosystemassessment.noaa.gov/",
+        "domain_name": "www.integratedecosystemassessment.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: accounts.noaa.gov",
@@ -3804,7 +4206,8 @@
         "handle_javascript": false,
         "schedule": "08 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://accounts.noaa.gov/"
+        "starting_urls": "https://accounts.noaa.gov/",
+        "domain_name": "accounts.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: coastwatch.star.nesdis.noaa.gov",
@@ -3813,7 +4216,8 @@
         "handle_javascript": false,
         "schedule": "09 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://coastwatch.star.nesdis.noaa.gov/"
+        "starting_urls": "https://coastwatch.star.nesdis.noaa.gov/",
+        "domain_name": "coastwatch.star.nesdis.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ferret.pmel.noaa.gov",
@@ -3822,7 +4226,8 @@
         "handle_javascript": false,
         "schedule": "10 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ferret.pmel.noaa.gov/"
+        "starting_urls": "https://ferret.pmel.noaa.gov/",
+        "domain_name": "ferret.pmel.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oceannoise.noaa.gov",
@@ -3831,7 +4236,8 @@
         "handle_javascript": false,
         "schedule": "11 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oceannoise.noaa.gov/"
+        "starting_urls": "https://oceannoise.noaa.gov/",
+        "domain_name": "oceannoise.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: pfeg.noaa.gov",
@@ -3840,7 +4246,8 @@
         "handle_javascript": false,
         "schedule": "12 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://pfeg.noaa.gov/"
+        "starting_urls": "https://pfeg.noaa.gov/",
+        "domain_name": "pfeg.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: restoreactscienceprogram.noaa.gov",
@@ -3849,7 +4256,8 @@
         "handle_javascript": false,
         "schedule": "13 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://restoreactscienceprogram.noaa.gov/"
+        "starting_urls": "https://restoreactscienceprogram.noaa.gov/",
+        "domain_name": "restoreactscienceprogram.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: stellwagen.noaa.gov",
@@ -3858,7 +4266,8 @@
         "handle_javascript": false,
         "schedule": "14 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://stellwagen.noaa.gov/"
+        "starting_urls": "https://stellwagen.noaa.gov/",
+        "domain_name": "stellwagen.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: habitatblueprint.noaa.gov",
@@ -3867,7 +4276,8 @@
         "handle_javascript": false,
         "schedule": "15 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.habitatblueprint.noaa.gov/"
+        "starting_urls": "https://www.habitatblueprint.noaa.gov/",
+        "domain_name": "www.habitatblueprint.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ftp.nhc.noaa.gov",
@@ -3876,7 +4286,8 @@
         "handle_javascript": false,
         "schedule": "16 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ftp.nhc.noaa.gov/"
+        "starting_urls": "https://ftp.nhc.noaa.gov/",
+        "domain_name": "ftp.nhc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: hysplitbbs.arl.noaa.gov",
@@ -3885,7 +4296,8 @@
         "handle_javascript": false,
         "schedule": "17 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://hysplitbbs.arl.noaa.gov/"
+        "starting_urls": "https://hysplitbbs.arl.noaa.gov/",
+        "domain_name": "hysplitbbs.arl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: manati.star.nesdis.noaa.gov",
@@ -3894,7 +4306,8 @@
         "handle_javascript": false,
         "schedule": "18 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://manati.star.nesdis.noaa.gov/"
+        "starting_urls": "https://manati.star.nesdis.noaa.gov/",
+        "domain_name": "manati.star.nesdis.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin-east-drupal-ncbo.woc.noaa.gov",
@@ -3903,7 +4316,8 @@
         "handle_javascript": false,
         "schedule": "19 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin-east-drupal-ncbo.woc.noaa.gov/"
+        "starting_urls": "https://origin-east-drupal-ncbo.woc.noaa.gov/",
+        "domain_name": "origin-east-drupal-ncbo.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ports.noaa.gov",
@@ -3912,7 +4326,8 @@
         "handle_javascript": false,
         "schedule": "21 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ports.noaa.gov/"
+        "starting_urls": "https://ports.noaa.gov/",
+        "domain_name": "ports.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: services.swpc.noaa.gov",
@@ -3921,7 +4336,8 @@
         "handle_javascript": false,
         "schedule": "22 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://services.swpc.noaa.gov/"
+        "starting_urls": "https://services.swpc.noaa.gov/",
+        "domain_name": "services.swpc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: tao.ndbc.noaa.gov",
@@ -3930,7 +4346,8 @@
         "handle_javascript": false,
         "schedule": "23 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://tao.ndbc.noaa.gov/"
+        "starting_urls": "https://tao.ndbc.noaa.gov/",
+        "domain_name": "tao.ndbc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: class.noaa.gov",
@@ -3939,7 +4356,8 @@
         "handle_javascript": false,
         "schedule": "25 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.class.noaa.gov/"
+        "starting_urls": "https://www.class.noaa.gov/",
+        "domain_name": "www.class.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: esrl.noaa.gov",
@@ -3948,7 +4366,8 @@
         "handle_javascript": false,
         "schedule": "26 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.esrl.noaa.gov/"
+        "starting_urls": "https://www.esrl.noaa.gov/",
+        "domain_name": "www.esrl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: geonetcastamericas.noaa.gov",
@@ -3957,7 +4376,8 @@
         "handle_javascript": false,
         "schedule": "27 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.geonetcastamericas.noaa.gov/"
+        "starting_urls": "https://www.geonetcastamericas.noaa.gov/",
+        "domain_name": "www.geonetcastamericas.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: photolib.noaa.gov",
@@ -3966,7 +4386,8 @@
         "handle_javascript": false,
         "schedule": "28 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.photolib.noaa.gov/"
+        "starting_urls": "https://www.photolib.noaa.gov/",
+        "domain_name": "www.photolib.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: wrh.noaa.gov",
@@ -3975,7 +4396,8 @@
         "handle_javascript": false,
         "schedule": "29 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.wrh.noaa.gov/"
+        "starting_urls": "https://www.wrh.noaa.gov/",
+        "domain_name": "www.wrh.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: apps.dat.noaa.gov",
@@ -3984,7 +4406,8 @@
         "handle_javascript": false,
         "schedule": "30 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://apps.dat.noaa.gov/"
+        "starting_urls": "https://apps.dat.noaa.gov/",
+        "domain_name": "apps.dat.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: beta.tidesandcurrents.noaa.gov",
@@ -3993,7 +4416,8 @@
         "handle_javascript": false,
         "schedule": "31 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://beta.tidesandcurrents.noaa.gov/"
+        "starting_urls": "https://beta.tidesandcurrents.noaa.gov/",
+        "domain_name": "beta.tidesandcurrents.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cfs.ncep.noaa.gov",
@@ -4002,7 +4426,8 @@
         "handle_javascript": false,
         "schedule": "32 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cfs.ncep.noaa.gov/"
+        "starting_urls": "https://cfs.ncep.noaa.gov/",
+        "domain_name": "cfs.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: dcs1.noaa.gov",
@@ -4011,7 +4436,8 @@
         "handle_javascript": false,
         "schedule": "33 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dcs1.noaa.gov/"
+        "starting_urls": "https://dcs1.noaa.gov/",
+        "domain_name": "dcs1.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: digital.mdl.nws.noaa.gov",
@@ -4020,7 +4446,8 @@
         "handle_javascript": false,
         "schedule": "34 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://digital.mdl.nws.noaa.gov/"
+        "starting_urls": "https://digital.mdl.nws.noaa.gov/",
+        "domain_name": "digital.mdl.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: eeo.oar.noaa.gov",
@@ -4029,7 +4456,8 @@
         "handle_javascript": false,
         "schedule": "35 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://eeo.oar.noaa.gov/"
+        "starting_urls": "https://eeo.oar.noaa.gov/",
+        "domain_name": "eeo.oar.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: epic.noaa.gov",
@@ -4038,7 +4466,8 @@
         "handle_javascript": false,
         "schedule": "36 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://epic.noaa.gov/"
+        "starting_urls": "https://epic.noaa.gov/",
+        "domain_name": "epic.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oeab.noaa.gov",
@@ -4047,7 +4476,8 @@
         "handle_javascript": false,
         "schedule": "37 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oeab.noaa.gov/"
+        "starting_urls": "https://oeab.noaa.gov/",
+        "domain_name": "oeab.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oedwebdbapps.iso.noaa.gov",
@@ -4056,7 +4486,8 @@
         "handle_javascript": false,
         "schedule": "38 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oedwebdbapps.iso.noaa.gov/"
+        "starting_urls": "https://oedwebdbapps.iso.noaa.gov/",
+        "domain_name": "oedwebdbapps.iso.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin-west-www-ospo.woc.noaa.gov",
@@ -4065,7 +4496,8 @@
         "handle_javascript": false,
         "schedule": "40 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin-west-www-ospo.woc.noaa.gov/"
+        "starting_urls": "https://origin-west-www-ospo.woc.noaa.gov/",
+        "domain_name": "origin-west-www-ospo.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: products.coastalscience.noaa.gov",
@@ -4074,7 +4506,8 @@
         "handle_javascript": false,
         "schedule": "41 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://products.coastalscience.noaa.gov/"
+        "starting_urls": "https://products.coastalscience.noaa.gov/",
+        "domain_name": "products.coastalscience.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: slosh.nws.noaa.gov",
@@ -4083,7 +4516,8 @@
         "handle_javascript": false,
         "schedule": "42 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://slosh.nws.noaa.gov/"
+        "starting_urls": "https://slosh.nws.noaa.gov/",
+        "domain_name": "slosh.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: tgftp.cp.ncep.noaa.gov",
@@ -4092,7 +4526,8 @@
         "handle_javascript": false,
         "schedule": "43 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://tgftp.cp.ncep.noaa.gov/"
+        "starting_urls": "https://tgftp.cp.ncep.noaa.gov/",
+        "domain_name": "tgftp.cp.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: energy.noaa.gov",
@@ -4101,7 +4536,8 @@
         "handle_javascript": false,
         "schedule": "45 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.energy.noaa.gov/"
+        "starting_urls": "https://www.energy.noaa.gov/",
+        "domain_name": "www.energy.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: access.co-ops.nos.noaa.gov",
@@ -4110,7 +4546,8 @@
         "handle_javascript": false,
         "schedule": "46 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://access.co-ops.nos.noaa.gov/"
+        "starting_urls": "https://access.co-ops.nos.noaa.gov/",
+        "domain_name": "access.co-ops.nos.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: alpha.ngs.noaa.gov",
@@ -4119,7 +4556,8 @@
         "handle_javascript": false,
         "schedule": "47 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://alpha.ngs.noaa.gov/"
+        "starting_urls": "https://alpha.ngs.noaa.gov/",
+        "domain_name": "alpha.ngs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: apps.nssl.noaa.gov",
@@ -4128,7 +4566,8 @@
         "handle_javascript": false,
         "schedule": "48 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://apps.nssl.noaa.gov/"
+        "starting_urls": "https://apps.nssl.noaa.gov/",
+        "domain_name": "apps.nssl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cdn.coastalscience.noaa.gov",
@@ -4137,7 +4576,8 @@
         "handle_javascript": false,
         "schedule": "49 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cdn.coastalscience.noaa.gov/"
+        "starting_urls": "https://cdn.coastalscience.noaa.gov/",
+        "domain_name": "cdn.coastalscience.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ecowatch-staging.noaa.gov",
@@ -4146,7 +4586,8 @@
         "handle_javascript": false,
         "schedule": "50 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ecowatch-staging.noaa.gov/"
+        "starting_urls": "https://ecowatch-staging.noaa.gov/",
+        "domain_name": "ecowatch-staging.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: lightning.cmdl.noaa.gov",
@@ -4155,7 +4596,8 @@
         "handle_javascript": false,
         "schedule": "51 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://lightning.cmdl.noaa.gov/"
+        "starting_urls": "https://lightning.cmdl.noaa.gov/",
+        "domain_name": "lightning.cmdl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: secatchshares.fisheries.noaa.gov",
@@ -4164,7 +4606,8 @@
         "handle_javascript": false,
         "schedule": "52 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://secatchshares.fisheries.noaa.gov/"
+        "starting_urls": "https://secatchshares.fisheries.noaa.gov/",
+        "domain_name": "secatchshares.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: sites.gsl.noaa.gov",
@@ -4173,7 +4616,8 @@
         "handle_javascript": false,
         "schedule": "53 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://sites.gsl.noaa.gov/"
+        "starting_urls": "https://sites.gsl.noaa.gov/",
+        "domain_name": "sites.gsl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: storm.aoml.noaa.gov",
@@ -4182,7 +4626,8 @@
         "handle_javascript": false,
         "schedule": "54 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://storm.aoml.noaa.gov/"
+        "starting_urls": "https://storm.aoml.noaa.gov/",
+        "domain_name": "storm.aoml.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: whitepages.noaa.gov",
@@ -4191,7 +4636,8 @@
         "handle_javascript": false,
         "schedule": "55 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://whitepages.noaa.gov/"
+        "starting_urls": "https://whitepages.noaa.gov/",
+        "domain_name": "whitepages.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: alaskafisheries.noaa.gov",
@@ -4200,7 +4646,8 @@
         "handle_javascript": false,
         "schedule": "56 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://alaskafisheries.noaa.gov/"
+        "starting_urls": "https://alaskafisheries.noaa.gov/",
+        "domain_name": "alaskafisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: americansamoa.noaa.gov",
@@ -4209,7 +4656,8 @@
         "handle_javascript": false,
         "schedule": "57 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://americansamoa.noaa.gov/"
+        "starting_urls": "https://americansamoa.noaa.gov/",
+        "domain_name": "americansamoa.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cameo.noaa.gov",
@@ -4218,7 +4666,8 @@
         "handle_javascript": false,
         "schedule": "58 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cameo.noaa.gov/"
+        "starting_urls": "https://cameo.noaa.gov/",
+        "domain_name": "cameo.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: content-drupal-swpc.woc.noaa.gov",
@@ -4227,7 +4676,8 @@
         "handle_javascript": false,
         "schedule": "59 07 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://content-drupal-swpc.woc.noaa.gov/"
+        "starting_urls": "https://content-drupal-swpc.woc.noaa.gov/",
+        "domain_name": "content-drupal-swpc.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: data.pmel.noaa.gov",
@@ -4236,7 +4686,8 @@
         "handle_javascript": false,
         "schedule": "00 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://data.pmel.noaa.gov/"
+        "starting_urls": "https://data.pmel.noaa.gov/",
+        "domain_name": "data.pmel.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: distribution.charts.noaa.gov",
@@ -4245,7 +4696,8 @@
         "handle_javascript": false,
         "schedule": "01 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://distribution.charts.noaa.gov/"
+        "starting_urls": "https://distribution.charts.noaa.gov/",
+        "domain_name": "distribution.charts.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: fosterscholars.noaa.gov",
@@ -4254,7 +4706,8 @@
         "handle_javascript": false,
         "schedule": "02 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://fosterscholars.noaa.gov/"
+        "starting_urls": "https://fosterscholars.noaa.gov/",
+        "domain_name": "fosterscholars.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: iocm.noaa.gov",
@@ -4263,7 +4716,8 @@
         "handle_javascript": false,
         "schedule": "03 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://iocm.noaa.gov/"
+        "starting_urls": "https://iocm.noaa.gov/",
+        "domain_name": "iocm.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: m.cameochemicals.noaa.gov",
@@ -4272,7 +4726,8 @@
         "handle_javascript": false,
         "schedule": "04 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://m.cameochemicals.noaa.gov/"
+        "starting_urls": "https://m.cameochemicals.noaa.gov/",
+        "domain_name": "m.cameochemicals.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: mrms.nssl.noaa.gov",
@@ -4281,7 +4736,8 @@
         "handle_javascript": false,
         "schedule": "05 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://mrms.nssl.noaa.gov/"
+        "starting_urls": "https://mrms.nssl.noaa.gov/",
+        "domain_name": "mrms.nssl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nsde.ngs.noaa.gov",
@@ -4290,7 +4746,8 @@
         "handle_javascript": false,
         "schedule": "06 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://nsde.ngs.noaa.gov/"
+        "starting_urls": "https://nsde.ngs.noaa.gov/",
+        "domain_name": "nsde.ngs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: pier.seagrant.noaa.gov",
@@ -4299,7 +4756,8 @@
         "handle_javascript": false,
         "schedule": "07 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://pier.seagrant.noaa.gov/"
+        "starting_urls": "https://pier.seagrant.noaa.gov/",
+        "domain_name": "pier.seagrant.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: prod.tidesandcurrents.noaa.gov",
@@ -4308,7 +4766,8 @@
         "handle_javascript": false,
         "schedule": "08 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://prod.tidesandcurrents.noaa.gov/"
+        "starting_urls": "https://prod.tidesandcurrents.noaa.gov/",
+        "domain_name": "prod.tidesandcurrents.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: publications.gsl.noaa.gov",
@@ -4317,7 +4776,8 @@
         "handle_javascript": false,
         "schedule": "09 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://publications.gsl.noaa.gov/"
+        "starting_urls": "https://publications.gsl.noaa.gov/",
+        "domain_name": "publications.gsl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: seb.omao.noaa.gov",
@@ -4326,7 +4786,8 @@
         "handle_javascript": false,
         "schedule": "10 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://seb.omao.noaa.gov/"
+        "starting_urls": "https://seb.omao.noaa.gov/",
+        "domain_name": "seb.omao.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: stateoftheocean.osmc.noaa.gov",
@@ -4335,7 +4796,8 @@
         "handle_javascript": false,
         "schedule": "11 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://stateoftheocean.osmc.noaa.gov/"
+        "starting_urls": "https://stateoftheocean.osmc.noaa.gov/",
+        "domain_name": "stateoftheocean.osmc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: svn.pydro.noaa.gov",
@@ -4344,7 +4806,8 @@
         "handle_javascript": false,
         "schedule": "12 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://svn.pydro.noaa.gov/"
+        "starting_urls": "https://svn.pydro.noaa.gov/",
+        "domain_name": "svn.pydro.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: diver.orr.noaa.gov",
@@ -4353,7 +4816,8 @@
         "handle_javascript": false,
         "schedule": "14 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.diver.orr.noaa.gov/"
+        "starting_urls": "https://www.diver.orr.noaa.gov/",
+        "domain_name": "www.diver.orr.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: lstsrv.ncep.noaa.gov",
@@ -4362,7 +4826,8 @@
         "handle_javascript": false,
         "schedule": "16 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.lstsrv.ncep.noaa.gov/"
+        "starting_urls": "https://www.lstsrv.ncep.noaa.gov/",
+        "domain_name": "www.lstsrv.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: space.commerce.gov.a.woc.noaa.gov",
@@ -4371,7 +4836,8 @@
         "handle_javascript": false,
         "schedule": "17 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.space.commerce.gov.a.woc.noaa.gov/"
+        "starting_urls": "https://www.space.commerce.gov.a.woc.noaa.gov/",
+        "domain_name": "www.space.commerce.gov.a.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: vdatum.noaa.gov",
@@ -4380,7 +4846,8 @@
         "handle_javascript": false,
         "schedule": "18 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.vdatum.noaa.gov/"
+        "starting_urls": "https://www.vdatum.noaa.gov/",
+        "domain_name": "www.vdatum.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: beta.ngs.noaa.gov",
@@ -4389,7 +4856,8 @@
         "handle_javascript": false,
         "schedule": "19 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://beta.ngs.noaa.gov/"
+        "starting_urls": "https://beta.ngs.noaa.gov/",
+        "domain_name": "beta.ngs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cbits.nws.noaa.gov",
@@ -4398,7 +4866,8 @@
         "handle_javascript": false,
         "schedule": "20 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cbits.nws.noaa.gov/"
+        "starting_urls": "https://cbits.nws.noaa.gov/",
+        "domain_name": "cbits.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cordellbank.noaa.gov",
@@ -4407,7 +4876,8 @@
         "handle_javascript": false,
         "schedule": "21 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cordellbank.noaa.gov/"
+        "starting_urls": "https://cordellbank.noaa.gov/",
+        "domain_name": "cordellbank.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: dev-east-ospo.woc.noaa.gov",
@@ -4416,7 +4886,8 @@
         "handle_javascript": false,
         "schedule": "22 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dev-east-ospo.woc.noaa.gov/"
+        "starting_urls": "https://dev-east-ospo.woc.noaa.gov/",
+        "domain_name": "dev-east-ospo.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: erddap.aoml.noaa.gov",
@@ -4425,7 +4896,8 @@
         "handle_javascript": false,
         "schedule": "23 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://erddap.aoml.noaa.gov/"
+        "starting_urls": "https://erddap.aoml.noaa.gov/",
+        "domain_name": "erddap.aoml.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ftp.hpc.ncep.noaa.gov",
@@ -4434,7 +4906,8 @@
         "handle_javascript": false,
         "schedule": "24 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ftp.hpc.ncep.noaa.gov/"
+        "starting_urls": "https://ftp.hpc.ncep.noaa.gov/",
+        "domain_name": "ftp.hpc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: graysreef.noaa.gov",
@@ -4443,7 +4916,8 @@
         "handle_javascript": false,
         "schedule": "25 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://graysreef.noaa.gov/"
+        "starting_urls": "https://graysreef.noaa.gov/",
+        "domain_name": "graysreef.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: habsos.noaa.gov",
@@ -4452,7 +4926,8 @@
         "handle_javascript": false,
         "schedule": "26 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://habsos.noaa.gov/"
+        "starting_urls": "https://habsos.noaa.gov/",
+        "domain_name": "habsos.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: hydrology.nws.noaa.gov",
@@ -4461,7 +4936,8 @@
         "handle_javascript": false,
         "schedule": "27 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://hydrology.nws.noaa.gov/"
+        "starting_urls": "https://hydrology.nws.noaa.gov/",
+        "domain_name": "hydrology.nws.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oceanwatch.pifsc.noaa.gov",
@@ -4470,7 +4946,8 @@
         "handle_javascript": false,
         "schedule": "29 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oceanwatch.pifsc.noaa.gov/"
+        "starting_urls": "https://oceanwatch.pifsc.noaa.gov/",
+        "domain_name": "oceanwatch.pifsc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: photos.orr.noaa.gov",
@@ -4479,7 +4956,8 @@
         "handle_javascript": false,
         "schedule": "30 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://photos.orr.noaa.gov/"
+        "starting_urls": "https://photos.orr.noaa.gov/",
+        "domain_name": "photos.orr.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: radar2pub-cprk.ncep.noaa.gov",
@@ -4488,7 +4966,8 @@
         "handle_javascript": false,
         "schedule": "31 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://radar2pub-cprk.ncep.noaa.gov/"
+        "starting_urls": "https://radar2pub-cprk.ncep.noaa.gov/",
+        "domain_name": "radar2pub-cprk.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ready2.arl.noaa.gov",
@@ -4497,7 +4976,8 @@
         "handle_javascript": false,
         "schedule": "32 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ready2.arl.noaa.gov/"
+        "starting_urls": "https://ready2.arl.noaa.gov/",
+        "domain_name": "ready2.arl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: saga.pmel.noaa.gov",
@@ -4506,7 +4986,8 @@
         "handle_javascript": false,
         "schedule": "33 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://saga.pmel.noaa.gov/"
+        "starting_urls": "https://saga.pmel.noaa.gov/",
+        "domain_name": "saga.pmel.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: devilslake.noaa.gov",
@@ -4515,7 +4996,8 @@
         "handle_javascript": false,
         "schedule": "36 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.devilslake.noaa.gov/"
+        "starting_urls": "https://www.devilslake.noaa.gov/",
+        "domain_name": "www.devilslake.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: habitat.noaa.gov",
@@ -4524,7 +5006,8 @@
         "handle_javascript": false,
         "schedule": "37 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.habitat.noaa.gov/"
+        "starting_urls": "https://www.habitat.noaa.gov/",
+        "domain_name": "www.habitat.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: kidsday.noaa.gov",
@@ -4533,7 +5016,8 @@
         "handle_javascript": false,
         "schedule": "38 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.kidsday.noaa.gov/"
+        "starting_urls": "https://www.kidsday.noaa.gov/",
+        "domain_name": "www.kidsday.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: protechservices.noaa.gov",
@@ -4542,7 +5026,8 @@
         "handle_javascript": false,
         "schedule": "40 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.protechservices.noaa.gov/"
+        "starting_urls": "https://www.protechservices.noaa.gov/",
+        "domain_name": "www.protechservices.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: test.roc.noaa.gov",
@@ -4551,7 +5036,8 @@
         "handle_javascript": false,
         "schedule": "42 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.test.roc.noaa.gov/"
+        "starting_urls": "https://www.test.roc.noaa.gov/",
+        "domain_name": "www.test.roc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: apps-st.fisheries.noaa.gov",
@@ -4560,7 +5046,8 @@
         "handle_javascript": false,
         "schedule": "43 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://apps-st.fisheries.noaa.gov/"
+        "starting_urls": "https://apps-st.fisheries.noaa.gov/",
+        "domain_name": "apps-st.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: co-ops.nos.noaa.gov",
@@ -4569,7 +5056,8 @@
         "handle_javascript": false,
         "schedule": "44 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://co-ops.nos.noaa.gov/"
+        "starting_urls": "https://co-ops.nos.noaa.gov/",
+        "domain_name": "co-ops.nos.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: coastalsmartgrowth.noaa.gov",
@@ -4578,7 +5066,8 @@
         "handle_javascript": false,
         "schedule": "45 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://coastalsmartgrowth.noaa.gov/"
+        "starting_urls": "https://coastalsmartgrowth.noaa.gov/",
+        "domain_name": "coastalsmartgrowth.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: cwcgom.aoml.noaa.gov",
@@ -4587,7 +5076,8 @@
         "handle_javascript": false,
         "schedule": "46 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://cwcgom.aoml.noaa.gov/"
+        "starting_urls": "https://cwcgom.aoml.noaa.gov/",
+        "domain_name": "cwcgom.aoml.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: deepseacoraldata.noaa.gov",
@@ -4596,7 +5086,8 @@
         "handle_javascript": false,
         "schedule": "47 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://deepseacoraldata.noaa.gov/"
+        "starting_urls": "https://deepseacoraldata.noaa.gov/",
+        "domain_name": "deepseacoraldata.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: dev-drupal9-climate.woc.noaa.gov",
@@ -4605,7 +5096,8 @@
         "handle_javascript": false,
         "schedule": "48 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dev-drupal9-climate.woc.noaa.gov/"
+        "starting_urls": "https://dev-drupal9-climate.woc.noaa.gov/",
+        "domain_name": "dev-drupal9-climate.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: dev-wordpress-space.woc.noaa.gov",
@@ -4614,7 +5106,8 @@
         "handle_javascript": false,
         "schedule": "49 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://dev-wordpress-space.woc.noaa.gov/"
+        "starting_urls": "https://dev-wordpress-space.woc.noaa.gov/",
+        "domain_name": "dev-wordpress-space.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: en.wikipedia.org",
@@ -4623,7 +5116,8 @@
         "handle_javascript": false,
         "schedule": "50 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://en.wikipedia.org/"
+        "starting_urls": "https://en.wikipedia.org/",
+        "domain_name": "en.wikipedia.org"
     },
     {
         "name": "modules.BWEB affiliate: ftp.wpc.ncep.noaa.gov",
@@ -4632,7 +5126,8 @@
         "handle_javascript": false,
         "schedule": "52 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ftp.wpc.ncep.noaa.gov/"
+        "starting_urls": "https://ftp.wpc.ncep.noaa.gov/",
+        "domain_name": "ftp.wpc.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: gis.ngdc.noaa.gov",
@@ -4641,7 +5136,8 @@
         "handle_javascript": false,
         "schedule": "53 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://gis.ngdc.noaa.gov/"
+        "starting_urls": "https://gis.ngdc.noaa.gov/",
+        "domain_name": "gis.ngdc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: lookup.rdc.noaa.gov",
@@ -4650,7 +5146,8 @@
         "handle_javascript": false,
         "schedule": "54 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://lookup.rdc.noaa.gov/"
+        "starting_urls": "https://lookup.rdc.noaa.gov/",
+        "domain_name": "lookup.rdc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: madis-data.bldr.ncep.noaa.gov",
@@ -4659,7 +5156,8 @@
         "handle_javascript": false,
         "schedule": "55 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://madis-data.bldr.ncep.noaa.gov/"
+        "starting_urls": "https://madis-data.bldr.ncep.noaa.gov/",
+        "domain_name": "madis-data.bldr.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: madis-data.cprk.ncep.noaa.gov",
@@ -4668,7 +5166,8 @@
         "handle_javascript": false,
         "schedule": "56 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://madis-data.cprk.ncep.noaa.gov/"
+        "starting_urls": "https://madis-data.cprk.ncep.noaa.gov/",
+        "domain_name": "madis-data.cprk.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: maritimeboundaries.noaa.gov",
@@ -4677,7 +5176,8 @@
         "handle_javascript": false,
         "schedule": "57 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://maritimeboundaries.noaa.gov/"
+        "starting_urls": "https://maritimeboundaries.noaa.gov/",
+        "domain_name": "maritimeboundaries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: mmhsrp.nmfs.noaa.gov",
@@ -4686,7 +5186,8 @@
         "handle_javascript": false,
         "schedule": "58 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://mmhsrp.nmfs.noaa.gov/"
+        "starting_urls": "https://mmhsrp.nmfs.noaa.gov/",
+        "domain_name": "mmhsrp.nmfs.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: mping.nssl.noaa.gov",
@@ -4695,7 +5196,8 @@
         "handle_javascript": false,
         "schedule": "59 08 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://mping.nssl.noaa.gov/"
+        "starting_urls": "https://mping.nssl.noaa.gov/",
+        "domain_name": "mping.nssl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: new-ready.arl.noaa.gov",
@@ -4704,7 +5206,8 @@
         "handle_javascript": false,
         "schedule": "00 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://new-ready.arl.noaa.gov/"
+        "starting_urls": "https://new-ready.arl.noaa.gov/",
+        "domain_name": "new-ready.arl.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: noc.nwave.noaa.gov",
@@ -4713,7 +5216,8 @@
         "handle_javascript": false,
         "schedule": "01 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://noc.nwave.noaa.gov/"
+        "starting_urls": "https://noc.nwave.noaa.gov/",
+        "domain_name": "noc.nwave.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: nomads.ncep.noaa.gov",
@@ -4722,7 +5226,8 @@
         "handle_javascript": false,
         "schedule": "02 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://nomads.ncep.noaa.gov/"
+        "starting_urls": "https://nomads.ncep.noaa.gov/",
+        "domain_name": "nomads.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ntwc.arh.noaa.gov",
@@ -4731,7 +5236,8 @@
         "handle_javascript": false,
         "schedule": "03 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ntwc.arh.noaa.gov/"
+        "starting_urls": "https://ntwc.arh.noaa.gov/",
+        "domain_name": "ntwc.arh.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: oculus.atdd.noaa.gov",
@@ -4740,7 +5246,8 @@
         "handle_javascript": false,
         "schedule": "05 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://oculus.atdd.noaa.gov/"
+        "starting_urls": "https://oculus.atdd.noaa.gov/",
+        "domain_name": "oculus.atdd.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: origin-east-www-spc.woc.noaa.gov",
@@ -4749,7 +5256,8 @@
         "handle_javascript": false,
         "schedule": "06 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://origin-east-www-spc.woc.noaa.gov/"
+        "starting_urls": "https://origin-east-www-spc.woc.noaa.gov/",
+        "domain_name": "origin-east-www-spc.woc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: orta.research.noaa.gov",
@@ -4758,7 +5266,8 @@
         "handle_javascript": false,
         "schedule": "07 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://orta.research.noaa.gov/"
+        "starting_urls": "https://orta.research.noaa.gov/",
+        "domain_name": "orta.research.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ruc.noaa.gov",
@@ -4767,7 +5276,8 @@
         "handle_javascript": false,
         "schedule": "08 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://ruc.noaa.gov/"
+        "starting_urls": "https://ruc.noaa.gov/",
+        "domain_name": "ruc.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: rucsoundings.noaa.gov",
@@ -4776,7 +5286,8 @@
         "handle_javascript": false,
         "schedule": "09 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://rucsoundings.noaa.gov/"
+        "starting_urls": "https://rucsoundings.noaa.gov/",
+        "domain_name": "rucsoundings.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: test-media.fisheries.noaa.gov",
@@ -4785,7 +5296,8 @@
         "handle_javascript": false,
         "schedule": "10 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://test-media.fisheries.noaa.gov/"
+        "starting_urls": "https://test-media.fisheries.noaa.gov/",
+        "domain_name": "test-media.fisheries.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: tsunami-cp.ncep.noaa.gov",
@@ -4794,7 +5306,8 @@
         "handle_javascript": false,
         "schedule": "11 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://tsunami-cp.ncep.noaa.gov/"
+        "starting_urls": "https://tsunami-cp.ncep.noaa.gov/",
+        "domain_name": "tsunami-cp.ncep.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: upwell.pfeg.noaa.gov",
@@ -4803,7 +5316,8 @@
         "handle_javascript": false,
         "schedule": "12 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://upwell.pfeg.noaa.gov/"
+        "starting_urls": "https://upwell.pfeg.noaa.gov/",
+        "domain_name": "upwell.pfeg.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: adp.noaa.gov",
@@ -4812,7 +5326,8 @@
         "handle_javascript": false,
         "schedule": "13 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.adp.noaa.gov/"
+        "starting_urls": "https://www.adp.noaa.gov/",
+        "domain_name": "www.adp.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: aev.class.noaa.gov",
@@ -4821,7 +5336,8 @@
         "handle_javascript": false,
         "schedule": "14 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.aev.class.noaa.gov/"
+        "starting_urls": "https://www.aev.class.noaa.gov/",
+        "domain_name": "www.aev.class.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: ecofoci.noaa.gov",
@@ -4830,7 +5346,8 @@
         "handle_javascript": false,
         "schedule": "17 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.ecofoci.noaa.gov/"
+        "starting_urls": "https://www.ecofoci.noaa.gov/",
+        "domain_name": "www.ecofoci.noaa.gov"
     },
     {
         "name": "modules.BWEB affiliate: rtdf.clu-in.org",
@@ -4839,7 +5356,8 @@
         "handle_javascript": false,
         "schedule": "19 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://rtdf.clu-in.org/"
+        "starting_urls": "https://rtdf.clu-in.org/",
+        "domain_name": "rtdf.clu-in.org"
     },
     {
         "name": "modules.BWEB affiliate: triadcentral.clu-in.org",
@@ -4848,7 +5366,8 @@
         "handle_javascript": false,
         "schedule": "20 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://triadcentral.clu-in.org/"
+        "starting_urls": "https://triadcentral.clu-in.org/",
+        "domain_name": "triadcentral.clu-in.org"
     },
     {
         "name": "modules.BWEB affiliate: clu-in.org",
@@ -4857,7 +5376,8 @@
         "handle_javascript": false,
         "schedule": "21 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://clu-in.org/"
+        "starting_urls": "https://clu-in.org/",
+        "domain_name": "clu-in.org"
     },
     {
         "name": "modules.BWEB affiliate: training.fema.gov",
@@ -4866,7 +5386,8 @@
         "handle_javascript": false,
         "schedule": "22 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://training.fema.gov/"
+        "starting_urls": "https://training.fema.gov/",
+        "domain_name": "training.fema.gov"
     },
     {
         "name": "modules.BWEB affiliate: rsac.fra.dot.gov",
@@ -4875,7 +5396,8 @@
         "handle_javascript": false,
         "schedule": "23 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://rsac.fra.dot.gov/"
+        "starting_urls": "https://rsac.fra.dot.gov/",
+        "domain_name": "rsac.fra.dot.gov"
     },
     {
         "name": "modules.BWEB affiliate: fra.dot.gov",
@@ -4884,7 +5406,8 @@
         "handle_javascript": false,
         "schedule": "24 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.fra.dot.gov/"
+        "starting_urls": "https://www.fra.dot.gov/",
+        "domain_name": "www.fra.dot.gov"
     },
     {
         "name": "modules.BWEB affiliate: railroads.dot.gov",
@@ -4893,7 +5416,8 @@
         "handle_javascript": false,
         "schedule": "25 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://railroads.dot.gov/"
+        "starting_urls": "https://railroads.dot.gov/",
+        "domain_name": "railroads.dot.gov"
     },
     {
         "name": "modules.BWEB affiliate: static.e-publishing.af.mil",
@@ -4902,7 +5426,8 @@
         "handle_javascript": false,
         "schedule": "26 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://static.e-publishing.af.mil/"
+        "starting_urls": "https://static.e-publishing.af.mil/",
+        "domain_name": "static.e-publishing.af.mil"
     },
     {
         "name": "modules.BWEB affiliate: e-publishing.af.mil",
@@ -4911,7 +5436,8 @@
         "handle_javascript": false,
         "schedule": "27 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.e-publishing.af.mil/"
+        "starting_urls": "https://www.e-publishing.af.mil/",
+        "domain_name": "www.e-publishing.af.mil"
     },
     {
         "name": "modules.BWEB affiliate: mypay.dfas.mil",
@@ -4920,7 +5446,8 @@
         "handle_javascript": false,
         "schedule": "28 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://mypay.dfas.mil/"
+        "starting_urls": "https://mypay.dfas.mil/",
+        "domain_name": "mypay.dfas.mil"
     },
     {
         "name": "modules.BWEB affiliate: dla.mil",
@@ -4929,7 +5456,8 @@
         "handle_javascript": false,
         "schedule": "29 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.dla.mil/"
+        "starting_urls": "https://www.dla.mil/",
+        "domain_name": "www.dla.mil"
     },
     {
         "name": "modules.BWEB affiliate: osi.af.mil",
@@ -4938,6 +5466,7 @@
         "handle_javascript": false,
         "schedule": "30 09 * * FRI",
         "output_target": "elasticsearch",
-        "starting_urls": "https://www.osi.af.mil/"
+        "starting_urls": "https://www.osi.af.mil/",
+        "domain_name": "www.osi.af.mil"
     }
 ]

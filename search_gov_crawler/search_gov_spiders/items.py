@@ -10,3 +10,4 @@ class SearchGovSpidersItem(scrapy.Item):
     html_content = scrapy.Field()
     url = scrapy.Field()
     output_target = scrapy.Field()
+    domain_name = scrapy.Field()

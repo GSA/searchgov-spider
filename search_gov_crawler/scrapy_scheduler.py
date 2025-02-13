@@ -37,7 +37,7 @@ CRAWL_SITES_FILE = (
 
 
 def run_scrapy_crawl(
-    spider: str, allow_query_string: bool, allowed_domains: str, start_urls: str, output_target: str
+    spider: str, allow_query_string: bool, allowed_domains: str, start_urls: str, output_target: str, domain_name: str,
 ) -> None:
     """Runs `scrapy crawl` command as a subprocess given the allowed arguments"""
 
@@ -54,9 +54,9 @@ def run_scrapy_crawl(
     )
     msg = (
         "Successfully completed scrapy crawl with args "
-        "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s, output_target=%s"
+        "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s, output_target=%s, domain_name=%s"
     )
-    log.info(msg, spider, allow_query_string, allowed_domains, start_urls, output_target)
+    log.info(msg, spider, allow_query_string, allowed_domains, start_urls, output_target, domain_name)
 
 
 def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
@@ -81,6 +81,7 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
                     crawl_site.allowed_domains,
                     crawl_site.starting_urls,
                     crawl_site.output_target,
+                    crawl_site.domain_name,
                 ],
             },
         )

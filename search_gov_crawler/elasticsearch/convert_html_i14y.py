@@ -17,7 +17,7 @@ ALLOWED_LANGUAGE_CODE = {
     ]
 }
 
-def convert_html(html_content: str, url: str):
+def convert_html(html_content: str, url: str, domain_name: str):
     """Extracts and processes article content from HTML using newspaper3k."""
     article = newspaper.Article(url=url)
     article.download(input_html=html_content)
@@ -65,7 +65,7 @@ def convert_html(html_content: str, url: str):
         "basename": basename,
         "extension": extension or None,
         "url_path": get_url_path(url),
-        "domain_name": get_domain_name(url)
+        "domain_name": domain_name or get_domain_name(url)
     }
 
     return i14y_doc
@@ -88,8 +88,8 @@ def generate_url_sha256(url: str) -> str:
     return hashlib.sha256(url.encode()).hexdigest()
 
 def get_domain_name(url: str) -> str:
-    """Extracts the domain from a URL, removing www and ensuring consistency."""
+    """Extracts the domain_name from a URL"""
     parsed = urlparse(url if url.startswith(('http://', 'https://')) else f'https://{url}')
     extracted = tldextract.extract(parsed.netloc)
-    domain = f"{extracted.subdomain}.{extracted.domain}.{extracted.suffix}".lstrip('.').replace("www.", "")
+    domain = f"{extracted.subdomain}.{extracted.domain}.{extracted.suffix}".lstrip(".")
     return domain

@@ -89,6 +89,7 @@ class DomainSpiderJs(CrawlSpider):
         allowed_domains: str | None = None,
         start_urls: str | None = None,
         output_target: str | None = None,
+        domain_name: str | None = None,
         **kwargs,
     ) -> None:
         if any([allowed_domains, start_urls]) and not all([allowed_domains, start_urls]):
@@ -111,6 +112,7 @@ class DomainSpiderJs(CrawlSpider):
         )
         self.start_urls = start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=True)
         self.output_target = output_target
+        self.domain_name = domain_name
     def parse_item(self, response: Response):
         """
         This method is called by spiders to gather the url.  Placed in the spider to assist with
@@ -123,7 +125,7 @@ class DomainSpiderJs(CrawlSpider):
 
         if helpers.is_valid_content_type(response.headers.get("content-type", None), output_target=self.output_target):
             html_content = encoding.decode_http_response(response_bytes=response.body)
-            yield SearchGovSpidersItem(url=response.url, html_content=html_content, output_target=self.output_target)
+            yield SearchGovSpidersItem(url=response.url, html_content=html_content, output_target=self.output_target, domain_name=self.domain_name)
 
     def set_playwright_usage(self, request: Request, _response: Response) -> Request:
         """Set meta tags for playwright to run"""
