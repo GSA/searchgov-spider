@@ -5,11 +5,13 @@ from urllib.parse import urlparse
 from datetime import datetime, timedelta
 import tldextract
 
-def extract_domain(url: str) -> str:
-    """Extracts the domain from a URL, removing www and ensuring consistency."""
+def get_domain_name(url: str, remove_www: bool = False) -> str:
+    """Extracts the domain_name from a URL"""
     parsed = urlparse(url if url.startswith(('http://', 'https://')) else f'https://{url}')
     extracted = tldextract.extract(parsed.netloc)
-    domain = f"{extracted.subdomain}.{extracted.domain}.{extracted.suffix}".lstrip('.').replace("www.", "")
+    domain = f"{extracted.subdomain}.{extracted.domain}.{extracted.suffix}".lstrip('.')
+    if remove_www:
+        domain = domain.replace("www.", "")
     return domain
 
 def generate_cron_schedules(start_time="01:01 FRI", count=100, minute_interval=10):
@@ -48,10 +50,11 @@ def process_csv(input_csv, output_json, existing_entries=None, seen_domains=None
             "handle_javascript": False,
             "schedule": schedules[i],
             "output_target": "elasticsearch",
-            "starting_urls": f"https://{raw_domain}/"
+            "starting_urls": f"https://{raw_domain}/",
+            "domain_name": get_domain_name(raw_domain)
         }
         for i, raw_domain in enumerate(domains)
-        if (domain := extract_domain(raw_domain)) not in seen_domains and not seen_domains.add(domain)
+        if (domain := get_domain_name(raw_domain, True)) not in seen_domains and not seen_domains.add(domain)
     ]
     
     with output_path.open("w", encoding='utf-8') as f:
@@ -63,6 +66,6 @@ if __name__ == "__main__":
     with scrutiny_json_path.open() as f:
         existing_data = json.load(f)
     
-    seen_domains = {extract_domain(entry["starting_urls"]) for entry in existing_data}
+    seen_domains = {get_domain_name(entry["starting_urls"]) for entry in existing_data}
     
     process_csv("domains_bing_all.csv", "crawl-sites-production.json", existing_data, seen_domains)

@@ -205,6 +205,7 @@ prevent this file from getting into an invalid state.
         "allowed_domains": "example.com",
         "allow_query_string": false,
         "handle_javascript": false,
+        "domain_name": "www.example.com"
         "schedule": "30 08 * * MON",
         "starting_urls": "https://www.example.com"
     }

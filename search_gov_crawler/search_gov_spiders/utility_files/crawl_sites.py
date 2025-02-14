@@ -19,6 +19,7 @@ class CrawlSite:
     starting_urls: str
     output_target: str
     schedule: str | None = None
+    domain_name: str | None = None
 
     def __post_init__(self):
         """Perform validation on record"""

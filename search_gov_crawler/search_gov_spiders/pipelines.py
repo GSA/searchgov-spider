@@ -75,12 +75,13 @@ class SearchGovSpidersPipeline:
     def _process_es_item(self, item: SearchGovSpidersItem, spider: Spider):
         url = item.get("url", None)
         html_content = item.get("html_content", None)
+        domain_name = item.get("domain_name", None)
 
         if not html_content:
             spider.logger.error(f"Missing 'html_content' for url: {url}")
             raise DropItem("Missing URL or HTML in item")
         try:
-            self._get_elasticsearch_client().add_to_batch(html_content=html_content, url=url, spider=spider)
+            self._get_elasticsearch_client().add_to_batch(html_content=html_content, url=url, domain_name=domain_name, spider=spider)
         except Exception as e:
             raise DropItem(f"Item 'elasticsearch' add_to_batch() failed: {str(e)}")
 

@@ -12,6 +12,7 @@ Allow benchmarking and testing of spider.  Run this script in one of two ways:
         "allowed_domains": "example.com",
         "allow_query_string": false,
         "handle_javascript": false,
+        "domain_name": "www.example.com"
         "schedule": null,
         "output_target": "csv",
         "starting_urls": "https://www.example.com"
@@ -74,6 +75,7 @@ def create_apscheduler_job(
     handle_javascript: bool,
     output_target: str,
     runtime_offset_seconds: int,
+    domain_name: str = None
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
@@ -90,6 +92,7 @@ def create_apscheduler_job(
             allowed_domains,
             starting_urls,
             output_target,
+            domain_name,
         ],
     }
 
@@ -134,12 +137,14 @@ def benchmark_from_args(
     handle_javascript: bool,
     output_target: str,
     runtime_offset_seconds: int,
+    domain_name: str = None
 ):
     """Run an individual benchmarking job based on args"""
 
     msg = (
         "Starting benchmark from args! "
-        "allow_query_string=%s allowed_domains=%s starting_urls=%s handle_javascript=%s output_target=%s runtime_offset_seconds=%s"
+        "allow_query_string=%s allowed_domains=%s starting_urls=%s handle_javascript=%s" +
+        " output_target=%s runtime_offset_seconds=%s domain_name=%s"
     )
     log.info(
         msg,
@@ -149,6 +154,7 @@ def benchmark_from_args(
         handle_javascript,
         output_target,
         runtime_offset_seconds,
+        domain_name,
     )
 
     apscheduler_job_kwargs = {
@@ -159,6 +165,7 @@ def benchmark_from_args(
         "handle_javascript": handle_javascript,
         "output_target": output_target,
         "runtime_offset_seconds": runtime_offset_seconds,
+        "domain_name": domain_name,
     }
 
     scheduler = init_scheduler()
@@ -198,6 +205,13 @@ if __name__ == "__main__":
         default="csv",
         help="Point the output of the crawls to a backend",
     )
+    parser.add_argument(
+        "-dn",
+        "--domain_name",
+        type=str,
+        default=None,
+        help="Domain name that is associated with the affiliate, eg: www.example.com",
+    )
     parser.add_argument("-t", "--runtime_offset", type=int, default=5, help="Number of seconds to offset job start")
     args = parser.parse_args()
 
@@ -209,6 +223,7 @@ if __name__ == "__main__":
             "handle_javascript": args.handle_js,
             "output_target": args.output_target,
             "runtime_offset_seconds": args.runtime_offset,
+            "domain_name": args.domain_name,
         }
         benchmark_from_args(**benchmark_args)
     else:

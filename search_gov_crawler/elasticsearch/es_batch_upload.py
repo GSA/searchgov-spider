@@ -28,11 +28,11 @@ class SearchGovElasticsearch:
         self._env_es_password = os.environ.get("ES_PASSWORD", "")
         self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor
 
-    def add_to_batch(self, html_content: str, url: str, spider: Spider):
+    def add_to_batch(self, html_content: str, url: str, domain_name: str, spider: Spider):
         """
         Add a document to the batch for Elasticsearch upload.
         """
-        doc = convert_html(html_content=html_content, url=url)
+        doc = convert_html(html_content=html_content, url=url, domain_name=domain_name)
         if doc:
             self._current_batch.append(doc)
 
