@@ -13,6 +13,16 @@ from scrapy.spiders import Spider
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 
+def safe_del(item, key: str):
+    """
+    This method prevents any exception errors if item does not have the key or is null.
+    This is just in case, since the item should always have the keys we delete
+    """
+    try:
+        del item[key]
+    except Exception as _:
+        pass
+
 class SearchGovSpidersPipeline:
     """
     Pipeline that writes items to files for manual upload, or sends batched POST
@@ -50,6 +60,9 @@ class SearchGovSpidersPipeline:
             self._process_api_item(url, spider)
         else: # csv
             self._process_file_item(url)
+        
+        safe_del(item, "output_target")
+        safe_del(item, "html_content")
 
         return item
     

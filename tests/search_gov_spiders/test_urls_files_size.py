@@ -1,5 +1,5 @@
 import os
-
+import copy
 import pytest
 from scrapy import Spider
 from scrapy.utils.test import get_crawler
@@ -57,22 +57,28 @@ def fixture_pipeline_with_api(mocker) -> SearchGovSpidersPipeline:
 
 def test_write_to_file(pipeline_no_api, mock_open, sample_item, sample_spider, mocker):
     """Test that URLs are written to files when SPIDER_URLS_API is not set."""
-    sample_item["output_target"] = "csv"
+    sample_item_copy = copy.deepcopy(sample_item)
+    sample_item_copy["output_target"] = "csv"
     mocker.patch.object(SearchGovSpidersPipeline, "_file_size", return_value=100)
-    pipeline_no_api.process_item(sample_item, sample_spider)
+    pipeline_no_api.process_item(sample_item_copy, sample_spider)
+
+    assert "html_content" not in sample_item_copy, f"Key 'html_content' should not be in the item after it's processed"
+    assert "output_target" not in sample_item_copy, f"Key 'output_target' should not be in the item after it's processed"
 
     # Ensure file is opened and written to
     mock_open.assert_called_once_with(pipeline_no_api.file_path, "a", encoding="utf-8")
-    mock_open().write.assert_any_call(sample_item["url"] + "\n")
+    mock_open().write.assert_any_call(sample_item_copy["url"] + "\n")
 
 
 def test_post_to_api(pipeline_with_api, sample_item, sample_spider, mocker):
     """Test that URLs are batched and sent via POST when SPIDER_URLS_API is set."""
     mock_post = mocker.patch("requests.post")
-    pipeline_with_api.process_item(sample_item, sample_spider)
+    sample_item_copy = copy.deepcopy(sample_item)
+    pipeline_with_api.process_item(sample_item_copy, sample_spider)
+    sample_item_copy["output_target"] = "endpoint"
 
     # Check that the batch contains the URL
-    assert sample_item["url"] in pipeline_with_api.urls_batch
+    assert sample_item_copy["url"] in pipeline_with_api.urls_batch
 
     # Simulate max size to force post
     mocker.patch.object(
@@ -80,7 +86,7 @@ def test_post_to_api(pipeline_with_api, sample_item, sample_spider, mocker):
         "_batch_size",
         return_value=SearchGovSpidersPipeline.MAX_URL_BATCH_SIZE_BYTES,
     )
-    pipeline_with_api.process_item(sample_item, sample_spider)
+    pipeline_with_api.process_item(sample_item_copy, sample_spider)
 
     # Ensure POST request was made
     mock_post.assert_called_once_with("http://mockapi.com", json={"urls": pipeline_with_api.urls_batch})
@@ -109,6 +115,7 @@ def test_post_to_api_size_limit(pipeline_with_api, mocker, sample_spider, sample
 
     for _ in range(200):
         pipeline_with_api.process_item(sample_item_long, sample_spider)
+        sample_item_long["output_target"] = "endpoint"
 
     pipeline_with_api.close_spider(sample_spider)
     # Ensure POST request was made
