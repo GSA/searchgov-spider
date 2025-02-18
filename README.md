@@ -6,7 +6,6 @@ The home for the spider that supports [Search.gov](https://www.search.gov).
   * [Technologies](#technologies)
   * [Core Scrapy File Strcture](#core-scrapy-file-structure)
   * [Scrapy Web Crawler](#scrapy-web-crawler)
-
 * [Quick Start](#quick-start)
   * [Running Against All Listed Search.gov Domains](#running-against-all-listed-searchgov-domains)
   * [Running Against A Specific Domain](#running-against-a-specific-domain)
@@ -63,13 +62,13 @@ playwright install chrome --force
 python ./search_gov_crawler/elasticsearch/install_nltk.py
 ```
 
-4. Run A Spider For A Specific Domain**
+4. Run A Spider For A Specific Domain:
 In the same directory specified above, enter the command below, adding the domain and starting URL for the crawler:
 ```bash
+# to run for a non-js domain:
 scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com -a output_target=csv
-```
-or
-```bash
+
+# or to run for a js domain
 scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com/js -a output_target=csv
 ```
 
