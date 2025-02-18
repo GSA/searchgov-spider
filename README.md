@@ -23,20 +23,20 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 *Note: Other files and directories are within the repository but the folders and files below relate to those needed for the scrapy framework.
 
 ```bash
-├── search_gov_crawler               # scrapy root
-|   ├── elasticsearch                # code related to indexing content in elasticsearch
-│   ├── search_gov_spider            # scrapy project dir
-│   │   ├── extensions               # custom scrapy extensions
-│   │   ├── helpers                  # common functions
-│   │   ├── spiders                  # all search_gov_spider spiders
-│   │   │   ├── domain_spider.py     # for html pages
-│   │   │   ├── domain_spider_js.py  # for js pages
-│   │   ├── utility_files            # json files with default domains to scrape
-│   │   ├── items.py                 # defines individual output of scrapes
-│   │   ├── middlewares.py           # custom middleware code
-│   │   ├── middlewares.py           # custom spidermon monitors
-│   │   ├── pipelines.py             # custom item pipelines
-│   │   ├── settings.py              # settings that control all scrapy jobs
+├── search_gov_crawler              # scrapy root
+|   ├── elasticsearch               # code related to indexing content in elasticsearch
+│   ├── search_gov_spider           # scrapy project dir
+│   │   ├── extensions              # custom scrapy extensions
+│   │   ├── helpers                 # common functions
+│   │   ├── spiders                 # all search_gov_spider spiders
+│   │   │   ├── domain_spider.py    # for html pages
+│   │   │   ├── domain_spider_js.py # for js pages
+│   │   ├── utility_files           # json files with default domains to scrape
+│   │   ├── items.py                # defines individual output of scrapes
+│   │   ├── middlewares.py          # custom middleware code
+│   │   ├── monitors.py             # custom spidermon monitors
+│   │   ├── pipelines.py            # custom item pipelines
+│   │   ├── settings.py             # settings that control all scrapy jobs
 │   ├── scrapy.cfg
 ```
 
@@ -56,13 +56,7 @@ playwright install --with-deps
 playwright install chrome --force
 ```
 
-3. Install required nltk modules:
-```bash
-# make sure the virtual environment is activate
-python ./search_gov_crawler/elasticsearch/install_nltk.py
-```
-
-4. Run A Spider For A Specific Domain:
+3. Run A Spider For A Specific Domain:
 In the same directory specified above, enter the command below, adding the domain and starting URL for the crawler:
 ```bash
 # to run for a non-js domain:

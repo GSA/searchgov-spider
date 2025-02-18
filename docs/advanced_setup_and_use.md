@@ -3,6 +3,8 @@ This page gives a more
 
 #### Table of contents
 * [Environment Variables](#environment-variables)
+* [Output Targets](#output-targets)
+* [Elasticsearch](#elasticsearch)
 * [Starting Spider Jobs](#starting-spider-jobs)
   * [Option 1: command-line](#option-1-straight-from-command-line)
   * [Option 2: benchmark](#option-2-benchmark-command-line)
@@ -37,10 +39,34 @@ SPIDER_PYTHON_VERSION="3.12"
 SPIDER_RUN_WITH_UI="False"
 ```
 
+## Output Targets
+We support three output targets for our scrapy jobs.  These are specified in a `crawl-sites.json` file or as a command line argument to a scrapy or benchmark job.  The options are:
+
+1. `csv` - This is the default and if selected will output all scraped URLs to csv files in the [output folder](../search_gov_crawler/output/)
+
+2. `endpoint` - This is used to send links to a indexing service, such as searchgov.  All URLs will be posted to the endpoint contained in the `SPIDER_URLS_API` environment variables.
+
+3. `elasticsearch` - This option is used to post content to elasticsearch.  Here, it is not just the links being captured but also the content.
+
+
+## Elasticsearch
+Before setting the output target to `elastcisearch` for any domains:
+1. Install required nltk modules (only required for output target of elasticsearch):
+```bash
+# make sure the virtual environment is activate
+python ./search_gov_crawler/elasticsearch/install_nltk.py
+```
+
+2. Start elasticsearch using the docker compose file at the project root:
+```bash
+# ensure CWD is the project root
+docker compose up
+```
+
 ## Starting Spider Jobs
 Make sure to follow [Quick Start](../README.md#quick-start) steps , before running any spiders.
 
-### Option 1: straight from command-line
+### Option 1: scrapy from command-line
 1. Navigate to the [spiders](../search_gov_crawler/search_gov_spiders/spiders) directory
 2. Enter one of two following commands:
 
@@ -81,7 +107,7 @@ There are other options available.  Run `python search_gov_spiders/benchmark.py 
         $ scrapyd-deploy default
 
 
-    * Note: This will simply deploy it to a local Scrapyd server. To add custom deployment endpoints, you navigate to the [*scrapy.cfg*](search_gov_crawler/scrapy.cfg) file and add or customize endpoints.
+    * Note: This will simply deploy it to a local Scrapyd server. To add custom deployment endpoints, you navigate to the [scrapy.cfg](../search_gov_crawler/scrapy.cfg) file and add or customize endpoints.
 
         For instance, if you wanted local and production endpoints:
 
@@ -104,7 +130,7 @@ There are other options available.  Run `python search_gov_spiders/benchmark.py 
             # deploy production
             scrapyd-deploy production
 
-3. For an interface to view jobs (pending, running, finished) and logs, access http://localhost:6800/. However, to actually manipulate the spiders deployed to the Scrapyd server, you'll need to use the [*Scrapyd JSON API*](https://scrapyd.readthedocs.io/en/latest/api.html).
+3. For an interface to view jobs (pending, running, finished) and logs, access http://localhost:6800/. However, to actually manipulate the spiders deployed to the Scrapyd server, you'll need to use the [Scrapyd JSON API](https://scrapyd.readthedocs.io/en/latest/api.html).
 
     Some most-used commands:
 
@@ -117,7 +143,7 @@ There are other options available.  Run `python search_gov_spiders/benchmark.py 
 
 
 ## Running scrapy scheduler
-This process allows for scrapy to be run directly using an in-memory scheduler.  The schedule is based on the initial schedule setup in the [*crawl-sites-sample.json file*](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-sample.json).  The process will run until killed.
+This process allows for scrapy to be run directly using an in-memory scheduler.  The schedule is based on the initial schedule setup in the [crawl-sites-sample.json file](../search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-sample.json).  The process will run until killed.
 
 The json input file must be in a format similar what is below.  There are validations in place when the file is read and in tests that should help
 prevent this file from getting into an invalid state.
