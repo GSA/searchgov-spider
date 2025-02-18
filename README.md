@@ -7,8 +7,6 @@ The home for the spider that supports [Search.gov](https://www.search.gov).
   * [Core Scrapy File Strcture](#core-scrapy-file-structure)
   * [Scrapy Web Crawler](#scrapy-web-crawler)
 * [Quick Start](#quick-start)
-  * [Running Against All Listed Search.gov Domains](#running-against-all-listed-searchgov-domains)
-  * [Running Against A Specific Domain](#running-against-a-specific-domain)
 * [Helpful Links](#helpful-links)
 * [Advanced Setup and Use](docs/advanced_setup_and_use.md)
 * [Deployments](docs/deployments.md)
@@ -25,18 +23,20 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 *Note: Other files and directories are within the repository but the folders and files below relate to those needed for the scrapy framework.
 
 ```bash
-├── search_gov_crawler ( scrapy root )
-│   ├── search_gov_spider ( scrapy project *Note multiple projects can exist within a project root )
-│   │   ├── extensions ( includes custom scrapy extensions )
-│   │   ├── helpers ( includes common functions )
-│   │   ├── spiders
-│   │   │   ├── domain_spider.py ( spider for html pages )
-│   │   │   ├── domain_spider_js.py  ( spider for js pages )
-│   │   ├── utility_files ( includes json files with default domains to scrape )
-│   │   ├── items.py
-│   │   ├── middlewares.py
-│   │   ├── pipelines.py
-│   │   ├── settings.py ( Settings that control all scrapy jobs)
+├── search_gov_crawler               # scrapy root
+|   ├── elasticsearch                # code related to indexing content in elasticsearch
+│   ├── search_gov_spider            # scrapy project dir
+│   │   ├── extensions               # custom scrapy extensions
+│   │   ├── helpers                  # common functions
+│   │   ├── spiders                  # all search_gov_spider spiders
+│   │   │   ├── domain_spider.py     # for html pages
+│   │   │   ├── domain_spider_js.py  # for js pages
+│   │   ├── utility_files            # json files with default domains to scrape
+│   │   ├── items.py                 # defines individual output of scrapes
+│   │   ├── middlewares.py           # custom middleware code
+│   │   ├── middlewares.py           # custom spidermon monitors
+│   │   ├── pipelines.py             # custom item pipelines
+│   │   ├── settings.py              # settings that control all scrapy jobs
 │   ├── scrapy.cfg
 ```
 
@@ -75,3 +75,5 @@ scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_ur
 The output of this scrape is one or more csv files containing URLs in the [output directory](search_gov_crawler/output).
 
 For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_setup_and_use.md)
+
+## Helpful Links
